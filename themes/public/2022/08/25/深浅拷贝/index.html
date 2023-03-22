@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>深浅拷贝 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是浅拷贝？浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。举个例子：var  obj1&#x3D;{a:1,b:5,c:3};var  obj2&#x3D;obj1;obj2.b&#x3D;2;console.log(obj1.b);  &#x2F;&#x2F;2console.log(obj2.b);  &#x2F;&#x2F;2浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，任何">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深浅拷贝">
+<meta property="og:url" content="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是浅拷贝？浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。举个例子：var  obj1&#x3D;{a:1,b:5,c:3};var  obj2&#x3D;obj1;obj2.b&#x3D;2;console.log(obj1.b);  &#x2F;&#x2F;2console.log(obj2.b);  &#x2F;&#x2F;2浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，任何">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%BB%93%E6%9E%9C.png">
+<meta property="article:published_time" content="2022-08-25T13:53:20.000Z">
+<meta property="article:modified_time" content="2022-08-26T02:35:20.993Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="深浅拷贝">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%BB%93%E6%9E%9C.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-深浅拷贝" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="article-date">
+  <time datetime="2022-08-25T13:53:20.000Z" itemprop="datePublished">2022-08-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深浅拷贝
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>什么是浅拷贝？<br>浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。<br>举个例子：<br>var  obj1={a:1,b:5,c:3};<br>var  obj2=obj1;<br>obj2.b=2;<br>console.log(obj1.b);  //2<br>console.log(obj2.b);  //2<br>浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，任何一个修改都会是使得所有对象的值被修改，因为它们公用一条数据。</p>
+<p>什么是深拷贝？<br>深拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值不会改变。<br>举个例子：<br>var a=2;<br>var b=a;<br>b=3;<br>console.log(a);//2<br>console.log(b);//3<br>深拷贝：深拷贝不会拷贝引用类型的引用，拷贝的是引用类型的值，形成一个新的引用类型。</p>
+<p>如何实现深拷贝？<br>①JSON.Stringify(JSON.pare())   不支持多层引用嵌套，不支持函数Map、Sep等类型的数据</p>
+<p>var  obj1={a:1,b:5,c:3};<br>var  obj2=JSON.Stringify（JSON.parse（obj1））;<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
+<p>②展开运算符   …</p>
+<p>var  obj1={a:1,b:5,c:3};<br>var  obj2=(…obj1)<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
+<p>③Object.asssign（target,sourse）</p>
+<p>var  obj1={a:1,b:5,c:3};<br>var  obj2=Object.assign({},obj1)<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
+<p>④深拷贝函数，递归</p>
+<pre><code>        // target 要拷贝的对象
+        function deepClone(target)&#123;
+            //定义一个拷贝对象
+            let result;
+            // 判断拷贝目标是不是Object对象
+            if(typeof target===&#39;object&#39;)&#123;
+                // 判断是否是数组类型
+                if(Array.isArray(target))&#123;
+                    // 定义为数组
+                    result=[];
+                    for(let i in target)&#123;
+                        result.push(deepClone(target[i]));
+                    &#125;
+                &#125;else if(target===null)&#123;
+                    // 直接赋值
+                    result=null;
+                &#125;else if(target.constructor===RegExp)&#123;
+                    // 直接赋值
+                    result=target;
+                    // 不是特殊的对象
+                &#125;else&#123;
+                    result=&#123;&#125;;
+                    for(let i in target)&#123;
+                        // 递归
+                        result[i]=deepClone(target[i]);
+                    &#125;
+                &#125;
+                // 基本数据类型  直接赋值
+            &#125;else&#123;
+                result=target;
+            &#125;
+            return result;
+        &#125;
+</code></pre>
+<p>var obj1={<br>a:{z:1,c:null},<br>b:[1,2,3,5],<br>c:function(){console.log(this.a)}<br>}<br>var obj2=deepClone(obj1);<br>console.log(obj2);<br>obj2.b[0]=2;<br>obj2.a[0]=2;<br>console.log(obj1.a)<br>console.log(obj2.a)<br>console.log(obj1.b)<br>console.log(obj2.b)<br>console.log(obj2.c())</p>
+<p><img src="/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%BB%93%E6%9E%9C.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" data-id="cl9cv055q000n00t838tuhtod" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" rel="tag">深浅拷贝</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/08/30/webpack/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          webpack
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/08/16/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">博客搭建</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/vue3/">vue3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue3/" rel="tag">vue3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="tag">搭建博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" rel="tag">深浅拷贝</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/vue3/" style="font-size: 20px;">vue3</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">搭建博客</a> <a href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" style="font-size: 10px;">深浅拷贝</a> <a href="/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/17/Vue3%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">Vue3计算属性</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/">Vue3toRef和toRefs函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/">vue3ref和reactive函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/">Vue3setup函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/10/vue3/">vue3</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ljylwnxx">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ref 函数介绍 ref 作用就是将基础数据转换为响应式数据，把数据包装成响应式的引用数据类型的数据。 通过对参数返回值的 value 属性获取响应式的值，并且修改的时候也需要对 value 进行修改。 在vue2当中，通过给元素添加 ref&#x3D;’xxx’然后使用refs.xxx的方式来获取元素，vue3也可以。 当 ref 里面的值发生变化的时候，视图会自动更新数据。 ref 可以操作基本数据类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue3ref和reactive函数">
+<meta property="og:url" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="ljylwnxx的博客">
+<meta property="og:description" content="ref 函数介绍 ref 作用就是将基础数据转换为响应式数据，把数据包装成响应式的引用数据类型的数据。 通过对参数返回值的 value 属性获取响应式的值，并且修改的时候也需要对 value 进行修改。 在vue2当中，通过给元素添加 ref&#x3D;’xxx’然后使用refs.xxx的方式来获取元素，vue3也可以。 当 ref 里面的值发生变化的时候，视图会自动更新数据。 ref 可以操作基本数据类型">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E5%87%BA%E9%94%99.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%8F%B0.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E4%BF%AE%E6%94%B9%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/refdom%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%89%93%E5%8D%B0.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E6%95%B0%E7%BB%84%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%BB%93%E6%9E%9C.png">
+<meta property="article:published_time" content="2022-10-13T09:11:20.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:26:35.705Z">
+<meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="vue3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A3%E7%A0%81.png">
+  
+  
+  
+  <title>vue3ref和reactive函数 - ljylwnxx的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>ljylwnxx</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/defaultl.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vue3ref和reactive函数"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-13 17:11" pubdate>
+          2022年10月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue3ref和reactive函数</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ref-函数介绍"><a href="#ref-函数介绍" class="headerlink" title="ref 函数介绍"></a>ref 函数介绍</h1><ol>
+<li>ref 作用就是将基础数据转换为响应式数据，把数据包装成响应式的引用数据类型的数据。</li>
+<li>通过对参数返回值的 value 属性获取响应式的值，并且修改的时候也需要对 value 进行修改。</li>
+<li>在vue2当中，通过给元素添加 ref=’xxx’然后使用refs.xxx的方式来获取元素，vue3也可以。</li>
+<li>当 ref 里面的值发生变化的时候，视图会自动更新数据。</li>
+<li>ref 可以操作基本数据类型和复杂数据类型，建议使用 ref 操作只对基本数据类型进行操作。</li>
+</ol>
+<h2 id="ref-函数使用"><a href="#ref-函数使用" class="headerlink" title="ref 函数使用"></a>ref 函数使用</h2><p>使用 ref 函数很简单，首先要在页面引用，然后就可以直接使用了，具体怎么使用呢，下面为了方便介绍，简单来几个案例。</p>
+<h2 id="ref-函数处理基本数据类型"><a href="#ref-函数处理基本数据类型" class="headerlink" title="ref 函数处理基本数据类型"></a>ref 函数处理基本数据类型</h2><p>首先提一个需求：页面有一个名称需要显示，有一个按钮，点击按钮的时候修改页面展示的这个名字。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>刷新，可以正常渲染数据，但是点击按钮修改名字的时候，出现问题！<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E5%87%BA%E9%94%99.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%8F%B0.png" srcset="/img/loading.gif" lazyload><br>为什么使用过 ref 将数据映射为响应式数据还是报错呢？我们可以先打印一下 ref 包裹后，也就是 name_ref 这个参数，看一下结构。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" lazyload><br>修改代码：<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>码刷新页面查看效果<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E4%BF%AE%E6%94%B9%E6%88%90%E5%8A%9F.png" srcset="/img/loading.gif" lazyload><br>有一点需要说一下哈，就是在单文件组件中，不必写value，因为setup方法会自动解析，简单的可以理解成 html 代码不需要额外操作 value，但是逻辑层需要。</p>
+<h2 id="ref-函数处理复杂数据类型"><a href="#ref-函数处理复杂数据类型" class="headerlink" title="ref 函数处理复杂数据类型"></a>ref 函数处理复杂数据类型</h2><p>不建议使用 ref 函数处理复杂数据类型（数组、对象等），用 ref 函数处理基本数据类型（数字、字符串等）就可以了。<br>例如我们写一个案例，创建一个个人信息，放到对象里面展示<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>我们先看一下对象被 ref 函数包裹后的数据结构。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" lazyload><br>我们修改也通过 value 进行操作<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>刷新页面，查看效果<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E6%88%90%E5%8A%9F.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="ref-函数获取单个DOM元素"><a href="#ref-函数获取单个DOM元素" class="headerlink" title="ref 函数获取单个DOM元素"></a>ref 函数获取单个DOM元素</h2><p>和 vue2 一样，可以使用 ref 获取元素，用法和操作数据类型相似。<br>页面上有一个标签，点击按钮，获取标签的相关数据。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/refdom%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>运行效果<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%88%90%E5%8A%9F.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%89%93%E5%8D%B0.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="reactive-函数介绍"><a href="#reactive-函数介绍" class="headerlink" title="reactive 函数介绍"></a>reactive 函数介绍</h1><p>上面说了 ref 函数的基本用法，接下来是 reactive 函数，它的用法与 ref 函数的用法相似，也是将数据变成响应式数据，当数据发生变化时UI也会自动更新。不同的是 ref 用于基本数据类型，而 reactive 是用于复杂数据类型，所以说，不建议用 ref 函数来处理复杂数据类型的原因就是，有 reactive 来处理复杂类型数据。</p>
+<h2 id="reactive-函数使用"><a href="#reactive-函数使用" class="headerlink" title="reactive 函数使用"></a>reactive 函数使用</h2><p>reactive 函数处理对象<br>reactive 函数用来处理数组或者是对象,写一个案例，操作人的基本信息<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload><br>有打印的结果我们可以看见，这时候的数据就不是被包裹在 value 下面了，所以说我们可以直接获取到。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="reactive-函数处理数组"><a href="#reactive-函数处理数组" class="headerlink" title="reactive 函数处理数组"></a>reactive 函数处理数组</h2><p>处理数组的方式和处理对象的方式是一样一样的<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E6%95%B0%E7%BB%84%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vue3/" class="category-chain-item">vue3</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vue3/">#vue3</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vue3ref和reactive函数</div>
+      <div>http://example.com/2022/10/13/vue3ref和reactive函数/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ljylwnxx</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/" title="Vue3toRef和toRefs函数">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue3toRef和toRefs函数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/" title="Vue3setup函数">
+                        <span class="hidden-mobile">Vue3setup函数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>vue3ref和reactive函数 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ref 函数介绍  ref 作用就是将基础数据转换为响应式数据，把数据包装成响应式的引用数据类型的数据。 通过对参数返回值的 value 属性获取响应式的值，并且修改的时候也需要对 value 进行修改。 在vue2当中，通过给元素添加 ref&#x3D;’xxx’然后使用refs.xxx的方式来获取元素，vue3也可以。 当 ref 里面的值发生变化的时候，视图会自动更新数据。 ref 可以操作基本数据类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue3ref和reactive函数">
+<meta property="og:url" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ref 函数介绍  ref 作用就是将基础数据转换为响应式数据，把数据包装成响应式的引用数据类型的数据。 通过对参数返回值的 value 属性获取响应式的值，并且修改的时候也需要对 value 进行修改。 在vue2当中，通过给元素添加 ref&#x3D;’xxx’然后使用refs.xxx的方式来获取元素，vue3也可以。 当 ref 里面的值发生变化的时候，视图会自动更新数据。 ref 可以操作基本数据类">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E5%87%BA%E9%94%99.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%8F%B0.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E4%BF%AE%E6%94%B9%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/refdom%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%89%93%E5%8D%B0.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E6%95%B0%E7%BB%84%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%BB%93%E6%9E%9C.png">
+<meta property="article:published_time" content="2022-10-13T09:11:20.000Z">
+<meta property="article:modified_time" content="2022-10-17T02:50:01.240Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="vue3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A3%E7%A0%81.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vue3ref和reactive函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2022-10-13T09:11:20.000Z" itemprop="datePublished">2022-10-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue3/">vue3</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue3ref和reactive函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ref 函数介绍</p>
+<ol>
+<li>ref 作用就是将基础数据转换为响应式数据，把数据包装成响应式的引用数据类型的数据。</li>
+<li>通过对参数返回值的 value 属性获取响应式的值，并且修改的时候也需要对 value 进行修改。</li>
+<li>在vue2当中，通过给元素添加 ref=’xxx’然后使用refs.xxx的方式来获取元素，vue3也可以。</li>
+<li>当 ref 里面的值发生变化的时候，视图会自动更新数据。</li>
+<li>ref 可以操作基本数据类型和复杂数据类型，建议使用 ref 操作只对基本数据类型进行操作。</li>
+</ol>
+<p>ref 函数使用<br>使用 ref 函数很简单，首先要在页面引用，然后就可以直接使用了，具体怎么使用呢，下面为了方便介绍，简单来几个案例。</p>
+<p>ref 函数处理基本数据类型<br>首先提一个需求：页面有一个名称需要显示，有一个按钮，点击按钮的时候修改页面展示的这个名字。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A3%E7%A0%81.png"><br>刷新，可以正常渲染数据，但是点击按钮修改名字的时候，出现问题！<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E5%87%BA%E9%94%99.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%8F%B0.png"><br>为什么使用过 ref 将数据映射为响应式数据还是报错呢？我们可以先打印一下 ref 包裹后，也就是 name_ref 这个参数，看一下结构。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E7%BB%93%E6%9E%84.png"><br>修改代码：<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png"><br>码刷新页面查看效果<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E4%BF%AE%E6%94%B9%E6%88%90%E5%8A%9F.png"><br>有一点需要说一下哈，就是在单文件组件中，不必写value，因为setup方法会自动解析，简单的可以理解成 html 代码不需要额外操作 value，但是逻辑层需要。</p>
+<p>ref 函数处理复杂数据类型<br>不建议使用 ref 函数处理复杂数据类型（数组、对象等），用 ref 函数处理基本数据类型（数字、字符串等）就可以了。<br>例如我们写一个案例，创建一个个人信息，放到对象里面展示<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png"><br>我们先看一下对象被 ref 函数包裹后的数据结构。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E7%BB%93%E6%9E%84.png"><br>我们修改也通过 value 进行操作<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png"><br>刷新页面，查看效果<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E6%88%90%E5%8A%9F.png"></p>
+<p>ref 函数获取单个DOM元素<br>和 vue2 一样，可以使用 ref 获取元素，用法和操作数据类型相似。<br>页面上有一个标签，点击按钮，获取标签的相关数据。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/refdom%E4%BB%A3%E7%A0%81.png"><br>运行效果<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%88%90%E5%8A%9F.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%89%93%E5%8D%B0.png"></p>
+<p>reactive 函数介绍<br>上面说了 ref 函数的基本用法，接下来是 reactive 函数，它的用法与 ref 函数的用法相似，也是将数据变成响应式数据，当数据发生变化时UI也会自动更新。不同的是 ref 用于基本数据类型，而 reactive 是用于复杂数据类型，所以说，不建议用 ref 函数来处理复杂数据类型的原因就是，有 reactive 来处理复杂类型数据。</p>
+<p>reactive 函数使用<br>reactive 函数处理对象<br>reactive 函数用来处理数组或者是对象,写一个案例，操作人的基本信息<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%9C.png"><br>有打印的结果我们可以看见，这时候的数据就不是被包裹在 value 下面了，所以说我们可以直接获取到。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png"></p>
+<p>reactive 函数处理数组<br>处理数组的方式和处理对象的方式是一样一样的<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E6%95%B0%E7%BB%84%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%BB%93%E6%9E%9C.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/" data-id="cl9cv055f000700t8490lc30r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue3/" rel="tag">vue3</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Vue3toRef和toRefs函数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue3setup函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/vue3/">vue3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue3/" rel="tag">vue3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="tag">搭建博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" rel="tag">深浅拷贝</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/vue3/" style="font-size: 20px;">vue3</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">搭建博客</a> <a href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" style="font-size: 10px;">深浅拷贝</a> <a href="/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/17/Vue3%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">Vue3计算属性</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/">Vue3toRef和toRefs函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/">vue3ref和reactive函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/">Vue3setup函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/10/vue3/">vue3</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

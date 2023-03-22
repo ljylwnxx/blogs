@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>webpack | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="webpack 打包原理是什么？ 打包原理webpack打包原理是根据文件间的依赖关系对其进行静态分析，将这些模块按指定规则生成静态资源，当 webpack处理程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，将所有这些模块打包成一个或多个bundle。 webpack构建流程：初始化参数—&gt;开始编译—-&gt;确定入口—-&gt;编译模块—&gt;完成编译—-&gt;输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack">
+<meta property="og:url" content="http://example.com/2022/08/30/webpack/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="webpack 打包原理是什么？ 打包原理webpack打包原理是根据文件间的依赖关系对其进行静态分析，将这些模块按指定规则生成静态资源，当 webpack处理程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，将所有这些模块打包成一个或多个bundle。 webpack构建流程：初始化参数—&gt;开始编译—-&gt;确定入口—-&gt;编译模块—&gt;完成编译—-&gt;输">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-30T06:25:44.000Z">
+<meta property="article:modified_time" content="2022-08-30T06:34:29.023Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="webpack">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-webpack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/30/webpack/" class="article-date">
+  <time datetime="2022-08-30T06:25:44.000Z" itemprop="datePublished">2022-08-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      webpack
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>webpack 打包原理是什么？</p>
+<p>打包原理<br>webpack打包原理是根据文件间的依赖关系对其进行静态分析，将这些模块按指定规则生成静态资源，当 webpack处理程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，将所有这些模块打包成一个或多个bundle。</p>
+<p>webpack构建流程：<br>初始化参数—&gt;开始编译—-&gt;确定入口—-&gt;编译模块—&gt;完成编译—-&gt;输出数据—-&gt;输出完成</p>
+<p>优势：<br>代码层面：</p>
+<ol>
+<li>体积更小，加载更快</li>
+<li>编译高级语言和语法</li>
+<li>兼容性和错误检查</li>
+</ol>
+<p>研发流程层面：<br>1.统一高效的开发环境<br>2.统一的构建流程和产出标准<br>3.集成公司构建规范（提测、上线）</p>
+<p>核心概念：<br>entry：入口，webpack的执行从entry开始，<br>output：出口，输出结果，webpack的输出位置，<br>loader：模块转换器，用于把webpack不能直接打包的文件类型转换<br>plugins：插件，用于把模块原内容按需求转换成新内容mode：通过选择development或者production来设置mode参数<br>chunk：代码块，即打包后输出的文件</p>
+<p>基本功能和工作原理<br>当源代码没办法直接运行的时候，通过转化将源代码换成可执行的代码，一般包括<br>1.代码转换：将无法直接运行的文件代码编译成可以执行的代码<br>2.文件优化：压缩文件代码、压缩合并图片等<br>3.代码分割：提取多个页面的公共代码、提取首屏不需要执行的部分的代码让其异步加载<br>4.模块合并：在有很多模块文件的环境中，需要将模块分类合并成一个文件<br>5.自动刷新：监听本地源代码变化，自动重新构建、刷新浏览器<br>6.代码校验：在代码被提交前需要校验代码格式等是否符合规范<br>7.自动发布：更新完代码后，自动构建出线上发布代码并传输给发布系统</p>
+<p>常见问题</p>
+<p>1、loader和plugin的区别：</p>
+<p>不同的作用：<br>loader：webpack将一切文件视为模块，但是webpack原生只能解析JS文件，如果想打包其他文件的话，就会用到相应的loader，它是用来让webpack拥有加载解析非JS文件的工具<br>plugins：插件，可以扩展fwebpack的功能，让其更具有灵活性</p>
+<p>不同的用法：<br>loader：在module.rules中配置，也就是说它作为模块的规则存在，类型是数组，数组中的每一项是对象，<br>plugins是在插件中单独配置，类型是数组，每一项是插件实例，参数都通过构造函数传入</p>
+<p>2、什么事模块化，为什么要用模块化<br>模块化是指把一个复杂的系统分解到多个模块以方便编码</p>
+<p>不用模块化的话，会出现喝多问题，比如无法合理地管理项目依赖跟版本，也无法方便的控制依赖的加载顺序，当项目变大时难以维护，这时候需要模块化来组织代码</p>
+<p>3、DevServer开发工具用来自动化（自动编译，自动打开浏览器，自动刷新浏览器）Webpack 在启动时可以开启监听模式，开启监听模式后 Webpack 会监听本地文件系统的变化，发生变化时重新构建出新的结果。</p>
+<p>devServer: {<br>    contentBase: resolve(__dirname, ‘build’),<br>    compress: true,<br>    port: 3000,<br>    open: true,<br>    // 开启HMR功能<br>    // 当修改了webpack配置，新配置要想生效，必须重新webpack服务<br>    hot: true<br>  }</p>
+<p>4、什么是HMR功能</p>
+<p>HMR又叫热替换，它能在不重新加载整个页面的前提下，通过将更改的模块替换掉被更改的模块，再重新执行实现实时预览</p>
+<p>优点：只更新变更内容，以节省宝贵的开发时间。调整样式更加快速，几乎相当于在浏览器中更改样式</p>
+<p>5、什么是Tree-sharking?</p>
+<p>指打包中去除那些引入了但在代码中没用到的死代码（传统的DCE方法是除去不可能执行的代码）包括空格、注释等</p>
+<p>6、babel和webpack的区别</p>
+<p>babel JS新语法编译工具，只关心语法，不关心模块化<br>webpack -打包构建工具，是多个Loader plugin的集合</p>
+<p>7、类似webpack的工具还有哪些<br>(1)、webpack适用于大型复杂的前端站点构建<br>(2)、rollup适用于基础库的打包，如vue、react<br>(3)、parcel适用于简单的实验性项目，他可以满足低门槛的快速看到效果由于parcel在打包过程中给出的调试信息十分有限，所以一旦打包出错难以调试，所以不建议复杂的项目使用parcel</p>
+<p>8、常见loader<br>file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去<br>babel-loader：把 ES6 转换成 ES5css-loader：加载 CSS，支持模块化、压缩、文件导入等特性style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。</p>
+<p>9、常见的plugins<br>define-plugin：定义环境变量</p>
+<p>commons-chunk-plugin：提取公共代码</p>
+<p>uglifyjs-webpack-plugin：通过UglifyES压缩ES6代码</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/30/webpack/" data-id="cl9cv055s000r00t80yip0gmi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/09/30/%E8%B7%A8%E5%9F%9F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          跨域
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">深浅拷贝</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/vue3/">vue3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue3/" rel="tag">vue3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="tag">搭建博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" rel="tag">深浅拷贝</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/vue3/" style="font-size: 20px;">vue3</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">搭建博客</a> <a href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" style="font-size: 10px;">深浅拷贝</a> <a href="/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/17/Vue3%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">Vue3计算属性</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/">Vue3toRef和toRefs函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/">vue3ref和reactive函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/">Vue3setup函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/10/vue3/">vue3</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
