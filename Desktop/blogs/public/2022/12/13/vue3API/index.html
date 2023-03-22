@@ -1,0 +1,691 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ljylwnxx">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="为什么要使用setup组合?Vue3 中新增的 setup，目的是为了解决 Vue2 中“数据和业务逻辑不分离”的问题。 Vue3中使用 setup 是如何解决这一问题的呢？第1步: 用setup组合API 替换 vue2 中的data&#x2F;computed&#x2F;watch&#x2F;methods等选项；第2步: 把setup中相关联的功能封装成一个个可独立可维护的hooks。 1、ref作用：一般用于定义基本数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue3API">
+<meta property="og:url" content="http://example.com/2022/12/13/vue3API/index.html">
+<meta property="og:site_name" content="ljylwnxx的博客">
+<meta property="og:description" content="为什么要使用setup组合?Vue3 中新增的 setup，目的是为了解决 Vue2 中“数据和业务逻辑不分离”的问题。 Vue3中使用 setup 是如何解决这一问题的呢？第1步: 用setup组合API 替换 vue2 中的data&#x2F;computed&#x2F;watch&#x2F;methods等选项；第2步: 把setup中相关联的功能封装成一个个可独立可维护的hooks。 1、ref作用：一般用于定义基本数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B1.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B2.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B3.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B4.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B5.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B6.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B7.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B9.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B10.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B11.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B12.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B13.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B14.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B15.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B16.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B17.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B18.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B19.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B20.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B21.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B22.png">
+<meta property="og:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B23.png">
+<meta property="article:published_time" content="2022-12-13T13:10:12.000Z">
+<meta property="article:modified_time" content="2022-12-19T08:43:34.765Z">
+<meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="vue3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B1.png">
+  
+  
+  
+  <title>vue3API - ljylwnxx的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>ljylwnxx</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/defaultl.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vue3API"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-13 21:10" pubdate>
+          2022年12月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue3API</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>为什么要使用setup组合?<br>Vue3 中新增的 setup，目的是为了解决 Vue2 中“数据和业务逻辑不分离”的问题。</p>
+<p>Vue3中使用 setup 是如何解决这一问题的呢？<br>第1步: 用setup组合API 替换 vue2 中的data/computed/watch/methods等选项；<br>第2步: 把setup中相关联的功能封装成一个个可独立可维护的hooks。</p>
+<p>1、ref<br>作用：一般用于定义基本数据类型数据，比如 String / Boolean / Number等。<br>背后：ref 的背后是使用 reactive 来实现的响应式.<br>语法：const x = ref(100)<br>访问：在 setup 中使用 .value 来访问。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B1.png" srcset="/img/loading.gif" lazyload></p>
+<p>2、isRef<br>作用：判断一个变量是否为一个ref对象。<br>语法：const bol = isRef(x)<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B2.png" srcset="/img/loading.gif" lazyload></p>
+<p>3、unref<br>作用：用于返回一个值，如果访问的是ref变量，就返回其 .value值；如果不是 ref变量，就直接返回。<br>语法：const x = unref(y)<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B3.png" srcset="/img/loading.gif" lazyload></p>
+<p>4、customRef<br>作用：自定义ref对象，把ref对象改写成get/set，进一步可以为它们添加 track/trigger。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B4.png" srcset="/img/loading.gif" lazyload></p>
+<p>5、toRef<br>作用：把一个 reactive对象中的某个属性变成 ref 变量。<br>语法：const x = toRef(reactive(obj), ‘key’) // x.value<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B5.png" srcset="/img/loading.gif" lazyload></p>
+<p>6、toRefs<br>作用：把一个reactive响应式对象变成ref变量。<br>语法：const obj1 = toRefs(reactive(obj))<br>应用：在子组件中接收父组件传递过来的 props时，使用 toRefs把它变成响应式的。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B6.png" srcset="/img/loading.gif" lazyload></p>
+<p>7、shallowRef<br>作用：对复杂层级的对象，只将其第一层变成 ref 响应。 (性能优化)<br>语法：const x = shallowRef({a:{b:{c:1}}, d:2}) 如此a、b、c、d变化都不会自动更新，需要借助 triggerRef 来强制更新。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B7.png" srcset="/img/loading.gif" lazyload></p>
+<p>8、triggerRef<br>作用：强制更新一个 shallowRef对象的渲染。<br>语法：triggerRef(shallowRef对象)<br>参考代码：见shallowRef示例。</p>
+<p>9、reactive<br>作用：定义响应式变量，一般用于定义引用数据类型。如果是基本数据类型，建议使用ref来定义。<br>语法：const info = reactive([] | {})<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B9.png" srcset="/img/loading.gif" lazyload></p>
+<p>10、readonly<br>作用：把一个对象，变成只读的。<br>语法：const rs = readonly(ref对象 | reactive对象 | 普通对象)<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B10.png" srcset="/img/loading.gif" lazyload></p>
+<p>11、isReadonly<br>作用: 判断一个变量是不是只读的。<br>语法：const bol = isReadonly(变量)<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B11.png" srcset="/img/loading.gif" lazyload></p>
+<p>12、isReactive<br>作用：判断一变量是不是 reactive的。<br>注意：被 readonly代理过的 reactive变量，调用 isReactive 也是返回 true的。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B12.png" srcset="/img/loading.gif" lazyload></p>
+<p>13、isProxy<br>作用：判断一个变量是不是 readonly 或 reactive的。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B13.png" srcset="/img/loading.gif" lazyload></p>
+<p>14、toRaw<br>作用：得到返回 reactive变量或 readonly变量的”原始对象”。<br>语法:：const raw = toRaw(reactive变量或readonly变量)<br>说明：reactive(obj)、readonly(obj) 和 obj 之间是一种代理关系，并且它们之间是一种浅拷贝的关系。obj 变化，会导致reactive(obj) 同步变化，反之一样。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B14.png" srcset="/img/loading.gif" lazyload></p>
+<p>15、markRaw<br>作用：把一个普通对象标记成”永久原始”，从此将无法再变成proxy了。<br>语法：const raw = markRaw({a,b})<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B15.png" srcset="/img/loading.gif" lazyload></p>
+<p>16、shallowReactive<br>作用：定义一个reactive变量，只对它的第一层进行Proxy,，所以只有第一层变化时视图才更新。<br>语法：const obj = shallowReactive({a:{b:9}})<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B16.png" srcset="/img/loading.gif" lazyload></p>
+<p>17、shallowReadonly<br>作用：定义一个reactive变量，只有第一层是只读的。<br>语法：const obj = shallowReadonly({a:{b:9}})<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B17.png" srcset="/img/loading.gif" lazyload></p>
+<p>18、computed<br>作用：对响应式变量进行缓存计算。<br>语法：const c = computed(fn / {get,set})<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B18.png" srcset="/img/loading.gif" lazyload></p>
+<p>19、watch<br>作用：用于监听响应式变量的变化，组件初始化时，它不执行。<br>语法：const stop = watch(x, (new,old)=&gt;{})，调用stop() 可以停止监听。<br>语法：const stop = watch([x,y], ([newX,newY],[oldX,oldY])=&gt;{})，调用stop()可以停止监听。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B19.png" srcset="/img/loading.gif" lazyload></p>
+<p>20、watchEffect<br>作用：相当于是 react中的 useEffect()，用于执行各种副作用。<br>语法：const stop = watchEffect(fn)，默认其 flush:’pre’，前置执行的副作用。<br>watchPostEffect，等价于 watchEffect(fn, {flush:’post’})，后置执行的副作用。<br>watchSyncEffect，等价于 watchEffect(fn, {flush:’sync’})，同步执行的副作用。<br>特点：watchEffect 会自动收集其内部响应式依赖，当响应式依赖发变化时，这个watchEffect将再次执行，直到你手动 stop() 掉它。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B20.png" srcset="/img/loading.gif" lazyload></p>
+<p>21、生命周期钩子<br>选项式的 beforeCreate、created，被setup替代了。setup表示组件被创建之前、props被解析之后执行，它是组合式 API 的入口。<br>选项式的 beforeDestroy、destroyed 被更名为 beforeUnmount、unmounted。<br>新增了两个选项式的生命周期 renderTracked、renderTriggered，它们只在开发环境有用，常用于调试。<br>在使用 setup组合时，不建议使用选项式的生命周期，建议使用 on* 系列 hooks生命周期。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B21.png" srcset="/img/loading.gif" lazyload></p>
+<p>22、provide / inject<br>作用：在组件树中自上而下地传递数据.<br>语法：provide(‘key’, value)<br>语法：const value = inject(‘key’, ‘默认值’)<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B22.png" srcset="/img/loading.gif" lazyload></p>
+<p>23、getCurrentInstance<br>作用：用于访问内部组件实例。请不要把它当作在组合式 API 中获取 this 的替代方案来使用。<br>语法：const app = getCurrentInstance()<br>场景：常用于访问 app.config.globalProperties 上的全局数据。<br><img src="/2022/12/13/vue3API/%E6%A1%88%E4%BE%8B23.png" srcset="/img/loading.gif" lazyload></p>
+<p>24、关于setup代码范式<br>只使用 setup 及组合API，不要再使用vue选项了。<br>有必要封装 hooks时，建议把功能封装成hooks，以便于代码的可维护性。<br>能用 vite就尽量使用vite，能用ts 就尽量使用ts。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vue3/" class="category-chain-item">vue3</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vue3/">#vue3</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vue3API</div>
+      <div>http://example.com/2022/12/13/vue3API/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ljylwnxx</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/19/Vue-axios/" title="Vue-axios">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue-axios</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/08/Hooks/" title="Hooks">
+                        <span class="hidden-mobile">Hooks</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

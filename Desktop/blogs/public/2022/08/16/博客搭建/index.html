@@ -16,15 +16,15 @@
   <meta name="author" content="ljylwnxx">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安装hexonpm install -g hexo-cli 初始化项目现在我们已经安装完成hexo了。接下来使用hexo初始化博客项目。&#x2F;&#x2F; 初始化生成blog项目hexo init blog 配置主题hexo默认的主题是_landscape，现在我们将主题配置为 keep。_&#x2F;&#x2F; 确认目录是否切换到了blog中，如果没有，则将目录切换到blog中cd blog &#x2F;&#x2F; 安装keep主题npm in">
+    <meta name="description" content="1.安装hexo2.初始化项目现在我们已经安装完成hexo了。接下来使用hexo初始化博客项目。&#x2F;&#x2F; 初始化生成blog项目hexo init blog 3.配置主题hexo默认的主题是_landscape，现在我们将主题配置为 keep。&#x2F;&#x2F; 确认目录是否切换到了blog中，如果没有，则将目录切换到blog中cd blog &#x2F;&#x2F; 安装keep主题npm install hexo-theme-ke">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客搭建">
 <meta property="og:url" content="http://example.com/2022/08/16/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="安装hexonpm install -g hexo-cli 初始化项目现在我们已经安装完成hexo了。接下来使用hexo初始化博客项目。&#x2F;&#x2F; 初始化生成blog项目hexo init blog 配置主题hexo默认的主题是_landscape，现在我们将主题配置为 keep。_&#x2F;&#x2F; 确认目录是否切换到了blog中，如果没有，则将目录切换到blog中cd blog &#x2F;&#x2F; 安装keep主题npm in">
+<meta property="og:description" content="1.安装hexo2.初始化项目现在我们已经安装完成hexo了。接下来使用hexo初始化博客项目。&#x2F;&#x2F; 初始化生成blog项目hexo init blog 3.配置主题hexo默认的主题是_landscape，现在我们将主题配置为 keep。&#x2F;&#x2F; 确认目录是否切换到了blog中，如果没有，则将目录切换到blog中cd blog &#x2F;&#x2F; 安装keep主题npm install hexo-theme-ke">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-16T13:45:54.000Z">
-<meta property="article:modified_time" content="2022-08-26T02:35:20.993Z">
+<meta property="article:modified_time" content="2023-03-22T06:08:23.023Z">
 <meta property="article:author" content="ljylwnxx">
 <meta property="article:tag" content="搭建博客">
 <meta name="twitter:card" content="summary_large_image">
@@ -273,33 +273,18 @@
             
               <div class="markdown-body">
                 
-                <p>安装hexo<br>npm install -g hexo-cli</p>
-<p>初始化项目<br>现在我们已经安装完成hexo了。接下来使用hexo初始化博客项目。<br>// 初始化生成blog项目<br>hexo init blog</p>
-<p>配置主题<br>hexo默认的主题是_landscape，现在我们将主题配置为 keep。_<br>// 确认目录是否切换到了blog中，如果没有，则将目录切换到blog中<br>cd blog</p>
-<p>// 安装keep主题<br>npm install hexo-theme-keep</p>
-<p>// 修改_config.yml配置文件<br>theme: keep</p>
-<p>// 预览网站<br>hexo server<br>在浏览器中打开<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a></p>
-<p>添加文章<br>现在，让我们新建一篇博客</p>
-<p>// 在blog项目中，执行如下命令：新建文章<br>hexo new post xxxx<br>新建的这篇博客以markdown的格式形式存储在了blog/source/_posts目录下。</p>
-<p>编辑<br>添加正文</p>
-<p>现在我们打开【xxxx.md】，写下我们的xxxxx。</p>
-<p>然后保存。刷新<a href="http://localhost:4000该链接。便可以看到看到我们刚刚更新的最新文章了">http://localhost:4000该链接。便可以看到看到我们刚刚更新的最新文章了</a></p>
-<p>添加分类和标签<br>接着我们为文章添加分类和标签：打开【xxxx.md】，修改如下<br>tags:xxxx<br>categories: xxxx</p>
-<p>然后，打开终端分别执行如下命令。<br>hexo new page categories<br>hexo new page tags</p>
-<p>hexo会在souce目录下，创建一个categories和tags文件夹，里面都包含一个index.md文件。现在我们在浏览器中分别访问如下地址，便可以分别看到我们添加的分类和标签了。点击【xxxx】分类和【xxxx】标签便可以看到属于它们的文章。<a target="_blank" rel="noopener" href="http://localhost:4000/categories/%E5%9B%BE%E7%89%87">http://localhost:4000/categories/图片</a>, <a target="_blank" rel="noopener" href="http://localhost:4000/tags/%E5%9B%BE%E7%89%87">http://localhost:4000/tags/图片</a></p>
-<p>为了能在主页直接访问标签和分类，我们可以对node_moduels/hexo-theme-keep/_config.yml配置文件做如下修改:<br>menu:<br>  主页: /<br>  归档: /archives<br>  分类: /categories<br>  标签: /tags<br>再次刷新<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a></p>
-<p>发布草稿</p>
-<p>如果你暂时还不想要文章被公开访问，可以先创建草稿。如下</p>
-<p>hexo new draft xxxx<br>图片刷新<a href="http://localhost:4000暂时还无法访问我们新创建的这篇文章，如果想要访问这篇文章，我们则需要发布该文章，执行如下命令">http://localhost:4000暂时还无法访问我们新创建的这篇文章，如果想要访问这篇文章，我们则需要发布该文章，执行如下命令</a></p>
-<p>// 发布草稿<br>hexo publish draft xxxx<br>现在这篇文章从_draft目录移动到了_post目录。图片接着，我们再刷新<a href="http://localhost:4000，便可以看到这篇文章了图片">http://localhost:4000，便可以看到这篇文章了图片</a></p>
-<p>部署博客</p>
-<p>现在我们使用github page来部署我们的博客。首先你需要有一个github账号，如果没有则需要先去注册一个。</p>
-<p>新建仓库<br>1.我们打开 github，然后点击New repository按钮</p>
-<p>2.创建一个名为「username .github.io」的存储库，其中username是你在GitHub上的用户名图片3.成功创建长仓库后，复制仓库的https地址</p>
-<p>部署<br>// 确认目录是否切换到了blog中，如果没有，则将目录切换到blog中<br>cd blog</p>
-<p>// 安装部署插件<br>npm install hexo-deployer-git –save</p>
-<p>// 修改_config.yml配置文件<br>// 将复制的地址，黏贴到如下repo字段中<br>deploy:<br> type: git<br>  repo: <a target="_blank" rel="noopener" href="https://github.com/xxxx/xxxx.github.io.git">https://github.com/xxxx/xxxx.github.io.git</a><br> branch: master</p>
-<p>// 部署网站到创建的仓库<br>hexo deploy<br>部署完成后，我们刷新one-cheese.github.io仓库，本地生成的public中的静态资源全都上传到了该仓库中，如图。图片现在，访问github page地址one-cheese.github.io，便可以看到部署成功的博客了。</p>
+                <h1 id="1-安装hexo"><a href="#1-安装hexo" class="headerlink" title="1.安装hexo"></a>1.安装hexo</h1><h1 id="2-初始化项目"><a href="#2-初始化项目" class="headerlink" title="2.初始化项目"></a>2.初始化项目</h1><h2 id="现在我们已经安装完成hexo了。接下来使用hexo初始化博客项目。"><a href="#现在我们已经安装完成hexo了。接下来使用hexo初始化博客项目。" class="headerlink" title="现在我们已经安装完成hexo了。接下来使用hexo初始化博客项目。"></a>现在我们已经安装完成hexo了。接下来使用hexo初始化博客项目。</h2><h2 id="初始化生成blog项目"><a href="#初始化生成blog项目" class="headerlink" title="// 初始化生成blog项目"></a>// 初始化生成blog项目</h2><p>hexo init blog</p>
+<h1 id="3-配置主题"><a href="#3-配置主题" class="headerlink" title="3.配置主题"></a>3.配置主题</h1><h2 id="hexo默认的主题是-landscape，现在我们将主题配置为-keep。"><a href="#hexo默认的主题是-landscape，现在我们将主题配置为-keep。" class="headerlink" title="hexo默认的主题是_landscape，现在我们将主题配置为 keep。"></a>hexo默认的主题是_landscape，现在我们将主题配置为 keep。</h2><h2 id="确认目录是否切换到了blog中，如果没有，则将目录切换到blog中"><a href="#确认目录是否切换到了blog中，如果没有，则将目录切换到blog中" class="headerlink" title="// 确认目录是否切换到了blog中，如果没有，则将目录切换到blog中"></a>// 确认目录是否切换到了blog中，如果没有，则将目录切换到blog中</h2><p>cd blog</p>
+<h2 id="安装keep主题"><a href="#安装keep主题" class="headerlink" title="// 安装keep主题"></a>// 安装keep主题</h2><p>npm install hexo-theme-keep</p>
+<h2 id="修改-config-yml配置文件"><a href="#修改-config-yml配置文件" class="headerlink" title="// 修改_config.yml配置文件"></a>// 修改_config.yml配置文件</h2><p>theme: keep<br>##// 预览网站<br>hexo server<br>在浏览器中打开<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a></p>
+<h1 id="4-添加文章"><a href="#4-添加文章" class="headerlink" title="4.添加文章"></a>4.添加文章</h1><h2 id="现在，让我们新建一篇博客"><a href="#现在，让我们新建一篇博客" class="headerlink" title="现在，让我们新建一篇博客"></a>现在，让我们新建一篇博客</h2><h2 id="在blog项目中，执行如下命令：新建文章"><a href="#在blog项目中，执行如下命令：新建文章" class="headerlink" title="// 在blog项目中，执行如下命令：新建文章"></a>// 在blog项目中，执行如下命令：新建文章</h2><p>hexo new post xxxx</p>
+<h2 id="新建的这篇博客以markdown的格式形式存储在了blog-source-posts目录下。"><a href="#新建的这篇博客以markdown的格式形式存储在了blog-source-posts目录下。" class="headerlink" title="新建的这篇博客以markdown的格式形式存储在了blog/source/_posts目录下。"></a>新建的这篇博客以markdown的格式形式存储在了blog/source/_posts目录下。</h2><h2 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h2><h2 id="添加正文"><a href="#添加正文" class="headerlink" title="添加正文"></a>添加正文</h2><h2 id="现在我们打开【xxxx-md】，写下我们的xxxxx。"><a href="#现在我们打开【xxxx-md】，写下我们的xxxxx。" class="headerlink" title="现在我们打开【xxxx.md】，写下我们的xxxxx。"></a>现在我们打开【xxxx.md】，写下我们的xxxxx。</h2><h2 id="然后保存。刷新http-localhost-4000该链接。便可以看到看到我们刚刚更新的最新文章了"><a href="#然后保存。刷新http-localhost-4000该链接。便可以看到看到我们刚刚更新的最新文章了" class="headerlink" title="然后保存。刷新http://localhost:4000该链接。便可以看到看到我们刚刚更新的最新文章了"></a>然后保存。刷新<a href="http://localhost:4000该链接。便可以看到看到我们刚刚更新的最新文章了">http://localhost:4000该链接。便可以看到看到我们刚刚更新的最新文章了</a></h2><h2 id="添加分类和标签"><a href="#添加分类和标签" class="headerlink" title="添加分类和标签"></a>添加分类和标签</h2><p>接着我们为文章添加分类和标签：打开【xxxx.md】，修改如下<br>tags:xxxx<br>categories: xxxx</p>
+<h2 id="然后，打开终端分别执行如下命令。"><a href="#然后，打开终端分别执行如下命令。" class="headerlink" title="然后，打开终端分别执行如下命令。"></a>然后，打开终端分别执行如下命令。</h2><p>hexo new page categories<br>hexo new page tags</p>
+<h2 id="hexo会在souce目录下，创建一个categories和tags文件夹，里面都包含一个index-md文件。现在我们在浏览器中分别访问如下地址，便可以分别看到我们添加的分类和标签了。点击【xxxx】分类和【xxxx】标签便可以看到属于它们的文章。http-localhost-4000-categories-图片-http-localhost-4000-tags-图片"><a href="#hexo会在souce目录下，创建一个categories和tags文件夹，里面都包含一个index-md文件。现在我们在浏览器中分别访问如下地址，便可以分别看到我们添加的分类和标签了。点击【xxxx】分类和【xxxx】标签便可以看到属于它们的文章。http-localhost-4000-categories-图片-http-localhost-4000-tags-图片" class="headerlink" title="hexo会在souce目录下，创建一个categories和tags文件夹，里面都包含一个index.md文件。现在我们在浏览器中分别访问如下地址，便可以分别看到我们添加的分类和标签了。点击【xxxx】分类和【xxxx】标签便可以看到属于它们的文章。http://localhost:4000/categories/图片, http://localhost:4000/tags/图片"></a>hexo会在souce目录下，创建一个categories和tags文件夹，里面都包含一个index.md文件。现在我们在浏览器中分别访问如下地址，便可以分别看到我们添加的分类和标签了。点击【xxxx】分类和【xxxx】标签便可以看到属于它们的文章。<a target="_blank" rel="noopener" href="http://localhost:4000/categories/%E5%9B%BE%E7%89%87">http://localhost:4000/categories/图片</a>, <a target="_blank" rel="noopener" href="http://localhost:4000/tags/%E5%9B%BE%E7%89%87">http://localhost:4000/tags/图片</a></h2><h2 id="为了能在主页直接访问标签和分类，我们可以对node-moduels-hexo-theme-keep-config-yml配置文件做如下修改"><a href="#为了能在主页直接访问标签和分类，我们可以对node-moduels-hexo-theme-keep-config-yml配置文件做如下修改" class="headerlink" title="为了能在主页直接访问标签和分类，我们可以对node_moduels/hexo-theme-keep/_config.yml配置文件做如下修改:"></a>为了能在主页直接访问标签和分类，我们可以对node_moduels/hexo-theme-keep/_config.yml配置文件做如下修改:</h2><p>menu:<br>  主页: /<br>  归档: /archives<br>  分类: /categories<br>  标签: /tags<br>再次刷新<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a></p>
+<h1 id="5-发布草稿"><a href="#5-发布草稿" class="headerlink" title="5.发布草稿"></a>5.发布草稿</h1><h2 id="如果你暂时还不想要文章被公开访问，可以先创建草稿。如下"><a href="#如果你暂时还不想要文章被公开访问，可以先创建草稿。如下" class="headerlink" title="如果你暂时还不想要文章被公开访问，可以先创建草稿。如下"></a>如果你暂时还不想要文章被公开访问，可以先创建草稿。如下</h2><p>hexo new draft xxxx<br>图片刷新<a href="http://localhost:4000暂时还无法访问我们新创建的这篇文章，如果想要访问这篇文章，我们则需要发布该文章，执行如下命令">http://localhost:4000暂时还无法访问我们新创建的这篇文章，如果想要访问这篇文章，我们则需要发布该文章，执行如下命令</a></p>
+<h2 id="发布草稿"><a href="#发布草稿" class="headerlink" title="// 发布草稿"></a>// 发布草稿</h2><p>hexo publish draft xxxx</p>
+<h2 id="现在这篇文章从-draft目录移动到了-post目录。图片接着，我们再刷新http-localhost-4000，便可以看到这篇文章了图片"><a href="#现在这篇文章从-draft目录移动到了-post目录。图片接着，我们再刷新http-localhost-4000，便可以看到这篇文章了图片" class="headerlink" title="现在这篇文章从_draft目录移动到了_post目录。图片接着，我们再刷新http://localhost:4000，便可以看到这篇文章了图片"></a>现在这篇文章从_draft目录移动到了_post目录。图片接着，我们再刷新<a href="http://localhost:4000，便可以看到这篇文章了图片">http://localhost:4000，便可以看到这篇文章了图片</a></h2><h1 id="6-部署博客"><a href="#6-部署博客" class="headerlink" title="6.部署博客"></a>6.部署博客</h1><h2 id="现在我们使用github-page来部署我们的博客。首先你需要有一个github账号，如果没有则需要先去注册一个。"><a href="#现在我们使用github-page来部署我们的博客。首先你需要有一个github账号，如果没有则需要先去注册一个。" class="headerlink" title="现在我们使用github page来部署我们的博客。首先你需要有一个github账号，如果没有则需要先去注册一个。"></a>现在我们使用github page来部署我们的博客。首先你需要有一个github账号，如果没有则需要先去注册一个。</h2><h2 id="新建仓库"><a href="#新建仓库" class="headerlink" title="新建仓库"></a>新建仓库</h2><p>1.我们打开 github，然后点击New repository按钮<br>2.创建一个名为「username .github.io」的存储库，其中username是你在GitHub上的用户名图片3.成功创建长仓库后，复制仓库的https地址</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>// 确认目录是否切换到了blog中，如果没有，则将目录切换到blog中<br>cd blog<br>// 安装部署插件<br>npm install hexo-deployer-git –save<br>// 修改_config.yml配置文件<br>// 将复制的地址，黏贴到如下repo字段中<br>deploy:<br> type: git<br>  repo: <a target="_blank" rel="noopener" href="https://github.com/xxxx/xxxx.github.io.git">https://github.com/xxxx/xxxx.github.io.git</a><br> branch: master<br>// 部署网站到创建的仓库<br>hexo deploy<br>部署完成后，我们刷新one-cheese.github.io仓库，本地生成的public中的静态资源全都上传到了该仓库中，如图。图片现在，访问github page地址one-cheese.github.io，便可以看到部署成功的博客了。</p>
 
                 
               </div>

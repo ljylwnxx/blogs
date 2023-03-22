@@ -16,15 +16,15 @@
   <meta name="author" content="ljylwnxx">
   <meta name="keywords" content="">
   
-    <meta name="description" content="webpack 打包原理是什么？ 打包原理webpack打包原理是根据文件间的依赖关系对其进行静态分析，将这些模块按指定规则生成静态资源，当 webpack处理程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，将所有这些模块打包成一个或多个bundle。 webpack构建流程：初始化参数—&gt;开始编译—-&gt;确定入口—-&gt;编译模块—&gt;完成编译—-&gt;输">
+    <meta name="description" content="webpack 打包原理是什么？打包原理webpack打包原理是根据文件间的依赖关系对其进行静态分析，将这些模块按指定规则生成静态资源，当 webpack处理程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，将所有这些模块打包成一个或多个bundle。 webpack构建流程：初始化参数—&gt;开始编译—-&gt;确定入口—-&gt;编译模块—&gt;完成编译—-&gt;输出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack">
 <meta property="og:url" content="http://example.com/2022/08/30/webpack/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="webpack 打包原理是什么？ 打包原理webpack打包原理是根据文件间的依赖关系对其进行静态分析，将这些模块按指定规则生成静态资源，当 webpack处理程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，将所有这些模块打包成一个或多个bundle。 webpack构建流程：初始化参数—&gt;开始编译—-&gt;确定入口—-&gt;编译模块—&gt;完成编译—-&gt;输">
+<meta property="og:description" content="webpack 打包原理是什么？打包原理webpack打包原理是根据文件间的依赖关系对其进行静态分析，将这些模块按指定规则生成静态资源，当 webpack处理程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，将所有这些模块打包成一个或多个bundle。 webpack构建流程：初始化参数—&gt;开始编译—-&gt;确定入口—-&gt;编译模块—&gt;完成编译—-&gt;输出">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-30T06:25:44.000Z">
-<meta property="article:modified_time" content="2022-08-30T06:34:29.023Z">
+<meta property="article:modified_time" content="2023-03-22T06:31:48.579Z">
 <meta property="article:author" content="ljylwnxx">
 <meta property="article:tag" content="webpack">
 <meta name="twitter:card" content="summary_large_image">
@@ -273,38 +273,24 @@
             
               <div class="markdown-body">
                 
-                <p>webpack 打包原理是什么？</p>
-<p>打包原理<br>webpack打包原理是根据文件间的依赖关系对其进行静态分析，将这些模块按指定规则生成静态资源，当 webpack处理程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，将所有这些模块打包成一个或多个bundle。</p>
-<p>webpack构建流程：<br>初始化参数—&gt;开始编译—-&gt;确定入口—-&gt;编译模块—&gt;完成编译—-&gt;输出数据—-&gt;输出完成</p>
-<p>优势：<br>代码层面：</p>
+                <h1 id="webpack-打包原理是什么？"><a href="#webpack-打包原理是什么？" class="headerlink" title="webpack 打包原理是什么？"></a>webpack 打包原理是什么？</h1><h2 id="打包原理"><a href="#打包原理" class="headerlink" title="打包原理"></a>打包原理</h2><p>webpack打包原理是根据文件间的依赖关系对其进行静态分析，将这些模块按指定规则生成静态资源，当 webpack处理程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，将所有这些模块打包成一个或多个bundle。</p>
+<h2 id="webpack构建流程："><a href="#webpack构建流程：" class="headerlink" title="webpack构建流程："></a>webpack构建流程：</h2><p>初始化参数—&gt;开始编译—-&gt;确定入口—-&gt;编译模块—&gt;完成编译—-&gt;输出数据—-&gt;输出完成</p>
+<h2 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h2><p>代码层面：</p>
 <ol>
 <li>体积更小，加载更快</li>
 <li>编译高级语言和语法</li>
-<li>兼容性和错误检查</li>
+<li>兼容性和错误检查<h2 id="研发流程层面："><a href="#研发流程层面：" class="headerlink" title="研发流程层面："></a>研发流程层面：</h2></li>
+<li>统一高效的开发环境</li>
+<li>统一的构建流程和产出标准</li>
+<li>集成公司构建规范（提测、上线）<h2 id="核心概念："><a href="#核心概念：" class="headerlink" title="核心概念："></a>核心概念：</h2>entry：入口，webpack的执行从entry开始，<br>output：出口，输出结果，webpack的输出位置，<br>loader：模块转换器，用于把webpack不能直接打包的文件类型转换<br>plugins：插件，用于把模块原内容按需求转换成新内容mode：通过选择development或者production来设置mode参数<br>chunk：代码块，即打包后输出的文件<h2 id="基本功能和工作原理"><a href="#基本功能和工作原理" class="headerlink" title="基本功能和工作原理"></a>基本功能和工作原理</h2>当源代码没办法直接运行的时候，通过转化将源代码换成可执行的代码，一般包括</li>
+<li>代码转换：将无法直接运行的文件代码编译成可以执行的代码</li>
+<li>文件优化：压缩文件代码、压缩合并图片等</li>
+<li>代码分割：提取多个页面的公共代码、提取首屏不需要执行的部分的代码让其异步加载</li>
+<li>模块合并：在有很多模块文件的环境中，需要将模块分类合并成一个文件</li>
+<li>自动刷新：监听本地源代码变化，自动重新构建、刷新浏览器</li>
+<li>代码校验：在代码被提交前需要校验代码格式等是否符合规范</li>
+<li>自动发布：更新完代码后，自动构建出线上发布代码并传输给发布系统<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h3 id="1、loader和plugin的区别："><a href="#1、loader和plugin的区别：" class="headerlink" title="1、loader和plugin的区别："></a>1、loader和plugin的区别：</h3><h3 id="不同的作用："><a href="#不同的作用：" class="headerlink" title="不同的作用："></a>不同的作用：</h3>loader：webpack将一切文件视为模块，但是webpack原生只能解析JS文件，如果想打包其他文件的话，就会用到相应的loader，它是用来让webpack拥有加载解析非JS文件的工具<br>plugins：插件，可以扩展fwebpack的功能，让其更具有灵活性<h3 id="不同的用法："><a href="#不同的用法：" class="headerlink" title="不同的用法："></a>不同的用法：</h3>loader：在module.rules中配置，也就是说它作为模块的规则存在，类型是数组，数组中的每一项是对象，<br>plugins是在插件中单独配置，类型是数组，每一项是插件实例，参数都通过构造函数传入<h3 id="2、什么事模块化，为什么要用模块化"><a href="#2、什么事模块化，为什么要用模块化" class="headerlink" title="2、什么事模块化，为什么要用模块化"></a>2、什么事模块化，为什么要用模块化</h3>模块化是指把一个复杂的系统分解到多个模块以方便编码<br>不用模块化的话，会出现喝多问题，比如无法合理地管理项目依赖跟版本，也无法方便的控制依赖的加载顺序，当项目变大时难以维护，这时候需要模块化来组织代码<h3 id="3、DevServer开发工具用来自动化（自动编译，自动打开浏览器，自动刷新浏览器）Webpack-在启动时可以开启监听模式，开启监听模式后-Webpack-会监听本地文件系统的变化，发生变化时重新构建出新的结果。"><a href="#3、DevServer开发工具用来自动化（自动编译，自动打开浏览器，自动刷新浏览器）Webpack-在启动时可以开启监听模式，开启监听模式后-Webpack-会监听本地文件系统的变化，发生变化时重新构建出新的结果。" class="headerlink" title="3、DevServer开发工具用来自动化（自动编译，自动打开浏览器，自动刷新浏览器）Webpack 在启动时可以开启监听模式，开启监听模式后 Webpack 会监听本地文件系统的变化，发生变化时重新构建出新的结果。"></a>3、DevServer开发工具用来自动化（自动编译，自动打开浏览器，自动刷新浏览器）Webpack 在启动时可以开启监听模式，开启监听模式后 Webpack 会监听本地文件系统的变化，发生变化时重新构建出新的结果。</h3>devServer: {<br>  contentBase: resolve(__dirname, ‘build’),<br>  compress: true,<br>  port: 3000,<br>  open: true,<br>  // 开启HMR功能<br>  // 当修改了webpack配置，新配置要想生效，必须重新webpack服务<br>  hot: true<br>}<h3 id="4、什么是HMR功能"><a href="#4、什么是HMR功能" class="headerlink" title="4、什么是HMR功能"></a>4、什么是HMR功能</h3>HMR又叫热替换，它能在不重新加载整个页面的前提下，通过将更改的模块替换掉被更改的模块，再重新执行实现实时预览<br>优点：只更新变更内容，以节省宝贵的开发时间。调整样式更加快速，几乎相当于在浏览器中更改样式<h3 id="5、什么是Tree-sharking"><a href="#5、什么是Tree-sharking" class="headerlink" title="5、什么是Tree-sharking?"></a>5、什么是Tree-sharking?</h3>指打包中去除那些引入了但在代码中没用到的死代码（传统的DCE方法是除去不可能执行的代码）包括空格、注释等<h3 id="6、babel和webpack的区别"><a href="#6、babel和webpack的区别" class="headerlink" title="6、babel和webpack的区别"></a>6、babel和webpack的区别</h3>babel JS新语法编译工具，只关心语法，不关心模块化<br>webpack -打包构建工具，是多个Loader plugin的集合<h3 id="7、类似webpack的工具还有哪些"><a href="#7、类似webpack的工具还有哪些" class="headerlink" title="7、类似webpack的工具还有哪些"></a>7、类似webpack的工具还有哪些</h3>(1)、webpack适用于大型复杂的前端站点构建<br>(2)、rollup适用于基础库的打包，如vue、react<br>(3)、parcel适用于简单的实验性项目，他可以满足低门槛的快速看到效果由于parcel在打包过程中给出的调试信息十分有限，所以一旦打包出错难以调试，所以不建议复杂的项目使用parcel<h3 id="8、常见loader"><a href="#8、常见loader" class="headerlink" title="8、常见loader"></a>8、常见loader</h3>file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去<br>babel-loader：把 ES6 转换成 ES5css-loader：加载 CSS，支持模块化、压缩、文件导入等特性style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。<h3 id="9、常见的plugins"><a href="#9、常见的plugins" class="headerlink" title="9、常见的plugins"></a>9、常见的plugins</h3>define-plugin：定义环境变量<br>commons-chunk-plugin：提取公共代码<br>uglifyjs-webpack-plugin：通过UglifyES压缩ES6代码</li>
 </ol>
-<p>研发流程层面：<br>1.统一高效的开发环境<br>2.统一的构建流程和产出标准<br>3.集成公司构建规范（提测、上线）</p>
-<p>核心概念：<br>entry：入口，webpack的执行从entry开始，<br>output：出口，输出结果，webpack的输出位置，<br>loader：模块转换器，用于把webpack不能直接打包的文件类型转换<br>plugins：插件，用于把模块原内容按需求转换成新内容mode：通过选择development或者production来设置mode参数<br>chunk：代码块，即打包后输出的文件</p>
-<p>基本功能和工作原理<br>当源代码没办法直接运行的时候，通过转化将源代码换成可执行的代码，一般包括<br>1.代码转换：将无法直接运行的文件代码编译成可以执行的代码<br>2.文件优化：压缩文件代码、压缩合并图片等<br>3.代码分割：提取多个页面的公共代码、提取首屏不需要执行的部分的代码让其异步加载<br>4.模块合并：在有很多模块文件的环境中，需要将模块分类合并成一个文件<br>5.自动刷新：监听本地源代码变化，自动重新构建、刷新浏览器<br>6.代码校验：在代码被提交前需要校验代码格式等是否符合规范<br>7.自动发布：更新完代码后，自动构建出线上发布代码并传输给发布系统</p>
-<p>常见问题</p>
-<p>1、loader和plugin的区别：</p>
-<p>不同的作用：<br>loader：webpack将一切文件视为模块，但是webpack原生只能解析JS文件，如果想打包其他文件的话，就会用到相应的loader，它是用来让webpack拥有加载解析非JS文件的工具<br>plugins：插件，可以扩展fwebpack的功能，让其更具有灵活性</p>
-<p>不同的用法：<br>loader：在module.rules中配置，也就是说它作为模块的规则存在，类型是数组，数组中的每一项是对象，<br>plugins是在插件中单独配置，类型是数组，每一项是插件实例，参数都通过构造函数传入</p>
-<p>2、什么事模块化，为什么要用模块化<br>模块化是指把一个复杂的系统分解到多个模块以方便编码</p>
-<p>不用模块化的话，会出现喝多问题，比如无法合理地管理项目依赖跟版本，也无法方便的控制依赖的加载顺序，当项目变大时难以维护，这时候需要模块化来组织代码</p>
-<p>3、DevServer开发工具用来自动化（自动编译，自动打开浏览器，自动刷新浏览器）Webpack 在启动时可以开启监听模式，开启监听模式后 Webpack 会监听本地文件系统的变化，发生变化时重新构建出新的结果。</p>
-<p>devServer: {<br>    contentBase: resolve(__dirname, ‘build’),<br>    compress: true,<br>    port: 3000,<br>    open: true,<br>    // 开启HMR功能<br>    // 当修改了webpack配置，新配置要想生效，必须重新webpack服务<br>    hot: true<br>  }</p>
-<p>4、什么是HMR功能</p>
-<p>HMR又叫热替换，它能在不重新加载整个页面的前提下，通过将更改的模块替换掉被更改的模块，再重新执行实现实时预览</p>
-<p>优点：只更新变更内容，以节省宝贵的开发时间。调整样式更加快速，几乎相当于在浏览器中更改样式</p>
-<p>5、什么是Tree-sharking?</p>
-<p>指打包中去除那些引入了但在代码中没用到的死代码（传统的DCE方法是除去不可能执行的代码）包括空格、注释等</p>
-<p>6、babel和webpack的区别</p>
-<p>babel JS新语法编译工具，只关心语法，不关心模块化<br>webpack -打包构建工具，是多个Loader plugin的集合</p>
-<p>7、类似webpack的工具还有哪些<br>(1)、webpack适用于大型复杂的前端站点构建<br>(2)、rollup适用于基础库的打包，如vue、react<br>(3)、parcel适用于简单的实验性项目，他可以满足低门槛的快速看到效果由于parcel在打包过程中给出的调试信息十分有限，所以一旦打包出错难以调试，所以不建议复杂的项目使用parcel</p>
-<p>8、常见loader<br>file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去<br>babel-loader：把 ES6 转换成 ES5css-loader：加载 CSS，支持模块化、压缩、文件导入等特性style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。</p>
-<p>9、常见的plugins<br>define-plugin：定义环境变量</p>
-<p>commons-chunk-plugin：提取公共代码</p>
-<p>uglifyjs-webpack-plugin：通过UglifyES压缩ES6代码</p>
 
                 
               </div>

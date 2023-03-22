@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ljylwnxx">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在 vue2 版本中，如果想要使用状态管理器，那么一定是集成 Vuex，首先说明一点，Vuex 在 vue3 项目中依旧是可以正常使用的，是 vue 项目的正规军。但是，今天我们学习一下Pinia 目前也已经是 vue 官方正式的状态库。适用于 vue2 和 vue3。可以简单的理解成 Pinia 就是 Vuex5。也就是说， Vue3 项目，建议使用Pinia，当然很多公司或者是项目由 vue2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3:Pinia使用">
+<meta property="og:url" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="ljylwnxx的博客">
+<meta property="og:description" content="在 vue2 版本中，如果想要使用状态管理器，那么一定是集成 Vuex，首先说明一点，Vuex 在 vue3 项目中依旧是可以正常使用的，是 vue 项目的正规军。但是，今天我们学习一下Pinia 目前也已经是 vue 官方正式的状态库。适用于 vue2 和 vue3。可以简单的理解成 Pinia 就是 Vuex5。也就是说， Vue3 项目，建议使用Pinia，当然很多公司或者是项目由 vue2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E5%AE%89%E8%A3%85.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/indexts.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE1%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE1%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE2%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE2%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E7%BB%93%E6%9E%9C1.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E7%BB%93%E6%9E%9C2.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE4%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE5%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E4%BB%A3%E7%A0%811.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E4%BB%A3%E7%A0%812.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E7%BB%93%E6%9E%9C1.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E7%BB%93%E6%9E%9C2.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E4%BB%A3%E7%A0%811.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E4%BB%A3%E7%A0%812.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E7%BB%93%E6%9E%9C1.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E7%BB%93%E6%9E%9C2.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE8%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE8%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE9%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE9%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE10%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE10%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%811.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%812.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E7%BB%93%E6%9E%9C1.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E7%BB%93%E6%9E%9C2.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE12%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE12%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E4%BB%A3%E7%A0%811.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E4%BB%A3%E7%A0%812.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E7%BB%93%E6%9E%9C1.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E7%BB%93%E6%9E%9C2.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E7%BB%93%E6%9E%9C1.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E7%BB%93%E6%9E%9C2.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E7%BB%93%E6%9E%9C1.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E7%BB%93%E6%9E%9C2.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E7%BB%93%E6%9E%9C1.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E7%BB%93%E6%9E%9C2.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE17%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE17%E7%BB%93%E6%9E%9C.png">
+<meta property="article:published_time" content="2022-10-24T13:44:07.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:24:21.626Z">
+<meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="vue3">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E5%AE%89%E8%A3%85.png">
+  
+  
+  
+  <title>Vue3:Pinia使用 - ljylwnxx的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>ljylwnxx</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/defaultl.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vue3:Pinia使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-24 21:44" pubdate>
+          2022年10月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vue3:Pinia使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>在 vue2 版本中，如果想要使用状态管理器，那么一定是集成 Vuex，首先说明一点，Vuex 在 vue3 项目中依旧是可以正常使用的，是 vue 项目的正规军。但是，今天我们学习一下Pinia 目前也已经是 vue 官方正式的状态库。适用于 vue2 和 vue3。可以简单的理解成 Pinia 就是 Vuex5。也就是说， Vue3 项目，建议使用Pinia，当然很多公司或者是项目由 vue2 转为 vue3 之后，由于习惯了使用 vuex ，所以说，在 vue3 当中继续使用 vuex 的，也不是少数，都知道就可以，根据实际情况来选择。</p>
+<h1 id="什么是-Pinia"><a href="#什么是-Pinia" class="headerlink" title="什么是 Pinia"></a>什么是 Pinia</h1><p>Pinia 是 Vue 的存储库，它允许您跨组件/页面共享状态。Pinia 的成功可以归功于他管理存储数据的独特功能，例如：可扩展性、存储模块组织、状态变化分组、多存储创建等。</p>
+<h1 id="Pinia-的优点"><a href="#Pinia-的优点" class="headerlink" title="Pinia 的优点"></a>Pinia 的优点</h1><p>Pinia 被 vue 纳入正规编制，肯定是有原因的，那 pinia 有啥优点呢，主要是一下几点：<br>pinia 符合直觉，易于学习。<br>pinia 是轻量级状态管理工具，大小只有1KB.<br>pinia 模块化设计，方便拆分。<br>pinia 没有 mutations，直接在 actions 中操作 state，通过 this.xxx 访问响应的状态，尽管可以直接操作 state，但是还是推荐在 actions 中操作，保证状态不被意外的改变。<br>store 的 action 被调度为常规的函数调用，而不是使用 dispatch 方法或者是 MapAction 辅助函数，这是在 Vuex 中很常见的。<br>支持多个 store。<br>支持 Vue devtools、SSR、webpack 代码拆分。</p>
+<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1><p>Pinia 中文网：<a target="_blank" rel="noopener" href="https://pinia.web3doc.top/">https://pinia.web3doc.top/</a></p>
+<h1 id="Pinia-安装"><a href="#Pinia-安装" class="headerlink" title="Pinia 安装"></a>Pinia 安装</h1><p>安装 pinia 就很简单了，直接命令安装就可以了。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E5%AE%89%E8%A3%85.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Pinia-使用"><a href="#Pinia-使用" class="headerlink" title="Pinia 使用"></a>Pinia 使用</h1><p>安装完 pinia ，然后就是使用了，使用的第一步，就是在项目中引入 pinia</p>
+<h2 id="1-Pinia-导入"><a href="#1-Pinia-导入" class="headerlink" title="1.Pinia 导入"></a>1.Pinia 导入</h2><p>首先在 main.js 文件中引入<br> vue3 的写法：<br>import {createPinia} from ‘pinia’<br>然后，这个 pinia 就在项目中导入了<br>Pinia 是支持 vue2 的，如果是 vue2 的项目，导入的方式是下面的样子：<br>import {PiniaVuePlugin} from ‘pinia’<br>我们还是以 vue3 来介绍这个 Pinia<br>导入的时候是 hook ，我们需要调用一下<br>const state = createPinia()<br>调用完成，state 是以插件的形式存在的，所以说最后我们需要在项目使用一下。<br>app.use(state)</p>
+<h2 id="2-Pinia-基本使用"><a href="#2-Pinia-基本使用" class="headerlink" title="2.Pinia 基本使用"></a>2.Pinia 基本使用</h2><h3 id="1-创建-index-ts-文件"><a href="#1-创建-index-ts-文件" class="headerlink" title="1.创建 index.ts 文件"></a>1.创建 index.ts 文件</h3><p>使用起来相对简单一些，我们首先在根目录下创建一个 store 文件夹，用 vuex 的时候也是这个结构。毕竟 pinia 就是用来替换掉 vuex 的嘛。<br>创建完 store 文件夹，在里面创建一个 ts 文件，叫做 index.ts 。</p>
+<h3 id="2-编写-index-ts-文件"><a href="#2-编写-index-ts-文件" class="headerlink" title="2.编写 index.ts 文件"></a>2.编写 index.ts 文件</h3><p>首先我们先引入 pinia<br>import { defineStore } from “pinia”;<br>由于 defineStore 也是一个 hooks ，所以说我们可以直接导出一下<br>这样子写是会报错的，因为这个 defineStore 是需要传参数的，其中第一个参数是id，就是一个唯一的值，简单点说就可以理解成是一个命名空间，我们可以写一个枚举再传值。<br>我们在同级在创建一个名字叫做 store_name.ts 的文件写一个枚举数据导出<br>export const enum Names {<br>  TEST = “TEST”<br>}</p>
+<hr>
+<p>然后在 index.ts 文件中引入一下枚举数据，然后传给这个 defineStore。<br> 这个样子还是报错的，因为还有其他的参数需要传递，第二个参数就是一个对象，里面有三个模块需要处理，第一个是 state，第二个是 getters，第三个是 actions。<br>state 和之前我们 vuex 里面的写法是不一样的，在 vuex 里面呢，state 是一个对象，但是在 pinia 中，state 必须是一个箭头函数，然后在返回一个对象。<br>getters 模块呢，类似于计算属性，是有缓存的，主要是帮助我们修饰一些值。<br>actions 呢，类似于 methods，帮助我们做一些同步的或者是异步的操作，提交 state 之类的。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/indexts.png" srcset="/img/loading.gif" lazyload><br>其实到这个地方为止呢，其实我们已经可以使用 pinia 了，我们写一个页面使用一下 pinia 的值。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE1%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE1%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-修改-Pinia-的值"><a href="#3-修改-Pinia-的值" class="headerlink" title="3.修改 Pinia 的值"></a>3.修改 Pinia 的值</h3><p>修改 Pinia 的值有很多中方式，修改 pinia 的值，其实就是修改 state 的值<br>修改值的方式呢，常见的有五种</p>
+<h4 id="方式一：直接修改"><a href="#方式一：直接修改" class="headerlink" title="方式一：直接修改"></a>方式一：直接修改</h4><p><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE2%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE2%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="方式二：-patch-函数修改"><a href="#方式二：-patch-函数修改" class="headerlink" title="方式二：$patch 函数修改"></a>方式二：$patch 函数修改</h4><p>在我们实例化 const userInfo = useInfoStore() 这个 state 的时候，其实这个 userInfo 中，有一个方法，就是 patch 函数，它可以帮助我们批量修改。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E7%BB%93%E6%9E%9C1.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E7%BB%93%E6%9E%9C2.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="方式三：-patch-函数修改"><a href="#方式三：-patch-函数修改" class="headerlink" title="方式三：$patch 函数修改"></a>方式三：$patch 函数修改</h4><p>咦，为什么和第二种一样，都是使用 patch 函数来实现修改，是有区别，方式二是在 patch 函数中传入修改的对象值，但是这种方式传入的是一个函数，作用是啥子呢？就是可以进行逻辑操作，比如说判断之类的。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE4%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>效果其实和方式二是一模一样的</p>
+<h4 id="方式四：-state-方式"><a href="#方式四：-state-方式" class="headerlink" title="方式四：$state 方式"></a>方式四：$state 方式</h4><p><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE5%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="方式五：-action-方式"><a href="#方式五：-action-方式" class="headerlink" title="方式五： action 方式"></a>方式五： action 方式</h4><p>这个方式我们需要借助 actions 来实现，所以说我们需要去 store 文件夹下的 index.ts 文件中写一个 action<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E4%BB%A3%E7%A0%811.png" srcset="/img/loading.gif" lazyload><br>写完 action 我们就可以使用 action 的方式修改 age 的值了。怎么使用呢，我们只需要使用实例去调用一下我们刚才写的 action 函数就行了。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E4%BB%A3%E7%A0%812.png" srcset="/img/loading.gif" lazyload><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E7%BB%93%E6%9E%9C1.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E7%BB%93%E6%9E%9C2.png" srcset="/img/loading.gif" lazyload><br>当然了，这个 action 是可以传参的，我们修改一下 index.ts 文件编写的 action 函数，让他接受一个参数再赋值。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E4%BB%A3%E7%A0%811.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E4%BB%A3%E7%A0%812.png" srcset="/img/loading.gif" lazyload><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E7%BB%93%E6%9E%9C1.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E7%BB%93%E6%9E%9C2.png" srcset="/img/loading.gif" lazyload><br>以上就是常见的五种修改 state 数据的方式，可以根据自己的实际情况选择使用</p>
+<h1 id="pinia-解构"><a href="#pinia-解构" class="headerlink" title="pinia 解构"></a>pinia 解构</h1><p>上面的案例，我们实例化const userInfo = useInfoStore()了以后呢，这个 userInfo 是可以继续解构操作的<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE8%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>在页面分别展示一下解构前和解构后的数据，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE8%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload><br>我们可以看到，结构前和结构后我们在页面都可以获取到数据展示。<br>但是有个问题，就是解构后的数据是不具备响应式的，意思就是我们修改了 state 的值，页面不会跟着变化。<br>做个测试，点击按钮，age 加一，看一下结构前和解构后的数据在页面是否会实时渲染<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE9%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>在页面分别展示一下解构前和解构后的数据，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE9%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>通过测试我们可以看到，结构前的是可以实时渲染的，但是解构后的话是不可以的， 因为解构后的不是响应式数据。<br>解决这个问题很简单，官方提供了一个方法，可以把解构后的数据转换为响应式的数据。<br>就是 storeToRefs，使用 storeToRefs 需要导入一下。<br>import { storeToRefs } from ‘pinia’<br>然后把我们解构的对象包裹一下就可以了<br>const { name, age } = storeToRefs(userInfo)<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE10%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE10%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload><br>或者我们换一个写法，直接操作结构后的数据，记得，要 .value<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Pinia-的-actions"><a href="#Pinia-的-actions" class="headerlink" title="Pinia 的 actions"></a>Pinia 的 actions</h1><p>actions 是可以处理同步，也可以处理异步，同步的话相对来说简单一点，上面我们通过 action 修改 state 的时候，就用到了 actions 的同步<br>接下来我们重点介绍一下actions异步<br>actions 异步<br>首先我们模拟一个异步函数，然后我们在 actions 中可以调用这个异步操作，在 actions 处理异步的时候，我们一般是与 async 和 await 连用<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%811.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%812.png" srcset="/img/loading.gif" lazyload><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E7%BB%93%E6%9E%9C1.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E7%BB%93%E6%9E%9C2.png" srcset="/img/loading.gif" lazyload><br>actions 同步、异步连用<br>这个 actions 里面的方法函数是可以相互调用的，意思就是你 actions 里面有好几个方法，这几个方法是可以调过来调过去的。<br>上面的代码改一下，本来异步模拟获取的 age 数据是 8 ，然后我们调用一个 action 把 age 改成 18。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE12%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE12%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="getter-函数"><a href="#getter-函数" class="headerlink" title="getter 函数"></a>getter 函数</h1><p>getters 类似于 vue 里面的计算属性，可以对已有的数据进行修饰。<br>有两种写法:<br>普通函数方式写法<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E4%BB%A3%E7%A0%811.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E4%BB%A3%E7%A0%812.png" srcset="/img/loading.gif" lazyload><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E7%BB%93%E6%9E%9C1.png" srcset="/img/loading.gif" lazyload><br>然后我们点一下按钮，修改一下 name，然后看一下效果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E7%BB%93%E6%9E%9C2.png" srcset="/img/loading.gif" lazyload><br>我们可以看见，点击修改 name 之后getter 也会实时的渲染出来<br>相互调用<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E7%BB%93%E6%9E%9C1.png" srcset="/img/loading.gif" lazyload><br>然后我们点一下按钮，修改一下 name和 age，然后看一下效果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E7%BB%93%E6%9E%9C2.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="API-的使用"><a href="#API-的使用" class="headerlink" title="API 的使用"></a>API 的使用</h1><p>$reset ：重置到初始值<br>这个 $reset 可以将 state 的数据重置到初始值，比如我们有一个数据，点击按钮改变了，然后我们可以通过这个 API ，将数据恢复到初始状态值。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>我们点击修改用户按钮，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E7%BB%93%E6%9E%9C1.png" srcset="/img/loading.gif" lazyload><br>然后我们点一下$reset按钮，然后看一下效果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E7%BB%93%E6%9E%9C2.png" srcset="/img/loading.gif" lazyload><br>$subscribe：监听 state 数据变化<br>$subscribe 使用来监听的，监听 state 数据的变化，只要 state 里面的数据发生了变化，就会自动走这个函数。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>我们点击修改用户按钮，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E7%BB%93%E6%9E%9C1.png" srcset="/img/loading.gif" lazyload><br>控制台打印出监听到的变化结果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E7%BB%93%E6%9E%9C2.png" srcset="/img/loading.gif" lazyload><br>$onAction：一调用 actions 就触发<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE17%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>控制台打印出监听到的变化结果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE17%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vue3/" class="category-chain-item">vue3</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vue3/">#vue3</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vue3:Pinia使用</div>
+      <div>http://example.com/2022/10/24/Vue3-Pinia使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ljylwnxx</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/25/vue3-hooks%E4%BD%BF%E7%94%A8/" title="vue3-hooks使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue3-hooks使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/20/vue3%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC/" title="vue3组件传值">
+                        <span class="hidden-mobile">vue3组件传值</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

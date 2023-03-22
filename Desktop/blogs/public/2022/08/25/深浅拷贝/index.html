@@ -16,16 +16,16 @@
   <meta name="author" content="ljylwnxx">
   <meta name="keywords" content="">
   
-    <meta name="description" content="什么是浅拷贝？浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。举个例子：var  obj1&#x3D;{a:1,b:5,c:3};var  obj2&#x3D;obj1;obj2.b&#x3D;2;console.log(obj1.b);  &#x2F;&#x2F;2console.log(obj2.b);  &#x2F;&#x2F;2浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，任何">
+    <meta name="description" content="什么是浅拷贝？浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。举个例子：var  obj1&#x3D;{a:1,b:5,c:3};var  obj2&#x3D;obj1;obj2.b&#x3D;2;console.log(obj1.b);  &#x2F;&#x2F;2console.log(obj2.b);  &#x2F;&#x2F;2  浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深浅拷贝">
 <meta property="og:url" content="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="什么是浅拷贝？浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。举个例子：var  obj1&#x3D;{a:1,b:5,c:3};var  obj2&#x3D;obj1;obj2.b&#x3D;2;console.log(obj1.b);  &#x2F;&#x2F;2console.log(obj2.b);  &#x2F;&#x2F;2浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，任何">
+<meta property="og:description" content="什么是浅拷贝？浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。举个例子：var  obj1&#x3D;{a:1,b:5,c:3};var  obj2&#x3D;obj1;obj2.b&#x3D;2;console.log(obj1.b);  &#x2F;&#x2F;2console.log(obj2.b);  &#x2F;&#x2F;2  浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%BB%93%E6%9E%9C.png">
 <meta property="article:published_time" content="2022-08-25T13:53:20.000Z">
-<meta property="article:modified_time" content="2022-08-26T02:35:20.993Z">
+<meta property="article:modified_time" content="2023-03-22T06:11:09.180Z">
 <meta property="article:author" content="ljylwnxx">
 <meta property="article:tag" content="深浅拷贝">
 <meta name="twitter:card" content="summary_large_image">
@@ -275,16 +275,19 @@
             
               <div class="markdown-body">
                 
-                <p>什么是浅拷贝？<br>浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。<br>举个例子：<br>var  obj1={a:1,b:5,c:3};<br>var  obj2=obj1;<br>obj2.b=2;<br>console.log(obj1.b);  //2<br>console.log(obj2.b);  //2<br>浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，任何一个修改都会是使得所有对象的值被修改，因为它们公用一条数据。</p>
-<p>什么是深拷贝？<br>深拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值不会改变。<br>举个例子：<br>var a=2;<br>var b=a;<br>b=3;<br>console.log(a);//2<br>console.log(b);//3<br>深拷贝：深拷贝不会拷贝引用类型的引用，拷贝的是引用类型的值，形成一个新的引用类型。</p>
-<p>如何实现深拷贝？<br>①JSON.Stringify(JSON.pare())   不支持多层引用嵌套，不支持函数Map、Sep等类型的数据</p>
-<p>var  obj1={a:1,b:5,c:3};<br>var  obj2=JSON.Stringify（JSON.parse（obj1））;<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
-<p>②展开运算符   …</p>
-<p>var  obj1={a:1,b:5,c:3};<br>var  obj2=(…obj1)<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
-<p>③Object.asssign（target,sourse）</p>
-<p>var  obj1={a:1,b:5,c:3};<br>var  obj2=Object.assign({},obj1)<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
-<p>④深拷贝函数，递归</p>
-<pre><code class="hljs">        // target 要拷贝的对象
+                <h1 id="什么是浅拷贝？"><a href="#什么是浅拷贝？" class="headerlink" title="什么是浅拷贝？"></a>什么是浅拷贝？</h1><p>浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。<br>举个例子：<br>var  obj1={a:1,b:5,c:3};<br>var  obj2=obj1;<br>obj2.b=2;<br>console.log(obj1.b);  //2<br>console.log(obj2.b);  //2</p>
+<hr>
+<p>浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，任何一个修改都会是使得所有对象的值被修改，因为它们公用一条数据。</p>
+<h1 id="什么是深拷贝？"><a href="#什么是深拷贝？" class="headerlink" title="什么是深拷贝？"></a>什么是深拷贝？</h1><p>深拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值不会改变。<br>举个例子：<br>var a=2;<br>var b=a;<br>b=3;<br>console.log(a);//2<br>console.log(b);//3</p>
+<hr>
+<p>深拷贝：深拷贝不会拷贝引用类型的引用，拷贝的是引用类型的值，形成一个新的引用类型。</p>
+<h1 id="如何实现深拷贝？"><a href="#如何实现深拷贝？" class="headerlink" title="如何实现深拷贝？"></a>如何实现深拷贝？</h1><h2 id="①JSON-Stringify-JSON-pare-不支持多层引用嵌套，不支持函数Map、Sep等类型的数据"><a href="#①JSON-Stringify-JSON-pare-不支持多层引用嵌套，不支持函数Map、Sep等类型的数据" class="headerlink" title="①JSON.Stringify(JSON.pare())   不支持多层引用嵌套，不支持函数Map、Sep等类型的数据"></a>①JSON.Stringify(JSON.pare())   不支持多层引用嵌套，不支持函数Map、Sep等类型的数据</h2><p>var  obj1={a:1,b:5,c:3};<br>var  obj2=JSON.Stringify（JSON.parse（obj1））;<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
+<hr>
+<h2 id="②展开运算符-…"><a href="#②展开运算符-…" class="headerlink" title="②展开运算符   …"></a>②展开运算符   …</h2><p>var  obj1={a:1,b:5,c:3};<br>var  obj2=(…obj1)<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
+<hr>
+<h2 id="③Object-asssign（target-sourse）"><a href="#③Object-asssign（target-sourse）" class="headerlink" title="③Object.asssign（target,sourse）"></a>③Object.asssign（target,sourse）</h2><p>var  obj1={a:1,b:5,c:3};<br>var  obj2=Object.assign({},obj1)<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
+<hr>
+<h2 id="④深拷贝函数，递归"><a href="#④深拷贝函数，递归" class="headerlink" title="④深拷贝函数，递归"></a>④深拷贝函数，递归</h2><pre><code class="hljs">        // target 要拷贝的对象
         function deepClone(target)&#123;
             //定义一个拷贝对象
             let result;
@@ -318,8 +321,8 @@
             return result;
         &#125;
 </code></pre>
-<p>var obj1={<br>a:{z:1,c:null},<br>b:[1,2,3,5],<br>c:function(){console.log(this.a)}<br>}<br>var obj2=deepClone(obj1);<br>console.log(obj2);<br>obj2.b[0]=2;<br>obj2.a[0]=2;<br>console.log(obj1.a)<br>console.log(obj2.a)<br>console.log(obj1.b)<br>console.log(obj2.b)<br>console.log(obj2.c())</p>
-<p><img src="/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p>var obj1={<br>a:{z:1,c:null},<br>b:[1,2,3,5],<br>c:function(){console.log(this.a)}<br>}<br>var obj2=deepClone(obj1);<br>console.log(obj2);<br>obj2.b[0]=2;<br>obj2.a[0]=2;<br>console.log(obj1.a)<br>console.log(obj2.a)<br>console.log(obj1.b)<br>console.log(obj2.b)<br>console.log(obj2.c())<br><img src="/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
