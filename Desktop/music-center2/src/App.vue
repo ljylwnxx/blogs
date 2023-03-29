@@ -8,7 +8,7 @@ export default {
   name: 'App',
   data() {
     return {
-      title: 'webpack3迁移vite2'
+      title: 'webpack迁移vite'
     }
   }
 }
