@@ -16,22 +16,22 @@
   <meta name="author" content="ljylwnxx">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、什么是动态组件？定义:多个组件挂载到同一个组件上，通过参数动态的切换不同组件就是动态组件。书写形式：内置组件：component：是vue里面的一个内置组件。作用是：配合is动态渲染组件。vue内置的组件还包括：transition：作为单个元素&#x2F;组件的过渡效果。transition-group：作为多个元素&#x2F;组件的过渡效果。keep-alive：包裹动态组件时，会缓存不活动的组件实例，而不是">
+    <meta name="description" content="qiankun 的核心设计理念1.简单由于主应用微应用都能做到技术栈无关，qiankun 对于用户而言只是一个类似 jQuery 的库，你需要调用几个 qiankun 的 API 即可完成应用的微前端改造。同时由于 qiankun 的 HTML entry 及沙箱的设计，使得微应用的接入像使用 iframe 一样简单。2.解耦&#x2F;技术栈无关微前端的核心目标是将巨石应用拆解成若干可以自治的松耦合微应用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="component动态组件">
-<meta property="og:url" content="http://example.com/2023/03/23/component%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/index.html">
+<meta property="og:title" content="微前端-qiankun">
+<meta property="og:url" content="http://example.com/2023/03/29/%E5%BE%AE%E5%89%8D%E7%AB%AF-qiankun/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="一、什么是动态组件？定义:多个组件挂载到同一个组件上，通过参数动态的切换不同组件就是动态组件。书写形式：内置组件：component：是vue里面的一个内置组件。作用是：配合is动态渲染组件。vue内置的组件还包括：transition：作为单个元素&#x2F;组件的过渡效果。transition-group：作为多个元素&#x2F;组件的过渡效果。keep-alive：包裹动态组件时，会缓存不活动的组件实例，而不是">
+<meta property="og:description" content="qiankun 的核心设计理念1.简单由于主应用微应用都能做到技术栈无关，qiankun 对于用户而言只是一个类似 jQuery 的库，你需要调用几个 qiankun 的 API 即可完成应用的微前端改造。同时由于 qiankun 的 HTML entry 及沙箱的设计，使得微应用的接入像使用 iframe 一样简单。2.解耦&#x2F;技术栈无关微前端的核心目标是将巨石应用拆解成若干可以自治的松耦合微应用">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-23T13:27:48.000Z">
-<meta property="article:modified_time" content="2023-03-25T05:35:57.623Z">
+<meta property="article:published_time" content="2023-03-29T04:18:39.000Z">
+<meta property="article:modified_time" content="2023-03-29T04:21:13.363Z">
 <meta property="article:author" content="ljylwnxx">
-<meta property="article:tag" content="vue">
+<meta property="article:tag" content="微前端">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>component动态组件 - ljylwnxx的博客</title>
+  <title>微前端-qiankun - ljylwnxx的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="component动态组件"></span>
+            <span id="subtitle" data-typed-text="微前端-qiankun"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-23 21:27" pubdate>
-          2023年3月23日 晚上
+        <time datetime="2023-03-29 12:18" pubdate>
+          2023年3月29日 中午
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          672 字
+          1.1k 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          6 分钟
+          10 分钟
         
       </span>
     
@@ -268,35 +268,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">component动态组件</h1>
+            <h1 style="display: none">微前端-qiankun</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一、什么是动态组件？"><a href="#一、什么是动态组件？" class="headerlink" title="一、什么是动态组件？"></a>一、什么是动态组件？</h1><p>定义:多个组件挂载到同一个组件上，通过参数动态的切换不同组件就是动态组件。<br>书写形式：<component :is="componentName"></component><br>内置组件：<br>component：是vue里面的一个内置组件。作用是：配合is动态渲染组件。<br>vue内置的组件还包括：<br>transition：作为单个元素/组件的过渡效果。<br>transition-group：作为多个元素/组件的过渡效果。<br>keep-alive：包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。<br>slot：作为组件模板之中的内容分发插槽。</p>
-<h1 id="二、使用方式"><a href="#二、使用方式" class="headerlink" title="二、使用方式"></a>二、使用方式</h1><p>通过使用<component>元素动态的绑定到它的is特性，来实现动态组件的切换。<br>如果is匹配不到相应的组件的时候是不尽行任何dom元素的渲染的。<br>1.在不同组件之间进行动态切换<br>component动态组件就是通过控制currentTabComponent来切换不同的组件。</p>
-<div @click="reload">点击切换</div> 
-<component :is="currentTabComponent"></component>
-<script>
-import childOne from './childOne'
-import childTwo from './childTwo'
-export default {
-    componets:{
-        childOne,
-        childTwo
-    },
-    data(){
-        currentTabComponent: 'childOne'
-    },
-    methods:{
-        reload(){
-            this.currentTabComponent = 'childTwo'
-        }
-    }
-}
-</script>
-
-<h1 id="三、动态组件的缓存"><a href="#三、动态组件的缓存" class="headerlink" title="三、动态组件的缓存"></a>三、动态组件的缓存</h1><p>使用动态组件来回切换时，组件是要被销毁的，若不想让数据销毁可以使用<keep-alive>，它可以包裹动态组件，会缓存不活动的组件实例，这样就不会被销毁。和 <transition> 相似，<keep-alive> 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在父组件链中。<br><keep-alive><br>    <component :is="componentName"></component><br></keep-alive></p>
+                <h1 id="qiankun-的核心设计理念"><a href="#qiankun-的核心设计理念" class="headerlink" title="qiankun 的核心设计理念"></a>qiankun 的核心设计理念</h1><p>1.简单<br>由于主应用微应用都能做到技术栈无关，qiankun 对于用户而言只是一个类似 jQuery 的库，你需要调用几个 qiankun 的 API 即可完成应用的微前端改造。同时由于 qiankun 的 HTML entry 及沙箱的设计，使得微应用的接入像使用 iframe 一样简单。<br>2.解耦/技术栈无关<br>微前端的核心目标是将巨石应用拆解成若干可以自治的松耦合微应用，而 qiankun 的诸多设计均是秉持这一原则，如 HTML entry、沙箱、应用间通信等。这样才能确保微应用真正具备 独立开发、独立运行 的能力。</p>
+<h1 id="为什么不是-iframe"><a href="#为什么不是-iframe" class="headerlink" title="为什么不是 iframe"></a>为什么不是 iframe</h1><p>为什么不用 iframe，这几乎是所有微前端方案第一个会被 challenge 的问题。但是大部分微前端方案又不约而同放弃了 iframe 方案，自然是有原因的，并不是为了 “炫技” 或者刻意追求 “特立独行”。<br>如果不考虑体验问题，iframe 几乎是最完美的微前端解决方案了。<br>iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论是样式隔离、js 隔离这类问题统统都能被完美解决。但他的最大问题也在于他的隔离性无法被突破，导致应用间上下文无法被共享，随之带来的开发体验、产品体验的问题。<br>url 不同步。浏览器刷新 iframe url 状态丢失、后退前进按钮无法使用。<br>UI 不同步，DOM 结构不共享。想象一下屏幕右下角 1/4 的 iframe 里来一个带遮罩层的弹框，同时我们要求这个弹框要浏览器居中显示，还要浏览器 resize 时自动居中..<br>全局上下文完全隔离，内存变量不共享。iframe 内外系统的通信、数据同步等需求，主应用的 cookie 要透传到根域名都不同的子应用中实现免登效果。<br>慢。每次子应用进入都是一次浏览器上下文重建、资源重新加载的过程。<br>其中有的问题比较好解决(问题1)，有的问题我们可以睁一只眼闭一只眼(问题4)，但有的问题我们则很难解决(问题3)甚至无法解决(问题2)，而这些无法解决的问题恰恰又会给产品带来非常严重的体验问题， 最终导致我们舍弃了 iframe 方案。</p>
+<h1 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h1><p>1.基于 single-spa 封装，提供了更加开箱即用的 API。<br>2.技术栈无关，任意技术栈的应用均可 使用/接入，不论是 React/Vue/Angular/JQuery 还是其他等框架。<br>3.HTML Entry 接入方式，让你接入微应用像使用 iframe 一样简单。<br>4.样式隔离，确保微应用之间样式互相不干扰。<br>5.JS 沙箱，确保微应用之间 全局变量/事件 不冲突。<br>6.资源预加载，在浏览器空闲时间预加载未打开的微应用资源，加速微应用打开速度。<br>7.umi 插件，提供了 @umijs/plugin-qiankun 供 umi 应用一键切换成微前端架构系统。</p>
 
                 
               </div>
@@ -330,7 +309,7 @@ export default {
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/vue/">#vue</a>
+        <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/">#微前端</a>
       
     </div>
   
@@ -342,8 +321,8 @@ export default {
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>component动态组件</div>
-      <div>http://example.com/2023/03/23/component动态组件/</div>
+      <div>微前端-qiankun</div>
+      <div>http://example.com/2023/03/29/微前端-qiankun/</div>
     </div>
     <div class="license-meta">
       
@@ -355,7 +334,7 @@ export default {
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月23日</div>
+          <div>2023年3月29日</div>
         </div>
       
       
@@ -387,9 +366,9 @@ export default {
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/27/%E5%BE%AE%E5%89%8D%E7%AB%AF/" title="微前端">
+                      <a href="/2023/03/29/webpack%E8%BF%81%E7%A7%BBvite/" title="webpack迁移vite">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">微前端</span>
+                        <span class="hidden-mobile">webpack迁移vite</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -397,8 +376,8 @@ export default {
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/21/%E6%95%B0%E7%BB%84%EF%BC%8C%E5%AF%B9%E8%B1%A1%E9%81%8D%E5%8E%86%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" title="数组，对象遍历的用法总结">
-                        <span class="hidden-mobile">数组，对象遍历的用法总结</span>
+                      <a href="/2023/03/27/Vue-Cli/" title="基于Webpack5搭建一个Vue-Cli">
+                        <span class="hidden-mobile">基于Webpack5搭建一个Vue-Cli</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

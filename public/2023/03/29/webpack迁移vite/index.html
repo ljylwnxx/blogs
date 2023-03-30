@@ -16,22 +16,22 @@
   <meta name="author" content="ljylwnxx">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、什么是动态组件？定义:多个组件挂载到同一个组件上，通过参数动态的切换不同组件就是动态组件。书写形式：内置组件：component：是vue里面的一个内置组件。作用是：配合is动态渲染组件。vue内置的组件还包括：transition：作为单个元素&#x2F;组件的过渡效果。transition-group：作为多个元素&#x2F;组件的过渡效果。keep-alive：包裹动态组件时，会缓存不活动的组件实例，而不是">
+    <meta name="description" content="一、迁移流程1.先创建新的vite项目2.新版vite项目默认是支持vue3的，需要把vue改成vue2版本后配置vite-plugin-vue2插件来支持vue23.把项目代码改成vue2写法，确保新vite项目可以正常运行vue24.把原webpack项目生产环境依赖复制到vite项目，剔除掉webpack相关的插件依赖5.复制原项目src文件代码和其他业务相关代码到新vite项目。6.新vi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="component动态组件">
-<meta property="og:url" content="http://example.com/2023/03/23/component%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/index.html">
+<meta property="og:title" content="webpack迁移vite">
+<meta property="og:url" content="http://example.com/2023/03/29/webpack%E8%BF%81%E7%A7%BBvite/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="一、什么是动态组件？定义:多个组件挂载到同一个组件上，通过参数动态的切换不同组件就是动态组件。书写形式：内置组件：component：是vue里面的一个内置组件。作用是：配合is动态渲染组件。vue内置的组件还包括：transition：作为单个元素&#x2F;组件的过渡效果。transition-group：作为多个元素&#x2F;组件的过渡效果。keep-alive：包裹动态组件时，会缓存不活动的组件实例，而不是">
+<meta property="og:description" content="一、迁移流程1.先创建新的vite项目2.新版vite项目默认是支持vue3的，需要把vue改成vue2版本后配置vite-plugin-vue2插件来支持vue23.把项目代码改成vue2写法，确保新vite项目可以正常运行vue24.把原webpack项目生产环境依赖复制到vite项目，剔除掉webpack相关的插件依赖5.复制原项目src文件代码和其他业务相关代码到新vite项目。6.新vi">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-23T13:27:48.000Z">
-<meta property="article:modified_time" content="2023-03-25T05:35:57.623Z">
+<meta property="article:published_time" content="2023-03-29T13:41:53.000Z">
+<meta property="article:modified_time" content="2023-03-30T04:06:55.500Z">
 <meta property="article:author" content="ljylwnxx">
-<meta property="article:tag" content="vue">
+<meta property="article:tag" content="webpack">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>component动态组件 - ljylwnxx的博客</title>
+  <title>webpack迁移vite - ljylwnxx的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="component动态组件"></span>
+            <span id="subtitle" data-typed-text="webpack迁移vite"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-23 21:27" pubdate>
-          2023年3月23日 晚上
+        <time datetime="2023-03-29 21:41" pubdate>
+          2023年3月29日 晚上
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          672 字
+          1.5k 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          6 分钟
+          13 分钟
         
       </span>
     
@@ -268,36 +268,16 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">component动态组件</h1>
+            <h1 style="display: none">webpack迁移vite</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一、什么是动态组件？"><a href="#一、什么是动态组件？" class="headerlink" title="一、什么是动态组件？"></a>一、什么是动态组件？</h1><p>定义:多个组件挂载到同一个组件上，通过参数动态的切换不同组件就是动态组件。<br>书写形式：<component :is="componentName"></component><br>内置组件：<br>component：是vue里面的一个内置组件。作用是：配合is动态渲染组件。<br>vue内置的组件还包括：<br>transition：作为单个元素/组件的过渡效果。<br>transition-group：作为多个元素/组件的过渡效果。<br>keep-alive：包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。<br>slot：作为组件模板之中的内容分发插槽。</p>
-<h1 id="二、使用方式"><a href="#二、使用方式" class="headerlink" title="二、使用方式"></a>二、使用方式</h1><p>通过使用<component>元素动态的绑定到它的is特性，来实现动态组件的切换。<br>如果is匹配不到相应的组件的时候是不尽行任何dom元素的渲染的。<br>1.在不同组件之间进行动态切换<br>component动态组件就是通过控制currentTabComponent来切换不同的组件。</p>
-<div @click="reload">点击切换</div> 
-<component :is="currentTabComponent"></component>
-<script>
-import childOne from './childOne'
-import childTwo from './childTwo'
-export default {
-    componets:{
-        childOne,
-        childTwo
-    },
-    data(){
-        currentTabComponent: 'childOne'
-    },
-    methods:{
-        reload(){
-            this.currentTabComponent = 'childTwo'
-        }
-    }
-}
-</script>
-
-<h1 id="三、动态组件的缓存"><a href="#三、动态组件的缓存" class="headerlink" title="三、动态组件的缓存"></a>三、动态组件的缓存</h1><p>使用动态组件来回切换时，组件是要被销毁的，若不想让数据销毁可以使用<keep-alive>，它可以包裹动态组件，会缓存不活动的组件实例，这样就不会被销毁。和 <transition> 相似，<keep-alive> 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在父组件链中。<br><keep-alive><br>    <component :is="componentName"></component><br></keep-alive></p>
-
+                <h1 id="一、迁移流程"><a href="#一、迁移流程" class="headerlink" title="一、迁移流程"></a>一、迁移流程</h1><p>1.先创建新的vite项目<br>2.新版vite项目默认是支持vue3的，需要把vue改成vue2版本后配置vite-plugin-vue2插件来支持vue2<br>3.把项目代码改成vue2写法，确保新vite项目可以正常运行vue2<br>4.把原webpack项目生产环境依赖复制到vite项目，剔除掉webpack相关的插件依赖<br>5.复制原项目src文件代码和其他业务相关代码到新vite项目。<br>6.新vite项目配置开发环境启动命令，根据报错信息来进行调整。<br>7.在测试开发和打包环境都没问题后，替换原先的项目。</p>
+<h1 id="二、迁移业务代码到vite项目"><a href="#二、迁移业务代码到vite项目" class="headerlink" title="二、迁移业务代码到vite项目"></a>二、迁移业务代码到vite项目</h1><h2 id="2-1创建新的vite项目"><a href="#2-1创建新的vite项目" class="headerlink" title="2.1创建新的vite项目"></a>2.1创建新的vite项目</h2><p>由于原先项目没有用ts，所以创建项目不选ts版本，包管理工具也依然选择是npm。<br>npm init vite@latest my-vue-app – –template vue<br>创建完成后，使用vs code打开，打开命令行，执行npm i安装依赖<br>npm i<br>安装依赖完成后，使用npm run dev启动项目<br>此时基本的vite2+vue3项目已经启动成功了，但此时vite支持的还是vue3版本的，我们需要让vite支持vue2版本。</p>
+<h2 id="2-2配置vite支持vue2"><a href="#2-2配置vite支持vue2" class="headerlink" title="2.2配置vite支持vue2"></a>2.2配置vite支持vue2</h2><p>此时打开vite.config.js,里面的代码为<br>import { defineConfig } from ‘vite’<br>import vue from ‘@vitejs/plugin-vue’<br>​<br>// <a target="_blank" rel="noopener" href="https://vitejs.dev/config/">https://vitejs.dev/config/</a><br>export default defineConfig({<br>  plugins: [vue()]<br>})<br>@vitejs/plugin-vue插件是对vue3语法做支持，如果要支持vue2，需要用vite-plugin-vue2<br>第一步，从vite中删除 @vitejs/plugin-vue配置，从package.json文件中也删除。<br>npm uninstall @vitejs/plugin-vue -D<br>第二步,安装vite-plugin-vue2依赖<br>npm install vite-plugin-vue2 -D<br>第三步,在vite.config.js文件配置vite-plugin-vue2<br>import { defineConfig } from ‘vite’<br>import { createVuePlugin } from “vite-plugin-vue2”;<br>​<br>// <a target="_blank" rel="noopener" href="https://vitejs.dev/config/">https://vitejs.dev/config/</a><br>export default defineConfig({<br>  plugins: [createVuePlugin()]<br>})<br>第四步，修改vue版本由3改为2版本<br>npm install vue@2 -S<br>第五步, 修改main.js，创建根vue实例写法改为vue2写法<br>import Vue from ‘vue’<br>import App from ‘./App.vue’<br>​<br>new Vue({<br>  render: h =&gt; h(App),<br>}).$mount(‘#app’)<br>第六步，修改main.js完成后，修改App.vue文件代码为vue2格式代码<br>执行npm run dev，即可看到启动成功,代表此时vite已经支持vue2语法了，可以开始项目迁移工作了。</p>
+<h2 id="2-3复制原项目业务代码"><a href="#2-3复制原项目业务代码" class="headerlink" title="2.3复制原项目业务代码"></a>2.3复制原项目业务代码</h2><p>第一步，复制原项目静态目录static下文件到vite项目public文件夹下<br>第二步，复制原项目index.html文件内容替换vite项目的index.html内容(注意本地静态资源引入的路径)替换后需要在body结束标签前添加 <script type="module" src="/src/main.js"></script><br>第三步, 复制package.json中生产环境依赖到新vite项目,去除webpack相关配置依赖<br>第四步，复制原项目src业务文件代码，直接替换vite项目src文件</p>
+<h1 id="三、项目开发阶段报错处理"><a href="#三、项目开发阶段报错处理" class="headerlink" title="三、项目开发阶段报错处理"></a>三、项目开发阶段报错处理</h1>
                 
               </div>
             
@@ -330,7 +310,7 @@ export default {
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/vue/">#vue</a>
+        <a href="/tags/webpack/">#webpack</a>
       
     </div>
   
@@ -342,8 +322,8 @@ export default {
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>component动态组件</div>
-      <div>http://example.com/2023/03/23/component动态组件/</div>
+      <div>webpack迁移vite</div>
+      <div>http://example.com/2023/03/29/webpack迁移vite/</div>
     </div>
     <div class="license-meta">
       
@@ -355,7 +335,7 @@ export default {
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月23日</div>
+          <div>2023年3月29日</div>
         </div>
       
       
@@ -387,18 +367,12 @@ export default {
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/27/%E5%BE%AE%E5%89%8D%E7%AB%AF/" title="微前端">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">微前端</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/21/%E6%95%B0%E7%BB%84%EF%BC%8C%E5%AF%B9%E8%B1%A1%E9%81%8D%E5%8E%86%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" title="数组，对象遍历的用法总结">
-                        <span class="hidden-mobile">数组，对象遍历的用法总结</span>
+                      <a href="/2023/03/29/%E5%BE%AE%E5%89%8D%E7%AB%AF-qiankun/" title="微前端-qiankun">
+                        <span class="hidden-mobile">微前端-qiankun</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
