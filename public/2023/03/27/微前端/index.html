@@ -16,15 +16,15 @@
   <meta name="author" content="ljylwnxx">
   <meta name="keywords" content="">
   
-    <meta name="description" content="qiankun 是一个基于 single-spa 的微前端实现库，旨在帮助大家能更简单、无痛的构建一个生产可用微前端架构系统。 什么是微前端微前端是一种多个团队通过独立发布功能的方式来共同构建现代化web应用的技术手段及方法策略。微前端可以将多个小型应用整合成一个完整的应用。每个小型应用都是独立开发、独立运行、独立部署的，这就意味着可以多团队并行开发 且有无冲突、无阻塞等特点。 微前端架构具备以下">
+    <meta name="description" content="什么是微前端微前端是一种多个团队通过独立发布功能的方式来共同构建现代化web应用的技术手段及方法策略。微前端可以将多个小型应用整合成一个完整的应用。每个小型应用都是独立开发、独立运行、独立部署的，这就意味着可以多团队并行开发 且有无冲突、无阻塞等特点。 微前端架构具备以下几个核心价值：1.技术栈无关主框架不限制接入应用的技术栈，微应用具备完全自主权2.独立开发、独立部署微应用仓库独立，前后端可独立">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微前端">
 <meta property="og:url" content="http://example.com/2023/03/27/%E5%BE%AE%E5%89%8D%E7%AB%AF/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="qiankun 是一个基于 single-spa 的微前端实现库，旨在帮助大家能更简单、无痛的构建一个生产可用微前端架构系统。 什么是微前端微前端是一种多个团队通过独立发布功能的方式来共同构建现代化web应用的技术手段及方法策略。微前端可以将多个小型应用整合成一个完整的应用。每个小型应用都是独立开发、独立运行、独立部署的，这就意味着可以多团队并行开发 且有无冲突、无阻塞等特点。 微前端架构具备以下">
+<meta property="og:description" content="什么是微前端微前端是一种多个团队通过独立发布功能的方式来共同构建现代化web应用的技术手段及方法策略。微前端可以将多个小型应用整合成一个完整的应用。每个小型应用都是独立开发、独立运行、独立部署的，这就意味着可以多团队并行开发 且有无冲突、无阻塞等特点。 微前端架构具备以下几个核心价值：1.技术栈无关主框架不限制接入应用的技术栈，微应用具备完全自主权2.独立开发、独立部署微应用仓库独立，前后端可独立">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-27T13:29:13.000Z">
-<meta property="article:modified_time" content="2023-03-29T04:36:01.697Z">
+<meta property="article:modified_time" content="2023-03-30T04:22:45.883Z">
 <meta property="article:author" content="ljylwnxx">
 <meta property="article:tag" content="微前端">
 <meta name="twitter:card" content="summary_large_image">
@@ -230,7 +230,7 @@
         
         
         
-          21 分钟
+          20 分钟
         
       </span>
     
@@ -273,8 +273,7 @@
             
               <div class="markdown-body">
                 
-                <p>qiankun 是一个基于 single-spa 的微前端实现库，旨在帮助大家能更简单、无痛的构建一个生产可用微前端架构系统。</p>
-<h1 id="什么是微前端"><a href="#什么是微前端" class="headerlink" title="什么是微前端"></a>什么是微前端</h1><p>微前端是一种多个团队通过独立发布功能的方式来共同构建现代化web应用的技术手段及方法策略。<br>微前端可以将多个小型应用整合成一个完整的应用。每个小型应用都是独立开发、独立运行、独立部署的，这就意味着可以多团队并行开发 且有无冲突、无阻塞等特点。</p>
+                <h1 id="什么是微前端"><a href="#什么是微前端" class="headerlink" title="什么是微前端"></a>什么是微前端</h1><p>微前端是一种多个团队通过独立发布功能的方式来共同构建现代化web应用的技术手段及方法策略。<br>微前端可以将多个小型应用整合成一个完整的应用。每个小型应用都是独立开发、独立运行、独立部署的，这就意味着可以多团队并行开发 且有无冲突、无阻塞等特点。</p>
 <h1 id="微前端架构具备以下几个核心价值："><a href="#微前端架构具备以下几个核心价值：" class="headerlink" title="微前端架构具备以下几个核心价值："></a>微前端架构具备以下几个核心价值：</h1><p>1.技术栈无关<br>主框架不限制接入应用的技术栈，微应用具备完全自主权<br>2.独立开发、独立部署<br>微应用仓库独立，前后端可独立开发，部署完成后主框架自动完成同步更新<br>3.增量升级<br>在面对各种复杂场景时，我们通常很难对一个已经存在的系统做全量的技术栈升级或重构，而微前端是一种非常好的实施渐进式重构的手段和策略<br>4.独立运行时<br>每个微应用之间状态隔离，运行时状态不共享</p>
 <h1 id="常见的微前端实现方式"><a href="#常见的微前端实现方式" class="headerlink" title="常见的微前端实现方式"></a>常见的微前端实现方式</h1><p>1.路由分发<br>简单来说，其实就是通过网关/代理对路由进行监听，对不同的路由路径导向不同的前端资源入口。<br>例如：<br>使用 Nginx 代理了 localhost:80；<br>然后访问路径为 /app1 的时候，返回 html/app1/index.html 的文件；<br>访问路径为 /app2 的时候，返回 html/app2/index.html 的文件。<br>这种方式由于是多页面应用，所以用户体验不好，而且比较依赖于后端，应用之间存在着耦合问题。</p>
 <h2 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h2><p>开发成本低<br>配置简单</p>
