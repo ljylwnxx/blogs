@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" type="image/x-icon" href="/image/avator.png">
+<link rel="shortcut icon" type="image/x-icon" href="/image/defaultPic.png">
 
 <link rel="stylesheet" href="/css/index.css">
 
@@ -277,8 +277,8 @@
 </script>
 
 <div class="post">
-    <div class="post-header-background post-header-img"
-    style="background: url('/image/defaultPic.png')" 
+    <div class="post-header-background post-header-color"
+    style="background: url('')" 
 >
     <div class="post-header-background-content">
         <ul class="post-header-tag">
@@ -293,13 +293,14 @@
         <div class="post-header-info">
             <div class="post-header-info-author">
                 
-                    <svg t="1604839279282" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                        xmlns="http://www.w3.org/2000/svg" p-id="2901" width="20" height="20">
-                        <path
-                            d="M513 956.3c-247.7 0-448-200.3-448-448S265.3 66.2 513 66.2s448 200.3 448 448-200.3 442.1-448 442.1z m0-830.9c-212.2 0-388.8 170.7-388.8 388.8C124.2 726.3 294.9 903 513 903c212.2 0 388.8-170.7 388.8-388.8S725.2 125.4 513 125.4z m0 430.2c-94.2 0-170.7-76.5-170.7-170.7S418.8 207.8 513 207.8s170.7 76.5 170.7 170.7S607.2 555.6 513 555.6z m0-289.1c-64.6 0-112 52.8-112 112s47.4 117.9 112 117.9 112-52.8 112-112-47.4-117.9-112-117.9z m0 689.8c-135.7 0-259-58.7-341.9-158.9l-11.8-17.8 11.8-17.8c76.5-117.9 206.2-188.5 347.8-188.5 135.7 0 265 64.6 341.9 182.6l11.8 17.8-11.8 17.8C778 897.1 648.7 956.3 513 956.3zM230.3 773.2C300.9 849.7 406.9 897 513 897c112 0 218.1-47.4 288.6-129.8-70.5-88.2-170.7-135.6-282.7-135.6s-218.1 53.3-288.6 141.6z"
-                            p-id="2902" fill="#ffffff"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                        <g>
+                            <path fill="#12183A"
+                                d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                            </path>
+                        </g>
                     </svg>
-                    
+                
                 <span class="post-header-info-author-text"> <a href="../../about">ljylwnxx</a></span>
                 <div class="post-header-info-author-categories">
                     
@@ -494,7 +495,7 @@ plugins: [&quot;@babel/plugin-transform-runtime&quot;]
 &#125;
 </code></pre>
 <p>此时我们重新运行打包 npm run build ，我们可以发现打包后的js代码中，已经把刚刚代码中的 ES6 语法转成 ES5 语法了！可以看到刚刚代码中的 const 已经转成 ES5 语法了</p>
-<h2 id="打包Vue"><a href="#打包Vue" class="headerlink" title="打包Vue"></a>打包Vue</h2><p>打包Vue需要用到以下几个包：<br>vue ：Vue开发所需的依赖<br>vue-loader ：解析 .vue 文件的loader<br>vue-template-compiler ：解析vue中模板的工具<br>@vue/babel-preset-jsx ：支持解析vue中的jsx语法<br>注意： vue 和 vue-template-compiler 版本需要一致，这里我使用 2.6.14 这个版本， vue-loader 这里我使用了 15.9.8 这个版本<br>所以我们先安装一下：<br>npm i<br><a href="mailto:&#x76;&#117;&#x65;&#64;&#50;&#46;&#54;&#x2e;&#x31;&#52;">&#x76;&#117;&#x65;&#64;&#50;&#46;&#54;&#x2e;&#x31;&#52;</a> <a href="mailto:&#x76;&#117;&#x65;&#x2d;&#x74;&#x65;&#109;&#x70;&#x6c;&#97;&#116;&#x65;&#45;&#99;&#111;&#x6d;&#x70;&#105;&#108;&#x65;&#x72;&#64;&#x32;&#x2e;&#54;&#x2e;&#x31;&#52;">&#x76;&#117;&#x65;&#x2d;&#x74;&#x65;&#109;&#x70;&#x6c;&#97;&#116;&#x65;&#45;&#99;&#111;&#x6d;&#x70;&#105;&#108;&#x65;&#x72;&#64;&#x32;&#x2e;&#54;&#x2e;&#x31;&#52;</a> <a href="mailto:&#x76;&#117;&#x65;&#x2d;&#108;&#111;&#x61;&#x64;&#x65;&#x72;&#x40;&#49;&#53;&#46;&#57;&#x2e;&#x38;">&#x76;&#117;&#x65;&#x2d;&#108;&#111;&#x61;&#x64;&#x65;&#x72;&#x40;&#49;&#53;&#46;&#57;&#x2e;&#x38;</a> @vue/babel-preset-jsx -D<br>然后我们需要去 webpack.config.js 中配置对 .vue 文件的解析</p>
+<h2 id="打包Vue"><a href="#打包Vue" class="headerlink" title="打包Vue"></a>打包Vue</h2><p>打包Vue需要用到以下几个包：<br>vue ：Vue开发所需的依赖<br>vue-loader ：解析 .vue 文件的loader<br>vue-template-compiler ：解析vue中模板的工具<br>@vue/babel-preset-jsx ：支持解析vue中的jsx语法<br>注意： vue 和 vue-template-compiler 版本需要一致，这里我使用 2.6.14 这个版本， vue-loader 这里我使用了 15.9.8 这个版本<br>所以我们先安装一下：<br>npm i<br><a href="mailto:&#x76;&#x75;&#x65;&#64;&#x32;&#x2e;&#54;&#46;&#x31;&#x34;">&#x76;&#x75;&#x65;&#64;&#x32;&#x2e;&#54;&#46;&#x31;&#x34;</a> <a href="mailto:&#x76;&#117;&#101;&#45;&#x74;&#x65;&#109;&#112;&#x6c;&#97;&#x74;&#x65;&#x2d;&#x63;&#x6f;&#109;&#112;&#105;&#x6c;&#101;&#x72;&#x40;&#50;&#46;&#x36;&#x2e;&#49;&#x34;">&#x76;&#117;&#101;&#45;&#x74;&#x65;&#109;&#112;&#x6c;&#97;&#x74;&#x65;&#x2d;&#x63;&#x6f;&#109;&#112;&#105;&#x6c;&#101;&#x72;&#x40;&#50;&#46;&#x36;&#x2e;&#49;&#x34;</a> <a href="mailto:&#118;&#117;&#101;&#x2d;&#x6c;&#x6f;&#x61;&#100;&#101;&#x72;&#x40;&#x31;&#x35;&#46;&#x39;&#46;&#x38;">&#118;&#117;&#101;&#x2d;&#x6c;&#x6f;&#x61;&#100;&#101;&#x72;&#x40;&#x31;&#x35;&#46;&#x39;&#46;&#x38;</a> @vue/babel-preset-jsx -D<br>然后我们需要去 webpack.config.js 中配置对 .vue 文件的解析</p>
 <pre><code>// 刚才的代码...
 const &#123; VueLoaderPlugin &#125; = require(&#39;vue-loader&#39;)
 module.exports = &#123;
