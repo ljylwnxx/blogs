@@ -1,291 +1,322 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html>
+	<head>
+		
+<title>Vue3setup函数-Quiet</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/image/avator.png">
+
+<link rel="stylesheet" href="/css/index.css">
 
 
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ljylwnxx">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="vue2 和 vue3 开发的区别首先，目前来说 vue3 发布已经有一段时间了，但是呢，由于还处于优化完善阶段，对于 vue3 开发项目的需求不是很高，主要还是以 vue2 开发为主，但是相信，vue3 进行项目开发是大势所趋。 vue2 开发项目过程中，会存在代码冗余和结构杂乱问题，这是 vue3 主要解决的问题，vue3 可以将相关功能的代码抽离分割在一起，方便开发者快速阅读，提高项目代码的">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Vue3setup函数">
-<meta property="og:url" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/index.html">
-<meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="vue2 和 vue3 开发的区别首先，目前来说 vue3 发布已经有一段时间了，但是呢，由于还处于优化完善阶段，对于 vue3 开发项目的需求不是很高，主要还是以 vue2 开发为主，但是相信，vue3 进行项目开发是大势所趋。 vue2 开发项目过程中，会存在代码冗余和结构杂乱问题，这是 vue3 主要解决的问题，vue3 可以将相关功能的代码抽离分割在一起，方便开发者快速阅读，提高项目代码的">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F.png">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%90%8D%E7%A7%B0%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5.png">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E6%8F%90%E7%A4%BA%E6%89%BE%E4%B8%8D%E5%88%B0.png">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/name.png">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E6%B8%B2%E6%9F%93%E6%88%90%E5%8A%9F.png">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E7%82%B9%E5%87%BB%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E8%A2%AB%E7%82%B9%E5%87%BB.png">
-<meta property="article:published_time" content="2022-10-13T02:45:33.000Z">
-<meta property="article:modified_time" content="2023-03-22T06:27:38.215Z">
-<meta property="article:author" content="ljylwnxx">
-<meta property="article:tag" content="vue3">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F.png">
-  
-  
-  
-  <title>Vue3setup函数 - ljylwnxx的博客</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+<meta name="keywords" content="vue3,">
+<meta name="description" content="">
 
 
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+<script src="/js/jquery.min.js"></script>
 
 
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<script src="/js/index.js"></script>
 
 
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
+<script src="/js/fancybox.umd.js"></script>
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<script src="/js/fancybox-images.js"></script>
 
 
+<script src="/js/gitalk.min.js"></script>
 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+<script src="/js/hljs.min.js"></script>
+ 
+<script>hljs.highlightAll();</script>
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+	<meta name="generator" content="Hexo 5.4.2"></head>
+
+	<body>
+		
+	<div class="header">
+		<div class="header-top" id="header-top">
+			<div class="h-left">
+				<a href="/">
+					<img src="/image/avator.png" alt="Quiet">
+				</a>
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/links">
+										LINKS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>ljylwnxx</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/links">LINKS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+    <div class="my_foot">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
+            <img src="/image/avator.png" alt="Quiet主题">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'>
+</div>
+<style>
+    .shelter{
+        background-color: #333;
+        opacity:0.5;
+        cursor: pointer;
+        display: none; 
+        position: fixed;
+        left: 0;
+        top: 0; 
+        right: 0;
+        bottom: 0;
+        z-index: 1998;
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+    .sidebar {
+        width: 66%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        background: #fff;
+        z-index: 1999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
+    }
 
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
 
-  
-<meta name="generator" content="Hexo 5.4.2"></head>
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
 
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
 
-<body>
-  
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
 
-  <header>
-    
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>ljylwnxx</strong>
-    </a>
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
 
-  
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/defaultl.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="Vue3setup函数"></span>
-          
-        </div>
+<script>
+    $( function () {
+	$( '.h-right-close>svg' )
+		.click( function () {
+			$( '.sidebar' )
+				.animate( {
+					right: "0"
+				}, 500 );
+			$( '.shelter' )
+				.fadeIn( "slow" )
+		} );
+	$( '.shelter' )
+		.click( function ( e ) {
+			$( '.sidebar' )
+				.animate( {
+					right: "-100%"
+				}, 500 );
+			$( '.shelter' )
+				.fadeOut( "slow" )
+		} )
+} )
 
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-13 10:45" pubdate>
-          2022年10月13日 上午
-        </time>
-      </span>
-    
-  </div>
+</script>
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          1.5k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          13 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Vue3setup函数</h1>
+<div class="post">
+    <div class="post-header-background post-header-img"
+    style="background: url('/image/defaultPic.png')" 
+>
+    <div class="post-header-background-content">
+        <ul class="post-header-tag">
             
             
-              <div class="markdown-body">
+            <li><a href="/tags/vue3">vue3</a></li>
+            
+            
+        </ul>
+        
+        <h1>Vue3setup函数</h1>
+        <div class="post-header-info">
+            <div class="post-header-info-author">
                 
-                <h1 id="vue2-和-vue3-开发的区别"><a href="#vue2-和-vue3-开发的区别" class="headerlink" title="vue2 和 vue3 开发的区别"></a>vue2 和 vue3 开发的区别</h1><p>首先，目前来说 vue3 发布已经有一段时间了，但是呢，由于还处于优化完善阶段，对于 vue3 开发项目的需求不是很高，主要还是以 vue2 开发为主，但是相信，vue3 进行项目开发是大势所趋。</p>
+                    <svg t="1604839279282" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="2901" width="20" height="20">
+                        <path
+                            d="M513 956.3c-247.7 0-448-200.3-448-448S265.3 66.2 513 66.2s448 200.3 448 448-200.3 442.1-448 442.1z m0-830.9c-212.2 0-388.8 170.7-388.8 388.8C124.2 726.3 294.9 903 513 903c212.2 0 388.8-170.7 388.8-388.8S725.2 125.4 513 125.4z m0 430.2c-94.2 0-170.7-76.5-170.7-170.7S418.8 207.8 513 207.8s170.7 76.5 170.7 170.7S607.2 555.6 513 555.6z m0-289.1c-64.6 0-112 52.8-112 112s47.4 117.9 112 117.9 112-52.8 112-112-47.4-117.9-112-117.9z m0 689.8c-135.7 0-259-58.7-341.9-158.9l-11.8-17.8 11.8-17.8c76.5-117.9 206.2-188.5 347.8-188.5 135.7 0 265 64.6 341.9 182.6l11.8 17.8-11.8 17.8C778 897.1 648.7 956.3 513 956.3zM230.3 773.2C300.9 849.7 406.9 897 513 897c112 0 218.1-47.4 288.6-129.8-70.5-88.2-170.7-135.6-282.7-135.6s-218.1 53.3-288.6 141.6z"
+                            p-id="2902" fill="#ffffff"></path>
+                    </svg>
+                    
+                <span class="post-header-info-author-text"> <a href="../../about">ljylwnxx</a></span>
+                <div class="post-header-info-author-categories">
+                    
+                         <a href="../../categories/vue3/" target="_blank" >vue3</a>
+                    
+                </div>
+                <p>2022-10-13 10:45:33</p>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="post-content" id="content">
+  
+  <div id="article" class="post-content-info">
+    
+
+    <h1 id="vue2-和-vue3-开发的区别"><a href="#vue2-和-vue3-开发的区别" class="headerlink" title="vue2 和 vue3 开发的区别"></a>vue2 和 vue3 开发的区别</h1><p>首先，目前来说 vue3 发布已经有一段时间了，但是呢，由于还处于优化完善阶段，对于 vue3 开发项目的需求不是很高，主要还是以 vue2 开发为主，但是相信，vue3 进行项目开发是大势所趋。</p>
 <p>vue2 开发项目过程中，会存在代码冗余和结构杂乱问题，这是 vue3 主要解决的问题，vue3 可以将相关功能的代码抽离分割在一起，方便开发者快速阅读，提高项目代码的可读性和可维护性。</p>
 <h1 id="使用-setup-原因"><a href="#使用-setup-原因" class="headerlink" title="使用 setup 原因"></a>使用 setup 原因</h1><p>在 vue3 版本中，引入了一个新的函数，叫做 setup，引入他的原因总结一下主要原因是：为了使用组合式 API，setup 函数是 Composition 的入口。</p>
 <p>为什么不继续使用 vue2 当中的选项 API 了呢，原因也很简单，像 data、computed、methods、watch 在组织逻辑大多数的情况下都是没有问题的，但是当组件逻辑变得更加丰富，那么逻辑处理关注点就会越来越多，很容易导致组件阅读和维护成本提高，通过 setup 函数能够将该部分逻辑抽离成函数，让开发者不必在关心该部分的逻辑问题。</p>
@@ -298,387 +329,212 @@
 </ol>
 <h1 id="setup-可以接受哪些参数"><a href="#setup-可以接受哪些参数" class="headerlink" title="setup 可以接受哪些参数"></a>setup 可以接受哪些参数</h1><p>setup 函数可以接受 props、context，其中， props 由于是响应式数据，不能直接解构赋值，context 不是响应式数据，可以通过解构赋值，setup 函数必须返回一个对象，只要返回对象，便可以像 vue2 的方式一样使用返回的属性或方法。</p>
 <h1 id="setup-函数定义变量"><a href="#setup-函数定义变量" class="headerlink" title="setup 函数定义变量"></a>setup 函数定义变量</h1><p>组件中所有的变量都要在 setup 函数中定义，并且需要在 setup 函数最后通过 return 返回，才可以像 vue2 一样在模板中使用。</p>
-<h2 id="定义一个基本类型变量"><a href="#定义一个基本类型变量" class="headerlink" title="定义一个基本类型变量"></a>定义一个基本类型变量</h2><p>在 setup 函数中，创建一个 name 参数，并且在页面中渲染该字段的内容。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F.png" srcset="/img/loading.gif" lazyload></p>
-<p>上面的代码编写完成，保存刷新页面，发现名称渲染出现问题，展示不出来，同时控制台报错告警。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%90%8D%E7%A7%B0%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E6%8F%90%E7%A4%BA%E6%89%BE%E4%B8%8D%E5%88%B0.png" srcset="/img/loading.gif" lazyload></p>
-<p>出现这个问题的原因其实很简单，如果从 vue2 转到 vue3 ,很容易就遇到这种问题，因为上面提到过，在 setup 中创建的变量需要在 setup 函数最后通过 return 返回，才可以使用。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/name.png" srcset="/img/loading.gif" lazyload><br>将创建的 name 参数抛出后，重新保存刷新页面，数据渲染就正常了。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E6%B8%B2%E6%9F%93%E6%88%90%E5%8A%9F.png" srcset="/img/loading.gif" lazyload></p>
-<p>同样，创建其他基本类型也是一样的编写方式。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>切记，声明的变量如果需要在页面中展示，必须使用 return 将声明的变量抛出。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="setup-创建复杂数据类型"><a href="#setup-创建复杂数据类型" class="headerlink" title="setup 创建复杂数据类型"></a>setup 创建复杂数据类型</h2><p>setup 函数创建复杂数据类型，例如数组，对象之类的和基本数据类型相同，也是必须通过 return 抛出后，才可以在页面中使用。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>刷新页面，渲染正常<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="定义一个基本类型变量"><a href="#定义一个基本类型变量" class="headerlink" title="定义一个基本类型变量"></a>定义一个基本类型变量</h2><p>在 setup 函数中，创建一个 name 参数，并且在页面中渲染该字段的内容。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F.png"></p>
+<p>上面的代码编写完成，保存刷新页面，发现名称渲染出现问题，展示不出来，同时控制台报错告警。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%90%8D%E7%A7%B0%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5.png"><br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E6%8F%90%E7%A4%BA%E6%89%BE%E4%B8%8D%E5%88%B0.png"></p>
+<p>出现这个问题的原因其实很简单，如果从 vue2 转到 vue3 ,很容易就遇到这种问题，因为上面提到过，在 setup 中创建的变量需要在 setup 函数最后通过 return 返回，才可以使用。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/name.png"><br>将创建的 name 参数抛出后，重新保存刷新页面，数据渲染就正常了。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E6%B8%B2%E6%9F%93%E6%88%90%E5%8A%9F.png"></p>
+<p>同样，创建其他基本类型也是一样的编写方式。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png"><br>切记，声明的变量如果需要在页面中展示，必须使用 return 将声明的变量抛出。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"></p>
+<h2 id="setup-创建复杂数据类型"><a href="#setup-创建复杂数据类型" class="headerlink" title="setup 创建复杂数据类型"></a>setup 创建复杂数据类型</h2><p>setup 函数创建复杂数据类型，例如数组，对象之类的和基本数据类型相同，也是必须通过 return 抛出后，才可以在页面中使用。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png"><br>刷新页面，渲染正常<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"></p>
 <h1 id="setup-创建方法"><a href="#setup-创建方法" class="headerlink" title="setup 创建方法"></a>setup 创建方法</h1><p>除了变量，方法也是需要写在 setup 函数当中的，同时和变量一样，需要 return 抛出才可以使用。<br>创建方法的方式有两种：</p>
-<h2 id="第一种就是很常见的通过-function-的方式创建"><a href="#第一种就是很常见的通过-function-的方式创建" class="headerlink" title="第一种就是很常见的通过 function 的方式创建"></a>第一种就是很常见的通过 function 的方式创建</h2><pre><code class="hljs">// 一、通过 function 的方式创建
+<h2 id="第一种就是很常见的通过-function-的方式创建"><a href="#第一种就是很常见的通过-function-的方式创建" class="headerlink" title="第一种就是很常见的通过 function 的方式创建"></a>第一种就是很常见的通过 function 的方式创建</h2><pre><code>// 一、通过 function 的方式创建
     function btn() &#123;
         console.log(&#39;按钮被点击了&#39;)
     &#125;
 </code></pre>
-<h2 id="另一种使用过箭头函数的方式创建"><a href="#另一种使用过箭头函数的方式创建" class="headerlink" title="另一种使用过箭头函数的方式创建"></a>另一种使用过箭头函数的方式创建</h2><pre><code class="hljs">  // 二、通过箭头函数的方式创建
+<h2 id="另一种使用过箭头函数的方式创建"><a href="#另一种使用过箭头函数的方式创建" class="headerlink" title="另一种使用过箭头函数的方式创建"></a>另一种使用过箭头函数的方式创建</h2><pre><code>  // 二、通过箭头函数的方式创建
   const btn = () =&gt; &#123;
     console.log(&#39;按钮被点击了&#39;)
   &#125;
 </code></pre>
-<p>例如：在页面添加一个按钮，点击按钮打印一段话在控制台输出。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E7%82%B9%E5%87%BB%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>保存代码，刷新页面，点击按钮在控制台输出内容。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E8%A2%AB%E7%82%B9%E5%87%BB.png" srcset="/img/loading.gif" lazyload></p>
+<p>例如：在页面添加一个按钮，点击按钮打印一段话在控制台输出。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E7%82%B9%E5%87%BB%E4%BB%A3%E7%A0%81.png"><br>保存代码，刷新页面，点击按钮在控制台输出内容。<br><img src="/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/%E8%A2%AB%E7%82%B9%E5%87%BB.png"></p>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
+  </div>
+  <div id="gitalk-container"></div>
+</div>
 
-<span class="category-chains">
+<script>
   
-  
+Fancybox.bind('[data-fancybox="fancybox-gallery-img"]', {
+  dragToClose: true,
+  Toolbar: true,
+  closeButton: "top",
+  Image: {
+    zoom: true,
+  },
+  on: {
+    initCarousel: (fancybox) => {
+      const slide = fancybox.Carousel.slides[fancybox.Carousel.page];
+      fancybox.$container.style.setProperty(
+        "--bg-image",
+        `url("${slide.$thumb.src}")`
+      );
+    },
+    "Carousel.change": (fancybox, carousel, to, from) => {
+      const slide = carousel.slides[to];
+      fancybox.$container.style.setProperty(
+        "--bg-image",
+        `url("${slide.$thumb.src}")`
+      );
+    },
+  },
+});
+</script>
+
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 9999;
+        /* width: 600px !important; */
+        min-width: 0%;
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            max-width: 88%
+        }
+    }
+</style>
+
+    <div class="post-paging">
     
-      <span class="category-chain">
+    <a href="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/">
+        <div class="post-paging-last">
+            <span>上一篇</span>
+            <p>vue3ref和reactive函数</p>
+        </div>
+    </a>
+    
+
+    
+    <a href="/2022/10/10/vue3/">
+        <div class="post-paging-next">
+            <span>下一篇</span>
+            <p>vue3</p>
+        </div>
+    </a>
+    
+</div>
+</div>
+		
+<div class="footer">
+	<div class="Copyright">
+		©2023 By ljylwnxx. 主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
+	</div>
+	<div class="contact">
+		
+		<a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
+			<img src="/image/avator.png" alt="Quiet主题">
+		</a>
+		
+	</div>
+</div>
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            transition: border .5s;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $( '#js-go_top' )
+	.gotoTop( {
+		offset: 500,
+		speed: 300,
+		animationShow: {
+			'transform': 'translate(0,0)',
+			'transition': 'transform .5s ease-in-out'
+		},
+		animationHide: {
+			'transform': 'translate(100px,0)',
+			'transition': 'transform .5s ease-in-out'
+		}
+	} );
+</script>
+
+
+    <!-- Gitalk -->
+    <script>
+        const data = '{"clientID":"02b3c","clientSecret":"adfc7b4","repo":"gimment","owner":"duneng","admin":"duneng"}'
+        const gitalk = new Gitalk({
+            ...JSON.parse( data),
+            id:location.pathname,
+            distractionFreeMode:false
+        })
         
-  <a href="/categories/vue3/" class="category-chain-item">vue3</a>
-  
-  
+        if(Boolean('true')){
+            gitalk.render('gitalk-container')
+        }
+    </script>
 
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/vue3/">#vue3</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Vue3setup函数</div>
-      <div>http://example.com/2022/10/13/Vue3setup函数/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>ljylwnxx</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年10月13日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/" title="vue3ref和reactive函数">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">vue3ref和reactive函数</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/10/10/vue3/" title="vue3">
-                        <span class="hidden-mobile">vue3</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
+	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
 </script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
+	</body>
 </html>
+

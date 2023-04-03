@@ -1,695 +1,677 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html>
+	<head>
+		
+<title>数组，对象遍历的用法总结-Quiet</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/image/avator.png">
+
+<link rel="stylesheet" href="/css/index.css">
 
 
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ljylwnxx">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="作为一个前端开发，我们在完成前端开发的过程中，经常会遇到很多数据处理的需求，开发者会根据不同的业务需求来实现对应的业务功能。前端在渲染页面时，通常会涉及到要对拿到的数据进行处理。这里介绍几种数组，对象遍历的数据处理方法。 一、遍历数组方法一：for循环for 循环是使用最多，也是性能优化最好的一种遍历方式。var arr &#x3D; [“a”, “b”, “c”]for (var i &#x3D; 0; i &amp;lt">
-<meta property="og:type" content="article">
-<meta property="og:title" content="数组，对象遍历的用法总结">
-<meta property="og:url" content="http://example.com/2023/03/21/%E6%95%B0%E7%BB%84%EF%BC%8C%E5%AF%B9%E8%B1%A1%E9%81%8D%E5%8E%86%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
-<meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="作为一个前端开发，我们在完成前端开发的过程中，经常会遇到很多数据处理的需求，开发者会根据不同的业务需求来实现对应的业务功能。前端在渲染页面时，通常会涉及到要对拿到的数据进行处理。这里介绍几种数组，对象遍历的数据处理方法。 一、遍历数组方法一：for循环for 循环是使用最多，也是性能优化最好的一种遍历方式。var arr &#x3D; [“a”, “b”, “c”]for (var i &#x3D; 0; i &amp;lt">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-21T03:06:45.000Z">
-<meta property="article:modified_time" content="2023-03-22T06:03:11.284Z">
-<meta property="article:author" content="ljylwnxx">
-<meta property="article:tag" content="JavaScript">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>数组，对象遍历的用法总结 - ljylwnxx的博客</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+<meta name="keywords" content="JavaScript,">
+<meta name="description" content="">
 
 
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+<script src="/js/jquery.min.js"></script>
 
 
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<script src="/js/index.js"></script>
 
 
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
+<script src="/js/fancybox.umd.js"></script>
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<script src="/js/fancybox-images.js"></script>
 
 
+<script src="/js/gitalk.min.js"></script>
 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+<script src="/js/hljs.min.js"></script>
+ 
+<script>hljs.highlightAll();</script>
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+	<meta name="generator" content="Hexo 5.4.2"></head>
+
+	<body>
+		
+	<div class="header">
+		<div class="header-top" id="header-top">
+			<div class="h-left">
+				<a href="/">
+					<img src="/image/avator.png" alt="Quiet">
+				</a>
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/links">
+										LINKS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>ljylwnxx</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/links">LINKS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+    <div class="my_foot">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
+            <img src="/image/avator.png" alt="Quiet主题">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'>
+</div>
+<style>
+    .shelter{
+        background-color: #333;
+        opacity:0.5;
+        cursor: pointer;
+        display: none; 
+        position: fixed;
+        left: 0;
+        top: 0; 
+        right: 0;
+        bottom: 0;
+        z-index: 1998;
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+    .sidebar {
+        width: 66%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        background: #fff;
+        z-index: 1999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
+    }
 
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
 
-  
-<meta name="generator" content="Hexo 5.4.2"></head>
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
 
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
 
-<body>
-  
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
 
-  <header>
-    
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>ljylwnxx</strong>
-    </a>
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
 
-  
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/defaultl.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="数组，对象遍历的用法总结"></span>
-          
-        </div>
+<script>
+    $( function () {
+	$( '.h-right-close>svg' )
+		.click( function () {
+			$( '.sidebar' )
+				.animate( {
+					right: "0"
+				}, 500 );
+			$( '.shelter' )
+				.fadeIn( "slow" )
+		} );
+	$( '.shelter' )
+		.click( function ( e ) {
+			$( '.sidebar' )
+				.animate( {
+					right: "-100%"
+				}, 500 );
+			$( '.shelter' )
+				.fadeOut( "slow" )
+		} )
+} )
 
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-21 11:06" pubdate>
-          2023年3月21日 上午
-        </time>
-      </span>
-    
-  </div>
+</script>
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          4.4k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          38 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">数组，对象遍历的用法总结</h1>
+<div class="post">
+    <div class="post-header-background post-header-img"
+    style="background: url('/image/defaultPic.png')" 
+>
+    <div class="post-header-background-content">
+        <ul class="post-header-tag">
             
             
-              <div class="markdown-body">
+            <li><a href="/tags/JavaScript">JavaScript</a></li>
+            
+            
+        </ul>
+        
+        <h1>数组，对象遍历的用法总结</h1>
+        <div class="post-header-info">
+            <div class="post-header-info-author">
                 
-                <p>作为一个前端开发，我们在完成前端开发的过程中，经常会遇到很多数据处理的需求，开发者会根据不同的业务需求来实现对应的业务功能。<br>前端在渲染页面时，通常会涉及到要对拿到的数据进行处理。这里介绍几种数组，对象遍历的数据处理方法。</p>
-<h1 id="一、遍历数组"><a href="#一、遍历数组" class="headerlink" title="一、遍历数组"></a>一、遍历数组</h1><h2 id="方法一：for循环"><a href="#方法一：for循环" class="headerlink" title="方法一：for循环"></a>方法一：for循环</h2><h3 id="for-循环是使用最多，也是性能优化最好的一种遍历方式。"><a href="#for-循环是使用最多，也是性能优化最好的一种遍历方式。" class="headerlink" title="for 循环是使用最多，也是性能优化最好的一种遍历方式。"></a>for 循环是使用最多，也是性能优化最好的一种遍历方式。</h3><p>var arr = [“a”, “b”, “c”]<br>for (var i = 0; i &lt; arr.length; i++) {<br>  console.log(arr[i])<br>}<br>// Expected output:a b c</p>
-<h2 id="方法二：for-of-遍历"><a href="#方法二：for-of-遍历" class="headerlink" title="方法二：for-of 遍历"></a>方法二：for-of 遍历</h2><p>var arr = [“a”, “b”, “c”]<br>for (let item of arr) {<br>  console.log(item)<br>}<br>// Expected output:a b c</p>
-<h2 id="方法三：数组方法"><a href="#方法三：数组方法" class="headerlink" title="方法三：数组方法"></a>方法三：数组方法</h2><h3 id="1-forEach-方法，对原数组没有影响"><a href="#1-forEach-方法，对原数组没有影响" class="headerlink" title="1.forEach()方法，对原数组没有影响"></a>1.forEach()方法，对原数组没有影响</h3><p>var arr = [“a”, “b”, “c”]<br>arr.forEach((index, item) =&gt; {<br>  console.log(index, item)<br>})<br>//Expected output:<br>// a 0<br>// b 1<br>// c 2</p>
-<hr>
-<h3 id="2-map-方法"><a href="#2-map-方法" class="headerlink" title="2.map()方法"></a>2.map()方法</h3><p>var arr = [1, 2, 3]<br>var newArr = arr.map(item =&gt; {<br>  return item * 2<br>});<br>console.log(newArr);<br>// Expected output:[2, 4, 6]</p>
-<hr>
-<h3 id="3-filter-方法，不改变原始数组"><a href="#3-filter-方法，不改变原始数组" class="headerlink" title="3.filter()方法，不改变原始数组"></a>3.filter()方法，不改变原始数组</h3><p>var arr = [1, 2, 3]<br>var newArr = arr.filter(item =&gt; {<br>  return item &gt; 1<br>});<br>console.log(newArr)<br>// Expected output:[2, 3]</p>
-<hr>
-<h3 id="4-reduce-方法"><a href="#4-reduce-方法" class="headerlink" title="4.reduce()方法"></a>4.reduce()方法</h3><p>var arr = [1, 2, 3]<br>var sum = arr.reduce((pre, cur) =&gt; {<br>  return pre + cur<br>});<br>console.log(sum)<br>// Expected output:6</p>
-<hr>
-<h3 id="5-every-方法用于检测数组元素是否全部符合指定条件，只有全部满足条件时才会返回true。every-是对数组中的每一项运行给定函数，如果该函数对每一项返回true-则返回true-在执行的过程中，如果遇到了false的情况，就停止继续往下执行；直接返回false。"><a href="#5-every-方法用于检测数组元素是否全部符合指定条件，只有全部满足条件时才会返回true。every-是对数组中的每一项运行给定函数，如果该函数对每一项返回true-则返回true-在执行的过程中，如果遇到了false的情况，就停止继续往下执行；直接返回false。" class="headerlink" title="5.every()方法用于检测数组元素是否全部符合指定条件，只有全部满足条件时才会返回true。every()是对数组中的每一项运行给定函数，如果该函数对每一项返回true,则返回true;在执行的过程中，如果遇到了false的情况，就停止继续往下执行；直接返回false。"></a>5.every()方法用于检测数组元素是否全部符合指定条件，只有全部满足条件时才会返回true。every()是对数组中的每一项运行给定函数，如果该函数对每一项返回true,则返回true;在执行的过程中，如果遇到了false的情况，就停止继续往下执行；直接返回false。</h3><p>var arr = [1, 2, 3]<br>var bool = arr.every(item =&gt; {<br>  return item &lt; 5<br>});<br>console.log(bool)<br>// Expected output:true</p>
-<hr>
-<h3 id="6-some-方法用于检测数组是否存在一个符合指定条件的元素，只有一个满足条件就返回true。some-是对数组中的每一项运行指定函数；该函数对其中任意一项返回true-就返回true-返回true就不再往下执行。"><a href="#6-some-方法用于检测数组是否存在一个符合指定条件的元素，只有一个满足条件就返回true。some-是对数组中的每一项运行指定函数；该函数对其中任意一项返回true-就返回true-返回true就不再往下执行。" class="headerlink" title="6.some()方法用于检测数组是否存在一个符合指定条件的元素，只有一个满足条件就返回true。some()是对数组中的每一项运行指定函数；该函数对其中任意一项返回true, 就返回true; 返回true就不再往下执行。"></a>6.some()方法用于检测数组是否存在一个符合指定条件的元素，只有一个满足条件就返回true。some()是对数组中的每一项运行指定函数；该函数对其中任意一项返回true, 就返回true; 返回true就不再往下执行。</h3><h4 id="下面的例子是检测数组元素是否存在-Number-类型。"><a href="#下面的例子是检测数组元素是否存在-Number-类型。" class="headerlink" title="下面的例子是检测数组元素是否存在 Number 类型。"></a>下面的例子是检测数组元素是否存在 Number 类型。</h4><p>var arr = [“a”, 1, “b”]<br>var bool = arr.some(item =&gt; {<br>  return typeof item === “number”<br>})<br>console.log(bool)<br>// Expected output:true</p>
-<hr>
-<h3 id="7-find-返回数组中符合条件的第一个元素；没有就返回undefined-不改变原始数组-find对空数组不执行。"><a href="#7-find-返回数组中符合条件的第一个元素；没有就返回undefined-不改变原始数组-find对空数组不执行。" class="headerlink" title="7.find() 返回数组中符合条件的第一个元素；没有就返回undefined,不改变原始数组,find对空数组不执行。"></a>7.find() 返回数组中符合条件的第一个元素；没有就返回undefined,不改变原始数组,find对空数组不执行。</h3><p>let arr = [1, 2, 3, 4, 5]<br>let find = arr.find((item) =&gt; {<br>  return item % 2 === 0<br>})<br>// Expected output:find =2</p>
-<hr>
-<p>var arr = [1, 2, 3]<br>var ret = arr.find(ele =&gt; ele &gt; 2)<br>console.log(ret)<br>// Expected output:3<br>console.log(arr)<br>// Expected output:[1, 2, 3]</p>
-<hr>
-<h3 id="8-findIndex-返回符合条件的第一个元素的下标，没有符合条件的元素则返回-1，不改变原始数组-findIndex对空数组不执行。"><a href="#8-findIndex-返回符合条件的第一个元素的下标，没有符合条件的元素则返回-1，不改变原始数组-findIndex对空数组不执行。" class="headerlink" title="8.findIndex() 返回符合条件的第一个元素的下标，没有符合条件的元素则返回-1，不改变原始数组,findIndex对空数组不执行。"></a>8.findIndex() 返回符合条件的第一个元素的下标，没有符合条件的元素则返回-1，不改变原始数组,findIndex对空数组不执行。</h3><p>let arr = [1, 2, 3, 4, 5]<br>let findIndex = arr.findIndex((item) =&gt; {<br>  return item % 2 === 0<br>})<br>// Expected output:findIndex = 1</p>
-<hr>
-<p>var arr = [1, 2, 3, 4 ,5]<br>var ret = arr.findIndex(ele =&gt; ele &gt; 2)<br>console.log(ret)<br>// Expected output:2<br> console.log(arr)<br>// Expected output:[1, 2, 3, 4, 5]</p>
-<hr>
-<h1 id="二、遍历对象"><a href="#二、遍历对象" class="headerlink" title="二、遍历对象"></a>二、遍历对象</h1><h2 id="方法一：for-in-循环"><a href="#方法一：for-in-循环" class="headerlink" title="方法一：for-in 循环"></a>方法一：for-in 循环</h2><p>var obj = { a: 2, b: 4, c: 6 }<br>for (let key in obj) {<br>  console.log(key)<br>}<br>// Expected output:a b c</p>
-<h2 id="方法二：Object-keys-可理解为返回里面的key属性"><a href="#方法二：Object-keys-可理解为返回里面的key属性" class="headerlink" title="方法二：Object.keys() 可理解为返回里面的key属性"></a>方法二：Object.keys() 可理解为返回里面的key属性</h2><h3 id="1-处理对象时：返回可枚举的属性数组"><a href="#1-处理对象时：返回可枚举的属性数组" class="headerlink" title="1.处理对象时：返回可枚举的属性数组"></a>1.处理对象时：返回可枚举的属性数组</h3><p>var w_n = Object.keys({name: “wn”, address: “中国”})<br>console.log(w_n)<br>// Expected output:[‘name’, ‘address’]</p>
-<hr>
-<h3 id="2-处理数组时：返回索引值数组"><a href="#2-处理数组时：返回索引值数组" class="headerlink" title="2.处理数组时：返回索引值数组"></a>2.处理数组时：返回索引值数组</h3><p>var w_n = Object.keys([11,22,33,44])<br>console.log(w_n)<br>// Expected output:[‘0’,’1’,’2’,’3’]</p>
-<hr>
-<h3 id="3-处理字符串数据时：返回索引值数组"><a href="#3-处理字符串数据时：返回索引值数组" class="headerlink" title="3.处理字符串数据时：返回索引值数组"></a>3.处理字符串数据时：返回索引值数组</h3><p>var str=’hello’;<br>console.log(Object.keys(str))<br>// Expected output:[‘0’,’1’,’2’,’3’,’4’]</p>
-<h2 id="方法三：Object-values-方法，可理解为返回里面的value值，Object-values只返回对象自身的可遍历属性。"><a href="#方法三：Object-values-方法，可理解为返回里面的value值，Object-values只返回对象自身的可遍历属性。" class="headerlink" title="方法三：Object.values()方法，可理解为返回里面的value值，Object.values只返回对象自身的可遍历属性。"></a>方法三：Object.values()方法，可理解为返回里面的value值，Object.values只返回对象自身的可遍历属性。</h2><h3 id="1-处理对象数据时：返回可枚举的值组成的数组"><a href="#1-处理对象数据时：返回可枚举的值组成的数组" class="headerlink" title="1.处理对象数据时：返回可枚举的值组成的数组"></a>1.处理对象数据时：返回可枚举的值组成的数组</h3><p>var w_n = Object.values({name: “wn”, address: “中国”})<br>console.log(w_n)<br>// Expected output:[‘wn’, ‘中国’]</p>
-<hr>
-<h3 id="2-处理数组数据时：返回原数组"><a href="#2-处理数组数据时：返回原数组" class="headerlink" title="2.处理数组数据时：返回原数组"></a>2.处理数组数据时：返回原数组</h3><p>var w_n = Object.values([11,22,33,44])<br>console.log(w_n)<br>// Expected output:[11,22,33,44]</p>
-<hr>
-<h3 id="属性名为数值的属性，是按照数值大小，从小到大遍历的。"><a href="#属性名为数值的属性，是按照数值大小，从小到大遍历的。" class="headerlink" title="属性名为数值的属性，是按照数值大小，从小到大遍历的。"></a>属性名为数值的属性，是按照数值大小，从小到大遍历的。</h3><p>const obj = {10 : “a”, 6 : “b”, 9 : “c”}<br>console.log(Object.values(obj))<br>// Expected output:[‘b’, ‘c’, ‘a’]</p>
-<hr>
-<h3 id="3-处理字符串数据时：返回每个字符组成的数组"><a href="#3-处理字符串数据时：返回每个字符组成的数组" class="headerlink" title="3.处理字符串数据时：返回每个字符组成的数组"></a>3.处理字符串数据时：返回每个字符组成的数组</h3><p>console.log(Object.values(‘hello’))<br>// Expected output:[‘h’, ‘e’, ‘l’, ‘l’, ‘o’]</p>
-<hr>
-<h3 id="4-Object-values会过滤属性名为-Symbol-值的属性"><a href="#4-Object-values会过滤属性名为-Symbol-值的属性" class="headerlink" title="4.Object.values会过滤属性名为 Symbol 值的属性"></a>4.Object.values会过滤属性名为 Symbol 值的属性</h3><p>Object.values({ [Symbol()]: 123, foo: ‘abc’ })<br>// Expected output:[‘abc’]</p>
-<h2 id="方法四：Object-entries-方法"><a href="#方法四：Object-entries-方法" class="headerlink" title="方法四：Object.entries()方法"></a>方法四：Object.entries()方法</h2><h3 id="1-处理对象数据时：返回是一个二维数组。每一项是-key-value-形式。"><a href="#1-处理对象数据时：返回是一个二维数组。每一项是-key-value-形式。" class="headerlink" title="1.处理对象数据时：返回是一个二维数组。每一项是[key, value]形式。"></a>1.处理对象数据时：返回是一个二维数组。每一项是[key, value]形式。</h3><p>var w_n = Object.entries({name: “wn”, address: “中国”})<br>console.log(w_n)<br>// Expected output:[[‘name’, ‘wn’], [‘address’, ‘中国’]]</p>
-<hr>
-<h3 id="2-处理数组数据时：返回也是一个二维数组，数组里面的每一项-index-value-形式。"><a href="#2-处理数组数据时：返回也是一个二维数组，数组里面的每一项-index-value-形式。" class="headerlink" title="2.处理数组数据时：返回也是一个二维数组，数组里面的每一项[index, value] 形式。"></a>2.处理数组数据时：返回也是一个二维数组，数组里面的每一项[index, value] 形式。</h3><p>var w_n = Object.entries([11,22,33,44])<br>console.log(w_n)<br>// Expected output:[ [‘0’,11], [‘1’,22], [‘2’,33], [‘3’,44] ]</p>
-<hr>
-<h3 id="数组中包含对象："><a href="#数组中包含对象：" class="headerlink" title="数组中包含对象："></a>数组中包含对象：</h3><p>var w_n = Object.entries([{a:11},22,33,44])<br>console.log(w_n)<br>// Expected output:[ [‘0’,{a:11}], [‘1’,22], [‘2’,33], [‘3’,44] ]</p>
-<hr>
-<h3 id="3-处理字符串数据时：返回也是一个二维数组。"><a href="#3-处理字符串数据时：返回也是一个二维数组。" class="headerlink" title="3.处理字符串数据时：返回也是一个二维数组。"></a>3.处理字符串数据时：返回也是一个二维数组。</h3><p>var str=’hello’<br>console.log(Object.entries(str))<br>// Expected output:[ [‘0’,’h’], [‘1’,’e’], [‘2’,’l’], [‘3’,’l’] ,[‘4’,’o’] ]</p>
-<h2 id="方法五：Object-assign-：Object-assign-方法的第一个参数是目标对象，后面的参数都是源对象。"><a href="#方法五：Object-assign-：Object-assign-方法的第一个参数是目标对象，后面的参数都是源对象。" class="headerlink" title="方法五：Object.assign()：Object.assign 方法的第一个参数是目标对象，后面的参数都是源对象。"></a>方法五：Object.assign()：Object.assign 方法的第一个参数是目标对象，后面的参数都是源对象。</h2><h3 id="注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。"><a href="#注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。" class="headerlink" title="注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。"></a>注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。</h3><p>const target = { a: 1, b: 2 };<br>const source = { b: 4, c: 5 };<br>const returnedTarget = Object.assign(target, source);<br>console.log(target);<br>// Expected output: Object { a: 1, b: 4, c: 5 }</p>
-<h2 id="方法六：Object-getOwnPropertyNames"><a href="#方法六：Object-getOwnPropertyNames" class="headerlink" title="方法六：Object.getOwnPropertyNames()"></a>方法六：Object.getOwnPropertyNames()</h2><h3 id="Object-getOwnPropertyNames-返回一个数组，该数组对元素是-obj自身拥有的枚举或不可枚举属性名称字符串。数组中枚举属性的顺序与通过-for…in-循环（或-Object-keys）迭代该对象属性时一致。数组中不可枚举属性的顺序未定义。"><a href="#Object-getOwnPropertyNames-返回一个数组，该数组对元素是-obj自身拥有的枚举或不可枚举属性名称字符串。数组中枚举属性的顺序与通过-for…in-循环（或-Object-keys）迭代该对象属性时一致。数组中不可枚举属性的顺序未定义。" class="headerlink" title="Object.getOwnPropertyNames() 返回一个数组，该数组对元素是 obj自身拥有的枚举或不可枚举属性名称字符串。数组中枚举属性的顺序与通过 for…in 循环（或 Object.keys）迭代该对象属性时一致。数组中不可枚举属性的顺序未定义。"></a>Object.getOwnPropertyNames() 返回一个数组，该数组对元素是 obj自身拥有的枚举或不可枚举属性名称字符串。数组中枚举属性的顺序与通过 for…in 循环（或 Object.keys）迭代该对象属性时一致。数组中不可枚举属性的顺序未定义。</h3><p>var arr = [“a”, “b”, “c”]<br>console.log(Object.getOwnPropertyNames(arr).sort())<br>// [“0”, “1”, “2”, “length”]</p>
-<hr>
-<h3 id="类数组对象"><a href="#类数组对象" class="headerlink" title="// 类数组对象"></a>// 类数组对象</h3><p>var obj = { 0: “a”, 1: “b”, 2: “c”}<br>console.log(Object.getOwnPropertyNames(obj).sort())<br>// Expected output:[“0”, “1”, “2”]</p>
-<hr>
-<h3 id="使用-Array-forEach-输出属性名和属性值"><a href="#使用-Array-forEach-输出属性名和属性值" class="headerlink" title="// 使用 Array.forEach 输出属性名和属性值"></a>// 使用 Array.forEach 输出属性名和属性值</h3><p>Object.getOwnPropertyNames(obj).forEach(function(val, idx, array) {<br>  console.log(val + “ -&gt; “ + obj[val])<br>})<br>// Expected output:<br>// 0 -&gt; a<br>// 1 -&gt; b<br>// 2 -&gt; c</p>
-<hr>
-<h3 id="不可枚举属性"><a href="#不可枚举属性" class="headerlink" title="//不可枚举属性"></a>//不可枚举属性</h3><p>var my_obj = Object.create({}, {<br>  getFoo: {<br>    value: function() { return this.foo; },<br>    enumerable: false<br>  }<br>})<br>my_obj.foo = 1<br>console.log(Object.getOwnPropertyNames(my_obj).sort())<br>// Expected output:[“foo”, “getFoo”]</p>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/JavaScript/">#JavaScript</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>数组，对象遍历的用法总结</div>
-      <div>http://example.com/2023/03/21/数组，对象遍历的用法总结/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>ljylwnxx</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2023年3月21日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
+                    <svg t="1604839279282" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="2901" width="20" height="20">
+                        <path
+                            d="M513 956.3c-247.7 0-448-200.3-448-448S265.3 66.2 513 66.2s448 200.3 448 448-200.3 442.1-448 442.1z m0-830.9c-212.2 0-388.8 170.7-388.8 388.8C124.2 726.3 294.9 903 513 903c212.2 0 388.8-170.7 388.8-388.8S725.2 125.4 513 125.4z m0 430.2c-94.2 0-170.7-76.5-170.7-170.7S418.8 207.8 513 207.8s170.7 76.5 170.7 170.7S607.2 555.6 513 555.6z m0-289.1c-64.6 0-112 52.8-112 112s47.4 117.9 112 117.9 112-52.8 112-112-47.4-117.9-112-117.9z m0 689.8c-135.7 0-259-58.7-341.9-158.9l-11.8-17.8 11.8-17.8c76.5-117.9 206.2-188.5 347.8-188.5 135.7 0 265 64.6 341.9 182.6l11.8 17.8-11.8 17.8C778 897.1 648.7 956.3 513 956.3zM230.3 773.2C300.9 849.7 406.9 897 513 897c112 0 218.1-47.4 288.6-129.8-70.5-88.2-170.7-135.6-282.7-135.6s-218.1 53.3-288.6 141.6z"
+                            p-id="2902" fill="#ffffff"></path>
+                    </svg>
                     
+                <span class="post-header-info-author-text"> <a href="../../about">ljylwnxx</a></span>
+                <div class="post-header-info-author-categories">
                     
-                      <a href="/2023/03/23/component%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/" title="component动态组件">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">component动态组件</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
+                         <a href="../../categories/JavaScript/" target="_blank" >JavaScript</a>
                     
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/03/13/serve%E7%9A%84%E5%8C%BA%E5%88%AB/" title="浅析vue项目中npm run dev和npm run serve的区别">
-                        <span class="hidden-mobile">浅析vue项目中npm run dev和npm run serve的区别</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
                 </div>
-              
+                <p>2023-03-21 11:06:45</p>
             </div>
-
-            
-          </article>
         </div>
-      </div>
     </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
 </div>
+    <div class="post-content" id="content">
+  
+  <div id="article" class="post-content-info">
+    
 
+    <p>作为一个前端开发，我们在完成前端开发的过程中，经常会遇到很多数据处理的需求，开发者会根据不同的业务需求来实现对应的业务功能。<br>前端在渲染页面时，通常会涉及到要对拿到的数据进行处理。这里介绍几种数组，对象遍历的数据处理方法。</p>
+<h1 id="一、遍历数组"><a href="#一、遍历数组" class="headerlink" title="一、遍历数组"></a>一、遍历数组</h1><h2 id="方法一：for循环"><a href="#方法一：for循环" class="headerlink" title="方法一：for循环"></a>方法一：for循环</h2><h3 id="for-循环是使用最多，也是性能优化最好的一种遍历方式。"><a href="#for-循环是使用最多，也是性能优化最好的一种遍历方式。" class="headerlink" title="for 循环是使用最多，也是性能优化最好的一种遍历方式。"></a>for 循环是使用最多，也是性能优化最好的一种遍历方式。</h3><pre><code>var arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+for (var i = 0; i &lt; arr.length; i++) &#123;
+  console.log(arr[i])
+&#125;
+// Expected output:a b c
+</code></pre>
+<h2 id="方法二：for-of-遍历"><a href="#方法二：for-of-遍历" class="headerlink" title="方法二：for-of 遍历"></a>方法二：for-of 遍历</h2><pre><code>var arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+for (let item of arr) &#123;
+  console.log(item)
+&#125;
+// Expected output:a b c
+</code></pre>
+<h2 id="方法三：数组方法"><a href="#方法三：数组方法" class="headerlink" title="方法三：数组方法"></a>方法三：数组方法</h2><h3 id="1-forEach-方法，对原数组没有影响"><a href="#1-forEach-方法，对原数组没有影响" class="headerlink" title="1.forEach()方法，对原数组没有影响"></a>1.forEach()方法，对原数组没有影响</h3><pre><code>var arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+arr.forEach((index, item) =&gt; &#123;
+  console.log(index, item)
+&#125;)
+//Expected output:
+// a 0
+// b 1
+// c 2
+</code></pre>
+<h3 id="2-map-方法"><a href="#2-map-方法" class="headerlink" title="2.map()方法"></a>2.map()方法</h3><pre><code>var arr = [1, 2, 3]
+var newArr = arr.map(item =&gt; &#123;
+  return item * 2
+&#125;);
+console.log(newArr); 
+// Expected output:[2, 4, 6]
+</code></pre>
+<h3 id="3-filter-方法，不改变原始数组"><a href="#3-filter-方法，不改变原始数组" class="headerlink" title="3.filter()方法，不改变原始数组"></a>3.filter()方法，不改变原始数组</h3><pre><code>var arr = [1, 2, 3]
+var newArr = arr.filter(item =&gt; &#123;
+  return item &gt; 1
+&#125;);
+console.log(newArr)
+// Expected output:[2, 3]
+</code></pre>
+<h3 id="4-reduce-方法"><a href="#4-reduce-方法" class="headerlink" title="4.reduce()方法"></a>4.reduce()方法</h3><pre><code>var arr = [1, 2, 3]
+var sum = arr.reduce((pre, cur) =&gt; &#123;
+  return pre + cur
+&#125;);
+console.log(sum)
+// Expected output:6
+</code></pre>
+<h3 id="5-every-方法用于检测数组元素是否全部符合指定条件，只有全部满足条件时才会返回true。every-是对数组中的每一项运行给定函数，如果该函数对每一项返回true-则返回true-在执行的过程中，如果遇到了false的情况，就停止继续往下执行；直接返回false。"><a href="#5-every-方法用于检测数组元素是否全部符合指定条件，只有全部满足条件时才会返回true。every-是对数组中的每一项运行给定函数，如果该函数对每一项返回true-则返回true-在执行的过程中，如果遇到了false的情况，就停止继续往下执行；直接返回false。" class="headerlink" title="5.every()方法用于检测数组元素是否全部符合指定条件，只有全部满足条件时才会返回true。every()是对数组中的每一项运行给定函数，如果该函数对每一项返回true,则返回true;在执行的过程中，如果遇到了false的情况，就停止继续往下执行；直接返回false。"></a>5.every()方法用于检测数组元素是否全部符合指定条件，只有全部满足条件时才会返回true。every()是对数组中的每一项运行给定函数，如果该函数对每一项返回true,则返回true;在执行的过程中，如果遇到了false的情况，就停止继续往下执行；直接返回false。</h3><pre><code>var arr = [1, 2, 3]
+var bool = arr.every(item =&gt; &#123;
+  return item &lt; 5
+&#125;);
+console.log(bool)
+// Expected output:true
+</code></pre>
+<h3 id="6-some-方法用于检测数组是否存在一个符合指定条件的元素，只有一个满足条件就返回true。some-是对数组中的每一项运行指定函数；该函数对其中任意一项返回true-就返回true-返回true就不再往下执行。"><a href="#6-some-方法用于检测数组是否存在一个符合指定条件的元素，只有一个满足条件就返回true。some-是对数组中的每一项运行指定函数；该函数对其中任意一项返回true-就返回true-返回true就不再往下执行。" class="headerlink" title="6.some()方法用于检测数组是否存在一个符合指定条件的元素，只有一个满足条件就返回true。some()是对数组中的每一项运行指定函数；该函数对其中任意一项返回true, 就返回true; 返回true就不再往下执行。"></a>6.some()方法用于检测数组是否存在一个符合指定条件的元素，只有一个满足条件就返回true。some()是对数组中的每一项运行指定函数；该函数对其中任意一项返回true, 就返回true; 返回true就不再往下执行。</h3><h4 id="下面的例子是检测数组元素是否存在-Number-类型。"><a href="#下面的例子是检测数组元素是否存在-Number-类型。" class="headerlink" title="下面的例子是检测数组元素是否存在 Number 类型。"></a>下面的例子是检测数组元素是否存在 Number 类型。</h4><pre><code>var arr = [&quot;a&quot;, 1, &quot;b&quot;]
+var bool = arr.some(item =&gt; &#123;
+  return typeof item === &quot;number&quot;
+&#125;)
+console.log(bool)
+// Expected output:true
+</code></pre>
+<h3 id="7-find-返回数组中符合条件的第一个元素；没有就返回undefined-不改变原始数组-find对空数组不执行。"><a href="#7-find-返回数组中符合条件的第一个元素；没有就返回undefined-不改变原始数组-find对空数组不执行。" class="headerlink" title="7.find() 返回数组中符合条件的第一个元素；没有就返回undefined,不改变原始数组,find对空数组不执行。"></a>7.find() 返回数组中符合条件的第一个元素；没有就返回undefined,不改变原始数组,find对空数组不执行。</h3><pre><code>let arr = [1, 2, 3, 4, 5]
+let find = arr.find((item) =&gt; &#123;
+  return item % 2 === 0
+&#125;)
+// Expected output:find =2
+</code></pre>
+<pre><code>var arr = [1, 2, 3]
+var ret = arr.find(ele =&gt; ele &gt; 2)
+console.log(ret)
+// Expected output:3
+console.log(arr)
+// Expected output:[1, 2, 3]
+</code></pre>
+<h3 id="8-findIndex-返回符合条件的第一个元素的下标，没有符合条件的元素则返回-1，不改变原始数组-findIndex对空数组不执行。"><a href="#8-findIndex-返回符合条件的第一个元素的下标，没有符合条件的元素则返回-1，不改变原始数组-findIndex对空数组不执行。" class="headerlink" title="8.findIndex() 返回符合条件的第一个元素的下标，没有符合条件的元素则返回-1，不改变原始数组,findIndex对空数组不执行。"></a>8.findIndex() 返回符合条件的第一个元素的下标，没有符合条件的元素则返回-1，不改变原始数组,findIndex对空数组不执行。</h3><pre><code>let arr = [1, 2, 3, 4, 5]
+let findIndex = arr.findIndex((item) =&gt; &#123;
+  return item % 2 === 0
+&#125;) 
+// Expected output:findIndex = 1
+</code></pre>
+<pre><code>var arr = [1, 2, 3, 4 ,5]
+var ret = arr.findIndex(ele =&gt; ele &gt; 2) 
+console.log(ret)
+// Expected output:2
+ console.log(arr)
+// Expected output:[1, 2, 3, 4, 5]
+</code></pre>
+<h1 id="二、遍历对象"><a href="#二、遍历对象" class="headerlink" title="二、遍历对象"></a>二、遍历对象</h1><h2 id="方法一：for-in-循环"><a href="#方法一：for-in-循环" class="headerlink" title="方法一：for-in 循环"></a>方法一：for-in 循环</h2><pre><code>var obj = &#123; a: 2, b: 4, c: 6 &#125;
+for (let key in obj) &#123;
+  console.log(key)
+&#125;
+// Expected output:a b c
+</code></pre>
+<h2 id="方法二：Object-keys-可理解为返回里面的key属性"><a href="#方法二：Object-keys-可理解为返回里面的key属性" class="headerlink" title="方法二：Object.keys() 可理解为返回里面的key属性"></a>方法二：Object.keys() 可理解为返回里面的key属性</h2><h3 id="1-处理对象时：返回可枚举的属性数组"><a href="#1-处理对象时：返回可枚举的属性数组" class="headerlink" title="1.处理对象时：返回可枚举的属性数组"></a>1.处理对象时：返回可枚举的属性数组</h3><pre><code>var w_n = Object.keys(&#123;name: &quot;wn&quot;, address: &quot;中国&quot;&#125;) 
+console.log(w_n)
+// Expected output:[&#39;name&#39;, &#39;address&#39;]
+</code></pre>
+<h3 id="2-处理数组时：返回索引值数组"><a href="#2-处理数组时：返回索引值数组" class="headerlink" title="2.处理数组时：返回索引值数组"></a>2.处理数组时：返回索引值数组</h3><pre><code>var w_n = Object.keys([11,22,33,44]) 
+console.log(w_n)
+// Expected output:[&#39;0&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]
+</code></pre>
+<h3 id="3-处理字符串数据时：返回索引值数组"><a href="#3-处理字符串数据时：返回索引值数组" class="headerlink" title="3.处理字符串数据时：返回索引值数组"></a>3.处理字符串数据时：返回索引值数组</h3><pre><code>var str=&#39;hello&#39;;
+console.log(Object.keys(str))
+// Expected output:[&#39;0&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;4&#39;]
+</code></pre>
+<h2 id="方法三：Object-values-方法，可理解为返回里面的value值，Object-values只返回对象自身的可遍历属性。"><a href="#方法三：Object-values-方法，可理解为返回里面的value值，Object-values只返回对象自身的可遍历属性。" class="headerlink" title="方法三：Object.values()方法，可理解为返回里面的value值，Object.values只返回对象自身的可遍历属性。"></a>方法三：Object.values()方法，可理解为返回里面的value值，Object.values只返回对象自身的可遍历属性。</h2><h3 id="1-处理对象数据时：返回可枚举的值组成的数组"><a href="#1-处理对象数据时：返回可枚举的值组成的数组" class="headerlink" title="1.处理对象数据时：返回可枚举的值组成的数组"></a>1.处理对象数据时：返回可枚举的值组成的数组</h3><pre><code>var w_n = Object.values(&#123;name: &quot;wn&quot;, address: &quot;中国&quot;&#125;) 
+console.log(w_n)
+// Expected output:[&#39;wn&#39;, &#39;中国&#39;]
+</code></pre>
+<h3 id="2-处理数组数据时：返回原数组"><a href="#2-处理数组数据时：返回原数组" class="headerlink" title="2.处理数组数据时：返回原数组"></a>2.处理数组数据时：返回原数组</h3><pre><code>var w_n = Object.values([11,22,33,44]) 
+console.log(w_n)
+// Expected output:[11,22,33,44]
+</code></pre>
+<h3 id="属性名为数值的属性，是按照数值大小，从小到大遍历的。"><a href="#属性名为数值的属性，是按照数值大小，从小到大遍历的。" class="headerlink" title="属性名为数值的属性，是按照数值大小，从小到大遍历的。"></a>属性名为数值的属性，是按照数值大小，从小到大遍历的。</h3><pre><code>const obj = &#123;10 : &quot;a&quot;, 6 : &quot;b&quot;, 9 : &quot;c&quot;&#125;
+console.log(Object.values(obj))
+// Expected output:[&#39;b&#39;, &#39;c&#39;, &#39;a&#39;]
+</code></pre>
+<h3 id="3-处理字符串数据时：返回每个字符组成的数组"><a href="#3-处理字符串数据时：返回每个字符组成的数组" class="headerlink" title="3.处理字符串数据时：返回每个字符组成的数组"></a>3.处理字符串数据时：返回每个字符组成的数组</h3><pre><code>console.log(Object.values(&#39;hello&#39;))
+// Expected output:[&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;]
+</code></pre>
+<h3 id="4-Object-values会过滤属性名为-Symbol-值的属性"><a href="#4-Object-values会过滤属性名为-Symbol-值的属性" class="headerlink" title="4.Object.values会过滤属性名为 Symbol 值的属性"></a>4.Object.values会过滤属性名为 Symbol 值的属性</h3><pre><code>Object.values(&#123; [Symbol()]: 123, foo: &#39;abc&#39; &#125;)
+// Expected output:[&#39;abc&#39;]
+</code></pre>
+<h2 id="方法四：Object-entries-方法"><a href="#方法四：Object-entries-方法" class="headerlink" title="方法四：Object.entries()方法"></a>方法四：Object.entries()方法</h2><h3 id="1-处理对象数据时：返回是一个二维数组。每一项是-key-value-形式。"><a href="#1-处理对象数据时：返回是一个二维数组。每一项是-key-value-形式。" class="headerlink" title="1.处理对象数据时：返回是一个二维数组。每一项是[key, value]形式。"></a>1.处理对象数据时：返回是一个二维数组。每一项是[key, value]形式。</h3><pre><code>var w_n = Object.entries(&#123;name: &quot;wn&quot;, address: &quot;中国&quot;&#125;) 
+console.log(w_n)
+// Expected output:[[&#39;name&#39;, &#39;wn&#39;], [&#39;address&#39;, &#39;中国&#39;]]
+</code></pre>
+<h3 id="2-处理数组数据时：返回也是一个二维数组，数组里面的每一项-index-value-形式。"><a href="#2-处理数组数据时：返回也是一个二维数组，数组里面的每一项-index-value-形式。" class="headerlink" title="2.处理数组数据时：返回也是一个二维数组，数组里面的每一项[index, value] 形式。"></a>2.处理数组数据时：返回也是一个二维数组，数组里面的每一项[index, value] 形式。</h3><pre><code>var w_n = Object.entries([11,22,33,44]) 
+console.log(w_n)
+// Expected output:[ [&#39;0&#39;,11], [&#39;1&#39;,22], [&#39;2&#39;,33], [&#39;3&#39;,44] ]
+</code></pre>
+<h3 id="数组中包含对象："><a href="#数组中包含对象：" class="headerlink" title="数组中包含对象："></a>数组中包含对象：</h3><pre><code>var w_n = Object.entries([&#123;a:11&#125;,22,33,44]) 
+console.log(w_n)
+// Expected output:[ [&#39;0&#39;,&#123;a:11&#125;], [&#39;1&#39;,22], [&#39;2&#39;,33], [&#39;3&#39;,44] ]
+</code></pre>
+<h3 id="3-处理字符串数据时：返回也是一个二维数组。"><a href="#3-处理字符串数据时：返回也是一个二维数组。" class="headerlink" title="3.处理字符串数据时：返回也是一个二维数组。"></a>3.处理字符串数据时：返回也是一个二维数组。</h3><pre><code>var str=&#39;hello&#39;
+console.log(Object.entries(str)) 
+// Expected output:[ [&#39;0&#39;,&#39;h&#39;], [&#39;1&#39;,&#39;e&#39;], [&#39;2&#39;,&#39;l&#39;], [&#39;3&#39;,&#39;l&#39;] ,[&#39;4&#39;,&#39;o&#39;] ]
+</code></pre>
+<h2 id="方法五：Object-assign-：Object-assign-方法的第一个参数是目标对象，后面的参数都是源对象。"><a href="#方法五：Object-assign-：Object-assign-方法的第一个参数是目标对象，后面的参数都是源对象。" class="headerlink" title="方法五：Object.assign()：Object.assign 方法的第一个参数是目标对象，后面的参数都是源对象。"></a>方法五：Object.assign()：Object.assign 方法的第一个参数是目标对象，后面的参数都是源对象。</h2><h3 id="注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。"><a href="#注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。" class="headerlink" title="注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。"></a>注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。</h3><pre><code>const target = &#123; a: 1, b: 2 &#125;;
+const source = &#123; b: 4, c: 5 &#125;;
+const returnedTarget = Object.assign(target, source);
+console.log(target);
+// Expected output: Object &#123; a: 1, b: 4, c: 5 &#125;
+</code></pre>
+<h2 id="方法六：Object-getOwnPropertyNames"><a href="#方法六：Object-getOwnPropertyNames" class="headerlink" title="方法六：Object.getOwnPropertyNames()"></a>方法六：Object.getOwnPropertyNames()</h2><h3 id="Object-getOwnPropertyNames-返回一个数组，该数组对元素是-obj自身拥有的枚举或不可枚举属性名称字符串。数组中枚举属性的顺序与通过-for…in-循环（或-Object-keys）迭代该对象属性时一致。数组中不可枚举属性的顺序未定义。"><a href="#Object-getOwnPropertyNames-返回一个数组，该数组对元素是-obj自身拥有的枚举或不可枚举属性名称字符串。数组中枚举属性的顺序与通过-for…in-循环（或-Object-keys）迭代该对象属性时一致。数组中不可枚举属性的顺序未定义。" class="headerlink" title="Object.getOwnPropertyNames() 返回一个数组，该数组对元素是 obj自身拥有的枚举或不可枚举属性名称字符串。数组中枚举属性的顺序与通过 for…in 循环（或 Object.keys）迭代该对象属性时一致。数组中不可枚举属性的顺序未定义。"></a>Object.getOwnPropertyNames() 返回一个数组，该数组对元素是 obj自身拥有的枚举或不可枚举属性名称字符串。数组中枚举属性的顺序与通过 for…in 循环（或 Object.keys）迭代该对象属性时一致。数组中不可枚举属性的顺序未定义。</h3><pre><code>var arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+console.log(Object.getOwnPropertyNames(arr).sort()) 
+// [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;length&quot;]
+</code></pre>
+<h3 id="类数组对象"><a href="#类数组对象" class="headerlink" title="// 类数组对象"></a>// 类数组对象</h3><pre><code>var obj = &#123; 0: &quot;a&quot;, 1: &quot;b&quot;, 2: &quot;c&quot;&#125;
+console.log(Object.getOwnPropertyNames(obj).sort())
+// Expected output:[&quot;0&quot;, &quot;1&quot;, &quot;2&quot;]
+</code></pre>
+<h3 id="使用-Array-forEach-输出属性名和属性值"><a href="#使用-Array-forEach-输出属性名和属性值" class="headerlink" title="// 使用 Array.forEach 输出属性名和属性值"></a>// 使用 Array.forEach 输出属性名和属性值</h3><pre><code>Object.getOwnPropertyNames(obj).forEach(function(val, idx, array) &#123;
+  console.log(val + &quot; -&gt; &quot; + obj[val])
+&#125;)
+// Expected output:
+// 0 -&gt; a
+// 1 -&gt; b
+// 2 -&gt; c
+</code></pre>
+<h3 id="不可枚举属性"><a href="#不可枚举属性" class="headerlink" title="//不可枚举属性"></a>//不可枚举属性</h3><pre><code>var my_obj = Object.create(&#123;&#125;, &#123;
+  getFoo: &#123;
+    value: function() &#123; return this.foo; &#125;,
+    enumerable: false
+  &#125;
+&#125;)
+my_obj.foo = 1
+console.log(Object.getOwnPropertyNames(my_obj).sort())
+// Expected output:[&quot;foo&quot;, &quot;getFoo&quot;]
+</code></pre>
 
-
-  </aside>
-
-
-    </div>
   </div>
+  <div id="gitalk-container"></div>
 </div>
 
-
-
-
-
+<script>
   
+Fancybox.bind('[data-fancybox="fancybox-gallery-img"]', {
+  dragToClose: true,
+  Toolbar: true,
+  closeButton: "top",
+  Image: {
+    zoom: true,
+  },
+  on: {
+    initCarousel: (fancybox) => {
+      const slide = fancybox.Carousel.slides[fancybox.Carousel.page];
+      fancybox.$container.style.setProperty(
+        "--bg-image",
+        `url("${slide.$thumb.src}")`
+      );
+    },
+    "Carousel.change": (fancybox, carousel, to, from) => {
+      const slide = carousel.slides[to];
+      fancybox.$container.style.setProperty(
+        "--bg-image",
+        `url("${slide.$thumb.src}")`
+      );
+    },
+  },
+});
+</script>
 
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 9999;
+        /* width: 600px !important; */
+        min-width: 0%;
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
 
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            max-width: 88%
+        }
+    }
+</style>
 
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+    <div class="post-paging">
     
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+    <a href="/2023/03/23/component%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/">
+        <div class="post-paging-last">
+            <span>上一篇</span>
+            <p>component动态组件</p>
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
+    </a>
     
 
     
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
+    <a href="/2023/03/13/serve%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        <div class="post-paging-next">
+            <span>下一篇</span>
+            <p>浅析vue项目中npm run dev和npm run serve的区别</p>
+        </div>
+    </a>
+    
+</div>
+</div>
+		
+<div class="footer">
+	<div class="Copyright">
+		©2023 By ljylwnxx. 主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
+	</div>
+	<div class="contact">
+		
+		<a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
+			<img src="/image/avator.png" alt="Quiet主题">
+		</a>
+		
+	</div>
 </div>
 
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
+<script src="/js/gotop.js"></script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            transition: border .5s;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
 
+        .goTop>span>svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
 
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
     }
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
         }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $( '#js-go_top' )
+	.gotoTop( {
+		offset: 500,
+		speed: 300,
+		animationShow: {
+			'transform': 'translate(0,0)',
+			'transition': 'transform .5s ease-in-out'
+		},
+		animationHide: {
+			'transform': 'translate(100px,0)',
+			'transition': 'transform .5s ease-in-out'
+		}
+	} );
 </script>
 
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
+    <!-- Gitalk -->
+    <script>
+        const data = '{"clientID":"02b3c","clientSecret":"adfc7b4","repo":"gimment","owner":"duneng","admin":"duneng"}'
+        const gitalk = new Gitalk({
+            ...JSON.parse( data),
+            id:location.pathname,
+            distractionFreeMode:false
+        })
+        
+        if(Boolean('true')){
+            gitalk.render('gitalk-container')
         }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
+    </script>
 
-
-  
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
+	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
 </script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
+	</body>
 </html>
+

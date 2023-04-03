@@ -1,692 +1,594 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html>
+	<head>
+		
+<title>深浅拷贝-Quiet</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/image/avator.png">
+
+<link rel="stylesheet" href="/css/index.css">
 
 
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ljylwnxx">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="什么是浅拷贝？浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。举个例子：var  obj1&#x3D;{a:1,b:5,c:3};var  obj2&#x3D;obj1;obj2.b&#x3D;2;console.log(obj1.b);  &#x2F;&#x2F;2console.log(obj2.b);  &#x2F;&#x2F;2  浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，">
-<meta property="og:type" content="article">
-<meta property="og:title" content="深浅拷贝">
-<meta property="og:url" content="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/index.html">
-<meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="什么是浅拷贝？浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。举个例子：var  obj1&#x3D;{a:1,b:5,c:3};var  obj2&#x3D;obj1;obj2.b&#x3D;2;console.log(obj1.b);  &#x2F;&#x2F;2console.log(obj2.b);  &#x2F;&#x2F;2  浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%BB%93%E6%9E%9C.png">
-<meta property="article:published_time" content="2022-08-25T13:53:20.000Z">
-<meta property="article:modified_time" content="2023-03-22T06:11:09.180Z">
-<meta property="article:author" content="ljylwnxx">
-<meta property="article:tag" content="深浅拷贝">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%BB%93%E6%9E%9C.png">
-  
-  
-  
-  <title>深浅拷贝 - ljylwnxx的博客</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+<meta name="keywords" content="深浅拷贝,">
+<meta name="description" content="">
 
 
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+<script src="/js/jquery.min.js"></script>
 
 
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<script src="/js/index.js"></script>
 
 
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
+<script src="/js/fancybox.umd.js"></script>
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<script src="/js/fancybox-images.js"></script>
 
 
+<script src="/js/gitalk.min.js"></script>
 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+<script src="/js/hljs.min.js"></script>
+ 
+<script>hljs.highlightAll();</script>
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+	<meta name="generator" content="Hexo 5.4.2"></head>
+
+	<body>
+		
+	<div class="header">
+		<div class="header-top" id="header-top">
+			<div class="h-left">
+				<a href="/">
+					<img src="/image/avator.png" alt="Quiet">
+				</a>
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/links">
+										LINKS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>ljylwnxx</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/links">LINKS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+    <div class="my_foot">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
+            <img src="/image/avator.png" alt="Quiet主题">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'>
+</div>
+<style>
+    .shelter{
+        background-color: #333;
+        opacity:0.5;
+        cursor: pointer;
+        display: none; 
+        position: fixed;
+        left: 0;
+        top: 0; 
+        right: 0;
+        bottom: 0;
+        z-index: 1998;
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+    .sidebar {
+        width: 66%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        background: #fff;
+        z-index: 1999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
+    }
 
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
 
-  
-<meta name="generator" content="Hexo 5.4.2"></head>
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
 
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
 
-<body>
-  
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
 
-  <header>
-    
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>ljylwnxx</strong>
-    </a>
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
 
-  
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/defaultl.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="深浅拷贝"></span>
-          
-        </div>
+<script>
+    $( function () {
+	$( '.h-right-close>svg' )
+		.click( function () {
+			$( '.sidebar' )
+				.animate( {
+					right: "0"
+				}, 500 );
+			$( '.shelter' )
+				.fadeIn( "slow" )
+		} );
+	$( '.shelter' )
+		.click( function ( e ) {
+			$( '.sidebar' )
+				.animate( {
+					right: "-100%"
+				}, 500 );
+			$( '.shelter' )
+				.fadeOut( "slow" )
+		} )
+} )
 
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-25 21:53" pubdate>
-          2022年8月25日 晚上
-        </time>
-      </span>
-    
-  </div>
+</script>
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          1.6k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          14 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">深浅拷贝</h1>
+<div class="post">
+    <div class="post-header-background post-header-img"
+    style="background: url('/image/defaultPic.png')" 
+>
+    <div class="post-header-background-content">
+        <ul class="post-header-tag">
             
             
-              <div class="markdown-body">
+            <li><a href="/tags/深浅拷贝">深浅拷贝</a></li>
+            
+            
+        </ul>
+        
+        <h1>深浅拷贝</h1>
+        <div class="post-header-info">
+            <div class="post-header-info-author">
                 
-                <h1 id="什么是浅拷贝？"><a href="#什么是浅拷贝？" class="headerlink" title="什么是浅拷贝？"></a>什么是浅拷贝？</h1><p>浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。<br>举个例子：<br>var  obj1={a:1,b:5,c:3};<br>var  obj2=obj1;<br>obj2.b=2;<br>console.log(obj1.b);  //2<br>console.log(obj2.b);  //2</p>
-<hr>
-<p>浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，任何一个修改都会是使得所有对象的值被修改，因为它们公用一条数据。</p>
-<h1 id="什么是深拷贝？"><a href="#什么是深拷贝？" class="headerlink" title="什么是深拷贝？"></a>什么是深拷贝？</h1><p>深拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值不会改变。<br>举个例子：<br>var a=2;<br>var b=a;<br>b=3;<br>console.log(a);//2<br>console.log(b);//3</p>
-<hr>
-<p>深拷贝：深拷贝不会拷贝引用类型的引用，拷贝的是引用类型的值，形成一个新的引用类型。</p>
-<h1 id="如何实现深拷贝？"><a href="#如何实现深拷贝？" class="headerlink" title="如何实现深拷贝？"></a>如何实现深拷贝？</h1><h2 id="①JSON-Stringify-JSON-pare-不支持多层引用嵌套，不支持函数Map、Sep等类型的数据"><a href="#①JSON-Stringify-JSON-pare-不支持多层引用嵌套，不支持函数Map、Sep等类型的数据" class="headerlink" title="①JSON.Stringify(JSON.pare())   不支持多层引用嵌套，不支持函数Map、Sep等类型的数据"></a>①JSON.Stringify(JSON.pare())   不支持多层引用嵌套，不支持函数Map、Sep等类型的数据</h2><p>var  obj1={a:1,b:5,c:3};<br>var  obj2=JSON.Stringify（JSON.parse（obj1））;<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
-<hr>
-<h2 id="②展开运算符-…"><a href="#②展开运算符-…" class="headerlink" title="②展开运算符   …"></a>②展开运算符   …</h2><p>var  obj1={a:1,b:5,c:3};<br>var  obj2=(…obj1)<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
-<hr>
-<h2 id="③Object-asssign（target-sourse）"><a href="#③Object-asssign（target-sourse）" class="headerlink" title="③Object.asssign（target,sourse）"></a>③Object.asssign（target,sourse）</h2><p>var  obj1={a:1,b:5,c:3};<br>var  obj2=Object.assign({},obj1)<br>obj2.b=2;<br>console.log(obj1.b);  //5<br>console.log(obj2.b);  //2</p>
-<hr>
-<h2 id="④深拷贝函数，递归"><a href="#④深拷贝函数，递归" class="headerlink" title="④深拷贝函数，递归"></a>④深拷贝函数，递归</h2><pre><code class="hljs">        // target 要拷贝的对象
-        function deepClone(target)&#123;
-            //定义一个拷贝对象
-            let result;
-            // 判断拷贝目标是不是Object对象
-            if(typeof target===&#39;object&#39;)&#123;
-                // 判断是否是数组类型
-                if(Array.isArray(target))&#123;
-                    // 定义为数组
-                    result=[];
-                    for(let i in target)&#123;
-                        result.push(deepClone(target[i]));
-                    &#125;
-                &#125;else if(target===null)&#123;
-                    // 直接赋值
-                    result=null;
-                &#125;else if(target.constructor===RegExp)&#123;
-                    // 直接赋值
-                    result=target;
-                    // 不是特殊的对象
-                &#125;else&#123;
-                    result=&#123;&#125;;
-                    for(let i in target)&#123;
-                        // 递归
-                        result[i]=deepClone(target[i]);
-                    &#125;
-                &#125;
-                // 基本数据类型  直接赋值
-            &#125;else&#123;
-                result=target;
-            &#125;
-            return result;
-        &#125;
-</code></pre>
-<hr>
-<p>var obj1={<br>a:{z:1,c:null},<br>b:[1,2,3,5],<br>c:function(){console.log(this.a)}<br>}<br>var obj2=deepClone(obj1);<br>console.log(obj2);<br>obj2.b[0]=2;<br>obj2.a[0]=2;<br>console.log(obj1.a)<br>console.log(obj2.a)<br>console.log(obj1.b)<br>console.log(obj2.b)<br>console.log(obj2.c())<br><img src="/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">知识点</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">#深浅拷贝</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>深浅拷贝</div>
-      <div>http://example.com/2022/08/25/深浅拷贝/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>ljylwnxx</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年8月25日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
+                    <svg t="1604839279282" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="2901" width="20" height="20">
+                        <path
+                            d="M513 956.3c-247.7 0-448-200.3-448-448S265.3 66.2 513 66.2s448 200.3 448 448-200.3 442.1-448 442.1z m0-830.9c-212.2 0-388.8 170.7-388.8 388.8C124.2 726.3 294.9 903 513 903c212.2 0 388.8-170.7 388.8-388.8S725.2 125.4 513 125.4z m0 430.2c-94.2 0-170.7-76.5-170.7-170.7S418.8 207.8 513 207.8s170.7 76.5 170.7 170.7S607.2 555.6 513 555.6z m0-289.1c-64.6 0-112 52.8-112 112s47.4 117.9 112 117.9 112-52.8 112-112-47.4-117.9-112-117.9z m0 689.8c-135.7 0-259-58.7-341.9-158.9l-11.8-17.8 11.8-17.8c76.5-117.9 206.2-188.5 347.8-188.5 135.7 0 265 64.6 341.9 182.6l11.8 17.8-11.8 17.8C778 897.1 648.7 956.3 513 956.3zM230.3 773.2C300.9 849.7 406.9 897 513 897c112 0 218.1-47.4 288.6-129.8-70.5-88.2-170.7-135.6-282.7-135.6s-218.1 53.3-288.6 141.6z"
+                            p-id="2902" fill="#ffffff"></path>
+                    </svg>
                     
+                <span class="post-header-info-author-text"> <a href="../../about">ljylwnxx</a></span>
+                <div class="post-header-info-author-categories">
                     
-                      <a href="/2022/08/30/webpack/" title="webpack">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">webpack</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
+                         <a href="../../categories/知识点/" target="_blank" >知识点</a>
                     
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/08/16/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="博客搭建">
-                        <span class="hidden-mobile">博客搭建</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
                 </div>
-              
+                <p>2022-08-25 21:53:20</p>
             </div>
-
-            
-          </article>
         </div>
-      </div>
     </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
 </div>
+    <div class="post-content" id="content">
+  
+  <div id="article" class="post-content-info">
+    
 
+    <h1 id="什么是浅拷贝？"><a href="#什么是浅拷贝？" class="headerlink" title="什么是浅拷贝？"></a>什么是浅拷贝？</h1><p>浅拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值也随之改变。<br>举个例子：</p>
+<pre><code>var  obj1=&#123;a:1,b:5,c:3&#125;;
+var  obj2=obj1;
+obj2.b=2;
+console.log(obj1.b);  //2
+console.log(obj2.b);  //2
+</code></pre>
+<p>浅拷贝：就是拷贝对象的引用，而不深层次的拷贝对象的值，多个对象指向堆内存中的同一对象，，任何一个修改都会是使得所有对象的值被修改，因为它们公用一条数据。</p>
+<h1 id="什么是深拷贝？"><a href="#什么是深拷贝？" class="headerlink" title="什么是深拷贝？"></a>什么是深拷贝？</h1><p>深拷贝：简单来说就是一个对象B复制另一个对象A，当改变B对象的值是A对象的值不会改变。<br>举个例子：</p>
+<pre><code>var a=2;
+var b=a;
+b=3;
+console.log(a);//2
+console.log(b);//3
+</code></pre>
+<p>深拷贝：深拷贝不会拷贝引用类型的引用，拷贝的是引用类型的值，形成一个新的引用类型。</p>
+<h1 id="如何实现深拷贝？"><a href="#如何实现深拷贝？" class="headerlink" title="如何实现深拷贝？"></a>如何实现深拷贝？</h1><h2 id="①JSON-Stringify-JSON-pare-不支持多层引用嵌套，不支持函数Map、Sep等类型的数据"><a href="#①JSON-Stringify-JSON-pare-不支持多层引用嵌套，不支持函数Map、Sep等类型的数据" class="headerlink" title="①JSON.Stringify(JSON.pare())   不支持多层引用嵌套，不支持函数Map、Sep等类型的数据"></a>①JSON.Stringify(JSON.pare())   不支持多层引用嵌套，不支持函数Map、Sep等类型的数据</h2><pre><code>var  obj1=&#123;a:1,b:5,c:3&#125;;
+var  obj2=JSON.Stringify（JSON.parse（obj1））;
+obj2.b=2;
+console.log(obj1.b);  //5
+console.log(obj2.b);  //2
+</code></pre>
+<h2 id="②展开运算符-…"><a href="#②展开运算符-…" class="headerlink" title="②展开运算符   …"></a>②展开运算符   …</h2><pre><code>var  obj1=&#123;a:1,b:5,c:3&#125;;
+var  obj2=(...obj1)
+obj2.b=2;
+console.log(obj1.b);  //5
+console.log(obj2.b);  //2
+</code></pre>
+<h2 id="③Object-asssign（target-sourse）"><a href="#③Object-asssign（target-sourse）" class="headerlink" title="③Object.asssign（target,sourse）"></a>③Object.asssign（target,sourse）</h2><pre><code>var  obj1=&#123;a:1,b:5,c:3&#125;;
+var  obj2=Object.assign(&#123;&#125;,obj1)
+obj2.b=2;
+console.log(obj1.b);  //5
+console.log(obj2.b);  //2
+</code></pre>
+<h2 id="④深拷贝函数，递归"><a href="#④深拷贝函数，递归" class="headerlink" title="④深拷贝函数，递归"></a>④深拷贝函数，递归</h2><pre><code>            // target 要拷贝的对象
+            function deepClone(target)&#123;
+                //定义一个拷贝对象
+                let result;
+                // 判断拷贝目标是不是Object对象
+                if(typeof target===&#39;object&#39;)&#123;
+                    // 判断是否是数组类型
+                    if(Array.isArray(target))&#123;
+                        // 定义为数组
+                        result=[];
+                        for(let i in target)&#123;
+                            result.push(deepClone(target[i]));
+                        &#125;
+                    &#125;else if(target===null)&#123;
+                        // 直接赋值
+                        result=null;
+                    &#125;else if(target.constructor===RegExp)&#123;
+                        // 直接赋值
+                        result=target;
+                        // 不是特殊的对象
+                    &#125;else&#123;
+                        result=&#123;&#125;;
+                        for(let i in target)&#123;
+                            // 递归
+                            result[i]=deepClone(target[i]);
+                        &#125;
+                    &#125;
+                    // 基本数据类型  直接赋值
+                &#125;else&#123;
+                    result=target;
+                &#125;
+                return result;
+            &#125;
+</code></pre>
+<pre><code>var obj1=&#123;
+a:&#123;z:1,c:null&#125;,
+b:[1,2,3,5],
+c:function()&#123;console.log(this.a)&#125;
+&#125;
+var obj2=deepClone(obj1);
+console.log(obj2);
+obj2.b[0]=2;
+obj2.a[0]=2;
+console.log(obj1.a)
+console.log(obj2.a)
+console.log(obj1.b)
+console.log(obj2.b)
+console.log(obj2.c())
+</code></pre>
+<p><img src="/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%BB%93%E6%9E%9C.png"></p>
 
-
-  </aside>
-
-
-    </div>
   </div>
+  <div id="gitalk-container"></div>
 </div>
 
-
-
-
-
+<script>
   
+Fancybox.bind('[data-fancybox="fancybox-gallery-img"]', {
+  dragToClose: true,
+  Toolbar: true,
+  closeButton: "top",
+  Image: {
+    zoom: true,
+  },
+  on: {
+    initCarousel: (fancybox) => {
+      const slide = fancybox.Carousel.slides[fancybox.Carousel.page];
+      fancybox.$container.style.setProperty(
+        "--bg-image",
+        `url("${slide.$thumb.src}")`
+      );
+    },
+    "Carousel.change": (fancybox, carousel, to, from) => {
+      const slide = carousel.slides[to];
+      fancybox.$container.style.setProperty(
+        "--bg-image",
+        `url("${slide.$thumb.src}")`
+      );
+    },
+  },
+});
+</script>
 
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 9999;
+        /* width: 600px !important; */
+        min-width: 0%;
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
 
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            max-width: 88%
+        }
+    }
+</style>
 
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+    <div class="post-paging">
     
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+    <a href="/2022/08/30/webpack/">
+        <div class="post-paging-last">
+            <span>上一篇</span>
+            <p>webpack</p>
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
+    </a>
     
 
     
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
+    <a href="/2022/08/16/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+        <div class="post-paging-next">
+            <span>下一篇</span>
+            <p>博客搭建</p>
+        </div>
+    </a>
+    
+</div>
+</div>
+		
+<div class="footer">
+	<div class="Copyright">
+		©2023 By ljylwnxx. 主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
+	</div>
+	<div class="contact">
+		
+		<a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
+			<img src="/image/avator.png" alt="Quiet主题">
+		</a>
+		
+	</div>
 </div>
 
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
+<script src="/js/gotop.js"></script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            transition: border .5s;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
 
+        .goTop>span>svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
 
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
     }
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
         }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $( '#js-go_top' )
+	.gotoTop( {
+		offset: 500,
+		speed: 300,
+		animationShow: {
+			'transform': 'translate(0,0)',
+			'transition': 'transform .5s ease-in-out'
+		},
+		animationHide: {
+			'transform': 'translate(100px,0)',
+			'transition': 'transform .5s ease-in-out'
+		}
+	} );
 </script>
 
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
+    <!-- Gitalk -->
+    <script>
+        const data = '{"clientID":"02b3c","clientSecret":"adfc7b4","repo":"gimment","owner":"duneng","admin":"duneng"}'
+        const gitalk = new Gitalk({
+            ...JSON.parse( data),
+            id:location.pathname,
+            distractionFreeMode:false
+        })
+        
+        if(Boolean('true')){
+            gitalk.render('gitalk-container')
         }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
+    </script>
 
-
-  
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
+	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
 </script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
+	</body>
 </html>
+

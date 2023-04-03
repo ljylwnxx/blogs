@@ -1,4 +1,6 @@
 ---
-title: categories
-date: 2022-08-16 21:46:58
+title: 文章分类
+date: 2022-08-16
+type: categories
+layout: categories
 ---

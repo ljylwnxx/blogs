@@ -1,956 +1,664 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html>
+	<head>
+		
+<title>ljylwnxx的博客-Quiet</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/image/avator.png">
+
+<link rel="stylesheet" href="/css/index.css">
 
 
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ljylwnxx">
-  <meta name="keywords" content="">
-  
-    <meta property="og:type" content="website">
-<meta property="og:title" content="ljylwnxx的博客">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="ljylwnxx">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>ljylwnxx的博客</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+<meta name="keywords" content="ljylwnxx的博客">
+<meta name="description" content="ljylwnxx的博客">
 
 
+<script src="/js/jquery.min.js"></script>
 
 
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<script src="/js/index.js"></script>
 
 
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
+<script src="/js/fancybox.umd.js"></script>
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<script src="/js/fancybox-images.js"></script>
 
 
+<script src="/js/gitalk.min.js"></script>
 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+<script src="/js/hljs.min.js"></script>
+ 
+<script>hljs.highlightAll();</script>
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+	<meta name="generator" content="Hexo 5.4.2"></head>
+
+	<body>
+		
+	<div class="header">
+		<div class="header-top" id="header-top">
+			<div class="h-left">
+				<a href="/">
+					<img src="/image/avator.png" alt="Quiet">
+				</a>
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+							<li class="select">
+								<a href="/">
+									HOME
+								</a>
+								<span class="dot"></span>
+							</li>
+							
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/links">
+										LINKS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>ljylwnxx</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/links">LINKS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+    <div class="my_foot">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
+            <img src="/image/avator.png" alt="Quiet主题">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'>
+</div>
+<style>
+    .shelter{
+        background-color: #333;
+        opacity:0.5;
+        cursor: pointer;
+        display: none; 
+        position: fixed;
+        left: 0;
+        top: 0; 
+        right: 0;
+        bottom: 0;
+        z-index: 1998;
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+    .sidebar {
+        width: 66%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        background: #fff;
+        z-index: 1999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
+    }
 
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
 
-  
-<meta name="generator" content="Hexo 5.4.2"></head>
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
 
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
 
-<body>
-  
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
 
-  <header>
-    
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
 
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>ljylwnxx</strong>
-    </a>
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $( function () {
+	$( '.h-right-close>svg' )
+		.click( function () {
+			$( '.sidebar' )
+				.animate( {
+					right: "0"
+				}, 500 );
+			$( '.shelter' )
+				.fadeIn( "slow" )
+		} );
+	$( '.shelter' )
+		.click( function ( e ) {
+			$( '.sidebar' )
+				.animate( {
+					right: "-100%"
+				}, 500 );
+			$( '.shelter' )
+				.fadeOut( "slow" )
+		} )
+} )
+
+</script>
+
+<div class="home">
+	<div class="header-body-background">
+    <div class="header-body-background-content">
+        <span>
+            <img src="/image/logo.gif" alt="Quiet">
+        </span>
+
+        <h2>喜欢这件事,不会有任何的bug,所以不需要debug</h2>
     </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/defaultl.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="ljylwnxx的博客"></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
+</div>
+	<div class="main">
+		
+			<div class="post-card" id="content">
+				
+					<div class="post-card-display">
+						<a href="/2023/03/29/webpack%E8%BF%81%E7%A7%BBvite/">
+							<h2 class="post-card-title">
+								webpack迁移vite
+							</h2>
+							
+								<img src="/image/defaultPic.png" alt="Quiet">
+							
+						</a>
+						<div class="post-card-meat">
+							<div class="meat-info">
+								<div class="info-auth">
+										<a href="categories/知识点/">
+											知识点
+										</a>
+								</div>
+								<div class="info-data">
+									2023-03-29
+								</div>
+							</div>
+							<div class="meat-type"></div>
+						</div>
+					</div>
+				
+					<div class="post-card-display">
+						<a href="/2023/03/29/%E5%BE%AE%E5%89%8D%E7%AB%AF-qiankun/">
+							<h2 class="post-card-title">
+								微前端-qiankun
+							</h2>
+							
+								<img src="/image/defaultPic.png" alt="Quiet">
+							
+						</a>
+						<div class="post-card-meat">
+							<div class="meat-info">
+								<div class="info-auth">
+										<a href="categories/知识点/">
+											知识点
+										</a>
+								</div>
+								<div class="info-data">
+									2023-03-29
+								</div>
+							</div>
+							<div class="meat-type"></div>
+						</div>
+					</div>
+				
+					<div class="post-card-display">
+						<a href="/2023/03/27/Vue-Cli/">
+							<h2 class="post-card-title">
+								基于Webpack5搭建一个Vue-Cli
+							</h2>
+							
+								<img src="/image/defaultPic.png" alt="Quiet">
+							
+						</a>
+						<div class="post-card-meat">
+							<div class="meat-info">
+								<div class="info-auth">
+										<a href="categories/知识点/">
+											知识点
+										</a>
+								</div>
+								<div class="info-data">
+									2023-03-27
+								</div>
+							</div>
+							<div class="meat-type"></div>
+						</div>
+					</div>
+				
+					<div class="post-card-display">
+						<a href="/2023/03/27/%E5%BE%AE%E5%89%8D%E7%AB%AF/">
+							<h2 class="post-card-title">
+								微前端
+							</h2>
+							
+								<img src="/image/defaultPic.png" alt="Quiet">
+							
+						</a>
+						<div class="post-card-meat">
+							<div class="meat-info">
+								<div class="info-auth">
+										<a href="categories/知识点/">
+											知识点
+										</a>
+								</div>
+								<div class="info-data">
+									2023-03-27
+								</div>
+							</div>
+							<div class="meat-type"></div>
+						</div>
+					</div>
+				
+					<div class="post-card-display">
+						<a href="/2023/03/23/component%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/">
+							<h2 class="post-card-title">
+								component动态组件
+							</h2>
+							
+								<img src="/image/defaultPic.png" alt="Quiet">
+							
+						</a>
+						<div class="post-card-meat">
+							<div class="meat-info">
+								<div class="info-auth">
+										<a href="categories/知识点/">
+											知识点
+										</a>
+								</div>
+								<div class="info-data">
+									2023-03-23
+								</div>
+							</div>
+							<div class="meat-type"></div>
+						</div>
+					</div>
+				
+					<div class="post-card-display">
+						<a href="/2023/03/21/%E6%95%B0%E7%BB%84%EF%BC%8C%E5%AF%B9%E8%B1%A1%E9%81%8D%E5%8E%86%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/">
+							<h2 class="post-card-title">
+								数组，对象遍历的用法总结
+							</h2>
+							
+								<img src="/image/defaultPic.png" alt="Quiet">
+							
+						</a>
+						<div class="post-card-meat">
+							<div class="meat-info">
+								<div class="info-auth">
+										<a href="categories/JavaScript/">
+											JavaScript
+										</a>
+								</div>
+								<div class="info-data">
+									2023-03-21
+								</div>
+							</div>
+							<div class="meat-type"></div>
+						</div>
+					</div>
+				
+					<div class="post-card-display">
+						<a href="/2023/03/13/serve%E7%9A%84%E5%8C%BA%E5%88%AB/">
+							<h2 class="post-card-title">
+								浅析vue项目中npm run dev和npm run serve的区别
+							</h2>
+							
+								<img src="/image/defaultPic.png" alt="Quiet">
+							
+						</a>
+						<div class="post-card-meat">
+							<div class="meat-info">
+								<div class="info-auth">
+										<a href="categories/知识点/">
+											知识点
+										</a>
+								</div>
+								<div class="info-data">
+									2023-03-13
+								</div>
+							</div>
+							<div class="meat-type"></div>
+						</div>
+					</div>
+				
+					<div class="post-card-display">
+						<a href="/2023/01/10/vue3%E6%96%B0%E8%AF%AD%E6%B3%95%E7%BB%86%E8%8A%82/">
+							<h2 class="post-card-title">
+								vue3新语法细节
+							</h2>
+							
+								<img src="/image/defaultPic.png" alt="Quiet">
+							
+						</a>
+						<div class="post-card-meat">
+							<div class="meat-info">
+								<div class="info-auth">
+										<a href="categories/vue3/">
+											vue3
+										</a>
+								</div>
+								<div class="info-data">
+									2023-01-10
+								</div>
+							</div>
+							<div class="meat-type"></div>
+						</div>
+					</div>
+				
+					<div class="post-card-display">
+						<a href="/2022/12/19/Vue-axios/">
+							<h2 class="post-card-title">
+								Vue-axios
+							</h2>
+							
+								<img src="/image/defaultPic.png" alt="Quiet">
+							
+						</a>
+						<div class="post-card-meat">
+							<div class="meat-info">
+								<div class="info-auth">
+										<a href="categories/知识点/">
+											知识点
+										</a>
+								</div>
+								<div class="info-data">
+									2022-12-19
+								</div>
+							</div>
+							<div class="meat-type"></div>
+						</div>
+					</div>
+				
+					<div class="post-card-display">
+						<a href="/2022/12/13/vue3API/">
+							<h2 class="post-card-title">
+								vue3API
+							</h2>
+							
+								<img src="/image/defaultPic.png" alt="Quiet">
+							
+						</a>
+						<div class="post-card-meat">
+							<div class="meat-info">
+								<div class="info-auth">
+										<a href="categories/vue3/">
+											vue3
+										</a>
+								</div>
+								<div class="info-data">
+									2022-12-13
+								</div>
+							</div>
+							<div class="meat-type"></div>
+						</div>
+					</div>
+				
+			</div>
+		
+		
+	
+	</div>
+	<div class="change-page">
+		
+				
+					<div class="n-page">
+						<a href="/page/2/">
+							<div class="next">
+								下一页
+							</div>
+						</a>
+					</div>
+					
+	</div>
+	
+</div>
+		
+<div class="footer">
+	<div class="Copyright">
+		©2023 By ljylwnxx. 主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
+	</div>
+	<div class="contact">
+		
+		<a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
+			<img src="/image/avator.png" alt="Quiet主题">
+		</a>
+		
+	</div>
 </div>
 
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/29/webpack%E8%BF%81%E7%A7%BBvite/" target="_self">
-          webpack迁移vite
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/29/webpack%E8%BF%81%E7%A7%BBvite/" target="_self">
-        <div>
-          一、迁移流程1.先创建新的vite项目2.新版vite项目默认是支持vue3的，需要把vue改成vue2版本后配置vite-plugin-vue2插件来支持vue23.把项目代码改成vue2写法，确保新vite项目可以正常运行vue24.把原webpack项目生产环境依赖复制到vite项目，剔除掉webpack相关的插件依赖5.复制原项目src文件代码和其他业务相关代码到新vite项目。6.新vi
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-29 21:41" pubdate>
-              2023-03-29
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">知识点</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/webpack/">#webpack</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/29/%E5%BE%AE%E5%89%8D%E7%AB%AF-qiankun/" target="_self">
-          微前端-qiankun
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/29/%E5%BE%AE%E5%89%8D%E7%AB%AF-qiankun/" target="_self">
-        <div>
-          qiankun 是一个基于 single-spa 的微前端实现库，旨在帮助大家能更简单、无痛的构建一个生产可用微前端架构系统。 qiankun 的核心设计理念 简单由于主应用微应用都能做到技术栈无关，qiankun 对于用户而言只是一个类似 jQuery 的库，你需要调用几个 qiankun 的 API 即可完成应用的微前端改造。同时由于 qiankun 的 HTML entry 及沙箱的设计，使
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-29 12:18" pubdate>
-              2023-03-29
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">知识点</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/">#微前端</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/27/Vue-Cli/" target="_self">
-          基于Webpack5搭建一个Vue-Cli
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/27/Vue-Cli/" target="_self">
-        <div>
-          大家平时在进行Vue开发的时候，大部分人都是使用 Vue-cli 这个现成的Vue脚手架来进行开发的，但是用它用了这么久，你难道不想自己搭一个属于自己的 Vue-cli 吗？ 1、建一个文件夹新建一个文件夹my-vue-cli用来存放项目 2、初始化npm在终端中输入 npm init然后一直回车就行，这样能使项目拥有一个npm管理环境，之后可以在此环境上安装我们所需要的包 3、webpack、w
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-27 21:30" pubdate>
-              2023-03-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">知识点</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Webpack/">#Webpack</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/27/%E5%BE%AE%E5%89%8D%E7%AB%AF/" target="_self">
-          微前端
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/27/%E5%BE%AE%E5%89%8D%E7%AB%AF/" target="_self">
-        <div>
-          什么是微前端微前端是一种多个团队通过独立发布功能的方式来共同构建现代化web应用的技术手段及方法策略。微前端可以将多个小型应用整合成一个完整的应用。每个小型应用都是独立开发、独立运行、独立部署的，这就意味着可以多团队并行开发 且有无冲突、无阻塞等特点。 微前端架构具备以下几个核心价值：1.技术栈无关主框架不限制接入应用的技术栈，微应用具备完全自主权2.独立开发、独立部署微应用仓库独立，前后端可独立
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-27 21:29" pubdate>
-              2023-03-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">知识点</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/">#微前端</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/23/component%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/" target="_self">
-          component动态组件
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/23/component%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/" target="_self">
-        <div>
-          一、什么是动态组件？定义:多个组件挂载到同一个组件上，通过参数动态的切换不同组件就是动态组件。书写形式：内置组件：component：是vue里面的一个内置组件。作用是：配合is动态渲染组件。vue内置的组件还包括：transition：作为单个元素/组件的过渡效果。transition-group：作为多个元素/组件的过渡效果。keep-alive：包裹动态组件时，会缓存不活动的组件实例，而不是
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-23 21:27" pubdate>
-              2023-03-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">知识点</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/vue/">#vue</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/21/%E6%95%B0%E7%BB%84%EF%BC%8C%E5%AF%B9%E8%B1%A1%E9%81%8D%E5%8E%86%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" target="_self">
-          数组，对象遍历的用法总结
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/21/%E6%95%B0%E7%BB%84%EF%BC%8C%E5%AF%B9%E8%B1%A1%E9%81%8D%E5%8E%86%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" target="_self">
-        <div>
-          作为一个前端开发，我们在完成前端开发的过程中，经常会遇到很多数据处理的需求，开发者会根据不同的业务需求来实现对应的业务功能。前端在渲染页面时，通常会涉及到要对拿到的数据进行处理。这里介绍几种数组，对象遍历的数据处理方法。 一、遍历数组方法一：for循环for 循环是使用最多，也是性能优化最好的一种遍历方式。var arr = [“a”, “b”, “c”]for (var i = 0; i &lt
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-21 11:06" pubdate>
-              2023-03-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">#JavaScript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/13/serve%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
-          浅析vue项目中npm run dev和npm run serve的区别
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/13/serve%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
-        <div>
-          先做一个提问，你们运行项目的时候使用什么命令来启动项目呢？通常我们在开发前端项目的过程中，经常需要使用npm run dev或者npm run serve命令来启动项目，同样都是启动项目的命令，但是有些时候运行npm run serve会报错，而运行npm run dev则正常运行，那这两者到底有什么区别呢？ 在理解这两者的区别之前，我们应该要理解这两条命令是什么意思。首先看看npm是什么？npm
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-13 11:03" pubdate>
-              2023-03-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">知识点</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/vue/">#vue</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/01/10/vue3%E6%96%B0%E8%AF%AD%E6%B3%95%E7%BB%86%E8%8A%82/" target="_self">
-          vue3新语法细节
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/01/10/vue3%E6%96%B0%E8%AF%AD%E6%B3%95%E7%BB%86%E8%8A%82/" target="_self">
-        <div>
-          1、在Vue2中，v-for 和 ref 同时使用，这会自动收集 $refs。当存在嵌套的v-for时，这种行为会变得不明确且效率低下。在Vue3中，v-for 和 ref 同时使用，这不再自动收集$refs。我们可以手动封装收集 ref 对象的方法，将其绑定在 ref 属性上。 2、在Vue3中，使用 defineAsyncComponent 可以异步地加载组件。需要注意的是，这种异步组件是不能
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-01-10 18:40" pubdate>
-              2023-01-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/vue3/" class="category-chain-item">vue3</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/vue3/">#vue3</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/12/19/Vue-axios/" target="_self">
-          Vue-axios
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/12/19/Vue-axios/" target="_self">
-        <div>
-          众所周知，现在开发项目大多采用前后端分离的模式，个人采用vue做前端项目比较多一点。说到前端，那前端肯定只是负责渲染展示数据的，那么这里有一个问题，数据从哪里来呢？在开发阶段，大多会采用mock模拟数据，做一些假数据来满足暂时的需求，但是最终生产上的数据肯定是从后端接口获取而来。如何在vue项目上从后端获取数据呢？这就是我们今天要说的内容啦～ 一、前端从后端获取数据的方式通常采用http/http
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-12-19 18:08" pubdate>
-              2022-12-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">知识点</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/vue/">#vue</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/12/13/vue3API/" target="_self">
-          vue3API
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/12/13/vue3API/" target="_self">
-        <div>
-          为什么要使用setup组合?Vue3 中新增的 setup，目的是为了解决 Vue2 中“数据和业务逻辑不分离”的问题。 Vue3中使用 setup 是如何解决这一问题的呢？第1步: 用setup组合API 替换 vue2 中的data/computed/watch/methods等选项；第2步: 把setup中相关联的功能封装成一个个可独立可维护的hooks。 1、ref作用：一般用于定义基本数
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-12-13 21:10" pubdate>
-              2022-12-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/vue3/" class="category-chain-item">vue3</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/vue3/">#vue3</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            transition: border .5s;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
     </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
 </div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
+<script>
+    $( '#js-go_top' )
+	.gotoTop( {
+		offset: 500,
+		speed: 300,
+		animationShow: {
+			'transform': 'translate(0,0)',
+			'transition': 'transform .5s ease-in-out'
+		},
+		animationHide: {
+			'transform': 'translate(100px,0)',
+			'transition': 'transform .5s ease-in-out'
+		}
+	} );
+</script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+    <!-- Gitalk -->
+    <script>
+        const data = '{"clientID":"02b3c","clientSecret":"adfc7b4","repo":"gimment","owner":"duneng","admin":"duneng"}'
+        const gitalk = new Gitalk({
+            ...JSON.parse( data),
+            id:location.pathname,
+            distractionFreeMode:false
+        })
+        
+        if(Boolean('')){
+            gitalk.render('gitalk-container')
+        }
+    </script>
 
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
+<script>
+	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
 </html>
+

@@ -1,668 +1,517 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html>
+	<head>
+		
+<title>Vue3侦听器watch-Quiet</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/image/avator.png">
+
+<link rel="stylesheet" href="/css/index.css">
 
 
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ljylwnxx">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="学过 vue2 的小伙伴们肯定学习过侦听器，主要是用来监听页面数据或者是路由的变化，来执行相应的操作，在 vue3里面呢，也有侦听器的用法，功能基本一样。 侦听器是常用的 Vue API 之一，它用于监听一个数据并在数据变动时做一些自定义逻辑 watch 侦听器使用watch API 使用，至少需要指定两个参数： source 和 callback，其中 callback 被明确指定只能为函数，所">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Vue3侦听器watch">
-<meta property="og:url" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/index.html">
-<meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="学过 vue2 的小伙伴们肯定学习过侦听器，主要是用来监听页面数据或者是路由的变化，来执行相应的操作，在 vue3里面呢，也有侦听器的用法，功能基本一样。 侦听器是常用的 Vue API 之一，它用于监听一个数据并在数据变动时做一些自定义逻辑 watch 侦听器使用watch API 使用，至少需要指定两个参数： source 和 callback，其中 callback 被明确指定只能为函数，所">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E6%8E%A7%E5%88%B6%E5%8F%B0.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E7%9B%91%E5%90%ACreactive%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E7%9B%91%E5%90%ACreactive%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E8%AD%A6%E5%91%8A.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E6%8A%A5%E9%94%99.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E5%A4%9A%E4%B8%AA%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BB%A3%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0.png">
-<meta property="og:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E7%BB%93%E6%9E%9C.png">
-<meta property="article:published_time" content="2022-10-18T10:02:06.000Z">
-<meta property="article:modified_time" content="2023-03-22T06:25:29.581Z">
-<meta property="article:author" content="ljylwnxx">
-<meta property="article:tag" content="vue3">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E4%BB%A3%E7%A0%81.png">
-  
-  
-  
-  <title>Vue3侦听器watch - ljylwnxx的博客</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+<meta name="keywords" content="vue3,">
+<meta name="description" content="">
 
 
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+<script src="/js/jquery.min.js"></script>
 
 
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<script src="/js/index.js"></script>
 
 
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
+<script src="/js/fancybox.umd.js"></script>
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
+<script src="/js/fancybox-images.js"></script>
 
 
+<script src="/js/gitalk.min.js"></script>
 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+<script src="/js/hljs.min.js"></script>
+ 
+<script>hljs.highlightAll();</script>
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+	<meta name="generator" content="Hexo 5.4.2"></head>
+
+	<body>
+		
+	<div class="header">
+		<div class="header-top" id="header-top">
+			<div class="h-left">
+				<a href="/">
+					<img src="/image/avator.png" alt="Quiet">
+				</a>
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/links">
+										LINKS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>ljylwnxx</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/links">LINKS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+    <div class="my_foot">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
+            <img src="/image/avator.png" alt="Quiet主题">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'>
+</div>
+<style>
+    .shelter{
+        background-color: #333;
+        opacity:0.5;
+        cursor: pointer;
+        display: none; 
+        position: fixed;
+        left: 0;
+        top: 0; 
+        right: 0;
+        bottom: 0;
+        z-index: 1998;
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+    .sidebar {
+        width: 66%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        background: #fff;
+        z-index: 1999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
+    }
 
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
 
-  
-<meta name="generator" content="Hexo 5.4.2"></head>
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
 
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
 
-<body>
-  
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
 
-  <header>
-    
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>ljylwnxx</strong>
-    </a>
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
 
-  
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/defaultl.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="Vue3侦听器watch"></span>
-          
-        </div>
+<script>
+    $( function () {
+	$( '.h-right-close>svg' )
+		.click( function () {
+			$( '.sidebar' )
+				.animate( {
+					right: "0"
+				}, 500 );
+			$( '.shelter' )
+				.fadeIn( "slow" )
+		} );
+	$( '.shelter' )
+		.click( function ( e ) {
+			$( '.sidebar' )
+				.animate( {
+					right: "-100%"
+				}, 500 );
+			$( '.shelter' )
+				.fadeOut( "slow" )
+		} )
+} )
 
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-18 18:02" pubdate>
-          2022年10月18日 晚上
-        </time>
-      </span>
-    
-  </div>
+</script>
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          1.4k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          12 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Vue3侦听器watch</h1>
+<div class="post">
+    <div class="post-header-background post-header-img"
+    style="background: url('/image/defaultPic.png')" 
+>
+    <div class="post-header-background-content">
+        <ul class="post-header-tag">
             
             
-              <div class="markdown-body">
+            <li><a href="/tags/vue3">vue3</a></li>
+            
+            
+        </ul>
+        
+        <h1>Vue3侦听器watch</h1>
+        <div class="post-header-info">
+            <div class="post-header-info-author">
                 
-                <p>学过 vue2 的小伙伴们肯定学习过侦听器，主要是用来监听页面数据或者是路由的变化，来执行相应的操作，在 vue3里面呢，也有侦听器的用法，功能基本一样。 侦听器是常用的 Vue API 之一，它用于监听一个数据并在数据变动时做一些自定义逻辑</p>
-<h1 id="watch-侦听器使用"><a href="#watch-侦听器使用" class="headerlink" title="watch 侦听器使用"></a>watch 侦听器使用</h1><p>watch API 使用，至少需要指定两个参数： source 和 callback，其中 callback 被明确指定只能为函数，所以不同是用方式的差别其实只在 source<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>上面的代码是页面上有一个数字，点击按钮一下，数字加一，然后侦听器侦听数字的变化，打印出侦听的最新值和旧值。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E6%8E%A7%E5%88%B6%E5%8F%B0.png" srcset="/img/loading.gif" lazyload><br>上边是 vue3 侦听器的简单案例，侦听器和计算属性一样，可以创建多个侦听器，这个是没有问题的。<br>watch API 至少需要指定两个参数: source 和 callback。<br>通过上边的案例我们看到了，确实是两个，source 是监听的数据，callback是监听回调，那为啥说是至少呢？因为他还有第三个参数 —— 配置对象。</p>
-<p>在 vue2 里面，我们打开页面就想让侦听器立即执行，而不是在第一次数据改变的时候才开始执行，这时候有一个参数叫 immediate ，设置了这个参数，创建第一次就执行，vue3 同样可以使用。</p>
-<p>案例中刷新执行的时候发现，在点击按钮之前，也就是 num 创建的时候，侦听器是没有执行的，所以加上 immediate 参数，就可以让侦听器立即执行操作。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0.png" srcset="/img/loading.gif" lazyload><br>我们看到，还没有点击按钮让 num 加一的时候，控制台就有数据打印了，为什么呢？就是因为我们加了 immediate 为 true，让侦听器立即执行。控制台输出最新的值也就是我们初始化的值1，旧值没有，所以输出了 undefined。</p>
-<h1 id="侦听器监听-reactive"><a href="#侦听器监听-reactive" class="headerlink" title="侦听器监听 reactive"></a>侦听器监听 reactive</h1><p><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E7%9B%91%E5%90%ACreactive%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E7%9B%91%E5%90%ACreactive%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload><br>在监听整个 reactive 响应式对象的时候，确实当里面的属性值发生改变了之后可以被侦听器检测到，但是 newVal 和 oldVal 的值都是新的，默认是10，点击之后，新值是 11 很正常，但是旧值不应该是 10 吗？为什么这里旧值和新值一样也是 11 呢？<br>如果监听整个 reactive 数据的话，只能回调到最新的值，获取不到旧的值。<br>如果我修改age属性，我就要获取age旧的值怎么办？其实我们只需要监听num下面的 age 就可以了。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>我们监听对象直接是 num.age， 监听年龄属性值<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E8%AD%A6%E5%91%8A.png" srcset="/img/loading.gif" lazyload><br>我们可以看到，侦听器直接报了一个警告，啥意思呢，其实不能直接这样监听。<br>当我们需要监听某个对象属性的时候，我们不能直接对象点属性的方式进行监听，需要传入一个getter方法，也就是箭头函数进行监听。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload><br>通过箭头函数，我们就可以实现对象属性的监听。<br>很多人说，vue2 在监听对象的时候需要对侦听器设置深度侦听，为什么 vue3 这个不需要呢？因为它监听响应式对象，默认就是深度监听。但是，如果监听的是深度嵌套对象或数组中的 property 变化时，仍然需要 deep 选项设置为 true。<br>我们监听深层嵌套的 time 属性值。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>发现点击之后没有监听到<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E6%8A%A5%E9%94%99.png" srcset="/img/loading.gif" lazyload><br>这个时候就可以加上 deep 深度监听。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload><br>加上深度监听 { deep:true }<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload><br>我们可以看到打印出信息来了，有一点要注意，深度侦听需要遍历被侦听对象中的所有嵌套的属性，当用于大型数据结构时，开销很大。因此请要留意性能。</p>
-<p>监听多个参数执行各自逻辑<br>比如说我们需要监听多个参数，假设两个哈，然后每个参数监听到之后，执行的逻辑是不一样的，我们可以创建多个侦听器来分别监听<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E5%A4%9A%E4%B8%AA%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BB%A3%E7%A0%81.png" srcset="/img/loading.gif" lazyload></p>
-<p>监听多个参数执行相同逻辑<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0.png" srcset="/img/loading.gif" lazyload><br>修改 name 和 age 的值<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E7%BB%93%E6%9E%9C.png" srcset="/img/loading.gif" lazyload></p>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/vue3/" class="category-chain-item">vue3</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/vue3/">#vue3</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Vue3侦听器watch</div>
-      <div>http://example.com/2022/10/18/Vue3侦听器watch/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>ljylwnxx</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年10月18日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
+                    <svg t="1604839279282" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="2901" width="20" height="20">
+                        <path
+                            d="M513 956.3c-247.7 0-448-200.3-448-448S265.3 66.2 513 66.2s448 200.3 448 448-200.3 442.1-448 442.1z m0-830.9c-212.2 0-388.8 170.7-388.8 388.8C124.2 726.3 294.9 903 513 903c212.2 0 388.8-170.7 388.8-388.8S725.2 125.4 513 125.4z m0 430.2c-94.2 0-170.7-76.5-170.7-170.7S418.8 207.8 513 207.8s170.7 76.5 170.7 170.7S607.2 555.6 513 555.6z m0-289.1c-64.6 0-112 52.8-112 112s47.4 117.9 112 117.9 112-52.8 112-112-47.4-117.9-112-117.9z m0 689.8c-135.7 0-259-58.7-341.9-158.9l-11.8-17.8 11.8-17.8c76.5-117.9 206.2-188.5 347.8-188.5 135.7 0 265 64.6 341.9 182.6l11.8 17.8-11.8 17.8C778 897.1 648.7 956.3 513 956.3zM230.3 773.2C300.9 849.7 406.9 897 513 897c112 0 218.1-47.4 288.6-129.8-70.5-88.2-170.7-135.6-282.7-135.6s-218.1 53.3-288.6 141.6z"
+                            p-id="2902" fill="#ffffff"></path>
+                    </svg>
                     
+                <span class="post-header-info-author-text"> <a href="../../about">ljylwnxx</a></span>
+                <div class="post-header-info-author-categories">
                     
-                      <a href="/2022/10/19/Vue3shallowRef%E5%92%8CshallowReactive/" title="Vue3shallowRef和shallowReactive">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vue3shallowRef和shallowReactive</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
+                         <a href="../../categories/vue3/" target="_blank" >vue3</a>
                     
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/10/17/Vue3%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" title="Vue3计算属性">
-                        <span class="hidden-mobile">Vue3计算属性</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
                 </div>
-              
+                <p>2022-10-18 18:02:06</p>
             </div>
-
-            
-          </article>
         </div>
-      </div>
     </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
 </div>
+    <div class="post-content" id="content">
+  
+  <div id="article" class="post-content-info">
+    
 
+    <p>学过 vue2 的小伙伴们肯定学习过侦听器，主要是用来监听页面数据或者是路由的变化，来执行相应的操作，在 vue3里面呢，也有侦听器的用法，功能基本一样。 侦听器是常用的 Vue API 之一，它用于监听一个数据并在数据变动时做一些自定义逻辑</p>
+<h1 id="watch-侦听器使用"><a href="#watch-侦听器使用" class="headerlink" title="watch 侦听器使用"></a>watch 侦听器使用</h1><p>watch API 使用，至少需要指定两个参数： source 和 callback，其中 callback 被明确指定只能为函数，所以不同是用方式的差别其实只在 source<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E4%BB%A3%E7%A0%81.png"><br>上面的代码是页面上有一个数字，点击按钮一下，数字加一，然后侦听器侦听数字的变化，打印出侦听的最新值和旧值。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E7%BB%93%E6%9E%9C.png"><br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E6%8E%A7%E5%88%B6%E5%8F%B0.png"><br>上边是 vue3 侦听器的简单案例，侦听器和计算属性一样，可以创建多个侦听器，这个是没有问题的。<br>watch API 至少需要指定两个参数: source 和 callback。<br>通过上边的案例我们看到了，确实是两个，source 是监听的数据，callback是监听回调，那为啥说是至少呢？因为他还有第三个参数 —— 配置对象。</p>
+<p>在 vue2 里面，我们打开页面就想让侦听器立即执行，而不是在第一次数据改变的时候才开始执行，这时候有一个参数叫 immediate ，设置了这个参数，创建第一次就执行，vue3 同样可以使用。</p>
+<p>案例中刷新执行的时候发现，在点击按钮之前，也就是 num 创建的时候，侦听器是没有执行的，所以加上 immediate 参数，就可以让侦听器立即执行操作。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%80%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0.png"><br>我们看到，还没有点击按钮让 num 加一的时候，控制台就有数据打印了，为什么呢？就是因为我们加了 immediate 为 true，让侦听器立即执行。控制台输出最新的值也就是我们初始化的值1，旧值没有，所以输出了 undefined。</p>
+<h1 id="侦听器监听-reactive"><a href="#侦听器监听-reactive" class="headerlink" title="侦听器监听 reactive"></a>侦听器监听 reactive</h1><p><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E7%9B%91%E5%90%ACreactive%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E7%9B%91%E5%90%ACreactive%E7%BB%93%E6%9E%9C.png"><br>在监听整个 reactive 响应式对象的时候，确实当里面的属性值发生改变了之后可以被侦听器检测到，但是 newVal 和 oldVal 的值都是新的，默认是10，点击之后，新值是 11 很正常，但是旧值不应该是 10 吗？为什么这里旧值和新值一样也是 11 呢？<br>如果监听整个 reactive 数据的话，只能回调到最新的值，获取不到旧的值。<br>如果我修改age属性，我就要获取age旧的值怎么办？其实我们只需要监听num下面的 age 就可以了。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E4%BB%A3%E7%A0%81.png"><br>我们监听对象直接是 num.age， 监听年龄属性值<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E8%AD%A6%E5%91%8A.png"><br>我们可以看到，侦听器直接报了一个警告，啥意思呢，其实不能直接这样监听。<br>当我们需要监听某个对象属性的时候，我们不能直接对象点属性的方式进行监听，需要传入一个getter方法，也就是箭头函数进行监听。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BA%8C%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png"><br>通过箭头函数，我们就可以实现对象属性的监听。<br>很多人说，vue2 在监听对象的时候需要对侦听器设置深度侦听，为什么 vue3 这个不需要呢？因为它监听响应式对象，默认就是深度监听。但是，如果监听的是深度嵌套对象或数组中的 property 变化时，仍然需要 deep 选项设置为 true。<br>我们监听深层嵌套的 time 属性值。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E4%BB%A3%E7%A0%81.png"><br>发现点击之后没有监听到<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E6%8A%A5%E9%94%99.png"><br>这个时候就可以加上 deep 深度监听。<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png"><br>加上深度监听 { deep:true }<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%99%A8%E4%B8%89%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png"><br>我们可以看到打印出信息来了，有一点要注意，深度侦听需要遍历被侦听对象中的所有嵌套的属性，当用于大型数据结构时，开销很大。因此请要留意性能。</p>
+<p>监听多个参数执行各自逻辑<br>比如说我们需要监听多个参数，假设两个哈，然后每个参数监听到之后，执行的逻辑是不一样的，我们可以创建多个侦听器来分别监听<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E5%A4%9A%E4%B8%AA%E4%BE%A6%E5%90%AC%E5%99%A8%E4%BB%A3%E7%A0%81.png"></p>
+<p>监听多个参数执行相同逻辑<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0.png"><br>修改 name 和 age 的值<br><img src="/2022/10/18/Vue3%E4%BE%A6%E5%90%AC%E5%99%A8watch/%E4%BE%A6%E5%90%AC%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%E7%BB%93%E6%9E%9C.png"></p>
 
-
-  </aside>
-
-
-    </div>
   </div>
+  <div id="gitalk-container"></div>
 </div>
 
-
-
-
-
+<script>
   
+Fancybox.bind('[data-fancybox="fancybox-gallery-img"]', {
+  dragToClose: true,
+  Toolbar: true,
+  closeButton: "top",
+  Image: {
+    zoom: true,
+  },
+  on: {
+    initCarousel: (fancybox) => {
+      const slide = fancybox.Carousel.slides[fancybox.Carousel.page];
+      fancybox.$container.style.setProperty(
+        "--bg-image",
+        `url("${slide.$thumb.src}")`
+      );
+    },
+    "Carousel.change": (fancybox, carousel, to, from) => {
+      const slide = carousel.slides[to];
+      fancybox.$container.style.setProperty(
+        "--bg-image",
+        `url("${slide.$thumb.src}")`
+      );
+    },
+  },
+});
+</script>
 
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 9999;
+        /* width: 600px !important; */
+        min-width: 0%;
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
 
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            max-width: 88%
+        }
+    }
+</style>
 
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
+    <div class="post-paging">
     
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+    <a href="/2022/10/19/Vue3shallowRef%E5%92%8CshallowReactive/">
+        <div class="post-paging-last">
+            <span>上一篇</span>
+            <p>Vue3shallowRef和shallowReactive</p>
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
+    </a>
     
 
     
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
+    <a href="/2022/10/17/Vue3%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">
+        <div class="post-paging-next">
+            <span>下一篇</span>
+            <p>Vue3计算属性</p>
+        </div>
+    </a>
+    
+</div>
+</div>
+		
+<div class="footer">
+	<div class="Copyright">
+		©2023 By ljylwnxx. 主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
+	</div>
+	<div class="contact">
+		
+		<a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
+			<img src="/image/avator.png" alt="Quiet主题">
+		</a>
+		
+	</div>
 </div>
 
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
+<script src="/js/gotop.js"></script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            transition: border .5s;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
 
+        .goTop>span>svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
 
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
     }
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
         }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $( '#js-go_top' )
+	.gotoTop( {
+		offset: 500,
+		speed: 300,
+		animationShow: {
+			'transform': 'translate(0,0)',
+			'transition': 'transform .5s ease-in-out'
+		},
+		animationHide: {
+			'transform': 'translate(100px,0)',
+			'transition': 'transform .5s ease-in-out'
+		}
+	} );
 </script>
 
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
+    <!-- Gitalk -->
+    <script>
+        const data = '{"clientID":"02b3c","clientSecret":"adfc7b4","repo":"gimment","owner":"duneng","admin":"duneng"}'
+        const gitalk = new Gitalk({
+            ...JSON.parse( data),
+            id:location.pathname,
+            distractionFreeMode:false
+        })
+        
+        if(Boolean('true')){
+            gitalk.render('gitalk-container')
         }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
+    </script>
 
-
-  
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
+	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
 </script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
+	</body>
 </html>
+
