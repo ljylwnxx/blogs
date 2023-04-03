@@ -1,7 +1,8 @@
 ---
 title: 基于Webpack5搭建一个Vue-Cli
 date: 2023-03-27 21:30:26
-tags:
+tags: Webpack
+categories: 知识点
 ---
 大家平时在进行Vue开发的时候，大部分人都是使用 Vue-cli 这个现成的Vue脚手架来进行开发的，但是用它用了这么久，你难道不想自己搭一个属于自己的 Vue-cli 吗？
 
