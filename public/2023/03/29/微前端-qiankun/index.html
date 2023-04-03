@@ -406,103 +406,120 @@ new Vue(&#123;
  render: h =&gt; h(App)
 &#125;).$mount(&#39;#app&#39;);
 </code></pre>
-```<!-- router/index.js -->
-import Vue from ‘vue’<br>import VueRouter from ‘vue-router’<br>import Home from “../views/Home”;<br>import About from “../views/About”;</li>
-</ol>
-<p>Vue.use(VueRouter)</p>
-<p>const routes = [{<br>        path: ‘/‘,<br>        name: ‘Home’,<br>        // redirect: ‘/home’,<br>        component: Home,<br>    },<br>    {<br>        path: ‘/about’,<br>        name: ‘About’,<br>        component: About,<br>    },</p>
-<p>]</p>
-<!-- 以下是修改后的代码 -->
-<p>const router = new VueRouter({<br>    mode:’history’,<br>    base: ‘’,<br>    routes<br>})<br>export default router;</p>
-<pre><code>
-## 微应用
-微应用中主要需要修改的地方有：main.js、vue.config.js和router/index.js，其余页面部分根据自己喜好可改可不改，本文为了便于区分主子应用的内容将对Home.vue和About.vue页面进行微小的改动
-
-1. 利用vue脚手架创建一个vue2.0项目：sub-app（vue create sub-app），建议选择手动模式可以将Router勾选上，并且需要使用history路由模式
-2. 修改views/Home.vue，在原有内容的基础上新增语句：“This is a home page in sub-app”（根据个人喜好，可改可不改）
-修改views/About.vue，将内容改为：“This is an about page in sub-app”（根据个人喜好，可改可不改）
-3. 修改main.js（必需）
-+ 将创建Vue实例的代码部分提取到一个函数render中，render函数接收一个参数props
-+ 判断window.__ POWERED_BY_QIANKUN __，如果是从qiankun启动则将window. __ INJECTED_PUBLIC_PATH_BY_QIANKUN __ 的值赋值给 __ webpack_public_path __ ，否则直接调用render方法表示子应用是独立运行
-+ 导出3个必需的方法bootstrap，mount和unmount；bootstrap函数体内容可为空但函数必须要导出。mount函数中调用render方法进行子应用渲染。unmount函数中将render方法中创建的vue实例销毁。
-4. 修改router/index.js，指定base值为：“/vueChild”
-5. 创建vue.config.js，在该文件中配置允许跨域：“ Access-Control-Allow-Origin：&#39;*&#39; ”，并配置webpack的output.library和output.libraryTarget
-
-各部分完整代码如下：
+<pre><code>&lt;!-- router/index.js --&gt;
+import Vue from &#39;vue&#39;
+import VueRouter from &#39;vue-router&#39;
+import Home from &quot;../views/Home&quot;;
+import About from &quot;../views/About&quot;;
+Vue.use(VueRouter)
+const routes = [&#123;
+     path: &#39;/&#39;,
+     name: &#39;Home&#39;,
+     // redirect: &#39;/home&#39;,
+     component: Home,
+ &#125;,
+ &#123;
+     path: &#39;/about&#39;,
+     name: &#39;About&#39;,
+     component: About,
+ &#125;,
+]
+&lt;!-- 以下是修改后的代码 --&gt;
+const router = new VueRouter(&#123;
+ mode:&#39;history&#39;,
+ base: &#39;&#39;,
+ routes
+&#125;)
+export default router;
 </code></pre>
-<!--======================== views/Home.vue ====================-->
-<template>
-    <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png" />
-        <h1 style="color:red;">This is a home page in sub-app</h1>
-    </div>
-</template>
-```
-```
-<!--======================== views/About.vue ====================-->
-<template>
-    <div class="About">        
+</li>
+</ol>
+<h2 id="微应用"><a href="#微应用" class="headerlink" title="微应用"></a>微应用</h2><p>微应用中主要需要修改的地方有：main.js、vue.config.js和router/index.js，其余页面部分根据自己喜好可改可不改，本文为了便于区分主子应用的内容将对Home.vue和About.vue页面进行微小的改动</p>
+<ol>
+<li>利用vue脚手架创建一个vue2.0项目：sub-app（vue create sub-app），建议选择手动模式可以将Router勾选上，并且需要使用history路由模式</li>
+<li>修改views/Home.vue，在原有内容的基础上新增语句：“This is a home page in sub-app”（根据个人喜好，可改可不改）<br>修改views/About.vue，将内容改为：“This is an about page in sub-app”（根据个人喜好，可改可不改）</li>
+<li>修改main.js（必需）</li>
+</ol>
+<ul>
+<li>将创建Vue实例的代码部分提取到一个函数render中，render函数接收一个参数props</li>
+<li>判断window.__ POWERED_BY_QIANKUN __，如果是从qiankun启动则将window. __ INJECTED_PUBLIC_PATH_BY_QIANKUN __ 的值赋值给 __ webpack_public_path __ ，否则直接调用render方法表示子应用是独立运行</li>
+<li>导出3个必需的方法bootstrap，mount和unmount；bootstrap函数体内容可为空但函数必须要导出。mount函数中调用render方法进行子应用渲染。unmount函数中将render方法中创建的vue实例销毁。</li>
+</ul>
+<ol start="4">
+<li>修改router/index.js，指定base值为：“/vueChild”</li>
+<li>创建vue.config.js，在该文件中配置允许跨域：“ Access-Control-Allow-Origin：’*’ ”，并配置webpack的output.library和output.libraryTarget</li>
+</ol>
+<p>各部分完整代码如下：</p>
+<pre><code>&lt;!--======================== views/Home.vue ====================--&gt;
+&lt;template&gt;
+    &lt;div class=&quot;home&quot;&gt;
+        &lt;img alt=&quot;Vue logo&quot; src=&quot;../assets/logo.png&quot; /&gt;
+        &lt;h1 style=&quot;color:red;&quot;&gt;This is a home page in sub-app&lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<pre><code>&lt;!--======================== views/About.vue ====================--&gt;
+&lt;template&gt;
+    &lt;div class=&quot;About&quot;&gt;        
         This is an about page in sub-app
-    </div>
-</template>
-```
-```
-<!--  main.js -->
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+    &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<pre><code>&lt;!--  main.js --&gt;
+import Vue from &#39;vue&#39;
+import App from &#39;./App.vue&#39;
+import router from &#39;./router&#39;
 let instance = null; //设置全局变量，用于保存或销毁Vue实例
-function render(props = {}){
-    const { container } = props
-    instance = new Vue({
+function render(props = &#123;&#125;)&#123;
+    const &#123; container &#125; = props
+    instance = new Vue(&#123;
         router,
-        render: h => h(App)
-    }).$mount(container ? container.querySelector("#app") : "#app");//用于限定当前上下文下的#app，防止与主应用中的#app冲突
-}
-if(window.__POWERED_BY_QIANKUN__){
+        render: h =&gt; h(App)
+    &#125;).$mount(container ? container.querySelector(&quot;#app&quot;) : &quot;#app&quot;);//用于限定当前上下文下的#app，防止与主应用中的#app冲突
+&#125;
+if(window.__POWERED_BY_QIANKUN__)&#123;
     __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__
-}else{
+&#125;else&#123;
     render();
-    console.log('子应用独立运行')
-}
-export async function bootstrap(props){
-    console.log('这里暂时可以什么都不用做，但方法必须要导出')
-}
-export async function mount(props){
+    console.log(&#39;子应用独立运行&#39;)
+&#125;
+export async function bootstrap(props)&#123;
+    console.log(&#39;这里暂时可以什么都不用做，但方法必须要导出&#39;)
+&#125;
+export async function mount(props)&#123;
     render(props);//从qiankun启动
-}
-export async function unmount(props){
+&#125;
+export async function unmount(props)&#123;
     instance.$destroy();//销毁子应用实例
-}
-```
-```
-<!-- vue.config.js -->
-module.exports = {
+&#125;
+</code></pre>
+<pre><code>&lt;!-- vue.config.js --&gt;
+module.exports = &#123;
     lintOnSave: false,
-    devServer:{
+    devServer:&#123;
         port:8081,
-        headers:{
-            "Access-Control-Allow-Origin": "*"
-        }
-    },
-    configureWebpack:{
-        output:{
-            library:'subApp',
-            libraryTarget:'umd'
-        }
-    }
-}
-```
-```
-<!-- router/index.js -->
+        headers:&#123;
+            &quot;Access-Control-Allow-Origin&quot;: &quot;*&quot;
+        &#125;
+    &#125;,
+    configureWebpack:&#123;
+        output:&#123;
+            library:&#39;subApp&#39;,
+            libraryTarget:&#39;umd&#39;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<pre><code>&lt;!-- router/index.js --&gt;
 // ...原有代码省略
 //修改后的代码
-const router = new VueRouter({
-    mode:'history',
-    base:'/subapp',
+const router = new VueRouter(&#123;
+    mode:&#39;history&#39;,
+    base:&#39;/subapp&#39;,
     routes
-})
-```
+&#125;)
+</code></pre>
+
   </div>
   <div id="gitalk-container"></div>
 </div>
