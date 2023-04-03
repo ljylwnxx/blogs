@@ -22,35 +22,38 @@ npm i
 此时基本的vite2+vue3项目已经启动成功了，但此时vite支持的还是vue3版本的，我们需要让vite支持vue2版本。
 ## 2.2配置vite支持vue2
 此时打开vite.config.js,里面的代码为
+```
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-​
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()]
 })
+```
 @vitejs/plugin-vue插件是对vue3语法做支持，如果要支持vue2，需要用vite-plugin-vue2
 第一步，从vite中删除 @vitejs/plugin-vue配置，从package.json文件中也删除。
 npm uninstall @vitejs/plugin-vue -D
 第二步,安装vite-plugin-vue2依赖
 npm install vite-plugin-vue2 -D
 第三步,在vite.config.js文件配置vite-plugin-vue2
+```
 import { defineConfig } from 'vite'
 import { createVuePlugin } from "vite-plugin-vue2";
-​
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [createVuePlugin()]
 })
+```
 第四步，修改vue版本由3改为2版本
 npm install vue@2 -S
 第五步, 修改main.js，创建根vue实例写法改为vue2写法
+```
 import Vue from 'vue'
 import App from './App.vue'
-​
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+```
 第六步，修改main.js完成后，修改App.vue文件代码为vue2格式代码
 执行npm run dev，即可看到启动成功,代表此时vite已经支持vue2语法了，可以开始项目迁移工作了。
 ## 2.3复制原项目业务代码
