@@ -18,7 +18,7 @@ webpack-cli ：为webpack提供命令行的工具
 npm i webpack webpack-cli -D
 # 4、src、public
 在根目录下新建 src、public 这两个文件夹，前者用来放置项目主要代码，后者用来放项目公用静态资源
-
+```
 public/index.html
 <!DOCTYPE html>
 <html lang="en">
@@ -32,19 +32,23 @@ public/index.html
 <div id="app"></div>
 </body>
 </html>
-
+```
+```
 src/main.js
 import { add } from './tools/add.js'
 console.log(add(1, 2))
 console.log('我是main.js')
-
+```
+```
 src/tools/add.js
 export const add = (a, b) => {
 return a + b
 }
+```
 # 5、入口文件
 刚刚的 main.js 就是我们的入口文件，也就相当于整个引用树的根节点，webpack打包需要从入口文件开始查找，一直到打包所有引用文件。
 进行入口文件的配置，在根目录下新建 webpack.config.js ：
+```
 const path = require('path')
 module.exports = {
   // 模式 开发模式
@@ -63,12 +67,14 @@ module.exports = {
     clean: true,
   }
 }
+```
 # 6、配置打包命令
 到 package.json 里配置打包命令：
-
+```
 "scripts": {
     "build": "webpack"
 },
+```
 现在我们到终端输入 npm run build ，就能发现打包成功：
 但是这其实不是我们要的目的，我们的目的是将这个打包后的最终js文件，插入到刚刚的 index.html 中，因为js文件得让html文件引用，才有意义嘛！所以我们不仅要打包js，还要打包html
 小知识：loader和plugin
@@ -79,11 +85,10 @@ plugin ：拓展webpack的打包功能，如优化体积、显示进度条等等
 打包html需要用到 html-webpack-plugin 这个插件，也就是plugin，所以需要安装一下：
 npm i html-webpack-plugin -D
 并且需要在 webpack.config.js 中配置一下
+```
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
 module.exports = {
   // 刚刚的代码...
-  
   // 插件都放 plugins 中
   plugins: [
     new HtmlWebpackPlugin({
@@ -96,13 +101,16 @@ module.exports = {
     }),
   ]
 }
+```
 现在我们可以在终端中执行打包命令 npm run build 可以看到html被打包了，且打包后的html自动引入打包后的js文件
 现在我们可以打开打包后的 index.html ，发现控制台可以输出，说明成功了！
 ## 打包CSS
 在 src 下新建 styles 文件夹，用来存放样式文件文件src/styles/index.scss
+```
 body {
 background-color: blue;
 }
+```
 然后我们在入口文件 main.js 中引入
 import './styles/index.scss'
 // 刚刚的代码...
@@ -114,6 +122,7 @@ mini-css-extract-plugin ：可将css代码打包成一个单独的css文件
 我们安装一下这些插件
 npm i sass sass-loader sass-resources-loader mini-css-extract-plugin -D
 然后配置一下 webpack.config.js
+```
 // 刚才的代码...
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
@@ -149,10 +158,12 @@ module.exports = {
     ]
   }
 }
+```
 此时我们重新执行打包命令 npm run build ，可以发现出现了打包后的css文件，且 index.html 中自动引入了css文件：
 我们可以看看页面，可以看到，body的背景已经变成蓝色，说明有效果了.
 ## 打包图片
 webpack5中已经废弃了 url-loader ，打包图片可以使用 asset-module ，我们先放置一张图片在 src/assets/images 中：并且改写一下 index.css
+```
 body {
   width: 100vw;
   height: 100vh;
@@ -160,7 +171,9 @@ body {
   background-image: url('../assets/images/guang.png');
   background-size: 100% 100%;
 }
+```
 然后我们在 webpack.config.js 中添加打包图片的配置
+```
   module: {
     rules: [
       // 刚刚的代码...
@@ -181,6 +194,7 @@ body {
      }
     ]
   }
+```
   我们现在重新运行一下 npm run build ，发现dist下已经有了 images 这个文件夹
   我们看一下页面背景图片已经生效，说明打包成功了！
 ## 配置babel
@@ -193,6 +207,7 @@ babel 可以将我们项目中的高级语法转化成比较低级的语法，�
 
 npm i @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime -D
 由于 babel 是针对js文件的语法转换，所以我们需要在 webpack.config.js 中去针对js进行操作
+```
 module: {
   rules: [
     // 刚刚的代码...
@@ -207,9 +222,10 @@ module: {
     }
   ]
 }
+```
 单单配置了 babel-loader 还是不够的，我们还需要配置 babel 转换的规则，所以需要在根目录下创建 babel.config.js
+```
 // babel.config.js
-
 module.exports = {
 presets: [
   // 配置规则
@@ -218,6 +234,7 @@ presets: [
 // 配置插件
 plugins: ["@babel/plugin-transform-runtime"]
 }
+```
 此时我们重新运行打包 npm run build ，我们可以发现打包后的js代码中，已经把刚刚代码中的 ES6 语法转成 ES5 语法了！可以看到刚刚代码中的 const 已经转成 ES5 语法了
 ## 打包Vue
 打包Vue需要用到以下几个包：
@@ -230,9 +247,9 @@ vue-template-compiler ：解析vue中模板的工具
 npm i 
 vue@2.6.14 vue-template-compiler@2.6.14 vue-loader@15.9.8 @vue/babel-preset-jsx -D
 然后我们需要去 webpack.config.js 中配置对 .vue 文件的解析
+```
 // 刚才的代码...
 const { VueLoaderPlugin } = require('vue-loader')
-
 module.exports = {
   // 刚才的代码...
   plugins: [
@@ -249,7 +266,9 @@ module.exports = {
     ]
   }
 }
+```
 并且到 babel.config.js 中配置一下，让webpack支持 .vue 文件中的 jsx 语法
+```
 module.exports = {
   presets: [
     "@babel/preset-env",
@@ -258,15 +277,15 @@ module.exports = {
   ],
   plugins: ["@babel/plugin-transform-runtime"]
 }
+```
 现在我们可以在 src 下新建一个 App.vue
+```
 <template>
   <div class="box">我是App哈哈哈哈</div>
 </template>
-
 <script>
 export default {}
 </script>
-
 <style lang="scss">
 .box {
   width: 500px;
@@ -275,18 +294,20 @@ export default {}
   background-color: #000;
 }
 </style>
+```
 然后改写一下 src/main.js
+```
 import Vue from 'vue'
 import App from './App.vue'
-
 new Vue({
   render: (h) => h(App),
 }).$mount('#app')
+```
 此时我们重新运行 npm run build ，我们可以看看页面的效果，说明打包成功啦！
 ## 配置路径别名
 有时候文件引用搁着太多层，引用起来会看起来很不明确，比如
 ../../../../../App.vue ，所以我们可以配置一下别名 alia
-
+```
 module.exports = {
   // 刚才的代码...
   resolve: {
@@ -300,6 +321,7 @@ module.exports = {
     extensions: ['.js', '.ts', '.less', '.vue'],
   },
 }
+```
 现在别名配置完成啦：
 配置前： ../../../../../App.vue
 配置后： @/App.vue
@@ -308,19 +330,21 @@ module.exports = {
 
 npm i webpack-dev-server -D
 到 webpack.config.js 中配置 devServer
-
+```
   devServer: {
     // 自定义端口号
     // port:7000,
     // 自动打开浏览器
     open: true
   },
+```
 然后到 package.json 中配置一下启动命令
-
+```
   "scripts": {
     "build": "webpack",
     "serve": "webpack serve"
   },
+```
 此时我们运行 npm run serve 就可以启动项目啦！
 ## 区分环境
 我们不能把所有配置都配置在一个 webpack.config.js 中，因为我们有两个环境 development(开发环境)、production(生产环境) ，所以我们在根目录下创建 build文件夹 ，并创建三个文件
@@ -339,8 +363,8 @@ webpack.prod.js ：生产环境独有配置
 我们需要先安装一个合并插件 webpack-merge ，用于两个环境的配置可以合并公共的配置
 npm i webpack-merge -D
 然后我们在根目录下新建一个 build文件夹 ，并在此文件夹下新建 webpack.base.js、webpack.dev.js、webpack.config.js
+```
 // 公共配置
-
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -435,13 +459,12 @@ resolve: {
   extensions: ['.js', '.ts', '.less', '.vue']
 },
 }
+```
+```
 webpack.dev.js
-
 // 开发环境
-
 const { merge } = require('webpack-merge')
 const base = require('./webpack.base')
-
 module.exports = merge(base, {
 mode: 'development',
 devServer: {
@@ -449,24 +472,24 @@ devServer: {
   // hot: true,
 }
 })
+```
+```
 webpack.prod.js
-
 // 生产环境
-
 const { merge } = require('webpack-merge')
 const base = require('./webpack.base')
-
 module.exports = merge(base, {
 mode: 'production'
 })
+```
 然后我们到 package.json 修改一下指令
-
+```
   "scripts": {
     "serve": "webpack serve --config ./build/webpack.dev",
     "build": "webpack --config ./build/webpack.prod"
   },
+```
 接下来我们运行这两个命令，发现都成功了：
-
 npm run build
 npm run serve
 
@@ -474,12 +497,11 @@ npm run serve
 无论是启动项目时还是打包时，都需要进度条的展示，所以需要把进度条配置在 webpack.base 中，我们需要先安装进度条的插件 progress-bar-webpack-plugin
 
 npm i progress-bar-webpack-plugin -D
+```
 // webpack.base.js
-
 // 刚刚的代码...
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const chalk = require('chalk')
-
 module.exports = {
   // 刚刚的代码...
   plugins: [
@@ -490,6 +512,7 @@ module.exports = {
   ],
   // 刚刚的代码...
 }
+```
 现在我们可以看到无论启动项目或者打包，都会有进度条了
 
 
@@ -500,7 +523,7 @@ source-map 的作用：代码报错时，能快速定位到出错位置， webpa
 development ：使用 eval-cheap-module-source-map 模式，能具体定位到源码位置和源码展示，适合开发模式，体积较小
 production ：使用 nosources-source-map ，只能定位源码位置，不能源码展示，体积较小，适合生产模式
 所以我们开始配置 source-map
-
+```
 webpack.dev.js
 // 刚才的代码...
 module.exports = merge(base, {
@@ -513,8 +536,10 @@ module.exports = merge(base, {
 // 刚才的代码...
 devtool: 'nosources-source-map'
 })
+```
 ## 环境变量
 配置 devlopment、production 这两个环境的环境变量
+```
 webpack.dev.js
 // 刚才的代码...
 const webpack = require('webpack')
@@ -533,11 +558,11 @@ plugins: [
   }),
 ]
 })
+```
+```
 webpack.prod.js
-
 // 刚才的代码...
 const webpack = require('webpack')
-
 module.exports = merge(base, {
 // 刚才的代码...
 plugins: [
@@ -553,4 +578,5 @@ plugins: [
   }),
 ]
 })
+```
 
