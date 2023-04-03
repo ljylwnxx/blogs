@@ -58,34 +58,27 @@ unmount：每次微应用切出或卸载时都会调用
 5.修改views/About.vue，将内容改为：This is an about page in qiankun-main（非必须，可根据自己喜好随便改动，也可使用默认内容）
 6.修改main.js，导入qiankun中的registerMicroApps和start两个方法，注册子应用并启动qiankun
 下面看下修改后的完整代码（创建项目和安装qiankun的步骤就省略了）
-<!-- App.vue -->
-<template>
+//App.vue
 	<div id="app">
 		<div id="nav">
-			<router-link to="/">Home</router-link> |
-			<router-link to="/about">About</router-link> |
-			<router-link to="/subapp">sub-app</router-link> | <!--新增部分-->
+			<router-link to="/">Home</router-link>
+			<router-link to="/about">About</router-link>
+			<router-link to="/subapp">sub-app</router-link> 
 		</div>
 		<router-view />
-		<div id="vueContainer"></div><!--新增部分，用于承载子应用-->
+		<div id="vueContainer"></div>
 	</div>
-</template>
 
-<!-- views/Home.vue -->
-<template>
+//views/Home.vue 
 	<div class="home">This is a home page in qiankun-main</div>
-</template>
 
-<!-- views/About.vue -->
-<template>
+//views/About.vue
 	<div class="home">This is an about page in qiankun-main</div>
-</template>
 
-<!-- main.js -->
+//main.js 
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-<!-- ======================新增内容开始=============================== -->
 import {registerMicroApps, start} from 'qiankun' //新增部分，导入qiankun中的两个方法
 const apps = [
 {
@@ -97,14 +90,12 @@ const apps = [
 ]
 registerMicroApps(apps);//注册子应用
 start();//启动qiankun
-<!-- ======================新增内容结束=============================== -->
 new Vue({
 	router,
 	render: h => h(App)
 }).$mount('#app');
 
-
-<!-- router/index.js -->
+//router/index.js
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "../views/Home";
@@ -125,7 +116,6 @@ const routes = [{
     },
 
 ]
-<!-- 以下是修改后的代码 -->
 const router = new VueRouter({
 	mode:'history',
 	base: '',
@@ -148,26 +138,21 @@ export default router;
 5.创建vue.config.js，在该文件中配置允许跨域：“ Access-Control-Allow-Origin：'*' ”，并配置webpack的output.library和output.libraryTarget
 
 各部分完整代码如下：
-<!--======================== views/Home.vue ====================-->
-<template>
+//views/Home.vue
 	<div class="home">
 		<img alt="Vue logo" src="../assets/logo.png" />
 		<h1 style="color:red;">This is a home page in sub-app</h1>
 	</div>
-</template>
 
-<!--======================== views/About.vue ====================-->
-<template>
+//views/About.vue
 	<div class="About">		
 		This is an about page in sub-app
 	</div>
-</template>
 
-<!--  main.js -->
+//main.js 
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-
 let instance = null; //设置全局变量，用于保存或销毁Vue实例
 function render(props = {}){
 	const { container } = props
@@ -176,26 +161,22 @@ function render(props = {}){
 		render: h => h(App)
 	}).$mount(container ? container.querySelector("#app") : "#app");//用于限定当前上下文下的#app，防止与主应用中的#app冲突
 }
-
 if(window.__POWERED_BY_QIANKUN__){
 	__webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__
 }else{
 	render();
 	console.log('子应用独立运行')
 }
-
 export async function bootstrap(props){
 	console.log('这里暂时可以什么都不用做，但方法必须要导出')
 }
-
 export async function mount(props){
 	render(props);//从qiankun启动
 }
-
 export async function unmount(props){
 	instance.$destroy();//销毁子应用实例
 }
-<!-- vue.config.js -->
+//vue.config.js
 module.exports = {
 	lintOnSave: false,
 	devServer:{
@@ -212,7 +193,7 @@ module.exports = {
 	}
 }
 
-<!-- router/index.js -->
+//router/index.js
 // ...原有代码省略
 //修改后的代码
 const router = new VueRouter({

@@ -24,8 +24,9 @@
 <meta property="og:description" content="大家平时在进行Vue开发的时候，大部分人都是使用 Vue-cli 这个现成的Vue脚手架来进行开发的，但是用它用了这么久，你难道不想自己搭一个属于自己的 Vue-cli 吗？ 1、建一个文件夹新建一个文件夹my-vue-cli用来存放项目 2、初始化npm在终端中输入 npm init然后一直回车就行，这样能使项目拥有一个npm管理环境，之后可以在此环境上安装我们所需要的包 3、webpack、w">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-27T13:30:26.000Z">
-<meta property="article:modified_time" content="2023-03-27T13:52:29.839Z">
+<meta property="article:modified_time" content="2023-04-03T02:37:52.947Z">
 <meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="Webpack">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -218,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.2k 字
+          9.3k 字
         
       </span>
     
@@ -304,7 +305,7 @@
 <p>首先安装所需的包：<br>@babel/core、babel-loader ：转换语法的工具<br>@babel/preset-env ：转换的一套现成规则<br>@babel/plugin-transform-runtime ：转换async/await所需插件</p>
 <p>npm i @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime -D<br>由于 babel 是针对js文件的语法转换，所以我们需要在 webpack.config.js 中去针对js进行操作<br>module: {<br>  rules: [<br>    // 刚刚的代码…<br>    {<br>      // 匹配js后缀文件<br>      test: /.js$/,<br>      // 排除node_modules中的js<br>      exclude: /node_modules/,<br>      use: [<br>        ‘babel-loader’<br>      ],<br>    }<br>  ]<br>}<br>单单配置了 babel-loader 还是不够的，我们还需要配置 babel 转换的规则，所以需要在根目录下创建 babel.config.js<br>// babel.config.js</p>
 <p>module.exports = {<br>presets: [<br>  // 配置规则<br>  “@babel/preset-env”<br>],<br>// 配置插件<br>plugins: [“@babel/plugin-transform-runtime”]<br>}<br>此时我们重新运行打包 npm run build ，我们可以发现打包后的js代码中，已经把刚刚代码中的 ES6 语法转成 ES5 语法了！可以看到刚刚代码中的 const 已经转成 ES5 语法了</p>
-<h2 id="打包Vue"><a href="#打包Vue" class="headerlink" title="打包Vue"></a>打包Vue</h2><p>打包Vue需要用到以下几个包：<br>vue ：Vue开发所需的依赖<br>vue-loader ：解析 .vue 文件的loader<br>vue-template-compiler ：解析vue中模板的工具<br>@vue/babel-preset-jsx ：支持解析vue中的jsx语法<br>注意： vue 和 vue-template-compiler 版本需要一致，这里我使用 2.6.14 这个版本， vue-loader 这里我使用了 15.9.8 这个版本<br>所以我们先安装一下：<br>npm i<br><a href="mailto:&#x76;&#117;&#101;&#64;&#50;&#46;&#54;&#46;&#x31;&#52;">&#x76;&#117;&#101;&#64;&#50;&#46;&#54;&#46;&#x31;&#52;</a> <a href="mailto:&#x76;&#117;&#101;&#x2d;&#x74;&#x65;&#109;&#x70;&#x6c;&#97;&#x74;&#101;&#x2d;&#99;&#111;&#109;&#112;&#x69;&#108;&#101;&#x72;&#64;&#x32;&#46;&#x36;&#46;&#x31;&#52;">&#x76;&#117;&#101;&#x2d;&#x74;&#x65;&#109;&#x70;&#x6c;&#97;&#x74;&#101;&#x2d;&#99;&#111;&#109;&#112;&#x69;&#108;&#101;&#x72;&#64;&#x32;&#46;&#x36;&#46;&#x31;&#52;</a> <a href="mailto:&#x76;&#117;&#101;&#x2d;&#108;&#111;&#x61;&#x64;&#x65;&#114;&#x40;&#49;&#x35;&#x2e;&#x39;&#46;&#x38;">&#x76;&#117;&#101;&#x2d;&#108;&#111;&#x61;&#x64;&#x65;&#114;&#x40;&#49;&#x35;&#x2e;&#x39;&#46;&#x38;</a> @vue/babel-preset-jsx -D<br>然后我们需要去 webpack.config.js 中配置对 .vue 文件的解析<br>// 刚才的代码…<br>const { VueLoaderPlugin } = require(‘vue-loader’)</p>
+<h2 id="打包Vue"><a href="#打包Vue" class="headerlink" title="打包Vue"></a>打包Vue</h2><p>打包Vue需要用到以下几个包：<br>vue ：Vue开发所需的依赖<br>vue-loader ：解析 .vue 文件的loader<br>vue-template-compiler ：解析vue中模板的工具<br>@vue/babel-preset-jsx ：支持解析vue中的jsx语法<br>注意： vue 和 vue-template-compiler 版本需要一致，这里我使用 2.6.14 这个版本， vue-loader 这里我使用了 15.9.8 这个版本<br>所以我们先安装一下：<br>npm i<br><a href="mailto:&#118;&#x75;&#x65;&#x40;&#50;&#x2e;&#54;&#46;&#49;&#52;">&#118;&#x75;&#x65;&#x40;&#50;&#x2e;&#54;&#46;&#49;&#52;</a> <a href="mailto:&#118;&#x75;&#x65;&#x2d;&#116;&#x65;&#109;&#112;&#x6c;&#97;&#x74;&#x65;&#x2d;&#x63;&#111;&#109;&#112;&#x69;&#108;&#x65;&#x72;&#x40;&#50;&#x2e;&#x36;&#x2e;&#49;&#x34;">&#118;&#x75;&#x65;&#x2d;&#116;&#x65;&#109;&#112;&#x6c;&#97;&#x74;&#x65;&#x2d;&#x63;&#111;&#109;&#112;&#x69;&#108;&#x65;&#x72;&#x40;&#50;&#x2e;&#x36;&#x2e;&#49;&#x34;</a> <a href="mailto:&#x76;&#x75;&#x65;&#x2d;&#108;&#x6f;&#x61;&#100;&#x65;&#x72;&#x40;&#x31;&#53;&#x2e;&#57;&#x2e;&#56;">&#x76;&#x75;&#x65;&#x2d;&#108;&#x6f;&#x61;&#100;&#x65;&#x72;&#x40;&#x31;&#53;&#x2e;&#57;&#x2e;&#56;</a> @vue/babel-preset-jsx -D<br>然后我们需要去 webpack.config.js 中配置对 .vue 文件的解析<br>// 刚才的代码…<br>const { VueLoaderPlugin } = require(‘vue-loader’)</p>
 <p>module.exports = {<br>  // 刚才的代码…<br>  plugins: [<br>    // 刚才的代码…<br>    new VueLoaderPlugin()<br>  ],<br>  module: {<br>    rules: [<br>      // 刚才的代码…<br>      {<br>        test: /.vue$/,<br>        use: ‘vue-loader’,<br>      }<br>    ]<br>  }<br>}<br>并且到 babel.config.js 中配置一下，让webpack支持 .vue 文件中的 jsx 语法<br>module.exports = {<br>  presets: [<br>    “@babel/preset-env”,<br>    // 支持vue中的jsx语法<br>    “@vue/babel-preset-jsx”<br>  ],<br>  plugins: [“@babel/plugin-transform-runtime”]<br>}<br>现在我们可以在 src 下新建一个 App.vue<br><template><br>  <div class="box">我是App哈哈哈哈</div><br></template></p>
 <script>
 export default {}
@@ -354,6 +355,34 @@ export default {}
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" class="category-chain-item">知识点</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Webpack/">#Webpack</a>
+      
+    </div>
   
 </div>
 
