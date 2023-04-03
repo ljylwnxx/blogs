@@ -12,9 +12,9 @@ qiankun 是一个基于 single-spa 的微前端实现库，旨在帮助大家能
 微前端的核心目标是将巨石应用拆解成若干可以自治的松耦合微应用，而 qiankun 的诸多设计均是秉持这一原则，如 HTML entry、沙箱、应用间通信等。这样才能确保微应用真正具备 独立开发、独立运行 的能力。
 
 # 为什么不是 iframe
-一、为什么不用 iframe，这几乎是所有微前端方案第一个会被 challenge 的问题。但是大部分微前端方案又不约而同放弃了 iframe 方案，自然是有原因的，并不是为了 "炫技" 或者刻意追求 "特立独行"。
+一. 为什么不用 iframe，这几乎是所有微前端方案第一个会被 challenge 的问题。但是大部分微前端方案又不约而同放弃了 iframe 方案，自然是有原因的，并不是为了 "炫技" 或者刻意追求 "特立独行"。
 如果不考虑体验问题，iframe 几乎是最完美的微前端解决方案了。
-二、iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论是样式隔离、js 隔离这类问题统统都能被完美解决。但他的最大问题也在于他的隔离性无法被突破，导致应用间上下文无法被共享，随之带来的开发体验、产品体验的问题。
+二. iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论是样式隔离、js 隔离这类问题统统都能被完美解决。但他的最大问题也在于他的隔离性无法被突破，导致应用间上下文无法被共享，随之带来的开发体验、产品体验的问题。
 1. url 不同步。浏览器刷新 iframe url 状态丢失、后退前进按钮无法使用。
 2. UI 不同步，DOM 结构不共享。想象一下屏幕右下角 1/4 的 iframe 里来一个带遮罩层的弹框，同时我们要求这个弹框要浏览器居中显示，还要浏览器 resize 时自动居中..
 3. 全局上下文完全隔离，内存变量不共享。iframe 内外系统的通信、数据同步等需求，主应用的 cookie 要透传到根域名都不同的子应用中实现免登效果。
@@ -59,30 +59,37 @@ unmount：每次微应用切出或卸载时都会调用
 6. 修改main.js，导入qiankun中的registerMicroApps和start两个方法，注册子应用并启动qiankun
 下面看下修改后的完整代码（创建项目和安装qiankun的步骤就省略了）
 ```
-//App.vue
+<!-- App.vue -->
+<template>
 	<div id="app">
 		<div id="nav">
 			<router-link to="/">Home</router-link>
 			<router-link to="/about">About</router-link>
-			<router-link to="/subapp">sub-app</router-link> 
+			<router-link to="/subapp">sub-app</router-link> <!--新增部分-->
 		</div>
 		<router-view />
-		<div id="vueContainer"></div>
+		<div id="vueContainer"></div><!--新增部分，用于承载子应用-->
 	</div>
+</template>
 ```
 ```
-//views/Home.vue 
+<!-- views/Home.vue -->
+<template>
 	<div class="home">This is a home page in qiankun-main</div>
+</template>
 ```
 ```
-//views/About.vue
+<!-- views/About.vue -->
+<template>
 	<div class="home">This is an about page in qiankun-main</div>
+</template>
 ```
 ```
-//main.js 
+<!-- main.js -->
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+<!-- ======================新增内容开始=============================== -->
 import {registerMicroApps, start} from 'qiankun' //新增部分，导入qiankun中的两个方法
 const apps = [
 {
@@ -94,18 +101,21 @@ const apps = [
 ]
 registerMicroApps(apps);//注册子应用
 start();//启动qiankun
+<!-- ======================新增内容结束=============================== -->
 new Vue({
 	router,
 	render: h => h(App)
 }).$mount('#app');
 ```
 ```
-//router/index.js
+<!-- router/index.js -->
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "../views/Home";
 import About from "../views/About";
+
 Vue.use(VueRouter)
+
 const routes = [{
         path: '/',
         name: 'Home',
@@ -117,7 +127,9 @@ const routes = [{
         name: 'About',
         component: About,
     },
+
 ]
+<!-- 以下是修改后的代码 -->
 const router = new VueRouter({
 	mode:'history',
 	base: '',
@@ -141,20 +153,24 @@ export default router;
 
 各部分完整代码如下：
 ```
-//views/Home.vue
+<!--======================== views/Home.vue ====================-->
+<template>
 	<div class="home">
 		<img alt="Vue logo" src="../assets/logo.png" />
 		<h1 style="color:red;">This is a home page in sub-app</h1>
 	</div>
+</template>
 ```
 ```
-//views/About.vue
+<!--======================== views/About.vue ====================-->
+<template>
 	<div class="About">		
 		This is an about page in sub-app
 	</div>
+</template>
 ```
 ```
-//main.js 
+<!--  main.js -->
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -183,7 +199,7 @@ export async function unmount(props){
 }
 ```
 ```
-//vue.config.js
+<!-- vue.config.js -->
 module.exports = {
 	lintOnSave: false,
 	devServer:{
@@ -201,7 +217,7 @@ module.exports = {
 }
 ```
 ```
-//router/index.js
+<!-- router/index.js -->
 // ...原有代码省略
 //修改后的代码
 const router = new VueRouter({
