@@ -19,6 +19,7 @@ slot：作为组件模板之中的内容分发插槽。
 如果is匹配不到相应的组件的时候是不尽行任何dom元素的渲染的。
 1.在不同组件之间进行动态切换
 component动态组件就是通过控制currentTabComponent来切换不同的组件。
+```
 <div @click="reload">点击切换</div> 
 <component :is="currentTabComponent"></component>
 <script>
@@ -39,9 +40,11 @@ export default {
     }
 }
 </script>
-
+```
 # 三、动态组件的缓存
 使用动态组件来回切换时，组件是要被销毁的，若不想让数据销毁可以使用<keep-alive>，它可以包裹动态组件，会缓存不活动的组件实例，这样就不会被销毁。和 <transition> 相似，<keep-alive> 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在父组件链中。
+```
 <keep-alive>
     <component :is="componentName"></component>
 </keep-alive>
+```
