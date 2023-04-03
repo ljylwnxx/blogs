@@ -30,31 +30,42 @@ Pinia 中文网：https://pinia.web3doc.top/
 ## 1.Pinia 导入
 首先在 main.js 文件中引入
  vue3 的写法：
+```
 import {createPinia} from 'pinia'
+```
 然后，这个 pinia 就在项目中导入了
 Pinia 是支持 vue2 的，如果是 vue2 的项目，导入的方式是下面的样子：
+```
 import {PiniaVuePlugin} from 'pinia'
+```
 我们还是以 vue3 来介绍这个 Pinia
 导入的时候是 hook ，我们需要调用一下
+```
 const state = createPinia()
+```
 调用完成，state 是以插件的形式存在的，所以说最后我们需要在项目使用一下。
+```
 app.use(state)
+```
 ## 2.Pinia 基本使用
 ### 1.创建 index.ts 文件
 使用起来相对简单一些，我们首先在根目录下创建一个 store 文件夹，用 vuex 的时候也是这个结构。毕竟 pinia 就是用来替换掉 vuex 的嘛。
 创建完 store 文件夹，在里面创建一个 ts 文件，叫做 index.ts 。
 ### 2.编写 index.ts 文件
 首先我们先引入 pinia
+```
 import { defineStore } from "pinia";
+```
 由于 defineStore 也是一个 hooks ，所以说我们可以直接导出一下
 这样子写是会报错的，因为这个 defineStore 是需要传参数的，其中第一个参数是id，就是一个唯一的值，简单点说就可以理解成是一个命名空间，我们可以写一个枚举再传值。
 我们在同级在创建一个名字叫做 store_name.ts 的文件写一个枚举数据导出
+```
 export const enum Names {
   TEST = "TEST"
 }
-***
+```
 然后在 index.ts 文件中引入一下枚举数据，然后传给这个 defineStore。
- 这个样子还是报错的，因为还有其他的参数需要传递，第二个参数就是一个对象，里面有三个模块需要处理，第一个是 state，第二个是 getters，第三个是 actions。
+这个样子还是报错的，因为还有其他的参数需要传递，第二个参数就是一个对象，里面有三个模块需要处理，第一个是 state，第二个是 getters，第三个是 actions。
 state 和之前我们 vuex 里面的写法是不一样的，在 vuex 里面呢，state 是一个对象，但是在 pinia 中，state 必须是一个箭头函数，然后在返回一个对象。
 getters 模块呢，类似于计算属性，是有缓存的，主要是帮助我们修饰一些值。
 actions 呢，类似于 methods，帮助我们做一些同步的或者是异步的操作，提交 state 之类的。
@@ -108,9 +119,13 @@ actions 呢，类似于 methods，帮助我们做一些同步的或者是异步�
 通过测试我们可以看到，结构前的是可以实时渲染的，但是解构后的话是不可以的， 因为解构后的不是响应式数据。
 解决这个问题很简单，官方提供了一个方法，可以把解构后的数据转换为响应式的数据。
 就是 storeToRefs，使用 storeToRefs 需要导入一下。
+```
 import { storeToRefs } from 'pinia'
+```
 然后把我们解构的对象包裹一下就可以了
+```
 const { name, age } = storeToRefs(userInfo)
+```
 ![](截图10代码.png)
 ![](截图10结果.png)
 或者我们换一个写法，直接操作结构后的数据，记得，要 .value
