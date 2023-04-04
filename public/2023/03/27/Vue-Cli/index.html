@@ -1,971 +1,747 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		
-<title>基于Webpack5搭建一个Vue-Cli-Quiet</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" type="image/x-icon" href="/image/defaultPic.png">
+<html lang="zh-Hans">
 
-<link rel="stylesheet" href="/css/index.css">
-
-
-
-<meta name="keywords" content="Webpack,">
-<meta name="description" content="">
-
-
-<script src="/js/jquery.min.js"></script>
-
-
-<script src="/js/index.js"></script>
-
-
-<script src="/js/fancybox.umd.js"></script>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="大家平时在进行Vue开发的时候，大部分人都是使用 Vue-cli 这个现成的Vue脚手架来进行开发的，但是用它用了这么久，你难道不想自己搭一个属于自己的 Vue-cli 吗？ 1、建一个文件夹新建一个文件夹my-vue-cli用来存放项目 2、初始化npm在终端中输入 npm init然后一直回车就行，这样能使项目拥有一个npm管理环境，之后可以在此环境上安装我们所需要的包 3、webpack、w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Webpack5搭建一个Vue-Cli">
+<meta property="og:url" content="http://example.com/2023/03/27/Vue-Cli/index.html">
+<meta property="og:site_name" content="ljylwnxx的博客">
+<meta property="og:description" content="大家平时在进行Vue开发的时候，大部分人都是使用 Vue-cli 这个现成的Vue脚手架来进行开发的，但是用它用了这么久，你难道不想自己搭一个属于自己的 Vue-cli 吗？ 1、建一个文件夹新建一个文件夹my-vue-cli用来存放项目 2、初始化npm在终端中输入 npm init然后一直回车就行，这样能使项目拥有一个npm管理环境，之后可以在此环境上安装我们所需要的包 3、webpack、w">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-03-27T13:30:26.000Z">
+<meta property="article:modified_time" content="2023-04-03T04:33:12.935Z">
+<meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="Webpack">
+<meta name="twitter:card" content="summary">
 
 
-<script src="/js/fancybox-images.js"></script>
+<title >基于Webpack5搭建一个Vue-Cli</title>
+
+<!-- Favicon -->
+
+    <link href='/images/logo.png?v=2.0.5' rel='icon' type='image/png' sizes='16x16' ></link>
 
 
-<script src="/js/gitalk.min.js"></script>
+    <link href='/images/logo.png?v=2.0.5' rel='icon' type='image/png' sizes='32x32' ></link>
 
 
-<script src="/js/hljs.min.js"></script>
- 
-<script>hljs.highlightAll();</script>
+    <link href='/apple-touch-icon.png?v=2.0.5' rel='apple-touch-icon' sizes='180x180' ></link>
 
-	<meta name="generator" content="Hexo 5.4.2"></head>
 
-	<body>
-		
-	<div class="header">
-		<div class="header-top" id="header-top">
-			<div class="h-left">
-				<a href="/">
-					<img src="/image/avator.png" alt="Quiet">
-				</a>
-			</div>
-			<div class="h-right">
-				<ul>
-					
-						
-								<li>
-									<a href="/">
-										HOME
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/archives">
-										ARCHIVE
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/categories">
-										CATEGORIES
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/tags">
-										TAGS
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/links">
-										LINKS
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/about">
-										ABOUT
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-				</ul>
-			</div>
-			<div class="h-right-close">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-					<path fill="none" d="M0 0h24v24H0z" />
-					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
-				</svg>
-			</div>
-		</div>
-	</div>
-	<div class="sidebar">
-    <div class="topo">
-        <h2>ljylwnxx</h2>
-    </div>
-    <ul>
-        
-        <li>
-            <a href="/">HOME</a>
-        </li>
-        
-        <li>
-            <a href="/archives">ARCHIVE</a>
-        </li>
-        
-        <li>
-            <a href="/categories">CATEGORIES</a>
-        </li>
-        
-        <li>
-            <a href="/tags">TAGS</a>
-        </li>
-        
-        <li>
-            <a href="/links">LINKS</a>
-        </li>
-        
-        <li>
-            <a href="/about">ABOUT</a>
-        </li>
-        
-    </ul>
-    <div class="my_foot">
-        
-        <a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
-            <img src="/image/avator.png" alt="Quiet主题">
-        </a>
-        
-    </div>
-</div>
-<div class='shelter'>
-</div>
-<style>
-    .shelter{
-        background-color: #333;
-        opacity:0.5;
-        cursor: pointer;
-        display: none; 
-        position: fixed;
-        left: 0;
-        top: 0; 
-        right: 0;
-        bottom: 0;
-        z-index: 1998;
-    }
-    .sidebar {
-        width: 66%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        bottom: 0;
-        background: #fff;
-        z-index: 1999;
-        text-align: center;
-        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
-    }
+    <link href='/site.webmanifest' rel='manifest' ></link>
 
-    .topo {
-        width: 100%;
-        height: 200px;
-        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
-        background-size: 100% 100%;
-        position: relative;
-        display: flex;
-        align-items: flex-end
-    }
 
-    .topo h2 {
-        color: #fff;
-        z-index: 1;
-        position: relative;
-        margin: 0 0 10px 10px;
-        font-size: 1.2em;
-        box-sizing: border-box
-    }
+<!-- Plugin -->
 
-    .topo:before {
-        content: '';
-        background-image: url(/image/pattern.png);
-        background-repeat: repeat;
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1
-    }
 
-    .sidebar ul {
-        width: 100%;
-        margin-top: 50px
-    }
 
-    .sidebar ul li {
-        height: 50px;
-        list-style: none;
-        font-size: 1.2em;
-        text-align: right;
-        margin-right: 10px
-    }
 
-    .sidebar ul li a {
-        display: grid;
-        color: #5d606a;
-        text-overflow: ellipsis;
-        width: 100%;
-        text-decoration: none
-    }
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
 
-    .my_foot {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        position: absolute;
-        bottom: 0
-    }
+    
+<link rel="stylesheet" href="https://npm.elemecdn.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
 
-    .my_foot a {
-        text-decoration: none;
-        margin-right: 10px;
-        display: inline-block
-    }
+    
+<link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@4.0/dist/fancybox.css">
 
-    .my_foot a img {
-        width: 30px;
-        height: 30px
-    }
-</style>
+    
+    
 
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.5","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/logo.gif","icon16":"/images/logo.png","icon32":"/images/logo.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！","dark_logo":"/images/logo.gif"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":true,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/default.png","/images/defaultpic.png"],"creative_commons":{"license":"by-nc-sa","language":"deed.zh"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"preload":true,"trigger":"auto","path":"search.xml"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-03 2023-04-03T12:33:12+08:00"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.5" id="trm-switch-style">
 <script>
-    $( function () {
-	$( '.h-right-close>svg' )
-		.click( function () {
-			$( '.sidebar' )
-				.animate( {
-					right: "0"
-				}, 500 );
-			$( '.shelter' )
-				.fadeIn( "slow" )
-		} );
-	$( '.shelter' )
-		.click( function ( e ) {
-			$( '.sidebar' )
-				.animate( {
-					right: "-100%"
-				}, 500 );
-			$( '.shelter' )
-				.fadeOut( "slow" )
-		} )
-} )
-
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
 </script>
 
-<div class="post">
-    <div class="post-header-background post-header-color"
-    style="background: url('')" 
->
-    <div class="post-header-background-content">
-        <ul class="post-header-tag">
-            
-            
-            <li><a href="/tags/Webpack">Webpack</a></li>
-            
-            
-        </ul>
-        
-        <h1>基于Webpack5搭建一个Vue-Cli</h1>
-        <div class="post-header-info">
-            <div class="post-header-info-author">
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                        <g>
-                            <path fill="#12183A"
-                                d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
-                            </path>
-                        </g>
-                    </svg>
-                
-                <span class="post-header-info-author-text"> <a href="../../about">ljylwnxx</a></span>
-                <div class="post-header-info-author-categories">
-                    
-                         <a href="../../categories/知识点/" target="_blank" >知识点</a>
-                    
-                </div>
-                <p>2023-03-27 21:30:26</p>
-            </div>
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
 </div>
-    <div class="post-content" id="content">
-  
-  <div id="article" class="post-content-info">
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" class=" trm-light-icon" src="/images/logo.gif"> <img alt="logo" class=" trm-dark-icon" src="/images/logo.gif">
+    
+    
+        <div class="trm-logo-text">
+            ljylwnxx<span>博客</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/links/" target="">
+                    友情链接
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+    
+    <div id="trm-search-btn" class="trm-search-btn">
+        <i class="iconfont fas fa-search"></i>
+    </div>
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/images/defaultbgurl.png">
+    <!-- banner cover end -->
     
 
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            基于Webpack5搭建一个Vue-Cli
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span
+                                ></li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    
+
+<div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
+    
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont fas fa-user-alt"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont fas fa-th-list"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/images/logo.png">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ljylwnxx博客
+    </h5>
+    
+        <div class="trm-label">
+            Hello!
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+                <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="gitee" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont cg-gitee"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+                <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                分类:
+            </div>
+            <div class="trm-label trm-label-light">
+                <a href="/categories/" target="_blank" rel="nofollow">查看</a>
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                标签:
+            </div>
+            <div class="trm-label trm-label-light">
+                <a href="/tags/" target="_blank" rel="nofollow">查看</a>
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+                
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:ljylwnxx@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#1、建一个文件夹"  data-scroll-to="#1、建一个文件夹"><span class="toc-number">1.</span> <span class="toc-text">1、建一个文件夹</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#2、初始化npm"  data-scroll-to="#2、初始化npm"><span class="toc-number">2.</span> <span class="toc-text">2、初始化npm</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#3、webpack、webpack-cli"  data-scroll-to="#3、webpack、webpack-cli"><span class="toc-number">3.</span> <span class="toc-text">3、webpack、webpack-cli</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#4、src、public"  data-scroll-to="#4、src、public"><span class="toc-number">4.</span> <span class="toc-text">4、src、public</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#5、入口文件"  data-scroll-to="#5、入口文件"><span class="toc-number">5.</span> <span class="toc-text">5、入口文件</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#6、配置打包命令"  data-scroll-to="#6、配置打包命令"><span class="toc-number">6.</span> <span class="toc-text">6、配置打包命令</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#7、打包html"  data-scroll-to="#7、打包html"><span class="toc-number">7.</span> <span class="toc-text">7、打包html</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#打包CSS"  data-scroll-to="#打包CSS"><span class="toc-number">7.1.</span> <span class="toc-text">打包CSS</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#打包图片"  data-scroll-to="#打包图片"><span class="toc-number">7.2.</span> <span class="toc-text">打包图片</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#配置babel"  data-scroll-to="#配置babel"><span class="toc-number">7.3.</span> <span class="toc-text">配置babel</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#打包Vue"  data-scroll-to="#打包Vue"><span class="toc-number">7.4.</span> <span class="toc-text">打包Vue</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#配置路径别名"  data-scroll-to="#配置路径别名"><span class="toc-number">7.5.</span> <span class="toc-text">配置路径别名</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#webpack-dev-server"  data-scroll-to="#webpack-dev-server"><span class="toc-number">7.6.</span> <span class="toc-text">webpack-dev-server</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#区分环境"  data-scroll-to="#区分环境"><span class="toc-number">7.7.</span> <span class="toc-text">区分环境</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#构建进度条"  data-scroll-to="#构建进度条"><span class="toc-number">7.8.</span> <span class="toc-text">构建进度条</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#source-map"  data-scroll-to="#source-map"><span class="toc-number">7.9.</span> <span class="toc-text">source-map</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#环境变量"  data-scroll-to="#环境变量"><span class="toc-number">7.10.</span> <span class="toc-text">环境变量</span></a></li></ol></li></ol>
+</div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            03/27
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            21:30
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ljylwnxx
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
     <p>大家平时在进行Vue开发的时候，大部分人都是使用 Vue-cli 这个现成的Vue脚手架来进行开发的，但是用它用了这么久，你难道不想自己搭一个属于自己的 Vue-cli 吗？</p>
 <h1 id="1、建一个文件夹"><a href="#1、建一个文件夹" class="headerlink" title="1、建一个文件夹"></a>1、建一个文件夹</h1><p>新建一个文件夹my-vue-cli用来存放项目</p>
 <h1 id="2、初始化npm"><a href="#2、初始化npm" class="headerlink" title="2、初始化npm"></a>2、初始化npm</h1><p>在终端中输入 npm init<br>然后一直回车就行，这样能使项目拥有一个npm管理环境，之后可以在此环境上安装我们所需要的包</p>
 <h1 id="3、webpack、webpack-cli"><a href="#3、webpack、webpack-cli" class="headerlink" title="3、webpack、webpack-cli"></a>3、webpack、webpack-cli</h1><p>安装 webpack、webpack-cli<br>webpack ：打包的工具<br>webpack-cli ：为webpack提供命令行的工具<br>npm i webpack webpack-cli -D</p>
 <h1 id="4、src、public"><a href="#4、src、public" class="headerlink" title="4、src、public"></a>4、src、public</h1><p>在根目录下新建 src、public 这两个文件夹，前者用来放置项目主要代码，后者用来放项目公用静态资源</p>
-<pre><code>public/index.html
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-&lt;title&gt;my-vue-cli&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<pre><code>src/main.js
-import &#123; add &#125; from &#39;./tools/add.js&#39;
-console.log(add(1, 2))
-console.log(&#39;我是main.js&#39;)
-</code></pre>
-<pre><code>src/tools/add.js
-export const add = (a, b) =&gt; &#123;
-return a + b
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public/index.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">&lt;title&gt;my-vue-cli&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">src/main.js</span><br><span class="line">import &#123; add &#125; from &#x27;./tools/add.js&#x27;</span><br><span class="line">console.log(add(1, 2))</span><br><span class="line">console.log(&#x27;我是main.js&#x27;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">src/tools/add.js</span><br><span class="line">export const add = (a, b) =&gt; &#123;</span><br><span class="line">return a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="5、入口文件"><a href="#5、入口文件" class="headerlink" title="5、入口文件"></a>5、入口文件</h1><p>刚刚的 main.js 就是我们的入口文件，也就相当于整个引用树的根节点，webpack打包需要从入口文件开始查找，一直到打包所有引用文件。<br>进行入口文件的配置，在根目录下新建 webpack.config.js ：</p>
-<pre><code>const path = require(&#39;path&#39;)
-module.exports = &#123;
-  // 模式 开发模式
-  mode: &#39;development&#39;,
-  // 入口文件 main.js
-  entry: &#123;
-    main: &#39;./src/main.js&#39;
-  &#125;,
-  // 输出
-  output: &#123;
-    // 输出到 dist文件夹
-    path: path.resolve(__dirname, &#39;./dist&#39;),
-    // js文件下
-    filename: &#39;js/chunk-[contenthash].js&#39;,
-    // 每次打包前自动清除旧的dist
-    clean: true,
-  &#125;
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // 模式 开发模式</span><br><span class="line">  mode: &#x27;development&#x27;,</span><br><span class="line">  // 入口文件 main.js</span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: &#x27;./src/main.js&#x27;</span><br><span class="line">  &#125;,</span><br><span class="line">  // 输出</span><br><span class="line">  output: &#123;</span><br><span class="line">    // 输出到 dist文件夹</span><br><span class="line">    path: path.resolve(__dirname, &#x27;./dist&#x27;),</span><br><span class="line">    // js文件下</span><br><span class="line">    filename: &#x27;js/chunk-[contenthash].js&#x27;,</span><br><span class="line">    // 每次打包前自动清除旧的dist</span><br><span class="line">    clean: true,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="6、配置打包命令"><a href="#6、配置打包命令" class="headerlink" title="6、配置打包命令"></a>6、配置打包命令</h1><p>到 package.json 里配置打包命令：</p>
-<pre><code>&quot;scripts&quot;: &#123;
-    &quot;build&quot;: &quot;webpack&quot;
-&#125;,
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;webpack&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 <p>现在我们到终端输入 npm run build ，就能发现打包成功：<br>但是这其实不是我们要的目的，我们的目的是将这个打包后的最终js文件，插入到刚刚的 index.html 中，因为js文件得让html文件引用，才有意义嘛！所以我们不仅要打包js，还要打包html<br>小知识：loader和plugin<br>loader ：使webpack拥有解析非js文件的能力，如css、png、ts等等<br>plugin ：拓展webpack的打包功能，如优化体积、显示进度条等等</p>
 <h1 id="7、打包html"><a href="#7、打包html" class="headerlink" title="7、打包html"></a>7、打包html</h1><p>打包html需要用到 html-webpack-plugin 这个插件，也就是plugin，所以需要安装一下：<br>npm i html-webpack-plugin -D<br>并且需要在 webpack.config.js 中配置一下</p>
-<pre><code>const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;)
-module.exports = &#123;
-  // 刚刚的代码...
-  // 插件都放 plugins 中
-  plugins: [
-    new HtmlWebpackPlugin(&#123;
-      // 选择模板 public/index.html
-      template: &#39;./public/index.html&#39;,
-      // 打包后的名字
-      filename: &#39;index.html&#39;,
-      // js文件插入 body里
-      inject: &#39;body&#39;,
-    &#125;),
-  ]
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // 刚刚的代码...</span><br><span class="line">  // 插件都放 plugins 中</span><br><span class="line">  plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      // 选择模板 public/index.html</span><br><span class="line">      template: &#x27;./public/index.html&#x27;,</span><br><span class="line">      // 打包后的名字</span><br><span class="line">      filename: &#x27;index.html&#x27;,</span><br><span class="line">      // js文件插入 body里</span><br><span class="line">      inject: &#x27;body&#x27;,</span><br><span class="line">    &#125;),</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在我们可以在终端中执行打包命令 npm run build 可以看到html被打包了，且打包后的html自动引入打包后的js文件<br>现在我们可以打开打包后的 index.html ，发现控制台可以输出，说明成功了！</p>
 <h2 id="打包CSS"><a href="#打包CSS" class="headerlink" title="打包CSS"></a>打包CSS</h2><p>在 src 下新建 styles 文件夹，用来存放样式文件文件src/styles/index.scss</p>
-<pre><code>body &#123;
-background-color: blue;
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">background-color: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后我们在入口文件 main.js 中引入<br>import ‘./styles/index.scss’<br>// 刚刚的代码…<br>我们的目的是，打包 index.scss 这个文件，并且让 index.html 自动引入打包后的css文件，所以我们需要安装以下几个东<br>sass、sass-loader ：可以将scss代码转成css<br>css-loader ：使webpack具有打包css的能力<br>sass-resources-loader ：可选，支持打包全局公共scss文件<br>mini-css-extract-plugin ：可将css代码打包成一个单独的css文件<br>我们安装一下这些插件<br>npm i sass sass-loader sass-resources-loader mini-css-extract-plugin -D<br>然后配置一下 webpack.config.js</p>
-<pre><code>// 刚才的代码...
-const MiniCssExtractPlugin = require(&#39;mini-css-extract-plugin&#39;)
-module.exports = &#123;
-  // 刚才的代码...
-  plugins: [
-    // 刚才的代码...
-    new MiniCssExtractPlugin(&#123;
-      // 将css代码输出到dist/styles文件夹下
-      filename: &#39;styles/chunk-[contenthash].css&#39;,
-      ignoreOrder: true,
-    &#125;),
-  ],
-  module: &#123;
-    rules: [
-      &#123;
-        // 匹配文件后缀的规则
-        test: /\.(css|s[cs]ss)$/,
-        use: [
-          // loader执行顺序是从右到左
-          MiniCssExtractPlugin.loader,
-          &#39;css-loader&#39;,
-          &#39;sass-loader&#39;,
-          // &#123;
-          //   loader: &#39;sass-resources-loader&#39;,
-          //   options: &#123;
-          //     resources: [
-          //       // 放置全局引入的公共scss文件
-          //     ],
-          //   &#125;,
-          // &#125;,
-        ],
-      &#125;,
-    ]
-  &#125;
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 刚才的代码...</span><br><span class="line">const MiniCssExtractPlugin = require(&#x27;mini-css-extract-plugin&#x27;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // 刚才的代码...</span><br><span class="line">  plugins: [</span><br><span class="line">    // 刚才的代码...</span><br><span class="line">    new MiniCssExtractPlugin(&#123;</span><br><span class="line">      // 将css代码输出到dist/styles文件夹下</span><br><span class="line">      filename: &#x27;styles/chunk-[contenthash].css&#x27;,</span><br><span class="line">      ignoreOrder: true,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        // 匹配文件后缀的规则</span><br><span class="line">        test: /\.(css|s[cs]ss)$/,</span><br><span class="line">        use: [</span><br><span class="line">          // loader执行顺序是从右到左</span><br><span class="line">          MiniCssExtractPlugin.loader,</span><br><span class="line">          &#x27;css-loader&#x27;,</span><br><span class="line">          &#x27;sass-loader&#x27;,</span><br><span class="line">          // &#123;</span><br><span class="line">          //   loader: &#x27;sass-resources-loader&#x27;,</span><br><span class="line">          //   options: &#123;</span><br><span class="line">          //     resources: [</span><br><span class="line">          //       // 放置全局引入的公共scss文件</span><br><span class="line">          //     ],</span><br><span class="line">          //   &#125;,</span><br><span class="line">          // &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此时我们重新执行打包命令 npm run build ，可以发现出现了打包后的css文件，且 index.html 中自动引入了css文件：<br>我们可以看看页面，可以看到，body的背景已经变成蓝色，说明有效果了.</p>
 <h2 id="打包图片"><a href="#打包图片" class="headerlink" title="打包图片"></a>打包图片</h2><p>webpack5中已经废弃了 url-loader ，打包图片可以使用 asset-module ，我们先放置一张图片在 src/assets/images 中：并且改写一下 index.css</p>
-<pre><code>body &#123;
-  width: 100vw;
-  height: 100vh;
-  // 引入背景图片
-  background-image: url(&#39;../assets/images/guang.png&#39;);
-  background-size: 100% 100%;
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  width: 100vw;</span><br><span class="line">  height: 100vh;</span><br><span class="line">  // 引入背景图片</span><br><span class="line">  background-image: url(&#x27;../assets/images/guang.png&#x27;);</span><br><span class="line">  background-size: 100% 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后我们在 webpack.config.js 中添加打包图片的配置</p>
-<pre><code>  module: &#123;
-    rules: [
-      // 刚刚的代码...
-      &#123;
-        // 匹配文件后缀的规则
-        test: /\.(png|jpe?g|gif|svg|webp)$/,
-        type: &#39;asset&#39;,
-        parser: &#123;
-          // 转base64的条件
-          dataUrlCondition: &#123;
-             maxSize: 25 * 1024, // 25kb
-          &#125;
-        &#125;,
-        generator: &#123;
-          // 打包到 dist/image 文件下
-         filename: &#39;images/[contenthash][ext][query]&#39;,
-        &#125;,
-     &#125;
-    ]
-  &#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    // 刚刚的代码...</span><br><span class="line">    &#123;</span><br><span class="line">      // 匹配文件后缀的规则</span><br><span class="line">      test: /\.(png|jpe?g|gif|svg|webp)$/,</span><br><span class="line">      type: &#x27;asset&#x27;,</span><br><span class="line">      parser: &#123;</span><br><span class="line">        // 转base64的条件</span><br><span class="line">        dataUrlCondition: &#123;</span><br><span class="line">           maxSize: 25 * 1024, // 25kb</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      generator: &#123;</span><br><span class="line">        // 打包到 dist/image 文件下</span><br><span class="line">       filename: &#x27;images/[contenthash][ext][query]&#x27;,</span><br><span class="line">      &#125;,</span><br><span class="line">   &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  我们现在重新运行一下 npm run build ，发现dist下已经有了 images 这个文件夹<br>  我们看一下页面背景图片已经生效，说明打包成功了！</p>
 <h2 id="配置babel"><a href="#配置babel" class="headerlink" title="配置babel"></a>配置babel</h2><p>babel 可以将我们项目中的高级语法转化成比较低级的语法，比如可以将 ES6 转为 ES5 ，这样可以兼容一些低版本浏览器，所以是很有必要的</p>
 <p>首先安装所需的包：<br>@babel/core、babel-loader ：转换语法的工具<br>@babel/preset-env ：转换的一套现成规则<br>@babel/plugin-transform-runtime ：转换async/await所需插件</p>
 <p>npm i @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime -D<br>由于 babel 是针对js文件的语法转换，所以我们需要在 webpack.config.js 中去针对js进行操作</p>
-<pre><code>module: &#123;
-  rules: [
-    // 刚刚的代码...
-    &#123;
-      // 匹配js后缀文件
-      test: /\.js$/,
-      // 排除node_modules中的js
-      exclude: /node_modules/,
-      use: [
-        &#39;babel-loader&#39;
-      ],
-    &#125;
-  ]
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    // 刚刚的代码...</span><br><span class="line">    &#123;</span><br><span class="line">      // 匹配js后缀文件</span><br><span class="line">      test: /\.js$/,</span><br><span class="line">      // 排除node_modules中的js</span><br><span class="line">      exclude: /node_modules/,</span><br><span class="line">      use: [</span><br><span class="line">        &#x27;babel-loader&#x27;</span><br><span class="line">      ],</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>单单配置了 babel-loader 还是不够的，我们还需要配置 babel 转换的规则，所以需要在根目录下创建 babel.config.js</p>
-<pre><code>// babel.config.js
-module.exports = &#123;
-presets: [
-  // 配置规则
-  &quot;@babel/preset-env&quot;
-],
-// 配置插件
-plugins: [&quot;@babel/plugin-transform-runtime&quot;]
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// babel.config.js</span><br><span class="line">module.exports = &#123;</span><br><span class="line">presets: [</span><br><span class="line">  // 配置规则</span><br><span class="line">  &quot;@babel/preset-env&quot;</span><br><span class="line">],</span><br><span class="line">// 配置插件</span><br><span class="line">plugins: [&quot;@babel/plugin-transform-runtime&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此时我们重新运行打包 npm run build ，我们可以发现打包后的js代码中，已经把刚刚代码中的 ES6 语法转成 ES5 语法了！可以看到刚刚代码中的 const 已经转成 ES5 语法了</p>
-<h2 id="打包Vue"><a href="#打包Vue" class="headerlink" title="打包Vue"></a>打包Vue</h2><p>打包Vue需要用到以下几个包：<br>vue ：Vue开发所需的依赖<br>vue-loader ：解析 .vue 文件的loader<br>vue-template-compiler ：解析vue中模板的工具<br>@vue/babel-preset-jsx ：支持解析vue中的jsx语法<br>注意： vue 和 vue-template-compiler 版本需要一致，这里我使用 2.6.14 这个版本， vue-loader 这里我使用了 15.9.8 这个版本<br>所以我们先安装一下：<br>npm i<br><a href="mailto:&#x76;&#x75;&#x65;&#64;&#x32;&#x2e;&#54;&#46;&#x31;&#x34;">&#x76;&#x75;&#x65;&#64;&#x32;&#x2e;&#54;&#46;&#x31;&#x34;</a> <a href="mailto:&#x76;&#117;&#101;&#45;&#x74;&#x65;&#109;&#112;&#x6c;&#97;&#x74;&#x65;&#x2d;&#x63;&#x6f;&#109;&#112;&#105;&#x6c;&#101;&#x72;&#x40;&#50;&#46;&#x36;&#x2e;&#49;&#x34;">&#x76;&#117;&#101;&#45;&#x74;&#x65;&#109;&#112;&#x6c;&#97;&#x74;&#x65;&#x2d;&#x63;&#x6f;&#109;&#112;&#105;&#x6c;&#101;&#x72;&#x40;&#50;&#46;&#x36;&#x2e;&#49;&#x34;</a> <a href="mailto:&#118;&#117;&#101;&#x2d;&#x6c;&#x6f;&#x61;&#100;&#101;&#x72;&#x40;&#x31;&#x35;&#46;&#x39;&#46;&#x38;">&#118;&#117;&#101;&#x2d;&#x6c;&#x6f;&#x61;&#100;&#101;&#x72;&#x40;&#x31;&#x35;&#46;&#x39;&#46;&#x38;</a> @vue/babel-preset-jsx -D<br>然后我们需要去 webpack.config.js 中配置对 .vue 文件的解析</p>
-<pre><code>// 刚才的代码...
-const &#123; VueLoaderPlugin &#125; = require(&#39;vue-loader&#39;)
-module.exports = &#123;
-  // 刚才的代码...
-  plugins: [
-    // 刚才的代码...
-    new VueLoaderPlugin()
-  ],
-  module: &#123;
-    rules: [
-      // 刚才的代码...
-      &#123;
-        test: /\.vue$/,
-        use: &#39;vue-loader&#39;,
-      &#125;
-    ]
-  &#125;
-&#125;
-</code></pre>
+<h2 id="打包Vue"><a href="#打包Vue" class="headerlink" title="打包Vue"></a>打包Vue</h2><p>打包Vue需要用到以下几个包：<br>vue ：Vue开发所需的依赖<br>vue-loader ：解析 .vue 文件的loader<br>vue-template-compiler ：解析vue中模板的工具<br>@vue/babel-preset-jsx ：支持解析vue中的jsx语法<br>注意： vue 和 vue-template-compiler 版本需要一致，这里我使用 2.6.14 这个版本， vue-loader 这里我使用了 15.9.8 这个版本<br>所以我们先安装一下：<br>npm i<br><a href="mailto:&#x76;&#117;&#x65;&#x40;&#50;&#x2e;&#54;&#46;&#x31;&#x34;">&#x76;&#117;&#x65;&#x40;&#50;&#x2e;&#54;&#46;&#x31;&#x34;</a> <a href="mailto:&#118;&#117;&#x65;&#45;&#x74;&#101;&#109;&#x70;&#108;&#x61;&#x74;&#x65;&#45;&#99;&#111;&#x6d;&#112;&#x69;&#x6c;&#101;&#114;&#64;&#x32;&#x2e;&#54;&#x2e;&#49;&#x34;">&#118;&#117;&#x65;&#45;&#x74;&#101;&#109;&#x70;&#108;&#x61;&#x74;&#x65;&#45;&#99;&#111;&#x6d;&#112;&#x69;&#x6c;&#101;&#114;&#64;&#x32;&#x2e;&#54;&#x2e;&#49;&#x34;</a> <a href="mailto:&#x76;&#x75;&#101;&#45;&#108;&#x6f;&#x61;&#100;&#101;&#x72;&#x40;&#x31;&#x35;&#x2e;&#x39;&#46;&#x38;">&#x76;&#x75;&#101;&#45;&#108;&#x6f;&#x61;&#100;&#101;&#x72;&#x40;&#x31;&#x35;&#x2e;&#x39;&#46;&#x38;</a> @vue/babel-preset-jsx -D<br>然后我们需要去 webpack.config.js 中配置对 .vue 文件的解析</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 刚才的代码...</span><br><span class="line">const &#123; VueLoaderPlugin &#125; = require(&#x27;vue-loader&#x27;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // 刚才的代码...</span><br><span class="line">  plugins: [</span><br><span class="line">    // 刚才的代码...</span><br><span class="line">    new VueLoaderPlugin()</span><br><span class="line">  ],</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      // 刚才的代码...</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.vue$/,</span><br><span class="line">        use: &#x27;vue-loader&#x27;,</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>并且到 babel.config.js 中配置一下，让webpack支持 .vue 文件中的 jsx 语法</p>
-<pre><code>module.exports = &#123;
-  presets: [
-    &quot;@babel/preset-env&quot;,
-    // 支持vue中的jsx语法
-    &quot;@vue/babel-preset-jsx&quot;
-  ],
-  plugins: [&quot;@babel/plugin-transform-runtime&quot;]
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  presets: [</span><br><span class="line">    &quot;@babel/preset-env&quot;,</span><br><span class="line">    // 支持vue中的jsx语法</span><br><span class="line">    &quot;@vue/babel-preset-jsx&quot;</span><br><span class="line">  ],</span><br><span class="line">  plugins: [&quot;@babel/plugin-transform-runtime&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在我们可以在 src 下新建一个 App.vue</p>
-<pre><code>&lt;template&gt;
-  &lt;div class=&quot;box&quot;&gt;我是App哈哈哈哈&lt;/div&gt;
-&lt;/template&gt;
-&lt;script&gt;
-export default &#123;&#125;
-&lt;/script&gt;
-&lt;style lang=&quot;scss&quot;&gt;
-.box &#123;
-  width: 500px;
-  height: 200px;
-  color: #fff;
-  background-color: #000;
-&#125;
-&lt;/style&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot;&gt;我是App哈哈哈哈&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style lang=&quot;scss&quot;&gt;</span><br><span class="line">.box &#123;</span><br><span class="line">  width: 500px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  color: #fff;</span><br><span class="line">  background-color: #000;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 <p>然后改写一下 src/main.js</p>
-<pre><code>import Vue from &#39;vue&#39;
-import App from &#39;./App.vue&#39;
-new Vue(&#123;
-  render: (h) =&gt; h(App),
-&#125;).$mount(&#39;#app&#39;)
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import Vue from &#x27;vue&#x27;</span><br><span class="line">import App from &#x27;./App.vue&#x27;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  render: (h) =&gt; h(App),</span><br><span class="line">&#125;).$mount(&#x27;#app&#x27;)</span><br></pre></td></tr></table></figure>
 <p>此时我们重新运行 npm run build ，我们可以看看页面的效果，说明打包成功啦！</p>
 <h2 id="配置路径别名"><a href="#配置路径别名" class="headerlink" title="配置路径别名"></a>配置路径别名</h2><p>有时候文件引用搁着太多层，引用起来会看起来很不明确，比如<br>../../../../../App.vue ，所以我们可以配置一下别名 alia</p>
-<pre><code>module.exports = &#123;
-  // 刚才的代码...
-  resolve: &#123;
-    // 路径别名
-    alias: &#123;
-      &#39;@&#39;: path.resolve(&#39;./src&#39;),
-      assets: &#39;~/assets&#39;,
-      tools: &#39;~/tools&#39;
-    &#125;,
-    // 引入文件时省略后缀
-    extensions: [&#39;.js&#39;, &#39;.ts&#39;, &#39;.less&#39;, &#39;.vue&#39;],
-  &#125;,
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  // 刚才的代码...</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    // 路径别名</span><br><span class="line">    alias: &#123;</span><br><span class="line">      &#x27;@&#x27;: path.resolve(&#x27;./src&#x27;),</span><br><span class="line">      assets: &#x27;~/assets&#x27;,</span><br><span class="line">      tools: &#x27;~/tools&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 引入文件时省略后缀</span><br><span class="line">    extensions: [&#x27;.js&#x27;, &#x27;.ts&#x27;, &#x27;.less&#x27;, &#x27;.vue&#x27;],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在别名配置完成啦：<br>配置前： ../../../../../App.vue<br>配置后： @/App.vue</p>
 <h2 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h2><p>刚刚我们发现，每改一次代码就得重新打包一次，非常繁琐，有没有可以改代码自动重新打包的呢？这就要用到 webpack-dev-server</p>
 <p>npm i webpack-dev-server -D<br>到 webpack.config.js 中配置 devServer</p>
-<pre><code>  devServer: &#123;
-    // 自定义端口号
-    // port:7000,
-    // 自动打开浏览器
-    open: true
-  &#125;,
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">  // 自定义端口号</span><br><span class="line">  // port:7000,</span><br><span class="line">  // 自动打开浏览器</span><br><span class="line">  open: true</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 <p>然后到 package.json 中配置一下启动命令</p>
-<pre><code>  &quot;scripts&quot;: &#123;
-    &quot;build&quot;: &quot;webpack&quot;,
-    &quot;serve&quot;: &quot;webpack serve&quot;
-  &#125;,
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;build&quot;: &quot;webpack&quot;,</span><br><span class="line">  &quot;serve&quot;: &quot;webpack serve&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 <p>此时我们运行 npm run serve 就可以启动项目啦！</p>
 <h2 id="区分环境"><a href="#区分环境" class="headerlink" title="区分环境"></a>区分环境</h2><p>我们不能把所有配置都配置在一个 webpack.config.js 中，因为我们有两个环境 development(开发环境)、production(生产环境) ，所以我们在根目录下创建 build文件夹 ，并创建三个文件<br>webpack.base.js ：两个环境共用配置<br>入口，输出配置<br>各种文件的处理<br>进度条展示<br>路径别名<br>webpack.dev.js ：开发环境独有配置<br>webpack-dev-server<br>不同的source-map模式<br>不同的环境变量<br>webpack.prod.js ：生产环境独有配置<br>不同的source-map模式<br>不同的环境变量<br>我们需要先安装一个合并插件 webpack-merge ，用于两个环境的配置可以合并公共的配置<br>npm i webpack-merge -D<br>然后我们在根目录下新建一个 build文件夹 ，并在此文件夹下新建 webpack.base.js、webpack.dev.js、webpack.config.js</p>
-<pre><code>// 公共配置
-const path = require(&#39;path&#39;)
-const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;)
-const MiniCssExtractPlugin = require(&#39;mini-css-extract-plugin&#39;)
-const &#123; VueLoaderPlugin &#125; = require(&#39;vue-loader&#39;)
-module.exports = &#123;
-// 入口文件 main.js
-entry: &#123;
-  main: &#39;./src/main.js&#39;
-&#125;,
-// 输出
-output: &#123;
-  // 输出到 dist文件夹
-  // 记得改路径
-  path: path.resolve(__dirname, &#39;../dist&#39;),
-  // js文件下
-  filename: &#39;js/chunk-[contenthash].js&#39;,
-  // 每次打包前自动清除旧的dist
-  clean: true,
-&#125;,
-plugins: [
-  new HtmlWebpackPlugin(&#123;
-    // 选择模板 public/index.html
-    template: &#39;./public/index.html&#39;,
-    // 打包后的名字
-    filename: &#39;index.html&#39;,
-    // js文件插入 body里
-    inject: &#39;body&#39;,
-  &#125;),
-  new MiniCssExtractPlugin(&#123;
-    // 将css代码输出到dist/styles文件夹下
-    filename: &#39;styles/chunk-[contenthash].css&#39;,
-    ignoreOrder: true,
-  &#125;),
-  new VueLoaderPlugin()
-],
-module: &#123;
-  rules: [
-    &#123;
-      // 匹配文件后缀的规则
-      test: /\.(css|s[cs]ss)$/,
-      use: [
-        // loader执行顺序是从右到左
-        MiniCssExtractPlugin.loader,
-        &#39;css-loader&#39;,
-        &#39;sass-loader&#39;,
-        // &#123;
-        //   loader: &#39;sass-resources-loader&#39;,
-        //   options: &#123;
-        //     resources: [
-        //       // 放置全局引入的公共scss文件
-        //     ],
-        //   &#125;,
-        // &#125;,
-      ],
-    &#125;,
-    &#123;
-      // 匹配文件后缀的规则
-      test: /\.(png|jpe?g|gif|svg|webp)$/,
-      type: &#39;asset&#39;,
-      parser: &#123;
-        // 转base64的条件
-        dataUrlCondition: &#123;
-          maxSize: 25 * 1024, // 25kb
-        &#125;
-      &#125;,
-      generator: &#123;
-        // 打包到 dist/image 文件下
-        filename: &#39;images/[contenthash][ext][query]&#39;,
-      &#125;,
-    &#125;,
-    &#123;
-      test: /\.js$/,
-      // 排除node_modules中的js
-      exclude: /node_modules/,
-      use: [
-        &#39;babel-loader&#39;
-      ],
-    &#125;,
-    &#123;
-      test: /\.vue$/,
-      use: &#39;vue-loader&#39;,
-    &#125;
-  ]
-&#125;,
-resolve: &#123;
-  // 路径别名
-  alias: &#123;
-    &#39;@&#39;: path.resolve(&#39;./src&#39;),
-    assets: &#39;~/assets&#39;
-  &#125;,
-  // 引入文件时省略后缀
-  extensions: [&#39;.js&#39;, &#39;.ts&#39;, &#39;.less&#39;, &#39;.vue&#39;]
-&#125;,
-&#125;
-</code></pre>
-<pre><code>webpack.dev.js
-// 开发环境
-const &#123; merge &#125; = require(&#39;webpack-merge&#39;)
-const base = require(&#39;./webpack.base&#39;)
-module.exports = merge(base, &#123;
-mode: &#39;development&#39;,
-devServer: &#123;
-  open: true,
-  // hot: true,
-&#125;
-&#125;)
-</code></pre>
-<pre><code>webpack.prod.js
-// 生产环境
-const &#123; merge &#125; = require(&#39;webpack-merge&#39;)
-const base = require(&#39;./webpack.base&#39;)
-module.exports = merge(base, &#123;
-mode: &#39;production&#39;
-&#125;)
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 公共配置</span><br><span class="line">const path = require(&#x27;path&#x27;)</span><br><span class="line">const HtmlWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;)</span><br><span class="line">const MiniCssExtractPlugin = require(&#x27;mini-css-extract-plugin&#x27;)</span><br><span class="line">const &#123; VueLoaderPlugin &#125; = require(&#x27;vue-loader&#x27;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">// 入口文件 main.js</span><br><span class="line">entry: &#123;</span><br><span class="line">  main: &#x27;./src/main.js&#x27;</span><br><span class="line">&#125;,</span><br><span class="line">// 输出</span><br><span class="line">output: &#123;</span><br><span class="line">  // 输出到 dist文件夹</span><br><span class="line">  // 记得改路径</span><br><span class="line">  path: path.resolve(__dirname, &#x27;../dist&#x27;),</span><br><span class="line">  // js文件下</span><br><span class="line">  filename: &#x27;js/chunk-[contenthash].js&#x27;,</span><br><span class="line">  // 每次打包前自动清除旧的dist</span><br><span class="line">  clean: true,</span><br><span class="line">&#125;,</span><br><span class="line">plugins: [</span><br><span class="line">  new HtmlWebpackPlugin(&#123;</span><br><span class="line">    // 选择模板 public/index.html</span><br><span class="line">    template: &#x27;./public/index.html&#x27;,</span><br><span class="line">    // 打包后的名字</span><br><span class="line">    filename: &#x27;index.html&#x27;,</span><br><span class="line">    // js文件插入 body里</span><br><span class="line">    inject: &#x27;body&#x27;,</span><br><span class="line">  &#125;),</span><br><span class="line">  new MiniCssExtractPlugin(&#123;</span><br><span class="line">    // 将css代码输出到dist/styles文件夹下</span><br><span class="line">    filename: &#x27;styles/chunk-[contenthash].css&#x27;,</span><br><span class="line">    ignoreOrder: true,</span><br><span class="line">  &#125;),</span><br><span class="line">  new VueLoaderPlugin()</span><br><span class="line">],</span><br><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      // 匹配文件后缀的规则</span><br><span class="line">      test: /\.(css|s[cs]ss)$/,</span><br><span class="line">      use: [</span><br><span class="line">        // loader执行顺序是从右到左</span><br><span class="line">        MiniCssExtractPlugin.loader,</span><br><span class="line">        &#x27;css-loader&#x27;,</span><br><span class="line">        &#x27;sass-loader&#x27;,</span><br><span class="line">        // &#123;</span><br><span class="line">        //   loader: &#x27;sass-resources-loader&#x27;,</span><br><span class="line">        //   options: &#123;</span><br><span class="line">        //     resources: [</span><br><span class="line">        //       // 放置全局引入的公共scss文件</span><br><span class="line">        //     ],</span><br><span class="line">        //   &#125;,</span><br><span class="line">        // &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      // 匹配文件后缀的规则</span><br><span class="line">      test: /\.(png|jpe?g|gif|svg|webp)$/,</span><br><span class="line">      type: &#x27;asset&#x27;,</span><br><span class="line">      parser: &#123;</span><br><span class="line">        // 转base64的条件</span><br><span class="line">        dataUrlCondition: &#123;</span><br><span class="line">          maxSize: 25 * 1024, // 25kb</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      generator: &#123;</span><br><span class="line">        // 打包到 dist/image 文件下</span><br><span class="line">        filename: &#x27;images/[contenthash][ext][query]&#x27;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.js$/,</span><br><span class="line">      // 排除node_modules中的js</span><br><span class="line">      exclude: /node_modules/,</span><br><span class="line">      use: [</span><br><span class="line">        &#x27;babel-loader&#x27;</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.vue$/,</span><br><span class="line">      use: &#x27;vue-loader&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br><span class="line">resolve: &#123;</span><br><span class="line">  // 路径别名</span><br><span class="line">  alias: &#123;</span><br><span class="line">    &#x27;@&#x27;: path.resolve(&#x27;./src&#x27;),</span><br><span class="line">    assets: &#x27;~/assets&#x27;</span><br><span class="line">  &#125;,</span><br><span class="line">  // 引入文件时省略后缀</span><br><span class="line">  extensions: [&#x27;.js&#x27;, &#x27;.ts&#x27;, &#x27;.less&#x27;, &#x27;.vue&#x27;]</span><br><span class="line">&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">webpack.dev.js</span><br><span class="line">// 开发环境</span><br><span class="line">const &#123; merge &#125; = require(&#x27;webpack-merge&#x27;)</span><br><span class="line">const base = require(&#x27;./webpack.base&#x27;)</span><br><span class="line">module.exports = merge(base, &#123;</span><br><span class="line">mode: &#x27;development&#x27;,</span><br><span class="line">devServer: &#123;</span><br><span class="line">  open: true,</span><br><span class="line">  // hot: true,</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">webpack.prod.js</span><br><span class="line">// 生产环境</span><br><span class="line">const &#123; merge &#125; = require(&#x27;webpack-merge&#x27;)</span><br><span class="line">const base = require(&#x27;./webpack.base&#x27;)</span><br><span class="line">module.exports = merge(base, &#123;</span><br><span class="line">mode: &#x27;production&#x27;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>然后我们到 package.json 修改一下指令</p>
-<pre><code>  &quot;scripts&quot;: &#123;
-    &quot;serve&quot;: &quot;webpack serve --config ./build/webpack.dev&quot;,
-    &quot;build&quot;: &quot;webpack --config ./build/webpack.prod&quot;
-  &#125;,
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;serve&quot;: &quot;webpack serve --config ./build/webpack.dev&quot;,</span><br><span class="line">  &quot;build&quot;: &quot;webpack --config ./build/webpack.prod&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 <p>接下来我们运行这两个命令，发现都成功了：<br>npm run build<br>npm run serve</p>
 <h2 id="构建进度条"><a href="#构建进度条" class="headerlink" title="构建进度条"></a>构建进度条</h2><p>无论是启动项目时还是打包时，都需要进度条的展示，所以需要把进度条配置在 webpack.base 中，我们需要先安装进度条的插件 progress-bar-webpack-plugin</p>
 <p>npm i progress-bar-webpack-plugin -D</p>
-<pre><code>// webpack.base.js
-// 刚刚的代码...
-const ProgressBarPlugin = require(&#39;progress-bar-webpack-plugin&#39;)
-const chalk = require(&#39;chalk&#39;)
-module.exports = &#123;
-  // 刚刚的代码...
-  plugins: [
-    // 刚刚的代码...
-    new ProgressBarPlugin(&#123;
-      format: ` build [:bar] $&#123;chalk.green.bold(&#39;:percent&#39;)&#125; (:elapsed seconds)`,
-    &#125;)
-  ],
-  // 刚刚的代码...
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// webpack.base.js</span><br><span class="line">// 刚刚的代码...</span><br><span class="line">const ProgressBarPlugin = require(&#x27;progress-bar-webpack-plugin&#x27;)</span><br><span class="line">const chalk = require(&#x27;chalk&#x27;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // 刚刚的代码...</span><br><span class="line">  plugins: [</span><br><span class="line">    // 刚刚的代码...</span><br><span class="line">    new ProgressBarPlugin(&#123;</span><br><span class="line">      format: ` build [:bar] $&#123;chalk.green.bold(&#x27;:percent&#x27;)&#125; (:elapsed seconds)`,</span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  // 刚刚的代码...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在我们可以看到无论启动项目或者打包，都会有进度条了</p>
 <h2 id="source-map"><a href="#source-map" class="headerlink" title="source-map"></a>source-map</h2><p>source-map 的作用：代码报错时，能快速定位到出错位置， webpack5 的所有 source-map模式 可以看webpack官网：<a target="_blank" rel="noopener" href="https://webpack.docschina.org/">https://webpack.docschina.org</a>…</p>
 <p>这里我使用两种模式：<br>development ：使用 eval-cheap-module-source-map 模式，能具体定位到源码位置和源码展示，适合开发模式，体积较小<br>production ：使用 nosources-source-map ，只能定位源码位置，不能源码展示，体积较小，适合生产模式<br>所以我们开始配置 source-map</p>
-<pre><code>webpack.dev.js
-// 刚才的代码...
-module.exports = merge(base, &#123;
-// 刚才的代码...
-devtool: &#39;eval-cheap-module-source-map&#39;
-&#125;)
-webpack.prod.js
-// 刚才的代码...
-module.exports = merge(base, &#123;
-// 刚才的代码...
-devtool: &#39;nosources-source-map&#39;
-&#125;)
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">webpack.dev.js</span><br><span class="line">// 刚才的代码...</span><br><span class="line">module.exports = merge(base, &#123;</span><br><span class="line">// 刚才的代码...</span><br><span class="line">devtool: &#x27;eval-cheap-module-source-map&#x27;</span><br><span class="line">&#125;)</span><br><span class="line">webpack.prod.js</span><br><span class="line">// 刚才的代码...</span><br><span class="line">module.exports = merge(base, &#123;</span><br><span class="line">// 刚才的代码...</span><br><span class="line">devtool: &#x27;nosources-source-map&#x27;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>配置 devlopment、production 这两个环境的环境变量</p>
-<pre><code>webpack.dev.js
-// 刚才的代码...
-const webpack = require(&#39;webpack&#39;)
-module.exports = merge(base, &#123;
-// 刚才的代码...
-plugins: [
-  // 定义全局变量
-  new webpack.DefinePlugin(&#123;
-    process: &#123;
-      env: &#123;
-        NODE_DEV: JSON.stringify(&#39;development&#39;),
-        // 这里可以定义你的环境变量
-        // VUE_APP_URL: JSON.stringify(&#39;https://xxx.com&#39;)
-      &#125;,
-    &#125;,
-  &#125;),
-]
-&#125;)
-</code></pre>
-<pre><code>webpack.prod.js
-// 刚才的代码...
-const webpack = require(&#39;webpack&#39;)
-module.exports = merge(base, &#123;
-// 刚才的代码...
-plugins: [
-  // 定义全局变量
-  new webpack.DefinePlugin(&#123;
-    process: &#123;
-      env: &#123;
-        NODE_DEV: JSON.stringify(&#39;prodction&#39;),
-        // 这里可以定义你的环境变量
-        // VUE_APP_URL: JSON.stringify(&#39;https://xxx.com&#39;)
-      &#125;,
-    &#125;,
-  &#125;),
-]
-&#125;)
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">webpack.dev.js</span><br><span class="line">// 刚才的代码...</span><br><span class="line">const webpack = require(&#x27;webpack&#x27;)</span><br><span class="line">module.exports = merge(base, &#123;</span><br><span class="line">// 刚才的代码...</span><br><span class="line">plugins: [</span><br><span class="line">  // 定义全局变量</span><br><span class="line">  new webpack.DefinePlugin(&#123;</span><br><span class="line">    process: &#123;</span><br><span class="line">      env: &#123;</span><br><span class="line">        NODE_DEV: JSON.stringify(&#x27;development&#x27;),</span><br><span class="line">        // 这里可以定义你的环境变量</span><br><span class="line">        // VUE_APP_URL: JSON.stringify(&#x27;https://xxx.com&#x27;)</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;),</span><br><span class="line">]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">webpack.prod.js</span><br><span class="line">// 刚才的代码...</span><br><span class="line">const webpack = require(&#x27;webpack&#x27;)</span><br><span class="line">module.exports = merge(base, &#123;</span><br><span class="line">// 刚才的代码...</span><br><span class="line">plugins: [</span><br><span class="line">  // 定义全局变量</span><br><span class="line">  new webpack.DefinePlugin(&#123;</span><br><span class="line">    process: &#123;</span><br><span class="line">      env: &#123;</span><br><span class="line">        NODE_DEV: JSON.stringify(&#x27;prodction&#x27;),</span><br><span class="line">        // 这里可以定义你的环境变量</span><br><span class="line">        // VUE_APP_URL: JSON.stringify(&#x27;https://xxx.com&#x27;)</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;),</span><br><span class="line">]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+</article>
+    
+    
+
+<ul class="trm-post-copyright">
+    <li class="trm-post-copyright-author">
+        <strong>本文作者：</strong>
+        ljylwnxx
+    </li>
+    <li class="trm-post-copyright-link">
+        <strong>本文链接：</strong>
+        <a id="original-link" href="http://example.com/2023/03/27/Vue-Cli/" title="基于Webpack5搭建一个Vue-Cli">http://example.com/2023/03/27/Vue-Cli/</a>
+    </li>
+    <li class="trm-post-copyright-license">
+        <strong>版权声明：</strong>
+        本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 ">CC BY-NC-SA 4.0</a> 许可协议。
+    </li>
+</ul>
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2023/03/29/%E5%BE%AE%E5%89%8D%E7%AB%AF-qiankun/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/defaultcover.png">
+                </span>
+                <h6 class="trm-op-title">微前端-qiankun</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/03/29</li>
+                <li>12:18</li>
+                <li>知识点</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2023/03/27/%E5%BE%AE%E5%89%8D%E7%AB%AF/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/defaultcover.png">
+                </span>
+                <h6 class="trm-op-title">微前端</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/03/27</li>
+                <li>21:29</li>
+                <li>知识点</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2023</span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color">ljylwnxx博客</span>
+        </div>
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.2
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.0.5
+            </span>
+        </div>
+      
+
+    
+        <div class="trm-footer-item">
+            博客已萌萌哒运行 <span id="since" class="trm-accent-color"></span> 天
+        </div>
+     
+
+     
+</footer>
+
+<script>
+    function show_date_time () {
+        var BirthDay = new Date("2022/08/16 21:45:54");
+        var today = new Date();
+        var timeold = (today.getTime() - BirthDay.getTime());
+        var msPerDay = 24 * 60 * 60 * 1000
+        var day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
+            <i class="iconfont fas fa-arrows-alt-h"></i>
+        </div>
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
 
   </div>
-  <div id="gitalk-container"></div>
-</div>
+  <!-- app wrapper end -->
 
-<script>
   
-Fancybox.bind('[data-fancybox="fancybox-gallery-img"]', {
-  dragToClose: true,
-  Toolbar: true,
-  closeButton: "top",
-  Image: {
-    zoom: true,
-  },
-  on: {
-    initCarousel: (fancybox) => {
-      const slide = fancybox.Carousel.slides[fancybox.Carousel.page];
-      fancybox.$container.style.setProperty(
-        "--bg-image",
-        `url("${slide.$thumb.src}")`
-      );
-    },
-    "Carousel.change": (fancybox, carousel, to, from) => {
-      const slide = carousel.slides[to];
-      fancybox.$container.style.setProperty(
-        "--bg-image",
-        `url("${slide.$thumb.src}")`
-      );
-    },
-  },
-});
-</script>
-
-<style>
-    #noneimg img {
-        display: none;
-        z-index: 9999;
-        /* width: 600px !important; */
-        min-width: 0%;
-        max-width: 90%;
-        max-height: 80%;
-        border-radius: 0px;
-        position: fixed;
-        box-shadow: 0 0 0px #c3c3c300 !important;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto !important;
-    }
-
-    @media screen and (max-width:600px) {
-        #noneimg img {
-            max-width: 88%
-        }
-    }
-</style>
-
-    <div class="post-paging">
-    
-    <a href="/2023/03/29/%E5%BE%AE%E5%89%8D%E7%AB%AF-qiankun/">
-        <div class="post-paging-last">
-            <span>上一篇</span>
-            <p>微前端-qiankun</p>
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </a>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+<script src="https://npm.elemecdn.com/swup@2.0.19/dist/swup.min.js"></script>
+
+    
+<script src="https://npm.elemecdn.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+    
+<script src="https://npm.elemecdn.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
     
 
     
-    <a href="/2023/03/27/%E5%BE%AE%E5%89%8D%E7%AB%AF/">
-        <div class="post-paging-next">
-            <span>下一篇</span>
-            <p>微前端</p>
-        </div>
-    </a>
+        <script src="/js/plugins/typing.js?v=2.0.5"></script>
     
-</div>
-</div>
-		
-<div class="footer">
-	<div class="Copyright">
-		©2023 By ljylwnxx. 主题：<a
-			style="text-decoration: none;display: contents; color: #898F9F;"
-			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
-	</div>
-	<div class="contact">
-		
-		<a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
-			<img src="/image/avator.png" alt="Quiet主题">
-		</a>
-		
-	</div>
-</div>
 
-<script src="/js/gotop.js"></script>
-
-
-<style type="text/css">
-    @media screen and (min-width: 600px) {
-        .goTop>span {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            opacity: 0.8;
-            background: rgba(18, 24, 58, 0.06);
-            text-align: center;
-            transition: border .5s;
-            border: 1px solid rgba(18, 24, 58, 0.06);
-
-            -moz-transition: border .5s;
-            /* Firefox 4 */
-            -webkit-transition: border .5s;
-            /* Safari 和 Chrome */
-            -o-transition: border .5s;
-            /* Opera */
-        }
-
-        .goTop>span:hover {
-            border: 1px solid #6680B3;
-        }
-
-
-        .goTop {
-            position: fixed;
-            right: 30px;
-            bottom: 80px;
-        }
-
-        .goTop>span>svg {
-            width: 20px;
-            height: 20px;
-            opacity: 0.7;
-        }
-
-    }
-
-    @media screen and (max-width: 600px) {
-        .goTop {
-            display: none;
-        }
-    }
-</style>
-<div class="goTop" id="js-go_top">
-    <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <g>
-                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
-            </g>
-        </svg>
-    </span>
-</div>
-<script>
-    $( '#js-go_top' )
-	.gotoTop( {
-		offset: 500,
-		speed: 300,
-		animationShow: {
-			'transform': 'translate(0,0)',
-			'transition': 'transform .5s ease-in-out'
-		},
-		animationHide: {
-			'transform': 'translate(100px,0)',
-			'transition': 'transform .5s ease-in-out'
-		}
-	} );
-</script>
-
-
-    <!-- Gitalk -->
-    <script>
-        const data = '{"clientID":"02b3c","clientSecret":"adfc7b4","repo":"gimment","owner":"duneng","admin":"duneng"}'
-        const gitalk = new Gitalk({
-            ...JSON.parse( data),
-            id:location.pathname,
-            distractionFreeMode:false
-        })
+    
         
-        if(Boolean('true')){
-            gitalk.render('gitalk-container')
-        }
+<script src="https://npm.elemecdn.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=2.0.5"></script>
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+<script src="/demo.js"></script>
+
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+    <script data-swup-reload-script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
     </script>
 
-<script>
-	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
-</script>
-	</body>
-</html>
 
+
+<script id="async-script" src="/js/main.js?v=2.0.5"></script>
+
+</body>
+
+</html>

@@ -543,6 +543,11 @@ etag@~1.8.1:
   resolved "https://registry.npmmirror.com/etag/-/etag-1.8.1.tgz"
   integrity sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==
 
+express-partials@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmmirror.com/express-partials/-/express-partials-0.3.0.tgz"
+  integrity sha512-LodvQHqUhSKJNl7NMjjPvHAh7sybtmUOWKKGrrb2/eL/kPlto2KQO5lCVceOBamxipDoWw07zLwWiDwidHgmEQ==
+
 fast-levenshtein@~2.0.6:
   version "2.0.6"
   resolved "https://registry.npmmirror.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
@@ -737,6 +742,13 @@ hexo-generator-index@^2.0.0:
     hexo-pagination "1.0.0"
     timsort "^0.3.0"
 
+hexo-generator-searchdb@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.npmmirror.com/hexo-generator-searchdb/-/hexo-generator-searchdb-1.4.1.tgz"
+  integrity sha512-7m8IBpZbI6iKb2jRYxs4pghD6Ln8ylQSRGl6MIC4G9wws21vYSXSD8rvC3MoCO+pWBHs6E/mTA/rjG+p2AZfVg==
+  dependencies:
+    nunjucks "^3.2.2"
+
 hexo-generator-tag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmmirror.com/hexo-generator-tag/-/hexo-generator-tag-1.0.0.tgz"
@@ -823,6 +835,11 @@ hexo-server@^2.0.0:
     morgan "^1.9.1"
     open "^7.0.0"
     serve-static "^1.14.1"
+
+hexo-theme-async@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npmmirror.com/hexo-theme-async/-/hexo-theme-async-2.0.5.tgz"
+  integrity sha512-13kSLN6C6UWZNpzpnR7e62EUcaKjkz4FYgUQPrQy0cufEYu2GAj5lTwbVJShVQpHqP3wwN7Vq4Cvd/4Kp4P9cg==
 
 hexo-theme-keep@^3.4.5:
   version "3.4.5"
@@ -1283,7 +1300,7 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.npmmirror.com/normalize-path/-/normalize-path-3.0.0.tgz"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
-nunjucks@^3.2.1:
+nunjucks@^3.2.1, nunjucks@^3.2.2:
   version "3.2.3"
   resolved "https://registry.npmmirror.com/nunjucks/-/nunjucks-3.2.3.tgz"
   integrity sha512-psb6xjLj47+fE76JdZwskvwG4MYsQKXUtMsPh6U0YMvmyjRtKRFcxnlXGWglNybtNTNVmGdp94K62/+NjF5FDQ==

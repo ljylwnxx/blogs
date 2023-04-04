@@ -3,7 +3,6 @@ title: 微前端-qiankun
 date: 2023-03-29 12:18:39
 tags: 微前端
 categories: 知识点
-cover: ./微前端-qiankun/defaultPic.png
 aubot: ljylwnxx
 comments: false
 toc: true

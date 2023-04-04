@@ -1,6 +1,5 @@
 ---
 title: 文章分类
 date: 2022-08-16
-type: categories
-layout: categories
+layout: category
 ---

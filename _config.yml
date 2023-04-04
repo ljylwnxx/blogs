@@ -5,10 +5,11 @@
 # Site
 title: ljylwnxx的博客
 subtitle: ''
-description: ''
+description: '这是一个博客'
 keywords:
 author: ljylwnxx
-language: zh-CN 
+# language: zh-CN 
+language: zh-Hans
 timezone: ''
 
 # URL
@@ -47,12 +48,12 @@ marked:
 relative_link: false
 future: true
 highlight:
-  enable: false
+  enable: true
   line_number: false
-  auto_detect: true
+  auto_detect: false
   tab_replace: ''
   wrap: true
-  hljs: true
+  hljs: false
 prismjs:
   enable: false
   preprocess: true
@@ -104,7 +105,8 @@ ignore:
 # theme: landscape keep
 # theme: volantis
 # theme: fluid
-theme: Quiet
+# theme: Quiet
+theme: async
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -112,3 +114,10 @@ deploy:
  type: git
  repository: https://github.com/ljylwnxx/ljylwnxx.github.io.git
  branch: master
+
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000

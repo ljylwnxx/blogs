@@ -1,555 +1,760 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		
-<title>Vue3:Pinia使用-Quiet</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" type="image/x-icon" href="/image/defaultPic.png">
+<html lang="zh-Hans">
 
-<link rel="stylesheet" href="/css/index.css">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="在 vue2 版本中，如果想要使用状态管理器，那么一定是集成 Vuex，首先说明一点，Vuex 在 vue3 项目中依旧是可以正常使用的，是 vue 项目的正规军。但是，今天我们学习一下Pinia 目前也已经是 vue 官方正式的状态库。适用于 vue2 和 vue3。可以简单的理解成 Pinia 就是 Vuex5。也就是说， Vue3 项目，建议使用Pinia，当然很多公司或者是项目由 vue2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3:Pinia使用">
+<meta property="og:url" content="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="ljylwnxx的博客">
+<meta property="og:description" content="在 vue2 版本中，如果想要使用状态管理器，那么一定是集成 Vuex，首先说明一点，Vuex 在 vue3 项目中依旧是可以正常使用的，是 vue 项目的正规军。但是，今天我们学习一下Pinia 目前也已经是 vue 官方正式的状态库。适用于 vue2 和 vue3。可以简单的理解成 Pinia 就是 Vuex5。也就是说， Vue3 项目，建议使用Pinia，当然很多公司或者是项目由 vue2">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2022-10-24T13:44:07.000Z">
+<meta property="article:modified_time" content="2023-04-03T04:44:50.333Z">
+<meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="vue3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
+
+
+<title >Vue3:Pinia使用</title>
+
+<!-- Favicon -->
+
+    <link href='/images/logo.png?v=2.0.5' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/images/logo.png?v=2.0.5' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=2.0.5' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
+
+
+<!-- Plugin -->
 
 
 
-<meta name="keywords" content="vue3,">
-<meta name="description" content="">
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://npm.elemecdn.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+    
+<link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
 
 
-<script src="/js/jquery.min.js"></script>
 
 
-<script src="/js/index.js"></script>
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
 
 
-<script src="/js/fancybox.umd.js"></script>
 
 
-<script src="/js/fancybox-images.js"></script>
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.5","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/logo.gif","icon16":"/images/logo.png","icon32":"/images/logo.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！","dark_logo":"/images/logo.gif"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":true,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/default.png","/images/defaultpic.png"],"creative_commons":{"license":"by-nc-sa","language":"deed.zh"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"preload":true,"trigger":"auto","path":"search.xml"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-03 2023-04-03T12:44:50+08:00"};</script>
 
-
-<script src="/js/gitalk.min.js"></script>
-
-
-<script src="/js/hljs.min.js"></script>
- 
-<script>hljs.highlightAll();</script>
-
-	<meta name="generator" content="Hexo 5.4.2"></head>
-
-	<body>
-		
-	<div class="header">
-		<div class="header-top" id="header-top">
-			<div class="h-left">
-				<a href="/">
-					<img src="/image/avator.png" alt="Quiet">
-				</a>
-			</div>
-			<div class="h-right">
-				<ul>
-					
-						
-								<li>
-									<a href="/">
-										HOME
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/archives">
-										ARCHIVE
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/categories">
-										CATEGORIES
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/tags">
-										TAGS
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/links">
-										LINKS
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-						
-								<li>
-									<a href="/about">
-										ABOUT
-									</a>
-									<span class="dot"></span>
-								</li>
-								
-									
-				</ul>
-			</div>
-			<div class="h-right-close">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-					<path fill="none" d="M0 0h24v24H0z" />
-					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
-				</svg>
-			</div>
-		</div>
-	</div>
-	<div class="sidebar">
-    <div class="topo">
-        <h2>ljylwnxx</h2>
-    </div>
-    <ul>
-        
-        <li>
-            <a href="/">HOME</a>
-        </li>
-        
-        <li>
-            <a href="/archives">ARCHIVE</a>
-        </li>
-        
-        <li>
-            <a href="/categories">CATEGORIES</a>
-        </li>
-        
-        <li>
-            <a href="/tags">TAGS</a>
-        </li>
-        
-        <li>
-            <a href="/links">LINKS</a>
-        </li>
-        
-        <li>
-            <a href="/about">ABOUT</a>
-        </li>
-        
-    </ul>
-    <div class="my_foot">
-        
-        <a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
-            <img src="/image/avator.png" alt="Quiet主题">
-        </a>
-        
-    </div>
-</div>
-<div class='shelter'>
-</div>
-<style>
-    .shelter{
-        background-color: #333;
-        opacity:0.5;
-        cursor: pointer;
-        display: none; 
-        position: fixed;
-        left: 0;
-        top: 0; 
-        right: 0;
-        bottom: 0;
-        z-index: 1998;
-    }
-    .sidebar {
-        width: 66%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        bottom: 0;
-        background: #fff;
-        z-index: 1999;
-        text-align: center;
-        box-shadow: -6px 0 20px rgba(98, 94, 94, .815);
-    }
-
-    .topo {
-        width: 100%;
-        height: 200px;
-        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
-        background-size: 100% 100%;
-        position: relative;
-        display: flex;
-        align-items: flex-end
-    }
-
-    .topo h2 {
-        color: #fff;
-        z-index: 1;
-        position: relative;
-        margin: 0 0 10px 10px;
-        font-size: 1.2em;
-        box-sizing: border-box
-    }
-
-    .topo:before {
-        content: '';
-        background-image: url(/image/pattern.png);
-        background-repeat: repeat;
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1
-    }
-
-    .sidebar ul {
-        width: 100%;
-        margin-top: 50px
-    }
-
-    .sidebar ul li {
-        height: 50px;
-        list-style: none;
-        font-size: 1.2em;
-        text-align: right;
-        margin-right: 10px
-    }
-
-    .sidebar ul li a {
-        display: grid;
-        color: #5d606a;
-        text-overflow: ellipsis;
-        width: 100%;
-        text-decoration: none
-    }
-
-    .my_foot {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        position: absolute;
-        bottom: 0
-    }
-
-    .my_foot a {
-        text-decoration: none;
-        margin-right: 10px;
-        display: inline-block
-    }
-
-    .my_foot a img {
-        width: 30px;
-        height: 30px
-    }
-</style>
-
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.5" id="trm-switch-style">
 <script>
-    $( function () {
-	$( '.h-right-close>svg' )
-		.click( function () {
-			$( '.sidebar' )
-				.animate( {
-					right: "0"
-				}, 500 );
-			$( '.shelter' )
-				.fadeIn( "slow" )
-		} );
-	$( '.shelter' )
-		.click( function ( e ) {
-			$( '.sidebar' )
-				.animate( {
-					right: "-100%"
-				}, 500 );
-			$( '.shelter' )
-				.fadeOut( "slow" )
-		} )
-} )
-
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
 </script>
 
-<div class="post">
-    <div class="post-header-background post-header-color"
-    style="background: url('')" 
->
-    <div class="post-header-background-content">
-        <ul class="post-header-tag">
-            
-            
-            <li><a href="/tags/vue3">vue3</a></li>
-            
-            
-        </ul>
-        
-        <h1>Vue3:Pinia使用</h1>
-        <div class="post-header-info">
-            <div class="post-header-info-author">
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                        <g>
-                            <path fill="#12183A"
-                                d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
-                            </path>
-                        </g>
-                    </svg>
-                
-                <span class="post-header-info-author-text"> <a href="../../about">ljylwnxx</a></span>
-                <div class="post-header-info-author-categories">
-                    
-                         <a href="../../categories/vue3/" target="_blank" >vue3</a>
-                    
-                </div>
-                <p>2022-10-24 21:44:07</p>
-            </div>
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
 </div>
-    <div class="post-content" id="content">
-  
-  <div id="article" class="post-content-info">
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" class=" trm-light-icon" src="/images/logo.gif"> <img alt="logo" class=" trm-dark-icon" src="/images/logo.gif">
+    
+    
+        <div class="trm-logo-text">
+            ljylwnxx<span>博客</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/links/" target="">
+                    友情链接
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+    
+    <div id="trm-search-btn" class="trm-search-btn">
+        <i class="iconfont fas fa-search"></i>
+    </div>
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/images/defaultbgurl.png">
+    <!-- banner cover end -->
     
 
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            Vue3:Pinia使用
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2022
+                                    </span
+                                ></li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    
+
+<div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
+    
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont fas fa-user-alt"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont fas fa-th-list"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/images/logo.png">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ljylwnxx博客
+    </h5>
+    
+        <div class="trm-label">
+            Hello!
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+                <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="gitee" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont cg-gitee"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+                <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                分类:
+            </div>
+            <div class="trm-label trm-label-light">
+                <a href="/categories/" target="_blank" rel="nofollow">查看</a>
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                标签:
+            </div>
+            <div class="trm-label trm-label-light">
+                <a href="/tags/" target="_blank" rel="nofollow">查看</a>
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+                
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:ljylwnxx@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#什么是-Pinia"  data-scroll-to="#什么是-Pinia"><span class="toc-number">1.</span> <span class="toc-text">什么是 Pinia</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Pinia-的优点"  data-scroll-to="#Pinia-的优点"><span class="toc-number">2.</span> <span class="toc-text">Pinia 的优点</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#相关资料"  data-scroll-to="#相关资料"><span class="toc-number">3.</span> <span class="toc-text">相关资料</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Pinia-安装"  data-scroll-to="#Pinia-安装"><span class="toc-number">4.</span> <span class="toc-text">Pinia 安装</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Pinia-使用"  data-scroll-to="#Pinia-使用"><span class="toc-number">5.</span> <span class="toc-text">Pinia 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#1-Pinia-导入"  data-scroll-to="#1-Pinia-导入"><span class="toc-number">5.1.</span> <span class="toc-text">1.Pinia 导入</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#2-Pinia-基本使用"  data-scroll-to="#2-Pinia-基本使用"><span class="toc-number">5.2.</span> <span class="toc-text">2.Pinia 基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#1-创建-index-ts-文件"  data-scroll-to="#1-创建-index-ts-文件"><span class="toc-number">5.2.1.</span> <span class="toc-text">1.创建 index.ts 文件</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#2-编写-index-ts-文件"  data-scroll-to="#2-编写-index-ts-文件"><span class="toc-number">5.2.2.</span> <span class="toc-text">2.编写 index.ts 文件</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#3-修改-Pinia-的值"  data-scroll-to="#3-修改-Pinia-的值"><span class="toc-number">5.2.3.</span> <span class="toc-text">3.修改 Pinia 的值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#pinia-解构"  data-scroll-to="#pinia-解构"><span class="toc-number">6.</span> <span class="toc-text">pinia 解构</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Pinia-的-actions"  data-scroll-to="#Pinia-的-actions"><span class="toc-number">7.</span> <span class="toc-text">Pinia 的 actions</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#getter-函数"  data-scroll-to="#getter-函数"><span class="toc-number">8.</span> <span class="toc-text">getter 函数</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#API-的使用"  data-scroll-to="#API-的使用"><span class="toc-number">9.</span> <span class="toc-text">API 的使用</span></a></li></ol>
+</div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            10/24
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            21:44
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ljylwnxx
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
     <p>在 vue2 版本中，如果想要使用状态管理器，那么一定是集成 Vuex，首先说明一点，Vuex 在 vue3 项目中依旧是可以正常使用的，是 vue 项目的正规军。但是，今天我们学习一下Pinia 目前也已经是 vue 官方正式的状态库。适用于 vue2 和 vue3。可以简单的理解成 Pinia 就是 Vuex5。也就是说， Vue3 项目，建议使用Pinia，当然很多公司或者是项目由 vue2 转为 vue3 之后，由于习惯了使用 vuex ，所以说，在 vue3 当中继续使用 vuex 的，也不是少数，都知道就可以，根据实际情况来选择。</p>
 <h1 id="什么是-Pinia"><a href="#什么是-Pinia" class="headerlink" title="什么是 Pinia"></a>什么是 Pinia</h1><p>Pinia 是 Vue 的存储库，它允许您跨组件/页面共享状态。Pinia 的成功可以归功于他管理存储数据的独特功能，例如：可扩展性、存储模块组织、状态变化分组、多存储创建等。</p>
 <h1 id="Pinia-的优点"><a href="#Pinia-的优点" class="headerlink" title="Pinia 的优点"></a>Pinia 的优点</h1><p>Pinia 被 vue 纳入正规编制，肯定是有原因的，那 pinia 有啥优点呢，主要是一下几点：<br>pinia 符合直觉，易于学习。<br>pinia 是轻量级状态管理工具，大小只有1KB.<br>pinia 模块化设计，方便拆分。<br>pinia 没有 mutations，直接在 actions 中操作 state，通过 this.xxx 访问响应的状态，尽管可以直接操作 state，但是还是推荐在 actions 中操作，保证状态不被意外的改变。<br>store 的 action 被调度为常规的函数调用，而不是使用 dispatch 方法或者是 MapAction 辅助函数，这是在 Vuex 中很常见的。<br>支持多个 store。<br>支持 Vue devtools、SSR、webpack 代码拆分。</p>
 <h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1><p>Pinia 中文网：<a target="_blank" rel="noopener" href="https://pinia.web3doc.top/">https://pinia.web3doc.top/</a></p>
-<h1 id="Pinia-安装"><a href="#Pinia-安装" class="headerlink" title="Pinia 安装"></a>Pinia 安装</h1><p>安装 pinia 就很简单了，直接命令安装就可以了。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E5%AE%89%E8%A3%85.png"></p>
+<h1 id="Pinia-安装"><a href="#Pinia-安装" class="headerlink" title="Pinia 安装"></a>Pinia 安装</h1><p>安装 pinia 就很简单了，直接命令安装就可以了。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E5%AE%89%E8%A3%85.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
 <h1 id="Pinia-使用"><a href="#Pinia-使用" class="headerlink" title="Pinia 使用"></a>Pinia 使用</h1><p>安装完 pinia ，然后就是使用了，使用的第一步，就是在项目中引入 pinia</p>
 <h2 id="1-Pinia-导入"><a href="#1-Pinia-导入" class="headerlink" title="1.Pinia 导入"></a>1.Pinia 导入</h2><p>首先在 main.js 文件中引入<br> vue3 的写法：</p>
-<pre><code>import &#123;createPinia&#125; from &#39;pinia&#39;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123;createPinia&#125; from &#x27;pinia&#x27;</span><br></pre></td></tr></table></figure>
 <p>然后，这个 pinia 就在项目中导入了<br>Pinia 是支持 vue2 的，如果是 vue2 的项目，导入的方式是下面的样子：</p>
-<pre><code>import &#123;PiniaVuePlugin&#125; from &#39;pinia&#39;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123;PiniaVuePlugin&#125; from &#x27;pinia&#x27;</span><br></pre></td></tr></table></figure>
 <p>我们还是以 vue3 来介绍这个 Pinia<br>导入的时候是 hook ，我们需要调用一下</p>
-<pre><code>const state = createPinia()
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const state = createPinia()</span><br></pre></td></tr></table></figure>
 <p>调用完成，state 是以插件的形式存在的，所以说最后我们需要在项目使用一下。</p>
-<pre><code>app.use(state)
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">app.use(state)</span><br></pre></td></tr></table></figure>
 <h2 id="2-Pinia-基本使用"><a href="#2-Pinia-基本使用" class="headerlink" title="2.Pinia 基本使用"></a>2.Pinia 基本使用</h2><h3 id="1-创建-index-ts-文件"><a href="#1-创建-index-ts-文件" class="headerlink" title="1.创建 index.ts 文件"></a>1.创建 index.ts 文件</h3><p>使用起来相对简单一些，我们首先在根目录下创建一个 store 文件夹，用 vuex 的时候也是这个结构。毕竟 pinia 就是用来替换掉 vuex 的嘛。<br>创建完 store 文件夹，在里面创建一个 ts 文件，叫做 index.ts 。</p>
 <h3 id="2-编写-index-ts-文件"><a href="#2-编写-index-ts-文件" class="headerlink" title="2.编写 index.ts 文件"></a>2.编写 index.ts 文件</h3><p>首先我们先引入 pinia</p>
-<pre><code>import &#123; defineStore &#125; from &quot;pinia&quot;;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; defineStore &#125; from &quot;pinia&quot;;</span><br></pre></td></tr></table></figure>
 <p>由于 defineStore 也是一个 hooks ，所以说我们可以直接导出一下<br>这样子写是会报错的，因为这个 defineStore 是需要传参数的，其中第一个参数是id，就是一个唯一的值，简单点说就可以理解成是一个命名空间，我们可以写一个枚举再传值。<br>我们在同级在创建一个名字叫做 store_name.ts 的文件写一个枚举数据导出</p>
-<pre><code>export const enum Names &#123;
-  TEST = &quot;TEST&quot;
-&#125;
-</code></pre>
-<p>然后在 index.ts 文件中引入一下枚举数据，然后传给这个 defineStore。<br>这个样子还是报错的，因为还有其他的参数需要传递，第二个参数就是一个对象，里面有三个模块需要处理，第一个是 state，第二个是 getters，第三个是 actions。<br>state 和之前我们 vuex 里面的写法是不一样的，在 vuex 里面呢，state 是一个对象，但是在 pinia 中，state 必须是一个箭头函数，然后在返回一个对象。<br>getters 模块呢，类似于计算属性，是有缓存的，主要是帮助我们修饰一些值。<br>actions 呢，类似于 methods，帮助我们做一些同步的或者是异步的操作，提交 state 之类的。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/indexts.png"><br>其实到这个地方为止呢，其实我们已经可以使用 pinia 了，我们写一个页面使用一下 pinia 的值。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE1%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE1%E7%BB%93%E6%9E%9C.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export const enum Names &#123;</span><br><span class="line">  TEST = &quot;TEST&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在 index.ts 文件中引入一下枚举数据，然后传给这个 defineStore。<br>这个样子还是报错的，因为还有其他的参数需要传递，第二个参数就是一个对象，里面有三个模块需要处理，第一个是 state，第二个是 getters，第三个是 actions。<br>state 和之前我们 vuex 里面的写法是不一样的，在 vuex 里面呢，state 是一个对象，但是在 pinia 中，state 必须是一个箭头函数，然后在返回一个对象。<br>getters 模块呢，类似于计算属性，是有缓存的，主要是帮助我们修饰一些值。<br>actions 呢，类似于 methods，帮助我们做一些同步的或者是异步的操作，提交 state 之类的。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/indexts.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>其实到这个地方为止呢，其实我们已经可以使用 pinia 了，我们写一个页面使用一下 pinia 的值。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE1%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE1%E7%BB%93%E6%9E%9C.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
 <h3 id="3-修改-Pinia-的值"><a href="#3-修改-Pinia-的值" class="headerlink" title="3.修改 Pinia 的值"></a>3.修改 Pinia 的值</h3><p>修改 Pinia 的值有很多中方式，修改 pinia 的值，其实就是修改 state 的值<br>修改值的方式呢，常见的有五种</p>
-<h4 id="方式一：直接修改"><a href="#方式一：直接修改" class="headerlink" title="方式一：直接修改"></a>方式一：直接修改</h4><p><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE2%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE2%E7%BB%93%E6%9E%9C.png"></p>
-<h4 id="方式二：-patch-函数修改"><a href="#方式二：-patch-函数修改" class="headerlink" title="方式二：$patch 函数修改"></a>方式二：$patch 函数修改</h4><p>在我们实例化 const userInfo = useInfoStore() 这个 state 的时候，其实这个 userInfo 中，有一个方法，就是 patch 函数，它可以帮助我们批量修改。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E7%BB%93%E6%9E%9C1.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E7%BB%93%E6%9E%9C2.png"></p>
-<h4 id="方式三：-patch-函数修改"><a href="#方式三：-patch-函数修改" class="headerlink" title="方式三：$patch 函数修改"></a>方式三：$patch 函数修改</h4><p>咦，为什么和第二种一样，都是使用 patch 函数来实现修改，是有区别，方式二是在 patch 函数中传入修改的对象值，但是这种方式传入的是一个函数，作用是啥子呢？就是可以进行逻辑操作，比如说判断之类的。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE4%E4%BB%A3%E7%A0%81.png"><br>效果其实和方式二是一模一样的</p>
-<h4 id="方式四：-state-方式"><a href="#方式四：-state-方式" class="headerlink" title="方式四：$state 方式"></a>方式四：$state 方式</h4><p><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE5%E4%BB%A3%E7%A0%81.png"></p>
-<h4 id="方式五：-action-方式"><a href="#方式五：-action-方式" class="headerlink" title="方式五： action 方式"></a>方式五： action 方式</h4><p>这个方式我们需要借助 actions 来实现，所以说我们需要去 store 文件夹下的 index.ts 文件中写一个 action<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E4%BB%A3%E7%A0%811.png"><br>写完 action 我们就可以使用 action 的方式修改 age 的值了。怎么使用呢，我们只需要使用实例去调用一下我们刚才写的 action 函数就行了。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E4%BB%A3%E7%A0%812.png"><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E7%BB%93%E6%9E%9C1.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E7%BB%93%E6%9E%9C2.png"><br>当然了，这个 action 是可以传参的，我们修改一下 index.ts 文件编写的 action 函数，让他接受一个参数再赋值。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E4%BB%A3%E7%A0%811.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E4%BB%A3%E7%A0%812.png"><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E7%BB%93%E6%9E%9C1.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E7%BB%93%E6%9E%9C2.png"><br>以上就是常见的五种修改 state 数据的方式，可以根据自己的实际情况选择使用</p>
-<h1 id="pinia-解构"><a href="#pinia-解构" class="headerlink" title="pinia 解构"></a>pinia 解构</h1><p>上面的案例，我们实例化const userInfo = useInfoStore()了以后呢，这个 userInfo 是可以继续解构操作的<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE8%E4%BB%A3%E7%A0%81.png"><br>在页面分别展示一下解构前和解构后的数据，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE8%E7%BB%93%E6%9E%9C.png"><br>我们可以看到，结构前和结构后我们在页面都可以获取到数据展示。<br>但是有个问题，就是解构后的数据是不具备响应式的，意思就是我们修改了 state 的值，页面不会跟着变化。<br>做个测试，点击按钮，age 加一，看一下结构前和解构后的数据在页面是否会实时渲染<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE9%E4%BB%A3%E7%A0%81.png"><br>在页面分别展示一下解构前和解构后的数据，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE9%E4%BB%A3%E7%A0%81.png"><br>通过测试我们可以看到，结构前的是可以实时渲染的，但是解构后的话是不可以的， 因为解构后的不是响应式数据。<br>解决这个问题很简单，官方提供了一个方法，可以把解构后的数据转换为响应式的数据。<br>就是 storeToRefs，使用 storeToRefs 需要导入一下。</p>
-<pre><code>import &#123; storeToRefs &#125; from &#39;pinia&#39;
-</code></pre>
+<h4 id="方式一：直接修改"><a href="#方式一：直接修改" class="headerlink" title="方式一：直接修改"></a>方式一：直接修改</h4><p><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE2%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE2%E7%BB%93%E6%9E%9C.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h4 id="方式二：-patch-函数修改"><a href="#方式二：-patch-函数修改" class="headerlink" title="方式二：$patch 函数修改"></a>方式二：$patch 函数修改</h4><p>在我们实例化 const userInfo = useInfoStore() 这个 state 的时候，其实这个 userInfo 中，有一个方法，就是 patch 函数，它可以帮助我们批量修改。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E7%BB%93%E6%9E%9C1.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE3%E7%BB%93%E6%9E%9C2.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h4 id="方式三：-patch-函数修改"><a href="#方式三：-patch-函数修改" class="headerlink" title="方式三：$patch 函数修改"></a>方式三：$patch 函数修改</h4><p>咦，为什么和第二种一样，都是使用 patch 函数来实现修改，是有区别，方式二是在 patch 函数中传入修改的对象值，但是这种方式传入的是一个函数，作用是啥子呢？就是可以进行逻辑操作，比如说判断之类的。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE4%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>效果其实和方式二是一模一样的</p>
+<h4 id="方式四：-state-方式"><a href="#方式四：-state-方式" class="headerlink" title="方式四：$state 方式"></a>方式四：$state 方式</h4><p><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE5%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h4 id="方式五：-action-方式"><a href="#方式五：-action-方式" class="headerlink" title="方式五： action 方式"></a>方式五： action 方式</h4><p>这个方式我们需要借助 actions 来实现，所以说我们需要去 store 文件夹下的 index.ts 文件中写一个 action<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E4%BB%A3%E7%A0%811.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>写完 action 我们就可以使用 action 的方式修改 age 的值了。怎么使用呢，我们只需要使用实例去调用一下我们刚才写的 action 函数就行了。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E4%BB%A3%E7%A0%812.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E7%BB%93%E6%9E%9C1.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE6%E7%BB%93%E6%9E%9C2.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>当然了，这个 action 是可以传参的，我们修改一下 index.ts 文件编写的 action 函数，让他接受一个参数再赋值。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E4%BB%A3%E7%A0%811.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E4%BB%A3%E7%A0%812.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E7%BB%93%E6%9E%9C1.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE7%E7%BB%93%E6%9E%9C2.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>以上就是常见的五种修改 state 数据的方式，可以根据自己的实际情况选择使用</p>
+<h1 id="pinia-解构"><a href="#pinia-解构" class="headerlink" title="pinia 解构"></a>pinia 解构</h1><p>上面的案例，我们实例化const userInfo = useInfoStore()了以后呢，这个 userInfo 是可以继续解构操作的<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE8%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>在页面分别展示一下解构前和解构后的数据，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE8%E7%BB%93%E6%9E%9C.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>我们可以看到，结构前和结构后我们在页面都可以获取到数据展示。<br>但是有个问题，就是解构后的数据是不具备响应式的，意思就是我们修改了 state 的值，页面不会跟着变化。<br>做个测试，点击按钮，age 加一，看一下结构前和解构后的数据在页面是否会实时渲染<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE9%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>在页面分别展示一下解构前和解构后的数据，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE9%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>通过测试我们可以看到，结构前的是可以实时渲染的，但是解构后的话是不可以的， 因为解构后的不是响应式数据。<br>解决这个问题很简单，官方提供了一个方法，可以把解构后的数据转换为响应式的数据。<br>就是 storeToRefs，使用 storeToRefs 需要导入一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; storeToRefs &#125; from &#x27;pinia&#x27;</span><br></pre></td></tr></table></figure>
 <p>然后把我们解构的对象包裹一下就可以了</p>
-<pre><code>const &#123; name, age &#125; = storeToRefs(userInfo)
-</code></pre>
-<p><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE10%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE10%E7%BB%93%E6%9E%9C.png"><br>或者我们换一个写法，直接操作结构后的数据，记得，要 .value<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%81.png"></p>
-<h1 id="Pinia-的-actions"><a href="#Pinia-的-actions" class="headerlink" title="Pinia 的 actions"></a>Pinia 的 actions</h1><p>actions 是可以处理同步，也可以处理异步，同步的话相对来说简单一点，上面我们通过 action 修改 state 的时候，就用到了 actions 的同步<br>接下来我们重点介绍一下actions异步<br>actions 异步<br>首先我们模拟一个异步函数，然后我们在 actions 中可以调用这个异步操作，在 actions 处理异步的时候，我们一般是与 async 和 await 连用<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%811.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%812.png"><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E7%BB%93%E6%9E%9C1.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E7%BB%93%E6%9E%9C2.png"><br>actions 同步、异步连用<br>这个 actions 里面的方法函数是可以相互调用的，意思就是你 actions 里面有好几个方法，这几个方法是可以调过来调过去的。<br>上面的代码改一下，本来异步模拟获取的 age 数据是 8 ，然后我们调用一个 action 把 age 改成 18。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE12%E4%BB%A3%E7%A0%81.png"><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE12%E7%BB%93%E6%9E%9C.png"></p>
-<h1 id="getter-函数"><a href="#getter-函数" class="headerlink" title="getter 函数"></a>getter 函数</h1><p>getters 类似于 vue 里面的计算属性，可以对已有的数据进行修饰。<br>有两种写法:<br>普通函数方式写法<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E4%BB%A3%E7%A0%811.png"><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E4%BB%A3%E7%A0%812.png"><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E7%BB%93%E6%9E%9C1.png"><br>然后我们点一下按钮，修改一下 name，然后看一下效果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E7%BB%93%E6%9E%9C2.png"><br>我们可以看见，点击修改 name 之后getter 也会实时的渲染出来<br>相互调用<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E4%BB%A3%E7%A0%81.png"><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E7%BB%93%E6%9E%9C1.png"><br>然后我们点一下按钮，修改一下 name和 age，然后看一下效果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E7%BB%93%E6%9E%9C2.png"></p>
-<h1 id="API-的使用"><a href="#API-的使用" class="headerlink" title="API 的使用"></a>API 的使用</h1><p>$reset ：重置到初始值<br>这个 $reset 可以将 state 的数据重置到初始值，比如我们有一个数据，点击按钮改变了，然后我们可以通过这个 API ，将数据恢复到初始状态值。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E4%BB%A3%E7%A0%81.png"><br>我们点击修改用户按钮，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E7%BB%93%E6%9E%9C1.png"><br>然后我们点一下$reset按钮，然后看一下效果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E7%BB%93%E6%9E%9C2.png"><br>$subscribe：监听 state 数据变化<br>$subscribe 使用来监听的，监听 state 数据的变化，只要 state 里面的数据发生了变化，就会自动走这个函数。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E4%BB%A3%E7%A0%81.png"><br>我们点击修改用户按钮，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E7%BB%93%E6%9E%9C1.png"><br>控制台打印出监听到的变化结果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E7%BB%93%E6%9E%9C2.png"><br>$onAction：一调用 actions 就触发<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE17%E4%BB%A3%E7%A0%81.png"><br>控制台打印出监听到的变化结果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE17%E7%BB%93%E6%9E%9C.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const &#123; name, age &#125; = storeToRefs(userInfo)</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE10%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE10%E7%BB%93%E6%9E%9C.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>或者我们换一个写法，直接操作结构后的数据，记得，要 .value<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="Pinia-的-actions"><a href="#Pinia-的-actions" class="headerlink" title="Pinia 的 actions"></a>Pinia 的 actions</h1><p>actions 是可以处理同步，也可以处理异步，同步的话相对来说简单一点，上面我们通过 action 修改 state 的时候，就用到了 actions 的同步<br>接下来我们重点介绍一下actions异步<br>actions 异步<br>首先我们模拟一个异步函数，然后我们在 actions 中可以调用这个异步操作，在 actions 处理异步的时候，我们一般是与 async 和 await 连用<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%811.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E4%BB%A3%E7%A0%812.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E7%BB%93%E6%9E%9C1.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE11%E7%BB%93%E6%9E%9C2.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>actions 同步、异步连用<br>这个 actions 里面的方法函数是可以相互调用的，意思就是你 actions 里面有好几个方法，这几个方法是可以调过来调过去的。<br>上面的代码改一下，本来异步模拟获取的 age 数据是 8 ，然后我们调用一个 action 把 age 改成 18。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE12%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE12%E7%BB%93%E6%9E%9C.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="getter-函数"><a href="#getter-函数" class="headerlink" title="getter 函数"></a>getter 函数</h1><p>getters 类似于 vue 里面的计算属性，可以对已有的数据进行修饰。<br>有两种写法:<br>普通函数方式写法<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E4%BB%A3%E7%A0%811.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E4%BB%A3%E7%A0%812.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E7%BB%93%E6%9E%9C1.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>然后我们点一下按钮，修改一下 name，然后看一下效果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE13%E7%BB%93%E6%9E%9C2.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>我们可以看见，点击修改 name 之后getter 也会实时的渲染出来<br>相互调用<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E7%BB%93%E6%9E%9C1.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>然后我们点一下按钮，修改一下 name和 age，然后看一下效果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE14%E7%BB%93%E6%9E%9C2.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="API-的使用"><a href="#API-的使用" class="headerlink" title="API 的使用"></a>API 的使用</h1><p>$reset ：重置到初始值<br>这个 $reset 可以将 state 的数据重置到初始值，比如我们有一个数据，点击按钮改变了，然后我们可以通过这个 API ，将数据恢复到初始状态值。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>我们点击修改用户按钮，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E7%BB%93%E6%9E%9C1.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>然后我们点一下$reset按钮，然后看一下效果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE15%E7%BB%93%E6%9E%9C2.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>$subscribe：监听 state 数据变化<br>$subscribe 使用来监听的，监听 state 数据的变化，只要 state 里面的数据发生了变化，就会自动走这个函数。<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>我们点击修改用户按钮，查看一下效果，可以看到<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E7%BB%93%E6%9E%9C1.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>控制台打印出监听到的变化结果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE16%E7%BB%93%E6%9E%9C2.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>$onAction：一调用 actions 就触发<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE17%E4%BB%A3%E7%A0%81.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>控制台打印出监听到的变化结果<br><img src="/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/%E6%88%AA%E5%9B%BE17%E7%BB%93%E6%9E%9C.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+
+</article>
+    
+    
+
+<ul class="trm-post-copyright">
+    <li class="trm-post-copyright-author">
+        <strong>本文作者：</strong>
+        ljylwnxx
+    </li>
+    <li class="trm-post-copyright-link">
+        <strong>本文链接：</strong>
+        <a id="original-link" href="http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/" title="Vue3:Pinia使用">http://example.com/2022/10/24/Vue3-Pinia%E4%BD%BF%E7%94%A8/</a>
+    </li>
+    <li class="trm-post-copyright-license">
+        <strong>版权声明：</strong>
+        本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 ">CC BY-NC-SA 4.0</a> 许可协议。
+    </li>
+</ul>
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2022/10/25/vue3-hooks%E4%BD%BF%E7%94%A8/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/defaultcover.png">
+                </span>
+                <h6 class="trm-op-title">vue3-hooks使用</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>22/10/25</li>
+                <li>23:21</li>
+                <li>vue3</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2022/10/20/vue3%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/defaultcover.png">
+                </span>
+                <h6 class="trm-op-title">vue3组件传值</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>22/10/20</li>
+                <li>22:39</li>
+                <li>vue3</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2023</span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color">ljylwnxx博客</span>
+        </div>
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.2
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.0.5
+            </span>
+        </div>
+      
+
+    
+        <div class="trm-footer-item">
+            博客已萌萌哒运行 <span id="since" class="trm-accent-color"></span> 天
+        </div>
+     
+
+     
+</footer>
+
+<script>
+    function show_date_time () {
+        var BirthDay = new Date("2022/08/16 21:45:54");
+        var today = new Date();
+        var timeold = (today.getTime() - BirthDay.getTime());
+        var msPerDay = 24 * 60 * 60 * 1000
+        var day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
+            <i class="iconfont fas fa-arrows-alt-h"></i>
+        </div>
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
 
   </div>
-  <div id="gitalk-container"></div>
-</div>
+  <!-- app wrapper end -->
 
-<script>
   
-Fancybox.bind('[data-fancybox="fancybox-gallery-img"]', {
-  dragToClose: true,
-  Toolbar: true,
-  closeButton: "top",
-  Image: {
-    zoom: true,
-  },
-  on: {
-    initCarousel: (fancybox) => {
-      const slide = fancybox.Carousel.slides[fancybox.Carousel.page];
-      fancybox.$container.style.setProperty(
-        "--bg-image",
-        `url("${slide.$thumb.src}")`
-      );
-    },
-    "Carousel.change": (fancybox, carousel, to, from) => {
-      const slide = carousel.slides[to];
-      fancybox.$container.style.setProperty(
-        "--bg-image",
-        `url("${slide.$thumb.src}")`
-      );
-    },
-  },
-});
-</script>
-
-<style>
-    #noneimg img {
-        display: none;
-        z-index: 9999;
-        /* width: 600px !important; */
-        min-width: 0%;
-        max-width: 90%;
-        max-height: 80%;
-        border-radius: 0px;
-        position: fixed;
-        box-shadow: 0 0 0px #c3c3c300 !important;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto !important;
-    }
-
-    @media screen and (max-width:600px) {
-        #noneimg img {
-            max-width: 88%
-        }
-    }
-</style>
-
-    <div class="post-paging">
-    
-    <a href="/2022/10/25/vue3-hooks%E4%BD%BF%E7%94%A8/">
-        <div class="post-paging-last">
-            <span>上一篇</span>
-            <p>vue3-hooks使用</p>
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </a>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+<script src="https://npm.elemecdn.com/swup@2.0.19/dist/swup.min.js"></script>
+
+    
+<script src="https://npm.elemecdn.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+    
+<script src="https://npm.elemecdn.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
     
 
     
-    <a href="/2022/10/20/vue3%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC/">
-        <div class="post-paging-next">
-            <span>下一篇</span>
-            <p>vue3组件传值</p>
-        </div>
-    </a>
+        <script src="/js/plugins/typing.js?v=2.0.5"></script>
     
-</div>
-</div>
-		
-<div class="footer">
-	<div class="Copyright">
-		©2023 By ljylwnxx. 主题：<a
-			style="text-decoration: none;display: contents; color: #898F9F;"
-			target="_blank" rel="noopener" href="https://github.com/79e/hexo-theme-quiet">Quiet</a>
-	</div>
-	<div class="contact">
-		
-		<a target="_blank" rel="noopener" href="https://github.com/ljylwnxx">
-			<img src="/image/avator.png" alt="Quiet主题">
-		</a>
-		
-	</div>
-</div>
 
-<script src="/js/gotop.js"></script>
-
-
-<style type="text/css">
-    @media screen and (min-width: 600px) {
-        .goTop>span {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            opacity: 0.8;
-            background: rgba(18, 24, 58, 0.06);
-            text-align: center;
-            transition: border .5s;
-            border: 1px solid rgba(18, 24, 58, 0.06);
-
-            -moz-transition: border .5s;
-            /* Firefox 4 */
-            -webkit-transition: border .5s;
-            /* Safari 和 Chrome */
-            -o-transition: border .5s;
-            /* Opera */
-        }
-
-        .goTop>span:hover {
-            border: 1px solid #6680B3;
-        }
-
-
-        .goTop {
-            position: fixed;
-            right: 30px;
-            bottom: 80px;
-        }
-
-        .goTop>span>svg {
-            width: 20px;
-            height: 20px;
-            opacity: 0.7;
-        }
-
-    }
-
-    @media screen and (max-width: 600px) {
-        .goTop {
-            display: none;
-        }
-    }
-</style>
-<div class="goTop" id="js-go_top">
-    <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <g>
-                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
-            </g>
-        </svg>
-    </span>
-</div>
-<script>
-    $( '#js-go_top' )
-	.gotoTop( {
-		offset: 500,
-		speed: 300,
-		animationShow: {
-			'transform': 'translate(0,0)',
-			'transition': 'transform .5s ease-in-out'
-		},
-		animationHide: {
-			'transform': 'translate(100px,0)',
-			'transition': 'transform .5s ease-in-out'
-		}
-	} );
-</script>
-
-
-    <!-- Gitalk -->
-    <script>
-        const data = '{"clientID":"02b3c","clientSecret":"adfc7b4","repo":"gimment","owner":"duneng","admin":"duneng"}'
-        const gitalk = new Gitalk({
-            ...JSON.parse( data),
-            id:location.pathname,
-            distractionFreeMode:false
-        })
+    
         
-        if(Boolean('true')){
-            gitalk.render('gitalk-container')
-        }
+<script src="https://npm.elemecdn.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=2.0.5"></script>
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+<script src="/demo.js"></script>
+
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+    <script data-swup-reload-script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
     </script>
 
-<script>
-	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/79e/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
-</script>
-	</body>
-</html>
 
+
+<script id="async-script" src="/js/main.js?v=2.0.5"></script>
+
+</body>
+
+</html>

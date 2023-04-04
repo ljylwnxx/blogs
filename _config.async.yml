@@ -1,0 +1,174 @@
+favicon:
+    logo:  /images/logo.gif
+    dark_logo: /images/logo.gif
+    icon16: /images/logo.png
+    icon32: /images/logo.png
+    appleTouchIcon: apple-touch-icon.png
+    webmanifest: /site.webmanifest
+    visibilitychange: true
+    hidden: failure.ico
+    showText: (/≧▽≦/)咦！又好了！
+    hideText: (●—●)喔哟，崩溃啦！
+user:
+    name: ljylwnxx博客
+    first_name: 博客
+    last_name: ljylwnxx
+    email: ljylwnxx@163.com
+    # 域名
+    domain: 空
+    avatar: /images/logo.png
+    describe: ljylwnxx,个人技术博客,用于技术分享记录和交流
+    ruleText: 暂不接受个人博客以外的友链申请。
+
+# 导航栏 TopBars
+top_bars:
+  - title: 首页
+    url: /
+  - title: 归档
+    url: /archives/
+  - title: 友情链接
+    url: /links/
+  - title: 关于
+    url: /about/
+# 社交图标
+sidebar:
+    typedTextPrefix: Hello!
+    typedText: [ '今日目标,没有bug','一行代码,定义无限可能','永不脱发,无Bug']
+    info: # 个人信息
+        - key: 分类
+          val: <a href="/categories/" target="_blank" rel="nofollow">查看</a> 
+        - key: 标签
+          val: <a href="/tags/" target="_blank" rel="nofollow">查看</a> 
+
+
+    # 社交地址
+    social: 
+          - icon: fab fa-github
+            name: github
+            url: https://github.com
+          - icon: iconfont cg-gitee
+            name: gitee
+            url: https://gitee.com 
+
+# 横幅 Banner  
+banner:
+        default:
+              type: img
+              bgurl: [/images/defaultbgurl.png]
+        # 首页
+        index:
+           # type：横幅类型 img、slideshow、video
+           #  bannerTitle：横幅上标题
+           # bannerText：横幅描述
+            bannerTitle: 喜欢这件事,不会有任何的Bug,<br>所以不需要Debug。
+            bannerText: Hello World!
+        archive:
+           # type：横幅类型 img、slideshow、video
+           # bannerTitle：横幅上标题
+           # bannerText：横幅描述
+            bannerTitle: 写代码需要反思和重构,<br>生活也是一样。
+            bannerText: Hello World!
+        links:
+           # type：横幅类型 img、slideshow、video
+           #  bannerTitle：横幅上标题
+           # bannerText：横幅描述
+            bannerTitle: 敲的不是代码,<br>是世界的改变。
+            bannerText: Hello World!
+        about:
+           # type：横幅类型 img、slideshow、video
+           # bgurl：背景图地址，如果 type 是 slideshow，必须为数组。
+           # 如果 type 是 img 时，可为字符串或数组，如果数组长度为 2 则会根据主题自动切换。
+           # bannerTitle：横幅上标题
+           # bannerText：横幅描述
+            bannerTitle: 这哪里是Bug?<br>这明明是未列出来的特性。
+            bannerText: Hello World!
+
+category:
+    # type：横幅类型 img、slideshow、video
+    #  bannerTitle：横幅上标题
+    # bannerText：横幅描述
+    bannerTitle: 代码改变世界,<br>数据连接你我。
+    bannerText: Hello World!
+tag:
+    # type：横幅类型 img、slideshow、video
+    #  bannerTitle：横幅上标题
+    # bannerText：横幅描述
+    bannerTitle: 让代码没有Bug,<br>世界永远和平。
+    bannerText: Hello World! 
+
+about:
+      title:        世界上很多事情都跟Bug一样,发生的莫名其妙,<br>但只要你用心意就会发现,其实百分之九十的事,都是有迹可循的良苦用心。
+      introduction: 大家好，我是ljylwnxx。本博客主要用于分享和记录一些学习的内容以及遇到的问题等。
+      blog:         程序：Hexo
+                    主题：Hexo-theme-async
+
+footer:
+          powered:
+            enable: true
+          beian:
+            enable: false
+            icp: 
+          copyrightYear: 2022
+          live_time:
+            enable: true
+            prefix: footer.tips
+            start_time: 2022/08/16 21:45:54
+            custom_text:
+  
+toc:
+          enable: true
+          list_number: true
+          max_depth: 3
+          min_depth: 1
+
+creative_commons:
+          license: by-nc-sa
+          language: deed.zh
+          post: true
+          clipboard: true
+
+cover:
+          default: 
+          - /images/defaultcover.png
+          - /images/defaultimg.png
+          - /images/default.png
+          - /images/defaultpic.png
+          type: random
+
+post_pagination:
+          enable: true
+          type: small # large || small
+
+search:
+          enable: true
+          type: local
+          preload: true
+          trigger: auto
+      
+baidu_push: true
+swup: true
+
+rightside:
+          readmode: true
+          aside: true
+
+cdn:
+        js:
+          head:
+          base: [demo.js]
+
+theme:
+    switch: true
+    default: style-light
+
+assets:
+          third_party_provider: https://npm.elemecdn.com
+  
+
+highlight:
+    theme: true
+    title: mac
+    copy: true
+    lang: true
+    code_word_wrap: fasle
+    height_limit: 200 # 超出时，显示折叠按钮
