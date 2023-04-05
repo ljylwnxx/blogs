@@ -139,7 +139,7 @@ cover:
           - /images/defaultimg6.png
           - /images/defaultimg7.png
           - /images/default.png
-          type: random
+          type: img
 
 post_pagination:
           enable: true

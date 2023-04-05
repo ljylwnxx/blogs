@@ -2,7 +2,7 @@
 title: Vue-搜索引擎SEO优化
 date: 2023-04-05 16:25:21
 tags: Vue
-categories: Vue
+categories: 性能优化
 ---
 众所周知，Vue SPA 单页应用对 SEO 不友好，当然也有相应的解决方案。
 # 1. SSR 服务器渲染
