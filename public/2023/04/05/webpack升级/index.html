@@ -7,15 +7,15 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="一、背景由于项目越来越庞大复杂，打包时间也非常长，本地开发环境每次重启都要打包好久也和你头疼，正好借此契机对webpack做了一个升级。">
+<meta name="description" content="一、背景由于项目越来越庞大复杂，打包时间也非常长，本地开发环境每次重启都要打包好久，正好借此契机对webpack做了一个升级。 二、升级过程1. 先升级 webpack 和 webpack-clinpm install --save-dev webpack@latest webpack-cli@latest  webpack-dev-server@latest webpack-merge@late">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack升级">
 <meta property="og:url" content="http://example.com/2023/04/05/webpack%E5%8D%87%E7%BA%A7/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="一、背景由于项目越来越庞大复杂，打包时间也非常长，本地开发环境每次重启都要打包好久也和你头疼，正好借此契机对webpack做了一个升级。">
+<meta property="og:description" content="一、背景由于项目越来越庞大复杂，打包时间也非常长，本地开发环境每次重启都要打包好久，正好借此契机对webpack做了一个升级。 二、升级过程1. 先升级 webpack 和 webpack-clinpm install --save-dev webpack@latest webpack-cli@latest  webpack-dev-server@latest webpack-merge@late">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-04-05T08:15:20.000Z">
-<meta property="article:modified_time" content="2023-04-05T12:34:19.967Z">
+<meta property="article:modified_time" content="2023-04-07T12:52:02.027Z">
 <meta property="article:author" content="ljylwnxx">
 <meta property="article:tag" content="webpack">
 <meta name="twitter:card" content="summary">
@@ -67,7 +67,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.5","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/logo.gif","icon16":"/images/logo.png","icon32":"/images/logo.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！","dark_logo":"/images/logo.gif"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":true,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"creative_commons":{"license":"by-nc-sa","language":"deed.zh"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-05 2023-04-05T20:34:19+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-07 2023-04-07T20:52:02+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.5" id="trm-switch-style">
@@ -364,7 +364,7 @@
             </div>
             <div name="tabs-toc" class="trm-tabs-item active">
                 <div class="post-toc">
-    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#一、背景"  data-scroll-to="#一、背景"><span class="toc-number">1.</span> <span class="toc-text">一、背景</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#一、背景"  data-scroll-to="#一、背景"><span class="toc-number">1.</span> <span class="toc-text">一、背景</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#二、升级过程"  data-scroll-to="#二、升级过程"><span class="toc-number">2.</span> <span class="toc-text">二、升级过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#1-先升级-webpack-和-webpack-cli"  data-scroll-to="#1-先升级-webpack-和-webpack-cli"><span class="toc-number">2.1.</span> <span class="toc-text">1. 先升级 webpack 和 webpack-cli</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#2-执行npm-start"  data-scroll-to="#2-执行npm-start"><span class="toc-number">2.2.</span> <span class="toc-text">2. 执行npm start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#1）–colors-报错"  data-scroll-to="#1）–colors-报错"><span class="toc-number">2.2.1.</span> <span class="toc-text">1）–colors 报错</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#2）devServer-中-disableHostCheck报错"  data-scroll-to="#2）devServer-中-disableHostCheck报错"><span class="toc-number">2.2.2.</span> <span class="toc-text">2）devServer 中 disableHostCheck报错</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#3）OpenBrowserPlugin-报错"  data-scroll-to="#3）OpenBrowserPlugin-报错"><span class="toc-number">2.2.3.</span> <span class="toc-text">3）OpenBrowserPlugin 报错</span></a></li></ol></li></ol></li></ol>
 </div>
             </div>
         </div>
@@ -400,7 +400,24 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    <h1 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h1><p>由于项目越来越庞大复杂，打包时间也非常长，本地开发环境每次重启都要打包好久也和你头疼，正好借此契机对webpack做了一个升级。</p>
+    <h1 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h1><p>由于项目越来越庞大复杂，打包时间也非常长，本地开发环境每次重启都要打包好久，正好借此契机对webpack做了一个升级。</p>
+<h1 id="二、升级过程"><a href="#二、升级过程" class="headerlink" title="二、升级过程"></a>二、升级过程</h1><h2 id="1-先升级-webpack-和-webpack-cli"><a href="#1-先升级-webpack-和-webpack-cli" class="headerlink" title="1. 先升级 webpack 和 webpack-cli"></a>1. 先升级 webpack 和 webpack-cli</h2><figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">npm install <span class="attr">--save-dev</span> webpack<span class="keyword">@latest</span> webpack-cli<span class="keyword">@latest</span>  webpack-dev-server<span class="keyword">@latest</span> webpack-merge<span class="keyword">@latest</span></span><br></pre></td></tr></table></figure>
+<p>webpack-merge升级以后，使用方式改为如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> webpackMerge = <span class="built_in">require</span>(<span class="string">&quot;webpack-merge&quot;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; merge &#125; = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="2-执行npm-start"><a href="#2-执行npm-start" class="headerlink" title="2. 执行npm start"></a>2. 执行npm start</h2><p>在 package.json中scripts的start命令如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cross-env NODE_ENV=dev webpack-dev-server --hot --progress --colors  --config ./webpack.dev.js&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1）–colors-报错"><a href="#1）–colors-报错" class="headerlink" title="1）–colors 报错"></a>1）–colors 报错</h3><p>在v4版本中，我们可以使用 –colors或者 –color，但是在v5版本中只能使用 –color<br>调整命令：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cross-env NODE_ENV=dev webpack-dev-server --hot --progress --color  --config ./webpack.dev.js&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2）devServer-中-disableHostCheck报错"><a href="#2）devServer-中-disableHostCheck报错" class="headerlink" title="2）devServer 中 disableHostCheck报错"></a>2）devServer 中 disableHostCheck报错</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    ... </span><br><span class="line">    disableHostCheck: true, </span><br><span class="line">    ... </span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    ... </span><br><span class="line">    allowedHosts: &quot;all&quot;, </span><br><span class="line">    ... </span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>当设置为 ‘all’ 时会跳过host检查。并不推荐这样做，因为不检查host的应用程序容易受到DNS重绑定攻击。</p>
+<h3 id="3）OpenBrowserPlugin-报错"><a href="#3）OpenBrowserPlugin-报错" class="headerlink" title="3）OpenBrowserPlugin 报错"></a>3）OpenBrowserPlugin 报错</h3><p>打开浏览器的插件open-browser-webpack-plugin目前在 webpack5 中不能使用了，所以去掉。</p>
+<ul>
+<li>webpack5 在开发环境可以通过 devServer.open 的方式去打开浏览器，但是不太建议，因为会导致构建速度明显变慢。</li>
+<li>可以利用 react-dev-utils 当中的 openBrowser 来实现，这个不会太影响构建速度，相当于自己写一个plugin。如下：</li>
+</ul>
 
 </article>
     

@@ -14,14 +14,14 @@ Pinia直接对state进行修改
 3. Pinia中 getter，action 也可通过 this 访问整个 store 实例
 # main.js中
 在main.js中，vuecli会自动将vuex挂载到app上，使用vite需要自己手动挂载pinia
-```
+```js
 import { createPinia } from 'pinia'  
 const pinia = createPinia();  
 app.use(pinia);
 ```
 # store/index.js中
 vuex有state,getter,mutation,action,moudle五个部分
-```
+```js
 import { createStore } from 'vuex'
 import { receiveMessagePerson } from './modules/receiveMessagePerson'
 export default createStore({
@@ -52,7 +52,7 @@ export default createStore({
 })
 ```
 Pinia有state,getter,action三个部分
-```
+```js
 import { defineStore } from "pinia";
 export const useTestStore = defineStore('Test', {
   state(){
@@ -75,11 +75,11 @@ export const useTestStore = defineStore('Test', {
 # 在vue组件中
 ## vuex
 vue2中：
-```
+```js
 this.$store.***
 ```
 vue3中：
-```
+```js
 import { useStore } from 'vuex'
 let store = useStore()
 let *** = computed(() => store.state.***)
@@ -91,7 +91,7 @@ vue2中：
 使用到mapState,mapGetter,mapMutations,mapActions方法,[_post/Vuex的namespaced属性.md]
 vue3中：
 ## Pinia
-```
+```js
 import { useTestStore } from '../store/index';
 let store = useTestStore()
 store.**(state变量名)
@@ -101,8 +101,10 @@ store.**(actions方法名)
 省去了state,getters,commit,dispatch这些字段，更方便
 ## Pinia拆解
 用到storeToRefs
-```
+```js
 import { storeToRefs } from 'pinia';
-let { **, ** } = storeToRefs(store)    // state和getters的变量都可以拆解出来
-let { ** } = store                   // actions的方法拆解出来
+   // state和getters的变量都可以拆解出来
+let { **, ** } = storeToRefs(store) 
+// actions的方法拆解出来
+let { ** } = store                   
 ```
