@@ -7,7 +7,7 @@ categories: webpack
 # 一、背景
 由于项目越来越庞大复杂，打包时间也非常长，本地开发环境每次重启都要打包好久，正好借此契机对webpack做了一个升级。
 # 二、webpack5 和 webpack4 的区别有哪些 ？
-## 1、Tree Shaking
+## Tree Shaking
 ### 作用：
 如果我们的项目中引入了lodash包，但是我只用了其中的一个方法。其他没有用到的方法是不是冗余的？此时tree-shaking就可以把没有用的那些东西剔除掉，来减少最终的bundle体积。
 usedExports : true, 标记没有用的叶子
@@ -24,7 +24,7 @@ minimize: true, 摇掉那些没有用的叶子
 由于tree shaking只支持esmodule ，如果你打包出来的是commonjs，此时tree-shaking就失效了。不过当前大家都用的是vue，react等框架，他们都是用babel-loader编译，以下配置就能够保证他一定是esmodule。
 ![](webpack4.png)
 webpack5的 mode=“production” 自动开启 tree-shaking。
-## 2、压缩代码
+## 压缩代码
 + webpack4
 webpack4需要下载安装terser-webpack-plugin 插件，并且需要以下配置
 ```
@@ -98,7 +98,7 @@ optimization: {
 ```
 npm i css-assets-webpack-plugin -D
 ```
-## 3.合并模块
+## 合并模块
 普通打包只是将一个模块最终放到一个单独的立即执行函数中，如果你有很多模块，那么就有很多立即执行函数。concatenateModules可以要所有的模块都合并到一个函数里面去。
 optimization.concatenateModules = true
 配置如下：
@@ -112,7 +112,7 @@ module.exports = {
 }
 ```
 此时配合 tree-shaking 你会发现打包的体积会减小很多。
-## 4、副作用sideEffects
+## 副作用sideEffects
 + webpack4 新增了一个sideEffects的功能，允许我们通过配置来标识我们的代码是否有副作用。这个特性只有在开发npm包的时候用到。
 + 副作用的解释： 在utils文件夹下面有index.js文件，用于系统导出utils里面其他文件，作用就是写的少，不管utils里面有多少方法，我都只需要引入utils即可。
 ```
@@ -152,7 +152,7 @@ module.exports = {
 (2)package.json 中设置 sideEffects : false 标记所有模块无副作用
 + 说明： 
 webpack打包前都会检查项目所属的package.json文件中的sideEffects标识，如果没有副作用，那些没有用到的模块就不需要打包，反之亦然。此时，在webpack.config.js里面开启sideEffects。
-## 5、webpack 缓存
+## webpack 缓存
 + webpack4缓存配置
 支持缓存在内存中
 ```
@@ -181,7 +181,7 @@ module.exports= {
 ```
 + type的可选值为：memory使用内容缓存，filesystem使用文件缓存。
 + 当type=filesystem的时候设置cacheDirectory才生效。用于设置你需要的东西缓存放在哪里。
-## 6.对loader的优化
+## 对loader的优化
 webpack4加载资源需要用不同的loader
 + raw-loader将文件导入为字符串
 + url-loader将文件作为data url内联到bundle文件中
@@ -194,18 +194,18 @@ webpack5 的资源模块类型替换 loader
 + asset/source 导出资源的源代码。之前通过使用 raw-loader 实现。
 + asset 在导出一个data URI和发送一个单独的文件之间自动选择。之前通过使用 url-loader，并且配置资源体积限制实现。
 ![](webpack4-2.png)
-## 7、启动服务的差别
+## 启动服务的差别
 + webpack4 启动服务
 通过webpack-dev-server启动服务
 + webpack5 启动服务
 内置使用webpack serve启动，但是它的日志不是很好，所以一般都加都喜欢用webpack-dev-server优化。
-## 8.devtool的差别
+## devtool的差别
 sourceMap需要在webpack.config.js里面直接配置devtool就可以实现了。而 devtool有很多个选项值，不同的选项值，不同的选项产生的 .map 文件不同，打包速度不同。
 一般情况下，我们一般在开发环境配置用“cheap-eval-module-source-map”，在生产环境用‘none’。
 devtool在webpack4和webpack5上也是有区别的
 v4: devtool: 'cheap-eval-module-source-map'
 v5: devtool: 'eval-cheap-module-source-map'
-## 9.热更新差别
+## 热更新差别
 + webpack4设置
 ![](webpack4-3.png)
 + webpack5设置
@@ -219,7 +219,7 @@ v5: devtool: 'eval-cheap-module-source-map'
 如果你引入 mini-css-extract-plugin 以后你会发现 样式的热更新也会失效。
 只能在开发环境使用style-loader，而在生产环境用MinicssExtractPlugin.loader。 如下：
 ![](webpack5-1.png)
-## 10.使用 webpack-merge 的差别
+## 使用 webpack-merge 的差别
 + webpack4 导入
 ```
 const merge = require('webpack-merge);
@@ -228,7 +228,7 @@ const merge = require('webpack-merge);
 ```
 const {merge} = require('webpack-merge');
 ```
-## 11.使用 copy-webpack-plugin 的差别
+## 使用 copy-webpack-plugin 的差别
 ```
 //webpack.config.js
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -249,7 +249,7 @@ module.exports = {
 webpack5支持的新版本里面需要配置的更加清楚。
 # 三、升级过程
 Webpack5对Node.js的版本要求至少是10.13.0
-## 1. 先升级 webpack 和 webpack-cli
+## 先升级 webpack 和 webpack-cli
 ```scss
 npm install --save-dev webpack@latest webpack-cli@latest  webpack-dev-server@latest webpack-merge@latest
 ```
@@ -262,14 +262,14 @@ const { merge } = require('webpack-merge');
 ```
 升级所有使用到的plugin和loader为最新的可用版本。
 部分plugin和loader可能会有一个beta版本，必须使用它们才能与webpack 5兼容。
-## 2. 执行npm start
+## 执行npm start
 在 package.json中scripts的start命令如下：
 ```json
 "scripts": {
     "start": "cross-env NODE_ENV=dev webpack-dev-server --hot --progress --colors  --config ./webpack.dev.js",
 }
 ```
-### 1）--colors 报错
+### --colors 报错
 在v4版本中，我们可以使用 --colors或者 --color，但是在v5版本中只能使用 --color
 调整命令：
 ```json
@@ -277,7 +277,7 @@ const { merge } = require('webpack-merge');
     "start": "cross-env NODE_ENV=dev webpack-dev-server --hot --progress --color  --config ./webpack.dev.js",
 }
 ```
-### 2）devServer 中 disableHostCheck报错
+### devServer 中 disableHostCheck报错
 ```
 devServer: {
     ... 
@@ -294,7 +294,7 @@ devServer: {
 },
 ```
 当设置为 'all' 时会跳过host检查。并不推荐这样做，因为不检查host的应用程序容易受到DNS重绑定攻击。
-### 3）vue-loader问题
+### vue-loader问题
 注意 vue-loader不同的版本是对应VUE不同版本的，这里一定要注意，如果你的VUE版本是2.x那么你要使用vue-loader@15.x，如果是vue@3.x那么要使用vue-loader@16.x
 ```js
 // vue-loader@16.x
@@ -314,12 +314,12 @@ module.exports = {
     ]
 }
 ```
-### 4）webpack@5.x与vue-loader@16.x版本中间的一个报错问题,DescriptionDataMatcherRulePlugin | webpack5 报错问题
+### webpack@5.x与vue-loader@16.x版本中间的一个报错问题,DescriptionDataMatcherRulePlugin | webpack5 报错问题
 解决方案
 1. DescriptionDataMatcherRulePlugin是出现在vue-loader里面的
 2. webpack@5里面为啥不见了，我去webpack源码里找，竟然把文件名给改了，然后vue-loader那边没有同步修改
 3. 解决方案：npm i webpack@5.44.0 -D 或者等vue-loader 更新
-### 5）postcss-loader 问题
+### postcss-loader 问题
 ```
 npm install --save-dev autoprefixer
 ```
@@ -355,7 +355,7 @@ module.exports = {
     }
 }
 ```
-### 6）optimization 配置
+### optimization 配置
 production
 ```js
 module.exports = {
@@ -365,7 +365,7 @@ module.exports = {
     },
 }
 ```
-### 7）webpack-manifest-plugin
+### webpack-manifest-plugin
 ```js
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 new WebpackManifestPlugin({
