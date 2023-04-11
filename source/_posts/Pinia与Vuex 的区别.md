@@ -3,6 +3,10 @@ title: Pinia 与 Vuex 的区别
 date: 2023-04-05 19:58:26
 tags: Vuex
 categories: Vue
+cover: [/images/piniacover.png]
+banner: 
+  type: img
+  bgurl: [/images/piniacover.png]
 ---
 # 两者区别
 1. Vuex的核心概念有state,getters,mutations,actions,moudles五个部分

@@ -3,6 +3,10 @@ title: webpack迁移vite
 date: 2023-03-29 21:41:53
 tags: webpack
 categories: 知识点
+cover: [/images/迁移vitecover.png]
+banner: 
+  type: img
+  bgurl: [/images/迁移vitecover.png]
 ---
 # 一、迁移流程
 1.先创建新的vite项目

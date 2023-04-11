@@ -3,6 +3,10 @@ title: Vuex
 date: 2023-04-05 19:49:07
 tags: Vuex
 categories: Vue
+cover: [/images/vuexcover.png]
+banner: 
+  type: img
+  bgurl: [/images/vuexcover.png]
 ---
 Vuex它是一个程序里面的状态管理模式，它是集中式存储所有组件的状态的小仓库，并且保持我们存储的状态以一种可以预测的方式发生变化。
 # 第一步，了解Vuex

@@ -3,6 +3,10 @@ title: webpack升级
 date: 2023-04-05 16:15:20
 tags: webpack
 categories: webpack
+cover: [/images/webpackcover.png]
+banner: 
+  type: img
+  bgurl: [/images/webpackcover.png]
 ---
 # 一、背景
 由于项目越来越庞大复杂，打包时间也非常长，本地开发环境每次重启都要打包好久，正好借此契机对webpack做了一个升级。

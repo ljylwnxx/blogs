@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="vue-cropper的使用安装npm install vue-cropper --save 在main.js中引入import VueCropper from &amp;#x27;vue-cropper&amp;#x27;Vue.use(VueCropper) 封装组件&lt;template&gt;    &lt;!-- 图片裁剪组件 --&gt;    &lt;div class&#x3D;&quot;img-cut">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-cropper">
+<meta property="og:url" content="http://example.com/2023/04/11/vue-cropper/index.html">
+<meta property="og:site_name" content="ljylwnxx的博客">
+<meta property="og:description" content="vue-cropper的使用安装npm install vue-cropper --save 在main.js中引入import VueCropper from &amp;#x27;vue-cropper&amp;#x27;Vue.use(VueCropper) 封装组件&lt;template&gt;    &lt;!-- 图片裁剪组件 --&gt;    &lt;div class&#x3D;&quot;img-cut">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-04-11T13:34:50.000Z">
+<meta property="article:modified_time" content="2023-04-11T14:14:22.012Z">
+<meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="vue-cropper">
+<meta name="twitter:card" content="summary">
+
+
+<title >vue-cropper</title>
+
+<!-- Favicon -->
+
+    <link href='/images/logo.png?v=2.0.5' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/images/logo.png?v=2.0.5' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=2.0.5' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://npm.elemecdn.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+    
+<link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.5","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/logo.gif","icon16":"/images/logo.png","icon32":"/images/logo.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！","dark_logo":"/images/logo.gif"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":true,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"creative_commons":{"license":"by-nc-sa","language":"deed.zh"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"preload":true,"trigger":"auto","path":"search.xml"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-11 2023-04-11T22:14:22+08:00"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.5" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" class=" trm-light-icon" src="/images/logo.gif"> <img alt="logo" class=" trm-dark-icon" src="/images/logo.gif">
+    
+    
+        <div class="trm-logo-text">
+            ljylwnxx<span>博客</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/links/" target="">
+                    友情链接
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+    
+    <div id="trm-search-btn" class="trm-search-btn">
+        <i class="iconfont fas fa-search"></i>
+    </div>
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/images/defaultbgurl.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            vue-cropper
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span
+                                ></li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    
+
+<div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
+    
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont fas fa-user-alt"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont fas fa-th-list"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/images/logo.png">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ljylwnxx博客
+    </h5>
+    
+        <div class="trm-label">
+            Hello!
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+                <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="gitee" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont cg-gitee"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+                <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                分类:
+            </div>
+            <div class="trm-label trm-label-light">
+                <a href="/categories/" target="_blank" rel="nofollow">查看</a>
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                标签:
+            </div>
+            <div class="trm-label trm-label-light">
+                <a href="/tags/" target="_blank" rel="nofollow">查看</a>
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+                
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:ljylwnxx@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#vue-cropper的使用"  data-scroll-to="#vue-cropper的使用"><span class="toc-number">1.</span> <span class="toc-text">vue-cropper的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#安装"  data-scroll-to="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#在main-js中引入"  data-scroll-to="#在main-js中引入"><span class="toc-number">1.2.</span> <span class="toc-text">在main.js中引入</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#封装组件"  data-scroll-to="#封装组件"><span class="toc-number">2.</span> <span class="toc-text">封装组件</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#问题总结"  data-scroll-to="#问题总结"><span class="toc-number">3.</span> <span class="toc-text">问题总结</span></a></li></ol>
+</div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            04/11
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            21:34
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ljylwnxx
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="vue-cropper的使用"><a href="#vue-cropper的使用" class="headerlink" title="vue-cropper的使用"></a>vue-cropper的使用</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install vue-cropper --save</span><br></pre></td></tr></table></figure>
+<h2 id="在main-js中引入"><a href="#在main-js中引入" class="headerlink" title="在main.js中引入"></a>在main.js中引入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import VueCropper from &#x27;vue-cropper&#x27;</span><br><span class="line">Vue.use(VueCropper)</span><br></pre></td></tr></table></figure>
+<h1 id="封装组件"><a href="#封装组件" class="headerlink" title="封装组件"></a>封装组件</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;!-- 图片裁剪组件 --&gt;</span><br><span class="line">    &lt;div class=&quot;img-cut&quot;&gt;</span><br><span class="line">      &lt;!-- 图片 --&gt;</span><br><span class="line">      &lt;div class=&quot;img-wrap&quot;&gt;</span><br><span class="line">        &lt;img class=&quot;edit-img&quot; :src=&quot;imgUrl&quot; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;!-- 按钮 --&gt;</span><br><span class="line">      &lt;div class=&quot;btn-wrap&quot;&gt;</span><br><span class="line">        &lt;el-upload</span><br><span class="line">          ref=&quot;upload&quot;</span><br><span class="line">          :action=&quot;action&quot;</span><br><span class="line">          :auto-upload=&quot;false&quot;</span><br><span class="line">          :on-change=&quot;handleChange&quot;</span><br><span class="line">          :show-file-list=&quot;false&quot;</span><br><span class="line">          accept=&quot;image/*&quot;</span><br><span class="line">        &gt;</span><br><span class="line">          &lt;button slot=&quot;trigger&quot; class=&quot;btn btn-white&quot;&gt;&#123;&#123; btnText &#125;&#125;&lt;/button&gt;</span><br><span class="line">        &lt;/el-upload&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;!-- 图片裁剪 --&gt;</span><br><span class="line">      &lt;el-dialog</span><br><span class="line">        title=&quot;图片剪裁&quot;</span><br><span class="line">        :visible.sync=&quot;ImgdialogVisible&quot;</span><br><span class="line">        :modal=&quot;false&quot;</span><br><span class="line">        :close-on-click-modal=&quot;false&quot;</span><br><span class="line">        append-to-body</span><br><span class="line">        :destroy-on-close=&quot;true&quot;</span><br><span class="line">        :center=&quot;true&quot;</span><br><span class="line">      &gt;</span><br><span class="line">        &lt;div class=&quot;cropper-content&quot;&gt;</span><br><span class="line">          &lt;div class=&quot;cropper&quot; style=&quot;text-align: center&quot;&gt;</span><br><span class="line">            &lt;vueCropper</span><br><span class="line">              ref=&quot;cropper&quot;</span><br><span class="line">              :img=&quot;option.img&quot;</span><br><span class="line">              :outputSize=&quot;option.size&quot;</span><br><span class="line">              :outputType=&quot;option.outputType&quot;</span><br><span class="line">              :info=&quot;option.info&quot;</span><br><span class="line">              :full=&quot;option.full&quot;</span><br><span class="line">              :canMove=&quot;option.canMove&quot;</span><br><span class="line">              :canMoveBox=&quot;option.canMoveBox&quot;</span><br><span class="line">              :original=&quot;option.original&quot;</span><br><span class="line">              :autoCrop=&quot;option.autoCrop&quot;</span><br><span class="line">              :fixed=&quot;option.fixed&quot;</span><br><span class="line">              :fixedNumber=&quot;option.fixedNumber&quot;</span><br><span class="line">              :centerBox=&quot;option.centerBox&quot;</span><br><span class="line">              :infoTrue=&quot;option.infoTrue&quot;</span><br><span class="line">              :fixedBox=&quot;option.fixedBox&quot;</span><br><span class="line">              :mode=&quot;option.mode&quot;</span><br><span class="line">              :canScale=&quot;option.canScale&quot;</span><br><span class="line">            &gt;</span><br><span class="line">            &lt;/vueCropper&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div slot=&quot;footer&quot; class=&quot;dialog-footer&quot;&gt;</span><br><span class="line">          &lt;button class=&quot;btn btn-white&quot; @click=&quot;ImgdialogVisible = false&quot;&gt;</span><br><span class="line">            取消</span><br><span class="line">          &lt;/button&gt;</span><br><span class="line">          &lt;button class=&quot;btn btn-red mleft-10&quot; @click=&quot;getSliceImg&quot;&gt;</span><br><span class="line">            保存并关闭</span><br><span class="line">          &lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/el-dialog&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    imgUrl: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      required: true</span><br><span class="line">    &#125;,</span><br><span class="line">    btnText: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &#x27;选择图片&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      action: &#x27;/xxxx&#x27;,</span><br><span class="line">      ImgdialogVisible: false,</span><br><span class="line">      option: &#123;</span><br><span class="line">        img: &#x27;&#x27;, // 裁剪图片的地址</span><br><span class="line">        info: true, // 裁剪框的大小信息</span><br><span class="line">        outputSize: 0.8, // 裁剪生成图片的质量</span><br><span class="line">        outputType: &#x27;jpeg&#x27;, // 裁剪生成图片的格式</span><br><span class="line">        canScale: true, // 图片是否允许滚轮缩放</span><br><span class="line">        autoCrop: true, // 是否默认生成截图框</span><br><span class="line">        fixedBox: true, // 固定截图框大小 不允许改变</span><br><span class="line">        fixed: true, // 是否开启截图框宽高固定比例</span><br><span class="line">        fixedNumber: [1, 1], // 截图框的宽高比例</span><br><span class="line">        full: true, // 是否输出原图比例的截图</span><br><span class="line">        canMoveBox: false, // 截图框能否拖动</span><br><span class="line">        original: false, // 上传图片按照原始比例渲染</span><br><span class="line">        centerBox: true, // 截图框是否被限制在图片里面</span><br><span class="line">        infoTrue: true, // true 为展示真实输出图片宽高 false 展示看到的截图框宽高</span><br><span class="line">        mode: &#x27;contain&#x27;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    getSliceImg () &#123;</span><br><span class="line">      this.$refs.cropper.getCropBlob(async (data) =&gt; &#123;</span><br><span class="line">        const imgSize = await this.getImgSize(data)</span><br><span class="line">        /* 把blob对象和最终图像的size传给父组件 */</span><br><span class="line">        this.$emit(&#x27;upload&#x27;, &#123; file: data, imgSize &#125;)</span><br><span class="line">        this.ImgdialogVisible = false</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    /* 处理element upload组件change事件 */</span><br><span class="line">    handleChange (file) &#123;</span><br><span class="line">      this.openImgDialog(file.raw)</span><br><span class="line">    &#125;,</span><br><span class="line">    /* 打开裁剪页面 */</span><br><span class="line">    openImgDialog (file) &#123;</span><br><span class="line">      let reader = new FileReader()</span><br><span class="line">      reader.onload = (theFile) =&gt; &#123;</span><br><span class="line">        this.option.img = theFile.target.result</span><br><span class="line">        this.ImgdialogVisible = true</span><br><span class="line">      &#125;</span><br><span class="line">      if (file) &#123;</span><br><span class="line">        reader.readAsDataURL(file)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    /* 计算图片大小 */</span><br><span class="line">    getImgSize (file) &#123;</span><br><span class="line">      return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">        let reader = new FileReader()</span><br><span class="line">        reader.onload = function (theFile) &#123;</span><br><span class="line">          let image = new Image()</span><br><span class="line">          image.src = theFile.target.result</span><br><span class="line">          image.onload = function () &#123;</span><br><span class="line">            resolve(&#123;</span><br><span class="line">              width: this.width,</span><br><span class="line">              height: this.height</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (file) &#123;</span><br><span class="line">          reader.readAsDataURL(file)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          reject(&#x27;出错了&#x27;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="问题总结"><a href="#问题总结" class="headerlink" title="问题总结"></a>问题总结</h1><p>问题一、如何阻止upload上传完之后就上传？　　<br>将el-upload 的 auto-upload 设置为 false即可<br>问题二、如何将获取到文件传给vue-cropper?　　<br>vue-cropper 可以接受一个 blob，此时需要 new FileReader()，参考 MDN<br>问题三、el-upload 选择完文件后不能更改，如何上传裁剪之后的图片？<br>使用自定义上传，点击上传时直接调用submit 方法，这时会自动触发http-request中的自定义方法，可以拿到file中的所有属性，在函数里面使用 axios 自定义上传参数和文件。此方法比较好控制。</p>
+
+</article>
+    
+    
+
+<ul class="trm-post-copyright">
+    <li class="trm-post-copyright-author">
+        <strong>本文作者：</strong>
+        ljylwnxx
+    </li>
+    <li class="trm-post-copyright-link">
+        <strong>本文链接：</strong>
+        <a id="original-link" href="http://example.com/2023/04/11/vue-cropper/" title="vue-cropper">http://example.com/2023/04/11/vue-cropper/</a>
+    </li>
+    <li class="trm-post-copyright-license">
+        <strong>版权声明：</strong>
+        本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 ">CC BY-NC-SA 4.0</a> 许可协议。
+    </li>
+</ul>
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2023/04/11/%E6%A8%A1%E5%9D%97%E5%8C%96/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/defaultcover.png">
+                </span>
+                <h6 class="trm-op-title">模块化</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/11</li>
+                <li>22:32</li>
+                <li>未分类</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2023/04/10/Vue%E9%A1%B9%E7%9B%AESEO%E4%BC%98%E5%8C%96-Nuxt/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/cover.png">
+                </span>
+                <h6 class="trm-op-title">Vue项目SEO优化-Nuxt</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/10</li>
+                <li>22:12</li>
+                <li>性能优化</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2023</span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color">ljylwnxx博客</span>
+        </div>
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.2
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.0.5
+            </span>
+        </div>
+      
+
+    
+        <div class="trm-footer-item">
+            博客已萌萌哒运行 <span id="since" class="trm-accent-color"></span> 天
+        </div>
+     
+
+     
+</footer>
+
+<script>
+    function show_date_time () {
+        var BirthDay = new Date("2022/08/16 21:45:54");
+        var today = new Date();
+        var timeold = (today.getTime() - BirthDay.getTime());
+        var msPerDay = 24 * 60 * 60 * 1000
+        var day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
+            <i class="iconfont fas fa-arrows-alt-h"></i>
+        </div>
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+<script src="https://npm.elemecdn.com/swup@2.0.19/dist/swup.min.js"></script>
+
+    
+<script src="https://npm.elemecdn.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+    
+<script src="https://npm.elemecdn.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=2.0.5"></script>
+    
+
+    
+        
+<script src="https://npm.elemecdn.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=2.0.5"></script>
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+<script src="/demo.js"></script>
+
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+    <script data-swup-reload-script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+
+<script id="async-script" src="/js/main.js?v=2.0.5"></script>
+
+</body>
+
+</html>

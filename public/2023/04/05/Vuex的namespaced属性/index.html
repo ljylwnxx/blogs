@@ -15,7 +15,7 @@
 <meta property="og:description" content="举个例子试一下 namespaced为false时&#x2F;&#x2F; 模块testexport default &amp;#123;    state: &amp;#123;        name: &amp;#x27;zb&amp;#x27;,        age: 18    &amp;#125;,    getters: &amp;#123;        ageDouble(state)&amp;#123;            return (stat">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-04-05T12:16:39.000Z">
-<meta property="article:modified_time" content="2023-04-05T12:43:24.374Z">
+<meta property="article:modified_time" content="2023-04-11T05:54:52.729Z">
 <meta property="article:author" content="ljylwnxx">
 <meta property="article:tag" content="Vuex">
 <meta name="twitter:card" content="summary">
@@ -67,7 +67,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.5","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/logo.gif","icon16":"/images/logo.png","icon32":"/images/logo.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！","dark_logo":"/images/logo.gif"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":true,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"creative_commons":{"license":"by-nc-sa","language":"deed.zh"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-05 2023-04-05T20:43:24+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-11 2023-04-11T13:54:52+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.5" id="trm-switch-style">
@@ -220,7 +220,7 @@
     <div class="trm-banner" data-scroll data-scroll-direction="vertical">
     
     <!-- banner cover -->
-    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/images/defaultbgurl.png">
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/images/namespacedcover.png">
     <!-- banner cover end -->
     
 
@@ -453,6 +453,26 @@
         </h5>
     </div>
     
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2023/04/10/Vue%E9%A1%B9%E7%9B%AESEO%E4%BC%98%E5%8C%96-Nuxt/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/cover.png">
+                </span>
+                <h6 class="trm-op-title">Vue项目SEO优化-Nuxt</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/10</li>
+                <li>22:12</li>
+                <li>性能优化</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
     
         <div class="col-lg-6">
     <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
@@ -460,7 +480,7 @@
             
             <a class="trm-op-top trm-anima-link" href="/2023/04/05/Pinia%E4%B8%8EVuex%20%E7%9A%84%E5%8C%BA%E5%88%AB/">
                 <span class="trm-op-cover">
-                    <img alt="cover" class="no-fancybox" src="/images/defaultcover.png">
+                    <img alt="cover" class="no-fancybox" src="/images/piniacover.png">
                 </span>
                 <h6 class="trm-op-title">Pinia 与 Vuex 的区别</h6>
             </a>

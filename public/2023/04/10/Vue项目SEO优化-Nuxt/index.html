@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="为什么SPA需要SEO通常我们用前端框架（这里以Vue为例）产出的代码一般是这样的： &lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;  &lt;title&gt;title&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;&lt;body&gt;  &lt;div id&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue项目SEO优化-Nuxt">
+<meta property="og:url" content="http://example.com/2023/04/10/Vue%E9%A1%B9%E7%9B%AESEO%E4%BC%98%E5%8C%96-Nuxt/index.html">
+<meta property="og:site_name" content="ljylwnxx的博客">
+<meta property="og:description" content="为什么SPA需要SEO通常我们用前端框架（这里以Vue为例）产出的代码一般是这样的： &lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;  &lt;title&gt;title&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;&lt;body&gt;  &lt;div id&#x3D;">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2023-04-10T14:12:36.000Z">
+<meta property="article:modified_time" content="2023-04-11T04:46:30.069Z">
+<meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
+
+
+<title >Vue项目SEO优化-Nuxt</title>
+
+<!-- Favicon -->
+
+    <link href='/images/logo.png?v=2.0.5' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/images/logo.png?v=2.0.5' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=2.0.5' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://npm.elemecdn.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+    
+<link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.5","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/logo.gif","icon16":"/images/logo.png","icon32":"/images/logo.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！","dark_logo":"/images/logo.gif"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":true,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"creative_commons":{"license":"by-nc-sa","language":"deed.zh"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"preload":true,"trigger":"auto","path":"search.xml"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-11 2023-04-11T12:46:30+08:00"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.5" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" class=" trm-light-icon" src="/images/logo.gif"> <img alt="logo" class=" trm-dark-icon" src="/images/logo.gif">
+    
+    
+        <div class="trm-logo-text">
+            ljylwnxx<span>博客</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/links/" target="">
+                    友情链接
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+    
+    <div id="trm-search-btn" class="trm-search-btn">
+        <i class="iconfont fas fa-search"></i>
+    </div>
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/images/cover.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            Vue项目SEO优化-Nuxt
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span
+                                ></li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    
+
+<div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
+    
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont fas fa-user-alt"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont fas fa-th-list"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/images/logo.png">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ljylwnxx博客
+    </h5>
+    
+        <div class="trm-label">
+            Hello!
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+                <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="gitee" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont cg-gitee"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+                <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                分类:
+            </div>
+            <div class="trm-label trm-label-light">
+                <a href="/categories/" target="_blank" rel="nofollow">查看</a>
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                标签:
+            </div>
+            <div class="trm-label trm-label-light">
+                <a href="/tags/" target="_blank" rel="nofollow">查看</a>
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+                
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:ljylwnxx@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#为什么SPA需要SEO"  data-scroll-to="#为什么SPA需要SEO"><span class="toc-number">1.</span> <span class="toc-text">为什么SPA需要SEO</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#关于Nuxt-js"  data-scroll-to="#关于Nuxt-js"><span class="toc-number">2.</span> <span class="toc-text">关于Nuxt.js</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#官方介绍"  data-scroll-to="#官方介绍"><span class="toc-number">2.1.</span> <span class="toc-text">官方介绍</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#简单的理解："  data-scroll-to="#简单的理解："><span class="toc-number">2.2.</span> <span class="toc-text">简单的理解：</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#优势："  data-scroll-to="#优势："><span class="toc-number">2.3.</span> <span class="toc-text">优势：</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#服务端渲染和客户端渲染"  data-scroll-to="#服务端渲染和客户端渲染"><span class="toc-number">2.4.</span> <span class="toc-text">服务端渲染和客户端渲染</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Nuxt-js工作原理"  data-scroll-to="#Nuxt-js工作原理"><span class="toc-number">2.5.</span> <span class="toc-text">Nuxt.js工作原理</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#操作"  data-scroll-to="#操作"><span class="toc-number">2.6.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#首先就是安装NUXT这个简单，大家按照官网的操作步骤就可以了。"  data-scroll-to="#首先就是安装NUXT这个简单，大家按照官网的操作步骤就可以了。"><span class="toc-number">2.6.1.</span> <span class="toc-text">首先就是安装NUXT这个简单，大家按照官网的操作步骤就可以了。</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#目录结构"  data-scroll-to="#目录结构"><span class="toc-number">2.6.2.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#NUXT开发中需要注意哪些。"  data-scroll-to="#NUXT开发中需要注意哪些。"><span class="toc-number">2.6.3.</span> <span class="toc-text">NUXT开发中需要注意哪些。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Nuxt对Vue项目首页进行SEO优化"  data-scroll-to="#Nuxt对Vue项目首页进行SEO优化"><span class="toc-number">3.</span> <span class="toc-text">Nuxt对Vue项目首页进行SEO优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#具体步骤"  data-scroll-to="#具体步骤"><span class="toc-number">3.1.</span> <span class="toc-text">具体步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#新建项目"  data-scroll-to="#新建项目"><span class="toc-number">3.1.1.</span> <span class="toc-text">新建项目</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#迁移文件"  data-scroll-to="#迁移文件"><span class="toc-number">3.1.2.</span> <span class="toc-text">迁移文件</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#修改配置"  data-scroll-to="#修改配置"><span class="toc-number">3.1.3.</span> <span class="toc-text">修改配置</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#项目部署"  data-scroll-to="#项目部署"><span class="toc-number">3.1.4.</span> <span class="toc-text">项目部署</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#常见问题"  data-scroll-to="#常见问题"><span class="toc-number">3.1.5.</span> <span class="toc-text">常见问题</span></a></li></ol></li></ol></li></ol>
+</div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            04/10
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            22:12
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ljylwnxx
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="为什么SPA需要SEO"><a href="#为什么SPA需要SEO" class="headerlink" title="为什么SPA需要SEO"></a>为什么SPA需要SEO</h1><p>通常我们用前端框架（这里以Vue为例）产出的代码一般是这样的：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;index.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>页面实际展示的内容（用户实际看到的内容）都是通过js渲染出来的，所以搜索引擎爬虫在对我们的页面进行爬取的时候，拿到的也是上面的html代码。虽然我们可以通过在<head></head>中添加<meta/>标签来添加一些描述信息，但是远远不够，我们实际展示的内容搜索引擎爬虫还是拿不到，所以就需要对项目进行SEO优化。</p>
+<h1 id="关于Nuxt-js"><a href="#关于Nuxt-js" class="headerlink" title="关于Nuxt.js"></a>关于Nuxt.js</h1><h2 id="官方介绍"><a href="#官方介绍" class="headerlink" title="官方介绍"></a>官方介绍</h2><p>从头搭建一个服务端渲染的应用是相当复杂的。幸运的是，我们有一个优秀的社区项目Nuxt.js这让一切变得非常简单。Nuxt是一个基于Vue生态的更高层的框架，为开发服务端渲染的Vue应用提供了极其便利的开发体验。更酷的是，你甚至可以用它来做为静态站生成器。</p>
+<h2 id="简单的理解："><a href="#简单的理解：" class="headerlink" title="简单的理解："></a>简单的理解：</h2><p>代替浏览器的工作,笼统理解就是在created时的请求数据和页面渲染，第二点是当作静态文件服务器，把渲染好的页面返回给用户。</p>
+<h2 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h2><ul>
+<li>纯静态文件，访问速度快</li>
+<li>对比SSR,不涉及服务器负载方面问题</li>
+<li>静态网页不宜遭到黑客工具，安全性高<h2 id="服务端渲染和客户端渲染"><a href="#服务端渲染和客户端渲染" class="headerlink" title="服务端渲染和客户端渲染"></a>服务端渲染和客户端渲染</h2></li>
+</ul>
+<ol>
+<li>浏览器（客户端）通过AJAX向服务端（java servlet）发送http请求数据接口</li>
+<li>服务端将获取的接口数据封装成JSON，响应给浏览器</li>
+<li>浏览器拿到JSON就进行渲染html页面，生成DOM元素，然后将页面展示给用户<br><img src="/2023/04/10/Vue%E9%A1%B9%E7%9B%AESEO%E4%BC%98%E5%8C%96-Nuxt/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="/2023/04/10/Vue%E9%A1%B9%E7%9B%AESEO%E4%BC%98%E5%8C%96-Nuxt/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><h2 id="Nuxt-js工作原理"><a href="#Nuxt-js工作原理" class="headerlink" title="Nuxt.js工作原理"></a>Nuxt.js工作原理</h2></li>
+<li>浏览器(客户端)发送http请求到Node.js服务端。</li>
+<li>部署在Node.js的应用Nuxt.js接收到浏览器请求，它会去请求后台服务端。</li>
+<li>后台接口服务端会响应JSON数据，Nuxt.js获取数据后进行服务端渲染成html。</li>
+<li>然后Nuxt.js将html页面响应给浏览器</li>
+<li>浏览器直接将接收到html页面进行展示<br><img src="/2023/04/10/Vue%E9%A1%B9%E7%9B%AESEO%E4%BC%98%E5%8C%96-Nuxt/nuxt%E6%B8%B2%E6%9F%93.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="首先就是安装NUXT这个简单，大家按照官网的操作步骤就可以了。"><a href="#首先就是安装NUXT这个简单，大家按照官网的操作步骤就可以了。" class="headerlink" title="首先就是安装NUXT这个简单，大家按照官网的操作步骤就可以了。"></a>首先就是安装NUXT这个简单，大家按照官网的操作步骤就可以了。</h3><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.nuxt</span><br><span class="line">1. assets //资源目录 组织为编译的静态资源 大家都懂</span><br><span class="line">      image.png</span><br><span class="line">2.components // 组织 Vue.js 组件，NUXT不会扩展增强该目录下的组件，这意味着组件不能使用 </span><br><span class="line">3.asyncData 方法</span><br><span class="line">4.layout // 布局目录 如果没有额外配置，目录不能重命名--不建议改名</span><br><span class="line">5.middleware // 用于存放应用的中间件</span><br><span class="line">6.node_modules </span><br><span class="line">7.pages // 页面目录用于组织应用路由及视图，NUXT会读取该目录下所有.vue文件并自动生成路由（路由文件在 .nuxt/router.js）</span><br><span class="line">      index.vue</span><br><span class="line">8.plugins // 插件目录 用于组织那些需要在跟vue.js应用，实例化之前需要运行的Javascript插件</span><br><span class="line">9.static // 用于存放应用的静态文件，此类文件不会被NUXT.js调用Webpack 进行构建编译处理。服务器启动的时候，该目录下的文件会映射至应用的根路径  `/`  下。例如 /static/root.txt 映射至 /root.txt</span><br><span class="line">10.store // Nuxt.js 框架集成了 [Vuex 状态树] 的相关功能配置，在  `store`  目录下创建一个  `index.js`  文件可激活这些配置。 新建一个index.js 这事就算妥了</span><br><span class="line">11.nuxt.config.js // 文件用于组织 Nuxt.js 应用的个性化配置，以便覆盖默认配置 不要gai&#x27;ming&#x27;zi</span><br><span class="line">12.package.json // 用于描述应用的依赖关系和对外暴露的脚本接口</span><br></pre></td></tr></table></figure>
+<h3 id="NUXT开发中需要注意哪些。"><a href="#NUXT开发中需要注意哪些。" class="headerlink" title="NUXT开发中需要注意哪些。"></a>NUXT开发中需要注意哪些。</h3><h4 id="静态资源的引入和路由"><a href="#静态资源的引入和路由" class="headerlink" title="静态资源的引入和路由"></a>静态资源的引入和路由</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//引入静态资源 和 跳转路由</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;!--我们不需要去配置 @去指向根目录  NUXT中可以直接使用 --&gt;</span><br><span class="line">  &lt;img src=&quot;~/assets/image.png&quot; /&gt;</span><br><span class="line">  &lt;!--NUXT中我们不需要去写路由表  👇 &#x27;/&#x27;指的是 page/index.vue 其它语法和日常无恙  --&gt;</span><br><span class="line">  &lt;nuxt-link :to=&quot;&#123;name:&#x27;userPage&#x27;,query:&#123;id:&#x27;111&#x27;&#125;&#125;&quot;&gt;个人中心&lt;/nuxt-link&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="asyncData"><a href="#asyncData" class="headerlink" title="asyncData"></a>asyncData</h4>Nuxt.js扩展了Vue.js 增加了asyncData的方法，这样我们可以在渲染组件之前异步获取数据，asyncData方法会在组件（只限于页面组件）每次加载之前被调用，它可以在服务端或路由更新之前被调用，在这个方法被调用的时候，第一个参数context被设定为当前页的上下文对象。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">async asyncData(&#123; params &#125;)&#123;  // params 就是传进来的值</span><br><span class="line">//asyncData 函数去执行我们的异步操作 当我们获取到接口返回的内容是 此时我们Vue还没有实例化 所以this获取不到  我们通过返回 方法 去获取  因此标签内如果需要展示内容  &#123;&#123;info.XXX&#125;&#125;</span><br><span class="line">	const data = await $axios.$get(&#x27;/api/user&#x27;)</span><br><span class="line">	return &#123;data&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="nuxtjs-axios"><a href="#nuxtjs-axios" class="headerlink" title="@nuxtjs/axios"></a>@nuxtjs/axios</h4>我们在asyncData中调用接口，在Nuxt.js官方提供了@nuxtjs/axios模块，此模块还包含了axios、@nuxtjs/proxy（解决异步,进行代理转发）模块。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 1.安装@nuxtjs/axios：</span><br><span class="line">npm install @nuxtjs/axios</span><br><span class="line">// 2.在nuxt.config.js中配置axios</span><br><span class="line">module.exports=&#123;</span><br><span class="line">	modules:[&#x27;@nuxtjs/axios&#x27;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4>中间件允许您定义一个自定义函数运行在一个页面或一组页面渲染之前。可用于权限判断，有权限才可访问对应页面<br>中间件应放置在middleware/ 目录。文件名的名称将成为中间件名称（middleware/auth.js将成为auth中间件）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//创建权限中间件</span><br><span class="line">//在 middleware/ 下创建 auth.js 文件，其中auth就是中间件的名称。</span><br><span class="line">//一个中间件接收content作为第一个参数</span><br><span class="line">export default(&#123; store, redirect &#125;) =&gt; &#123;</span><br><span class="line">	if(/* 没有token */)&#123;</span><br><span class="line">		return redirect(&#x27;/&#x27;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Nuxt对Vue项目首页进行SEO优化"><a href="#Nuxt对Vue项目首页进行SEO优化" class="headerlink" title="Nuxt对Vue项目首页进行SEO优化"></a>Nuxt对Vue项目首页进行SEO优化</h1>Nuxt.js 集成了以下组件/框架，用于开发完整而强大的Web 应用：</li>
+</ol>
+<ul>
+<li>Vue 2</li>
+<li>Vue-Router</li>
+<li>Vuex(当配置了Vuex状态树配置项时才会引入)</li>
+<li>Vue服务器端渲染 (排除使用mode:’spa’)</li>
+<li>Vue-Meta<br>另外，Nuxt.js使用Webpack和vue-loader 、babel-loader来处理代码的自动化构建工作（如打包、代码分层、压缩等等）。<h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3>因为是对项目的一部分进行改造，所以新建了一个项目。<br>新创建的项目目录大致如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+ assets:静态资源</span><br><span class="line">+ components:组件，该文件夹下的组件使用时无需引入，类似于已经全局注册了，这些组件无法使用asyncData。</span><br><span class="line">+ layouts:用于组织应用的布局组件，我理解类似于Vue项目中的App.vue</span><br><span class="line">+ middlwware:应用的中间件，这个没有用到</span><br><span class="line">+ node_modules:依赖包</span><br><span class="line">+ pages:页面，Nuxt.js 框架读取该目录下所有的 .vue 文件并自动生成对应的路由配置。在这个目录里使用其他类型的文件在npm run generate时可能会报错</span><br><span class="line">+ plugins:插件目录。用于组织需要再根Vue.js应用实例化之前需要运行的JavaScript插件。在任何 Vue 组件的生命周期内，只有 beforeCreate 和 created 这两个方法会在 客户端和服务端被调用。其他生命周期函数仅在客户端被调用。</span><br><span class="line">+ static:静态文件目录。</span><br><span class="line">静态文件目录 static 用于存放应用的静态文件，此类文件不会被 Nuxt.js 调用 Webpack 进行构建编译处理。服务器启动的时候，该目录下的文件会映射至应用的根路径 / 下。</span><br><span class="line">store</span><br><span class="line">+ Vuex状态树。</span><br><span class="line">Nuxt.js 框架集成了 Vuex 状态树 的相关功能配置，在 store 目录下创建一个 index.js 文件可激活这些配置。</span><br><span class="line">+ nuxt.config.js</span><br><span class="line">nuxt.config.js 文件用于组织 Nuxt.js 应用的个性化配置，以便覆盖默认配置。</span><br><span class="line">+ 其他</span><br><span class="line">.babelrc、.editorconfig、package.json、package-lock.json等，和其他项目中同名文件功能相同。</span><br><span class="line">+ 别名</span><br><span class="line">~或@ =&gt; srcDir</span><br><span class="line">~~或@@ =&gt; rootDir</span><br></pre></td></tr></table></figure>
+在vue模板中, 如果需要引入assets或者static目录, 使用<del>/assets/your_image.png和</del>/static/your_image.png方式。<h3 id="迁移文件"><a href="#迁移文件" class="headerlink" title="迁移文件"></a>迁移文件</h3>把老项目首页及宣传页的代码以及依赖的静态文件，还有一些eslint的配置，webpack配置等，能用的都拿过来，然后修改引用路径，删除不需要的代码。<br>下面是目录的对应关系：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+ assets:css、icon、font等静态资源</span><br><span class="line">+ components:首页及宣传页用到的组件</span><br><span class="line">+ layouts:App.vue</span><br><span class="line">+ middlwware</span><br><span class="line">+ node_modules:依赖包</span><br><span class="line">+ pages:首页及宣传页涉及到的页面。</span><br><span class="line">+ plugins:用到的各种插件。</span><br><span class="line">      + axios封装（没有用Nuxt.js默认的@nuxtjs/axios）</span><br><span class="line">      + elementUI</span><br><span class="line">      + 其他一些用到的插件（video、zepto等）</span><br><span class="line">      + 工具函数（这里有疑问，是不是应该放在assets下面）</span><br><span class="line">+ static:.ico文件</span><br><span class="line">+ store:vuex相关文件</span><br><span class="line">+ nuxt.config.js:nuxt.config.js 文件用于组织 Nuxt.js 应用的个性化配置，以便覆盖默认配置。</span><br><span class="line">+ 其他:.babelrc、.editorconfig、package.json、package-lock.json等，和其他功能相同。</span><br></pre></td></tr></table></figure>
+<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3>这部分是重点，因为Nuxt很多东西其实在一开始就都配置好了，比如像它的目录结构，官方都建议一般不要修改。如果想修改配置的话，必须在nuxt.config.js中进行修改。Nuxt关于配置的文档很多，这里直说我用到的部分。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> webpack <span class="keyword">from</span> <span class="string">&#x27;webpack&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">ssr</span>: <span class="literal">false</span>, <span class="comment">// 是否启用服务端渲染。默认为false，创建时可选择</span></span><br><span class="line">  <span class="attr">target</span>: <span class="string">&#x27;static&#x27;</span>, <span class="comment">// server：用于服务器端渲染，static：用于静态网站</span></span><br><span class="line">  <span class="attr">root</span>: &#123;</span><br><span class="line">    <span class="attr">base</span>: <span class="string">&#x27;/page/&#x27;</span> <span class="comment">// 应用程序的基本URL，如果在此路径下提供了整个应用程序，则应该使用root.base。使用之后，访问***.com/home路由应该使用***.com/page/home</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">head</span>: &#123; <span class="comment">// 一些静态资源的引入，填写头信息</span></span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;nuxt-demo&#x27;</span>,</span><br><span class="line">    <span class="attr">meta</span>: [</span><br><span class="line">      &#123; <span class="attr">charset</span>: <span class="string">&#x27;utf-8&#x27;</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">&#x27;viewport&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;width=device-width, initial-scale=1&#x27;</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">hid</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">name</span>: <span class="string">&#x27;description&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;&#x27;</span> &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">script</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">src</span>: <span class="string">&#x27;https://cdn.bootcdn.net/ajax/libs/zepto/1.2.0/zepto.js&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">css</span>: [ <span class="comment">// 全局使用的css</span></span><br><span class="line">    <span class="string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;~/assets/css/common.css&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;~/assets/css/element-variables.scss&#x27;</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">plugins</span>: [ <span class="comment">//  使用插件</span></span><br><span class="line">    &#123;<span class="attr">src</span>: <span class="string">&#x27;~plugins/element-ui&#x27;</span>&#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">src</span>: <span class="string">&#x27;~plugins/log.js&#x27;</span>,</span><br><span class="line">      <span class="attr">mode</span>: <span class="string">&#x27;client&#x27;</span> <span class="comment">// client或server：文件仅包含在客户端或服务器端，如果代码中使用了window或document等浏览器端才有的API，只能使用client</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">src</span>: <span class="string">&#x27;~plugins/route.js&#x27;</span>,</span><br><span class="line"></span><br><span class="line"> <span class="attr">mode</span>: <span class="string">&#x27;client&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">components</span>: <span class="literal">true</span>, <span class="comment">// 自动引入组件</span></span><br><span class="line">  <span class="attr">buildModules</span>: [ <span class="comment">// 某些模块仅在开发和构建期间需要。使用buildModules有助于加快生产启动速度，并大大减少node_modules生产部署的规模。</span></span><br><span class="line">    <span class="string">&#x27;@nuxtjs/eslint-module&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">build</span>: &#123; <span class="comment">// Nuxt.js 允许你根据服务端需求，自定义 webpack 的构建配置。</span></span><br><span class="line">    <span class="attr">transpile</span>: [<span class="regexp">/^element-ui/</span>], <span class="comment">// 使用Babel与特定的依赖关系进行转换。应该是element-ui使用了ES6语法，所以需要进行转化</span></span><br><span class="line">    <span class="attr">publicPath</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 静态资源引用路径（通常使用CND地址）</span></span><br><span class="line">    <span class="attr">plugins</span>: [ <span class="comment">// 配置webpack插件  nuxt使用的webpack版本比较旧，有一些新功能无法使用</span></span><br><span class="line">      <span class="keyword">new</span> webpack.<span class="title class_">DefinePlugin</span>(&#123;</span><br><span class="line">        <span class="attr">__ENV__</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(process.<span class="property">env</span>.<span class="property">ENV</span> || <span class="string">&#x27;dev&#x27;</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h3>由于该项目与其他项目共用一个域名：www.###.com，需要保证另一个项目也可用。所有在部署的时候把Nuxt的项目放在了www.###.com/page目录下<br>在server中添加location /page的配置项<br>让根路径重定向到www.###.com/page/home<br>对旧项目已有的一些访问路径进行兼容<br>首页项目和旧项目（主站）的相互跳转（登录登出跳转等）<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3>一、document is not defined or window is not defined<br>解决方法：<br>此问题产生是由于在服务端渲染时使用了window或document等DOM相关的API，常见的原因有两个：</li>
+<li>页面中生命周期使用错误，比如在created中使用了window<br>nuxt在服务端执行时会执行Vue生命周期中的beforeCreate和created，如果在这两个生命周期里使用了DOM相关的API是获取不到的，构建时会报错。</li>
+<li>第三方插件使用了window或document等DOM相关的API<br>Nuxt.js 允许在运行Vue.js应用程序之前执行js插件。这在您需要使用自己的库或第三方模块时特别有用。但是要注意插件是否在客户端和服务端都需要，还有就是插件中是否用到了DOM相关的API（会导致构建时报错）<br>解决方法：</li>
+<li>正确使用生命周期，在任何 Vue 组件的生命周期内， 只有 beforeCreate 和 created 这两个方法会在 客户端和服务端被调用。其他生命周期函数仅在客户端被调用。<br>这里获取不到window或document等API，可以放在mounted中执行。</li>
+<li>使用第三方插件时：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">  &#123;</span><br><span class="line">    src: &#x27;~plugins/log.js&#x27;,</span><br><span class="line">    mode: &#x27;client&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+添加mode: ‘client’使第三方插件仅在客户端渲染时使用。<br>二、NuxtLink无法打开新页面<br>Nuxtjs中在进行路由导航时提供了<nuxt-link to="/"></nuxt-link>，但是此标签有一个问题：无法在新窗口打开链接，建议改为a标签，既能满足需求，也利于搜索引擎爬取相关链接。<br>三、注册全局方法<br>有时想在整个项目中使用函数或值，在Vue项目中我们有可能把方法挂在在Vue实例上，但是官方文档中明确提出：<br>请勿全局使用Vue.use()，Vue.component()，也不要在此功能内专门用于Nuxt注入的Vue中插入任何内容。这将导致服务器端内存泄漏。<br>另外也为我们提供了一种方法（inject(key, value)）来注册全局方法（变量）：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// plugins/hello.js</span><br><span class="line">export default (&#123; app &#125;, inject) =&gt; &#123;</span><br><span class="line">  // Inject $hello(msg) in Vue, context and store.</span><br><span class="line">  inject(&#x27;hello&#x27;, msg =&gt; console.log(`Hello $&#123;msg&#125;!`))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// nuxt.config.js</span><br><span class="line">export default &#123;</span><br><span class="line">  plugins: [&#x27;~/plugins/hello.js&#x27;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+然后就可以在页面、组件、插件中使用了。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// a.vue</span><br><span class="line">export default &#123;</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    this.$hello(&#x27;mounted&#x27;)</span><br><span class="line">    // will console.log &#x27;Hello mounted!&#x27;</span><br><span class="line">  &#125;,</span><br><span class="line">  asyncData(&#123; app, $hello &#125;) &#123;</span><br><span class="line">    $hello(&#x27;asyncData&#x27;)</span><br><span class="line">    // If using Nuxt &lt;= 2.12, use 👇</span><br><span class="line">    app.$hello(&#x27;asyncData&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+四、Nuxt支持在页面中加入head信息。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created () &#123;&#125;,</span><br><span class="line">  ...,</span><br><span class="line">  head () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      title: &#x27;&#x27;,</span><br><span class="line">      meta: [</span><br><span class="line">        &#123; hid: &#x27;&#x27;, name: &#x27;&#x27;, content: &#x27;&#x27;&#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+五、路由相关<br>Nuxt.js 依据 pages 目录结构自动生成 vue-router 模块的路由配置。<br>基础路由<br>pages/</li>
+</ul>
+<p>–| user/<br>—–| index.vue<br>—–| one.vue<br>–| index.vue<br>那么，Nuxt.js 自动生成的路由配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">router: &#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      name: &#x27;index&#x27;,</span><br><span class="line">      path: &#x27;/&#x27;,</span><br><span class="line">      component: &#x27;pages/index.vue&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      name: &#x27;user&#x27;,</span><br><span class="line">      path: &#x27;/user&#x27;,</span><br><span class="line">      component: &#x27;pages/user/index.vue&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      name: &#x27;user-one&#x27;,</span><br><span class="line">      path: &#x27;/user/one&#x27;,</span><br><span class="line">      component: &#x27;pages/user/one.vue&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>嵌套路由<br>你可以通过 vue-router 的子路由创建 Nuxt.js 应用的嵌套路由。<br>创建内嵌子路由，你需要添加一个 Vue 文件，同时添加一个与该文件同名的目录用来存放子视图组件。<br>文件路径：<br>pages/<br>–| users/<br>—–| _id.vue // 以下划线作为前缀的Vue文件：动态路由，做SSR的时候可能会用到<br>—–| index.vue<br>–| users.vue<br>Nuxt.js 自动生成的路由配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">router: &#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#x27;/users&#x27;,</span><br><span class="line">      component: &#x27;pages/users.vue&#x27;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          path: &#x27;&#x27;,</span><br><span class="line">          component: &#x27;pages/users/index.vue&#x27;,</span><br><span class="line">          name: &#x27;users&#x27;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          path: &#x27;:id&#x27;,</span><br><span class="line">          component: &#x27;pages/users/_id.vue&#x27;,</span><br><span class="line">          name: &#x27;users-id&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>六、常用命令：<br>nuxt<br>启用一个热加载的Web服务器（开发模式）localhost:3000<br>nuxt build<br>利用webpack编译应用，压缩JS和CSS资源（发布用）。<br>nuxt start<br>以生产模式启动一个Web服务器 (基于dist目录，需要先执行nuxt build)。<br>nuxt generate<br>编译应用，并依据路由配置生成对应的HTML文件 (用于静态站点的部署)。</p>
+
+</article>
+    
+    
+
+<ul class="trm-post-copyright">
+    <li class="trm-post-copyright-author">
+        <strong>本文作者：</strong>
+        ljylwnxx
+    </li>
+    <li class="trm-post-copyright-link">
+        <strong>本文链接：</strong>
+        <a id="original-link" href="http://example.com/2023/04/10/Vue%E9%A1%B9%E7%9B%AESEO%E4%BC%98%E5%8C%96-Nuxt/" title="Vue项目SEO优化-Nuxt">http://example.com/2023/04/10/Vue%E9%A1%B9%E7%9B%AESEO%E4%BC%98%E5%8C%96-Nuxt/</a>
+    </li>
+    <li class="trm-post-copyright-license">
+        <strong>版权声明：</strong>
+        本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 ">CC BY-NC-SA 4.0</a> 许可协议。
+    </li>
+</ul>
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2023/04/11/vue-cropper/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/defaultcover.png">
+                </span>
+                <h6 class="trm-op-title">vue-cropper</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/11</li>
+                <li>21:34</li>
+                <li>Vue</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2023/04/05/Vuex%E7%9A%84namespaced%E5%B1%9E%E6%80%A7/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/namespacedcover.png">
+                </span>
+                <h6 class="trm-op-title">Vuex的namespaced属性</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/05</li>
+                <li>20:16</li>
+                <li>Vue</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2023</span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color">ljylwnxx博客</span>
+        </div>
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.2
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.0.5
+            </span>
+        </div>
+      
+
+    
+        <div class="trm-footer-item">
+            博客已萌萌哒运行 <span id="since" class="trm-accent-color"></span> 天
+        </div>
+     
+
+     
+</footer>
+
+<script>
+    function show_date_time () {
+        var BirthDay = new Date("2022/08/16 21:45:54");
+        var today = new Date();
+        var timeold = (today.getTime() - BirthDay.getTime());
+        var msPerDay = 24 * 60 * 60 * 1000
+        var day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
+            <i class="iconfont fas fa-arrows-alt-h"></i>
+        </div>
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+<script src="https://npm.elemecdn.com/swup@2.0.19/dist/swup.min.js"></script>
+
+    
+<script src="https://npm.elemecdn.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+    
+<script src="https://npm.elemecdn.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=2.0.5"></script>
+    
+
+    
+        
+<script src="https://npm.elemecdn.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=2.0.5"></script>
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+<script src="/demo.js"></script>
+
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+    <script data-swup-reload-script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+
+<script id="async-script" src="/js/main.js?v=2.0.5"></script>
+
+</body>
+
+</html>

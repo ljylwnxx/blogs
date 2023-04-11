@@ -3,6 +3,10 @@ title: Vuex的namespaced属性
 date: 2023-04-05 20:16:39
 tags: Vuex
 categories: Vue
+cover: [/images/namespacedcover.png]
+banner: 
+  type: img
+  bgurl: [/images/namespacedcover.png]
 ---
 举个例子试一下
 # namespaced为false时
