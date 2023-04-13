@@ -7,18 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="这是一个博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljylwnxx的博客">
-<meta property="og:url" content="http://example.com/categories/Vue/index.html">
+<meta name="description" content="列表进入详情页的传参问题。例如商品列表页面前往商品详情页面，需要传一个商品id; &lt;router-link :to&#x3D;&quot;&amp;#123;path: &amp;#x27;detail&amp;#x27;, query: &amp;#123;id: 1&amp;#125;&amp;#125;&quot;&gt; 前往detail页面c页面的路径为http:&#x2F;&#x2F;localhost:8080&#x2F;#&#x2F;detail?id&#x3D;1，可以看到传了一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue项目遇到问题">
+<meta property="og:url" content="http://example.com/2023/04/12/Vue%E9%A1%B9%E7%9B%AE%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="这是一个博客">
+<meta property="og:description" content="列表进入详情页的传参问题。例如商品列表页面前往商品详情页面，需要传一个商品id; &lt;router-link :to&#x3D;&quot;&amp;#123;path: &amp;#x27;detail&amp;#x27;, query: &amp;#123;id: 1&amp;#125;&amp;#125;&quot;&gt; 前往detail页面c页面的路径为http:&#x2F;&#x2F;localhost:8080&#x2F;#&#x2F;detail?id&#x3D;1，可以看到传了一">
 <meta property="og:locale">
+<meta property="article:published_time" content="2023-04-12T04:46:31.000Z">
+<meta property="article:modified_time" content="2023-04-13T09:44:08.690Z">
 <meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
 
 
-<title >ljylwnxx的博客</title>
+<title >Vue项目遇到问题</title>
 
 <!-- Favicon -->
 
@@ -64,7 +67,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.5","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/logo.gif","icon16":"/images/logo.png","icon32":"/images/logo.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！","dark_logo":"/images/logo.gif"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":true,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"creative_commons":{"license":"by-nc-sa","language":"deed.zh"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":false,"postUpdate":"2023-04-13 2023-04-13T17:56:08+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-13 2023-04-13T17:44:08+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.5" id="trm-switch-style">
@@ -211,7 +214,8 @@
             <!-- top bar end -->
 
             <!-- body -->
-            <div class="trm-content-start">
+            
+<div class="trm-content-start">
     <!-- banner -->
     <div class="trm-banner" data-scroll data-scroll-direction="vertical">
     
@@ -232,10 +236,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            Hello World!
+                            NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            写代码需要反思和重构,<br>生活也是一样。
+                            Vue项目遇到问题
                         </h1>
 
                         
@@ -245,7 +249,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        categories
+                                        2023
                                     </span
                                 ></li>
                             </ul>
@@ -357,177 +361,111 @@
                 <div class="trm-content" id="trm-content">
                     <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
 
-                    <div class="row">
-    <div class="col-lg-12">
-        <div class="trm-card">
-            <div style="padding: 0 20px;">
-                
-                    <ul class="row trm-list"><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">（5）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/vue3/">vue3</a><span class="category-list-count">（13）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/webpack/">webpack</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">（2）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><span class="category-list-count">（3）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a><span class="category-list-count">（10）</span></li></ul>
-                
-            </div>
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            04/12
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            12:46
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ljylwnxx
         </div>
     </div>
 </div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <p>列表进入详情页的传参问题。<br>例如商品列表页面前往商品详情页面，需要传一个商品id;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;router-link :to=&quot;&#123;path: &#x27;detail&#x27;, query: &#123;id: 1&#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>前往detail页面</router-link>c页面的路径为<a target="_blank" rel="noopener" href="http://localhost:8080/#/detail?id=1%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E4%BC%A0%E4%BA%86%E4%B8%80%E4%B8%AA%E5%8F%82%E6%95%B0id=1%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%B0%B1%E7%AE%97%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2id%E4%B9%9F%E8%BF%98%E4%BC%9A%E5%AD%98%E5%9C%A8%E3%80%82%E6%AD%A4%E6%97%B6%E5%9C%A8c%E9%A1%B5%E9%9D%A2%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87id%E6%9D%A5%E8%8E%B7%E5%8F%96%E5%AF%B9%E5%BA%94%E7%9A%84%E8%AF%A6%E6%83%85%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%8E%B7%E5%8F%96id%E7%9A%84%E6%96%B9%E5%BC%8F%E6%98%AFthis.$route.query.idvue%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%9C%89%EF%BC%9Aquery%E3%80%81params+%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E3%80%82">http://localhost:8080/#/detail?id=1，可以看到传了一个参数id=1，并且就算刷新页面id也还会存在。此时在c页面可以通过id来获取对应的详情数据，获取id的方式是this.$route.query.idvue传参方式有：query、params+动态路由传参。</a><br>说下两者的区别：   <br>1.query通过path切换路由，params通过name切换路由</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// query通过path切换路由</span><br><span class="line">&lt;router-link :to=&quot;&#123;path: &#x27;Detail&#x27;, query: &#123; id: 1 &#125;&#125;&quot;&gt;前往Detail页面&lt;/router-link&gt;</span><br><span class="line">// params通过name切换路由</span><br><span class="line">&lt;router-link :to=&quot;&#123;name: &#x27;Detail&#x27;, params: &#123; id: 1 &#125;&#125;&quot;&gt;前往Detail页面&lt;/router-link&gt; </span><br></pre></td></tr></table></figure>
+<p>2.query通过this.$route.query来接收参数，params通过this.$route.params来接收参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// query通过this.$route.query接收参数</span><br><span class="line">created () &#123;</span><br><span class="line">    const id = this.$route.query.id;</span><br><span class="line">&#125;</span><br><span class="line">// params通过this.$route.params来接收参数</span><br><span class="line">created () &#123;</span><br><span class="line">    const id = this.$route.params.id;</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+<p>3.query传参的url展现方式：/detail?id=1&amp;user=123&amp;identity=1&amp;更多参数       params＋动态路由的url方式：/detail/123   <br>4.params动态路由传参，一定要在路由中定义参数，然后在路由跳转的时候必须要加上参数，否则就是空白页面：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;      </span><br><span class="line">    path: &#x27;/detail/:id&#x27;,      </span><br><span class="line">    name: &#x27;Detail&#x27;,      </span><br><span class="line">    component: Detail    </span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>注意，params传参时，如果没有在路由中定义参数，也是可以传过去的，同时也能接收到，但是一旦刷新页面，这个参数就不存在了。这对于需要依赖参数进行某些操作的行为是行不通的，因为你总不可能要求用户不能刷新页面吧。 例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 定义的路由中，只定义一个id参数</span><br><span class="line">&#123;</span><br><span class="line">    path: &#x27;detail/:id&#x27;,</span><br><span class="line">    name: &#x27;Detail&#x27;,</span><br><span class="line">    components: Detail</span><br><span class="line">&#125;</span><br><span class="line">// template中的路由传参，</span><br><span class="line">// 传了一个id参数和一个token参数</span><br><span class="line">// id是在路由中已经定义的参数，而token没有定义</span><br><span class="line">&lt;router-link :to=&quot;&#123;name: &#x27;Detail&#x27;, params: &#123; id: 1, token: &#x27;123456&#x27; &#125;&#125;&quot;&gt;前往Detail页面&lt;/router-link&gt;</span><br><span class="line">// 在详情页接收</span><br><span class="line">created () &#123;</span><br><span class="line">    // 以下都可以正常获取到</span><br><span class="line">    // 但是页面刷新后，id依然可以获取，而token此时就不存在了</span><br><span class="line">    const id = this.$route.params.id;</span><br><span class="line">    const token = this.$route.params.token;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article>
+    
+    
 
-<!-- history -->
+<ul class="trm-post-copyright">
+    <li class="trm-post-copyright-author">
+        <strong>本文作者：</strong>
+        ljylwnxx
+    </li>
+    <li class="trm-post-copyright-link">
+        <strong>本文链接：</strong>
+        <a id="original-link" href="http://example.com/2023/04/12/Vue%E9%A1%B9%E7%9B%AE%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" title="Vue项目遇到问题">http://example.com/2023/04/12/Vue%E9%A1%B9%E7%9B%AE%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/</a>
+    </li>
+    <li class="trm-post-copyright-license">
+        <strong>版权声明：</strong>
+        本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 ">CC BY-NC-SA 4.0</a> 许可协议。
+    </li>
+</ul>
 
-<div class="row">
+</div>
+<div id="post-next-prev" class="row">
     <div class="col-lg-12">
         <!-- title -->
         <h5 class="trm-title-with-divider">
-            
-                Vue
-            
-            <span data-number="01"></span>
+            其他文章
+            <span data-number="02"></span>
         </h5>
     </div>
-    <div class="col-lg-12">
-        <!-- timeline -->
-        <div class="trm-timeline">
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
             
-            <div class="trm-timeline-item trm-scroll-animation" data-scroll data-scroll-offset="40">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/04/12/Vue%E9%A1%B9%E7%9B%AE%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" class="trm-anima-link">
-                                        Vue项目遇到问题
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">04/12</li>
-                                        <li class="trm-accent-color">12:46</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
-            <div class="trm-timeline-item trm-scroll-animation" data-scroll data-scroll-offset="40">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/04/11/vue-cropper/" class="trm-anima-link">
-                                        vue-cropper
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">04/11</li>
-                                        <li class="trm-accent-color">21:34</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
-            <div class="trm-timeline-item trm-scroll-animation" data-scroll data-scroll-offset="40">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/04/05/Vuex%E7%9A%84namespaced%E5%B1%9E%E6%80%A7/" class="trm-anima-link">
-                                        Vuex的namespaced属性
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">04/05</li>
-                                        <li class="trm-accent-color">20:16</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
-            <div class="trm-timeline-item trm-scroll-animation" data-scroll data-scroll-offset="40">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/04/05/Pinia%E4%B8%8EVuex%20%E7%9A%84%E5%8C%BA%E5%88%AB/" class="trm-anima-link">
-                                        Pinia 与 Vuex 的区别
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">04/05</li>
-                                        <li class="trm-accent-color">19:58</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
-            <div class="trm-timeline-item trm-scroll-animation" data-scroll data-scroll-offset="40">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/04/05/Vuex/" class="trm-anima-link">
-                                        Vuex
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">04/05</li>
-                                        <li class="trm-accent-color">19:49</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
+            <a class="trm-op-top trm-anima-link" href="/2023/04/13/%E5%BC%80%E5%8F%91hexo%E4%B8%BB%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/defaultcover.png">
+                </span>
+                <h6 class="trm-op-title">开发hexo主题记录</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/13</li>
+                <li>10:13</li>
+                <li>工具</li>
+            </ul>
         </div>
-        <!-- timeline end -->
     </div>
 </div>
-
-<!-- history end -->
-
-
-    <div class="trm-pagination">
-        <span class="page-number current">1</span>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2023/04/11/%E6%A8%A1%E5%9D%97%E5%8C%96/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="/images/defaultcover.png">
+                </span>
+                <h6 class="trm-op-title">模块化</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/11</li>
+                <li>22:32</li>
+                <li>模块化</li>
+            </ul>
+        </div>
     </div>
+</div>
+    
+</div>
 
-
+    
 
 
 
@@ -591,6 +529,10 @@
             <!-- body end -->
 
             <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
     
     
         <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
@@ -678,6 +620,10 @@
     
 
     <!-- 评论插件 -->
+    
+        
+
+        
     
 
 
