@@ -36,7 +36,7 @@ assets:
   # Icon configuration
   icons: 
       type: font
-      css: //at.alicdn.com/t/c/font_4020021_ht9wm832ys.css
+      css: //at.alicdn.com/t/c/font_4020021_2ar0fw3x9h6.css
       js: 
 
 # CDN User - defined plug-in
@@ -73,12 +73,12 @@ icons:
   search: iconfont icon-search
   # User information and article directory switch
   user_tag: iconfont icon-user-tag
-  toc_tag: iconfont icon-toc
+  toc_tag: iconfont icon-fenleimulu
   # Secure the button in the lower right corner
   read: iconfont icon-read
-  arrows: iconfont icon-arrows
+  arrows: iconfont icon-arrows-h
   # Code highlight fold icon
-  double_arrows: iconfont icon-arrows-h
+  double_arrows: iconfont icon-zhankai
   # Code copy icon
   copy: iconfont icon-copy
 # Top navigation menu
@@ -217,7 +217,7 @@ footer:
 
 # Article table of contents
 toc:
-  enable: false
+  enable: true
   list_number: true
   max_depth: 3
   min_depth: 1
@@ -317,15 +317,21 @@ katex:
   # Options are for katex rendering options: https://katex.org/docs/options.html
   # In page katex options are also possible and will be merged
   options: {}
+      
+baidu_push: false
 
 # Blog search
 search:
-  enable: false
-  type: engine #local engine
-  href: 'https://www.google.com/search?q=site:'
-  # href: "https://www.baidu.com/s?wd=site:"
-  # href: "https://www.bing.com/search?q=site:"
+  enable: true
+  # type: engine #local engine
+  # href: 'https://www.google.com/search?q=site:'
+  # # href: "https://www.baidu.com/s?wd=site:"
+  # # href: "https://www.bing.com/search?q=site:"
   domain: 
+  type: local
+  preload: true
+  trigger: auto
+
 
 # Think of swup as being pjax on steroids. The concepts are similar to those used in barba.js or other transition libraries.
 # https://swup.js.org/
@@ -365,11 +371,11 @@ error_img:
 # Code highlighting configuration
 highlight:
   theme: true # 
-  title: default # mac | default
+  title: mac # mac | default
   copy: true # copy button
   lang: true # show the code language
   code_word_wrap: fasle #
-  height_limit: false # unit: px
+  height_limit: 200  # unit: px
 
 # Customize the template path
 layout:
