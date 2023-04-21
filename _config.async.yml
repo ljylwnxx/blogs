@@ -240,8 +240,18 @@ creative_commons:
 
 # Customize the cover image
 cover:
-  default: /img/block.jpg
-  type: img # img || date || random
+          default: 
+          - /images/defaultcover.png
+          - /images/defaultimg.png
+          - /images/defaultimg1.png
+          - /images/defaultimg2.png
+          - /images/defaultimg3.png
+          - /images/defaultimg4.png
+          - /images/defaultimg5.png
+          - /images/defaultimg6.png
+          - /images/defaultimg7.png
+          - /images/default.png
+          type: random
 
 # The previous and the next article
 post_pagination: 
