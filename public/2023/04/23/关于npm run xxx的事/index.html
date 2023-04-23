@@ -7,18 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="这是一个博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljylwnxx的博客">
-<meta property="og:url" content="http://example.com/tags/vue-cropper/index.html">
+<meta name="description" content="大家在每天开始一天新的工作的时候，第一件事就是打开vs code，然后就在命令行输入npm run start,emmm…之后再等待个一小会，项目就跑起来了，就开始愉快的一天了。那问题来了，你想过npm run xxx之后发生了什么吗？几乎每一个前端项目都一个package.json文件，这个文件里面总是能看到一个关键字 scripts &amp;#123;  ..., &quot;scripts&amp;quo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于npm run xxx的事">
+<meta property="og:url" content="http://example.com/2023/04/23/%E5%85%B3%E4%BA%8Enpm%20run%20xxx%E7%9A%84%E4%BA%8B/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="这是一个博客">
+<meta property="og:description" content="大家在每天开始一天新的工作的时候，第一件事就是打开vs code，然后就在命令行输入npm run start,emmm…之后再等待个一小会，项目就跑起来了，就开始愉快的一天了。那问题来了，你想过npm run xxx之后发生了什么吗？几乎每一个前端项目都一个package.json文件，这个文件里面总是能看到一个关键字 scripts &amp;#123;  ..., &quot;scripts&amp;quo">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-23T02:27:08.000Z">
+<meta property="article:modified_time" content="2023-04-23T03:04:24.059Z">
 <meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="npm">
 <meta name="twitter:card" content="summary">
 
 
-<title >ljylwnxx的博客</title>
+<title >关于npm run xxx的事</title>
 
 <!-- Favicon -->
 
@@ -59,7 +62,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":false,"postUpdate":"2023-04-23 2023-04-23T11:05:22+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-23 2023-04-23T11:04:24+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
@@ -241,7 +244,8 @@
             <!-- top bar end -->
 
             <!-- body -->
-            <div class="trm-content-start">
+            
+<div class="trm-content-start">
     <!-- banner -->
     <div class="trm-banner" data-scroll data-scroll-direction="vertical">
     
@@ -262,10 +266,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            The article tag
+                            NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            让代码没有Bug,<br>世界永远和平。
+                            关于npm run xxx的事
                         </h1>
                             
                         <!-- 
@@ -275,7 +279,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        tags
+                                        2023
                                     </span
                                 ></li>
                             </ul>
@@ -307,7 +311,17 @@
 <div class="trm-main-card-frame trm-sidebar">
     <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
     
-        <!-- card header -->
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont iconfont icon-user-tag"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont iconfont icon-fenleimulu"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
 <div class="trm-mc-header">
     <div class="trm-avatar-frame trm-mb-20">
         <img alt="Avatar" class="trm-avatar" src="/img/avatar.png">
@@ -324,7 +338,7 @@
     
 </div>
 <!-- card header end -->
-        <!-- sidebar social -->
+                <!-- sidebar social -->
 
 <div class="trm-divider trm-mb-40 trm-mt-40"></div>
 <div class="trm-social">
@@ -340,7 +354,7 @@
 </div>
 
 <!-- sidebar social end -->
-        <!-- info -->
+                <!-- info -->
 <div class="trm-divider trm-mb-40 trm-mt-40"></div>
 <ul class="trm-table trm-mb-20">
     
@@ -356,7 +370,7 @@
 </ul>
 <!-- info end -->
 
-        
+                
     <div class="trm-divider trm-mb-40 trm-mt-40"></div>
     <!-- action button -->
     <div class="text-center">
@@ -367,6 +381,13 @@
     </div>
     <!-- action button end -->
 
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#一、npm-run-xxx-的时候发生了什么？"  data-scroll-to="#一、npm-run-xxx-的时候发生了什么？"><span class="toc-number">1.</span> <span class="toc-text">一、npm  run xxx 的时候发生了什么？</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#二、那为什么不直接执行vue-cli-service-serve而要执行npm-run-serve-呢？"  data-scroll-to="#二、那为什么不直接执行vue-cli-service-serve而要执行npm-run-serve-呢？"><span class="toc-number">2.</span> <span class="toc-text">二、那为什么不直接执行vue-cli-service serve而要执行npm run serve 呢？</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#三、为什么执行-npm-run-serve-的能成功？"  data-scroll-to="#三、为什么执行-npm-run-serve-的能成功？"><span class="toc-number">3.</span> <span class="toc-text">三、为什么执行 npm run serve 的能成功？</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#四、你说-bin-目录下的文件表示软连接，那这个bin目录下的那些软连接文件是哪里来的呢？它又是怎么知道这条软连接是执行哪里的呢？"  data-scroll-to="#四、你说-bin-目录下的文件表示软连接，那这个bin目录下的那些软连接文件是哪里来的呢？它又是怎么知道这条软连接是执行哪里的呢？"><span class="toc-number">4.</span> <span class="toc-text">四、你说.bin 目录下的文件表示软连接，那这个bin目录下的那些软连接文件是哪里来的呢？它又是怎么知道这条软连接是执行哪里的呢？</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#五、为什么在-node-modules-bin-中-有三个-vue-cli-service-文件？"  data-scroll-to="#五、为什么在-node-modules-bin-中-有三个-vue-cli-service-文件？"><span class="toc-number">5.</span> <span class="toc-text">五、为什么在 node_modules&#x2F;bin 中 有三个 vue-cli-service 文件？</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#总结"  data-scroll-to="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
+</div>
+            </div>
+        </div>
     
     </div>
 </div>
@@ -377,16 +398,92 @@
                 <div class="trm-content" id="trm-content">
                     <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
 
-                    <div class="row">
-    <div class="col-lg-12">
-        <div class="trm-card">
-            <div style="padding: 0 20px;">
-                <!-- <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Vue/" style="font-size: 28px;">Vue</a> <a href="/tags/Vuex/" style="font-size: 28px;">Vuex</a> <a href="/tags/Webpack/" style="font-size: 20px;">Webpack</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/npm/" style="font-size: 20px;">npm</a> <a href="/tags/vue/" style="font-size: 32px;">vue</a> <a href="/tags/vue-cropper/" style="font-size: 20px;">vue-cropper</a> <a href="/tags/vue3/" style="font-size: 36px;">vue3</a> <a href="/tags/webpack/" style="font-size: 28px;">webpack</a> <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" style="font-size: 24px;">微前端</a> <a href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 20px;">搭建博客</a> <a href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/" style="font-size: 20px;">模块化</a> <a href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" style="font-size: 20px;">深浅拷贝</a> <a href="/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 20px;">跨域</a> -->
-                <ul class="row trm-tag-list trm-list" itemprop="keywords"><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">3</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/Vuex/" rel="tag">Vuex</a><span class="tag-list-count">3</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a><span class="tag-list-count">4</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vue-cropper/" rel="tag">vue-cropper</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vue3/" rel="tag">vue3</a><span class="tag-list-count">13</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">3</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" rel="tag">微前端</a><span class="tag-list-count">2</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="tag">搭建博客</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/" rel="tag">模块化</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" rel="tag">深浅拷贝</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a><span class="tag-list-count">1</span></li></ul>
-            </div>
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-calendar trm-icon"></i><br>
+            04/23
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-clock trm-icon"></i><br>
+            10:27
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-user trm-icon"></i><br>
+            ljylwnxx
         </div>
     </div>
 </div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <p>大家在每天开始一天新的工作的时候，第一件事就是打开vs code，然后就在命令行输入npm run start,emmm…之后再等待个一小会，项目就跑起来了，就开始愉快的一天了。<br>那问题来了，你想过npm run xxx之后发生了什么吗？<br>几乎每一个前端项目都一个package.json文件，这个文件里面总是能看到一个关键字 scripts</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...,</span><br><span class="line"> &quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;webpack&quot;: &quot;webpack --config webpack.config.js&quot;,</span><br><span class="line">   &quot;postinstall&quot;: &quot;node ./scripts/postinstall.js&quot;</span><br><span class="line"> &#125;,</span><br><span class="line">  ...,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以通过 npm run xxx 来执行 scripts 中的命令。例如，当我们执行 npm run webpack 时，实际上是在执行 scripts 中的 webpack 命令，即 webpack –config webpack.config.js</p>
+<h1 id="一、npm-run-xxx-的时候发生了什么？"><a href="#一、npm-run-xxx-的时候发生了什么？" class="headerlink" title="一、npm  run xxx 的时候发生了什么？"></a>一、npm  run xxx 的时候发生了什么？</h1><p>npm run xxx 的时候，首先会去项目的 package.json 文件里找 scripts 里找对应的 xxx，然后执行 xxx 的命令，例如启动 vue 项目 npm run serve 的时候，实际上就是执行了 vue-cli-service serve 这条命令。<br>package.json 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;serve&quot;: &quot;vue-cli-service serve&quot;,</span><br><span class="line">  &quot;build&quot;: &quot;vue-cli-service build&quot;,</span><br><span class="line">  &quot;lint&quot;: &quot;vue-cli-service lint&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h1 id="二、那为什么不直接执行vue-cli-service-serve而要执行npm-run-serve-呢？"><a href="#二、那为什么不直接执行vue-cli-service-serve而要执行npm-run-serve-呢？" class="headerlink" title="二、那为什么不直接执行vue-cli-service serve而要执行npm run serve 呢？"></a>二、那为什么不直接执行vue-cli-service serve而要执行npm run serve 呢？</h1><p>因为直接执行vue-cli-service serve，会报错，因为操作系统中没有存在vue-cli-service这一条指令<br>既然vue-cli-service这条指令不存在操作系统中，为什么执行npm run serve的时候，也就是相当于执行了vue-cli-service serve ，为什么这样它就能成功，而且不报指令不存在的错误呢？</p>
+<h1 id="三、为什么执行-npm-run-serve-的能成功？"><a href="#三、为什么执行-npm-run-serve-的能成功？" class="headerlink" title="三、为什么执行 npm run serve 的能成功？"></a>三、为什么执行 npm run serve 的能成功？</h1><p>在我们在安装依赖的时候，是通过npm i xxx 来执行的，例如 npm i @vue/cli-service，npm 在 安装这个依赖的时候，就会node_modules/.bin/ 目录中创建 好vue-cli-service 为名的几个可执行文件了。<br>.bin 目录，这个目录不是任何一个 npm 包。目录下的文件，表示这是一个个软链接，打开文件可以看到文件顶部写着 #!/bin/sh ，表示这是一个脚本。<br>当使用 npm run serve 执行 vue-cli-service serve 时，虽然没有安装 vue-cli-service的全局命令，但是 npm 会到 ./node_modules/.bin 中找到vue-cli-service 文件作为脚本来执行。</p>
+<h1 id="四、你说-bin-目录下的文件表示软连接，那这个bin目录下的那些软连接文件是哪里来的呢？它又是怎么知道这条软连接是执行哪里的呢？"><a href="#四、你说-bin-目录下的文件表示软连接，那这个bin目录下的那些软连接文件是哪里来的呢？它又是怎么知道这条软连接是执行哪里的呢？" class="headerlink" title="四、你说.bin 目录下的文件表示软连接，那这个bin目录下的那些软连接文件是哪里来的呢？它又是怎么知道这条软连接是执行哪里的呢？"></a>四、你说.bin 目录下的文件表示软连接，那这个bin目录下的那些软连接文件是哪里来的呢？它又是怎么知道这条软连接是执行哪里的呢？</h1><p>从 package-lock.json 中可知，当我们 npm i 整个新建的 vue 项目的时候，npm 将 bin/vue-cli-service.js 作为 bin 声明了<br>所以在 npm install 时，npm 读到该配置后，就将该文件软链接到 ./node_modules/.bin 目录下，而 npm 还会自动把 node_modules/.bin 加入$PATH，这样就可以直接作为命令运行依赖程序和开发依赖程序，不用全局安装了<br>假如我们在安装包时，使用  npm install -g xxx  来安装，那么会将其中的 bin 文件加入到全局<br>npm i 的时候，npm 就帮我们把这种软连接配置好了，其实这种软连接相当于一种映射，执行 npm run xxx 的时候，就会到 node_modules/bin 中找对应的映射文件，然后再找到相应的 js 文件来执行。</p>
+<h1 id="五、为什么在-node-modules-bin-中-有三个-vue-cli-service-文件？"><a href="#五、为什么在-node-modules-bin-中-有三个-vue-cli-service-文件？" class="headerlink" title="五、为什么在 node_modules/bin 中 有三个 vue-cli-service 文件？"></a>五、为什么在 node_modules/bin 中 有三个 vue-cli-service 文件？</h1><p>如果我们在 cmd 里运行的时候，windows 一般是调用了 vue-cli-service.cmd，这个文件，这是 windows 下的批处理脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@ECHO off</span><br><span class="line">GOTO start</span><br><span class="line">:find_dp0</span><br><span class="line">SET dp0=%~dp0</span><br><span class="line">EXIT /b</span><br><span class="line">:start</span><br><span class="line">SETLOCAL</span><br><span class="line">CALL :find_dp0</span><br><span class="line">IF EXIST &quot;%dp0%\node.exe&quot; (</span><br><span class="line">  SET &quot;_prog=%dp0%\node.exe&quot;</span><br><span class="line">) ELSE (</span><br><span class="line">  SET &quot;_prog=node&quot;</span><br><span class="line">  SET PATHEXT=%PATHEXT:;.JS;=;%</span><br><span class="line">)</span><br><span class="line">endLocal &amp; goto #_undefined_# 2&gt;NUL || title %COMSPEC% &amp; &quot;%_prog%&quot;  &quot;%dp0%\..\@vue\cli-service\bin\vue-cli-service.js&quot; %*</span><br></pre></td></tr></table></figure>
+<p>所以当我们运行vue-cli-service serve这条命令的时候，就相当于运行 node_modules/.bin/vue-cli-service.cmd serve。<br>然后这个脚本会使用 node 去运行 vue-cli-service.js这个 js 文件<br>由于 node 中可以使用一系列系统相关的 api ，所以在这个 js 中可以做很多事情，例如读取并分析运行这条命令的目录下的文件，根据模板生成文件等。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># unix 系默认的可执行文件，必须输入完整文件名</span><br><span class="line">vue-cli-service</span><br><span class="line"># windows cmd 中默认的可执行文件，当我们不添加后缀名时，自动根据 pathext 查找文件</span><br><span class="line">vue-cli-service.cmd</span><br><span class="line"># Windows PowerShell 中可执行文件，可以跨平台</span><br><span class="line">vue-cli-service.ps1</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>执行npm run xxx时，会先从当前目录下的node_modules/.bin中去查找对应的可执行程序执行；<br>如果无法找到，就会在npm的全局安装路径进行查找，也就是npm i -g xxx时安装的路径；<br>如果还找不到，就会从系统环境变量中查找；<br>再找不到就会报错了；</p>
+
+</article>
+    
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2023/04/13/%E5%BC%80%E5%8F%91hexo%E4%B8%BB%E9%A2%98%E8%AE%B0%E5%BD%95/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/%E5%B7%A5%E5%85%B7/">
+                    工具
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/04/13/%E5%BC%80%E5%8F%91hexo%E4%B8%BB%E9%A2%98%E8%AE%B0%E5%BD%95/" class="trm-anima-link">
+                    开发hexo主题记录
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/13</li>
+                <li>10:13</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
 
                     <div class="trm-divider footer-divider"></div>
 
@@ -442,6 +539,10 @@
             <!-- body end -->
 
             <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont iconfont icon-read"></i>
+        </div>
     
     
         <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
@@ -527,6 +628,10 @@
     
 
     <!-- 评论插件 -->
+    
+        
+
+        
     
 
 
