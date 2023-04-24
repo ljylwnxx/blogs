@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="前言关于前端构建工具，先有 gulp、grunt、webpack，现在尤大大又整了一个 vite；或许有同学会疑问，这么多构建工具为什么只有 vite 快，那么我们为什么要使用 vite，以及到底该选哪一个呢？ Vite 简介什么是 ViteVite是一个由原生ES Module驱动的Web开发前端构建工具。在开发环境（Development） 下基于浏览器原生 ES Module 开发，完全跳过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="打开vite大门">
+<meta property="og:url" content="http://example.com/2023/04/24/%E6%89%93%E5%BC%80vite%E5%A4%A7%E9%97%A8/index.html">
+<meta property="og:site_name" content="ljylwnxx的博客">
+<meta property="og:description" content="前言关于前端构建工具，先有 gulp、grunt、webpack，现在尤大大又整了一个 vite；或许有同学会疑问，这么多构建工具为什么只有 vite 快，那么我们为什么要使用 vite，以及到底该选哪一个呢？ Vite 简介什么是 ViteVite是一个由原生ES Module驱动的Web开发前端构建工具。在开发环境（Development） 下基于浏览器原生 ES Module 开发，完全跳过">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2023-04-24T01:49:16.000Z">
+<meta property="article:modified_time" content="2023-04-24T02:59:15.393Z">
+<meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="vite">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
+
+
+<title >打开vite大门</title>
+
+<!-- Favicon -->
+
+    <link href='/img/favicon.png?v=2.0.7' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=2.0.7' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4020021_2ar0fw3x9h6.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-24 2023-04-24T10:59:15+08:00"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont iconfont icon-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont iconfont icon-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/img/logo.png">
+    
+    
+        <div class="trm-logo-text">
+            LjylWnxx
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/links/" target="">
+                    友情链接
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/tags/" target="">
+                    标签
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/categories/" target="">
+                    分类
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			<!--  -->
+    <!-- mode switcher place -->
+    <!-- <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont iconfont icon-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont iconfont icon-moon"></i>
+        </div>
+    </div> -->
+    <!-- mode switcher place end -->
+<!--  -->
+<!-- 
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont iconfont icon-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+        </div>
+    </div>
+   -->
+  
+
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+
+			
+    
+    <div id="trm-search-btn" class="trm-search-btn">
+        <i class="iconfont iconfont icon-search"></i>
+    </div>
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            打开vite大门
+                        </h1>
+                            
+                        <!-- 
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span
+                                ></li>
+                            </ul>
+                         -->
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    
+
+<div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
+    
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont iconfont icon-user-tag"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont iconfont icon-fenleimulu"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.png">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        LjylWnxx
+    </h5>
+    
+        <div class="trm-label">
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+                <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont icon-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="gitee" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont icon-gitee"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+                <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                个签:
+            </div>
+            <div class="trm-label trm-label-light">
+                Hello World!
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+                
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:ljylwnxx@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont iconfont icon-email"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#前言"  data-scroll-to="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Vite-简介"  data-scroll-to="#Vite-简介"><span class="toc-number">2.</span> <span class="toc-text">Vite 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#什么是-Vite"  data-scroll-to="#什么是-Vite"><span class="toc-number">2.1.</span> <span class="toc-text">什么是 Vite</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Vite-的主要特性"  data-scroll-to="#Vite-的主要特性"><span class="toc-number">2.2.</span> <span class="toc-text">Vite 的主要特性</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Vite-的优势"  data-scroll-to="#Vite-的优势"><span class="toc-number">3.</span> <span class="toc-text">Vite 的优势</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#开发效率极高-——-🚀-般的速度"  data-scroll-to="#开发效率极高-——-🚀-般的速度"><span class="toc-number">3.1.</span> <span class="toc-text">开发效率极高 —— 🚀 般的速度</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#上手极其简单"  data-scroll-to="#上手极其简单"><span class="toc-number">3.2.</span> <span class="toc-text">上手极其简单</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#社区成本低"  data-scroll-to="#社区成本低"><span class="toc-number">3.3.</span> <span class="toc-text">社区成本低</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Vite-4-3-正式发布，构建速度全面提升"  data-scroll-to="#Vite-4-3-正式发布，构建速度全面提升"><span class="toc-number">4.</span> <span class="toc-text">Vite 4.3 正式发布，构建速度全面提升</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#为什么这么快"  data-scroll-to="#为什么这么快"><span class="toc-number">5.</span> <span class="toc-text">为什么这么快</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#更智能的解析策略"  data-scroll-to="#更智能的解析策略"><span class="toc-number">5.1.</span> <span class="toc-text">更智能的解析策略</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#更简单的解析"  data-scroll-to="#更简单的解析"><span class="toc-number">5.2.</span> <span class="toc-text">更简单的解析</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#更严格的解析"  data-scroll-to="#更严格的解析"><span class="toc-number">5.3.</span> <span class="toc-text">更严格的解析</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#更准确的解析"  data-scroll-to="#更准确的解析"><span class="toc-number">5.4.</span> <span class="toc-text">更准确的解析</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#包解析"  data-scroll-to="#包解析"><span class="toc-number">5.5.</span> <span class="toc-text">包解析</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#fs-realpathSync"  data-scroll-to="#fs-realpathSync"><span class="toc-number">5.6.</span> <span class="toc-text">fs.realpathSync</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#非阻塞任务"  data-scroll-to="#非阻塞任务"><span class="toc-number">5.7.</span> <span class="toc-text">非阻塞任务</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#非阻塞-tsconfig-解析"  data-scroll-to="#非阻塞-tsconfig-解析"><span class="toc-number">5.8.</span> <span class="toc-text">非阻塞 tsconfig 解析</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#非阻塞文件处理"  data-scroll-to="#非阻塞文件处理"><span class="toc-number">5.9.</span> <span class="toc-text">非阻塞文件处理</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#HMR-防抖"  data-scroll-to="#HMR-防抖"><span class="toc-number">5.10.</span> <span class="toc-text">HMR 防抖</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#并行化"  data-scroll-to="#并行化"><span class="toc-number">5.11.</span> <span class="toc-text">并行化</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Javascript-优化"  data-scroll-to="#Javascript-优化"><span class="toc-number">5.12.</span> <span class="toc-text">Javascript 优化</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#用回调替换-yield"  data-scroll-to="#用回调替换-yield"><span class="toc-number">5.13.</span> <span class="toc-text">用回调替换 *yield</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#避免重复创建正则表达式"  data-scroll-to="#避免重复创建正则表达式"><span class="toc-number">5.14.</span> <span class="toc-text">避免重复创建正则表达式</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#放弃生成自定义错误"  data-scroll-to="#放弃生成自定义错误"><span class="toc-number">5.15.</span> <span class="toc-text">放弃生成自定义错误</span></a></li></ol></li></ol>
+</div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-calendar trm-icon"></i><br>
+            04/24
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-clock trm-icon"></i><br>
+            09:49
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-user trm-icon"></i><br>
+            ljylwnxx
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>关于前端构建工具，先有 gulp、grunt、webpack，现在尤大大又整了一个 vite；<br>或许有同学会疑问，这么多构建工具为什么只有 vite 快，那么我们为什么要使用 vite，以及到底该选哪一个呢？</p>
+<h1 id="Vite-简介"><a href="#Vite-简介" class="headerlink" title="Vite 简介"></a>Vite 简介</h1><h2 id="什么是-Vite"><a href="#什么是-Vite" class="headerlink" title="什么是 Vite"></a>什么是 Vite</h2><p>Vite是一个由原生ES Module驱动的Web开发前端构建工具。<br>在开发环境（Development） 下基于浏览器原生 ES Module 开发，完全跳过了打包这个概念；<br>在生产环境（Production） 下基于 Rollup 打包来构建代码。</p>
+<h2 id="Vite-的主要特性"><a href="#Vite-的主要特性" class="headerlink" title="Vite 的主要特性"></a>Vite 的主要特性</h2><ul>
+<li>💡 极速的服务启动： 使用原生 ESM 文件，无需打包！</li>
+<li>⚡️ 轻量快速的热重载： 无论应用程序大小如何，都始终极快的模块热重载（HMR）</li>
+<li>🛠️ 丰富的功能： 对 TypeScript、JSX、CSS 等支持开箱即用。</li>
+<li>📦 优化的构建：可选 “多页应用” 或 “库” 模式的预配置 Rollup 构建</li>
+<li>🔩 通用的插件： 在开发和构建之间共享 Rollup-superset 插件接口。</li>
+<li>🔑 完全类型化的API：灵活的 API 和完整 TypeScript 类型<h1 id="Vite-的优势"><a href="#Vite-的优势" class="headerlink" title="Vite 的优势"></a>Vite 的优势</h1></li>
+<li>上手非常简单</li>
+<li>开发效率极高</li>
+<li>社区成本低（兼容绝大部分 rollup 插件）<h2 id="开发效率极高-——-🚀-般的速度"><a href="#开发效率极高-——-🚀-般的速度" class="headerlink" title="开发效率极高 —— 🚀 般的速度"></a>开发效率极高 —— 🚀 般的速度</h2><img src="/2023/04/24/%E6%89%93%E5%BC%80vite%E5%A4%A7%E9%97%A8/vite%E9%80%9F%E5%BA%A6.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>从图中对比我们可以很明显的发现，为什么 Vite 会较于 Webpack 快那么多了<br>Vite 在开发环境冷启动无需打包，无需分析模块之间的依赖，同时也无需在启动开发服务器前进行编译，启动时还会使用 esbuild 来进行预构建；（如下图基于原生 ESM 的开发服务流程图）<br><img src="/2023/04/24/%E6%89%93%E5%BC%80vite%E5%A4%A7%E9%97%A8/esm.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>Webpack 在启动后会做一堆事情，经历一条很长的编译打包链条，从入口开始需要逐步经历语法解析、依赖收集、代码转译、打包合并、代码优化，最终将高版本的、离散的源码编译打包成低版本、高兼容性的产物代码，这可满满都是 CPU、IO 操作啊，在 Node 运行时下性能必然是有问题。（如下图基于 bundle 的开发服务流程图）<br><img src="/2023/04/24/%E6%89%93%E5%BC%80vite%E5%A4%A7%E9%97%A8/bundle.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>当然我们只做了与前端使用率最高，名气最大的 webpack 的对比，像其它构建工具如 Browserify、Gulp、Parcel、Rollup、Snowpack 几乎都是可以类似对比处理。<h2 id="上手极其简单"><a href="#上手极其简单" class="headerlink" title="上手极其简单"></a>上手极其简单</h2>命令初始化<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Vite2.x 需要 Node.js 版本 &gt;= 12.0.0</span><br><span class="line">Vite3.x 不再支持 Node.js 12，现在需要 Node.js 14.18+</span><br></pre></td></tr></table></figure>
+简单一句话概括，如果说你会使用 vue-cli 脚手架，那么这个 Vite 构建工具你几乎可以无缝插入；<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> # npm</span><br><span class="line"> npm init vite@latest</span><br><span class="line"> ​</span><br><span class="line"> # yarn</span><br><span class="line"> yarn create vite</span><br><span class="line"> ​</span><br><span class="line"> # pnpm</span><br><span class="line"> pnpm create vite</span><br></pre></td></tr></table></figure>
+然后按照提示选择你所需要创建的项目即可。<br>配置极其简单<br>相比 webpack（或者底层依赖 Webpack 的 vue-cli）， 需要对 entry、loader、plugin 等进行诸多配置，实际的构建工作通常由各种 webpack loader、plugin 实现；<br>Vite 的使用可谓是相当简单了；只需执行初始化命令，就可以得到一个预设好的开发环境，开箱即获得一堆功能，包括：css 预处理、html 预处理、异步加载、分包、压缩、HMR支持、默认 chunk hash 命名 等。<br>简单说吧，Vite 的定位就是傻瓜且强大的构建工具。<h2 id="社区成本低"><a href="#社区成本低" class="headerlink" title="社区成本低"></a>社区成本低</h2>除了极致的运行性能与简易的使用方法外，Vite 对已有生态的兼容性也不容忽略，主要体现在<br>两个点：</li>
+<li>与 Vue 解耦，兼容支持 React、Svelte、Preact、Vanilla 等，这意味着 Vite 可以被应用在大多数现代技术栈中</li>
+<li>与 Rollup 极其接近的插件接口，这意味着可以复用 Rollup 生态中大部分已经被反复锤炼的工具<br>讲真的，这两条摆上桌面，加上前面讨论的 性能优势 和 超低学习成本，你还有什么拒绝的理由呢？<h1 id="Vite-4-3-正式发布，构建速度全面提升"><a href="#Vite-4-3-正式发布，构建速度全面提升" class="headerlink" title="Vite 4.3 正式发布，构建速度全面提升"></a>Vite 4.3 正式发布，构建速度全面提升</h1>最新发布的 Vite 4.3 显著提升了性能。发布公告写道，Vite 团队在这个版本中将工作重心放在提升开发服务器的性能上，其中包括简化解析逻辑、改进热路径、实现更智能的缓存以查找 package.json,TS 配置文件和解析的 URL。  <h1 id="为什么这么快"><a href="#为什么这么快" class="headerlink" title="为什么这么快"></a>为什么这么快</h1><h2 id="更智能的解析策略"><a href="#更智能的解析策略" class="headerlink" title="更智能的解析策略"></a>更智能的解析策略</h2>Vite会将所有接收到的URL和路径解析为目标模块。在 Vite 4.2 中，存在很多冗余的解析逻辑和不必要的模块搜索。为了减少计算和文件系统调用，Vite 4.3 使解析逻辑更简单、更严格和更准确。<h2 id="更简单的解析"><a href="#更简单的解析" class="headerlink" title="更简单的解析"></a>更简单的解析</h2>Vite 4.2严重依赖 resolve 包来解析依赖的 package.json，查看 resolve 的源码发现解析 package.json 时有很多无用的逻辑。Vite 4.3 摒弃了 resolve，遵循更简单的 resolve 逻辑：直接检查嵌套父目录中是否存在 package.json。<h2 id="更严格的解析"><a href="#更严格的解析" class="headerlink" title="更严格的解析"></a>更严格的解析</h2>Vite 必须调用 Nodejs fs API 来查找模块。但是 IO 很昂贵。Vite 4.3 缩小了文件搜索范围，并跳过搜索一些特殊路径，以尽可能减少 fs 调用。例如：</li>
+<li>由于 # 符号不会出现在 URL 中，用户可以控制源文件路径中没有 # 符号，因此 Vite 4.3 不再检查用户源文件中带有 # 符号的路径，而是仅在 node_modules 中搜索它们。</li>
+<li>在Unix系统中，Vite 4.2 会先检查根目录下的每一个绝对路径，对大多数路径都可以，但是如果绝对路径以根开头就很容易失败。为了在 /root/root 不存在的情况下跳过搜索 /root/root/path-to-file，Vite 4.3 会在开头判断 /root/root 作为目录是否存在，并预先缓存结果。</li>
+<li>当 Vite 服务器收到 @fs/xxx​ 和 @vite/xxx 时，就不需要再解析这些 URL。Vite 4.3 直接返回之前缓存的结果，不再重新解析。<h2 id="更准确的解析"><a href="#更准确的解析" class="headerlink" title="更准确的解析"></a>更准确的解析</h2>Vite 4.2 在文件路径为目录时递归解析模块，会导致不必要的重复计算。Vite 4.3 将递归解析扁平化，并对不同类型的路径应用适当的解析，展平后缓存一些 fs 调用也更容易。<h2 id="包解析"><a href="#包解析" class="headerlink" title="包解析"></a>包解析</h2>Vite 4.3 打破了解析 node_modules 包数据的性能瓶颈。Vite 4.2 使用绝对文件路径作为包数据缓存键。这还不够，因为 Vite 必须遍历 pkg/foo/bar​ 和 pkg/foo/baz 中的同一个目录。<br>Vite 4.3 不仅使用了绝对路径(/root/node_modules/pkg/foo/bar.js​ &amp; /root/node_modules/pkg/foo/baz.js​)，还使用了遍历目录(/root/node_modules/pkg/foo​ &amp; /root/node_modules/pkg​) 作为 pkg 缓存的键。<br>另一种情况是，Vite 4.2 在单个函数中查找深层导入路径的 package.json​，例如 Vite 4.2 解析 a/b/c/d​ 等文件路径时，首先检查根 a/package.json​ 是否存在， 如果没有，则按照a/b/c/package.json​ -&gt; a/b/package.json​的顺序查找最近的package.json​，但事实是查找根package.json​和最近的package.json​应该分开处理 ，因为在不同的解析上下文中需要它们。Vite 4.3 将根 package.json​ 和最近的 package.json 解析分成两部分，这样它们就不会混在一起。 <h2 id="fs-realpathSync"><a href="#fs-realpathSync" class="headerlink" title="fs.realpathSync"></a>fs.realpathSync</h2>Nodejs 中有一个有趣的 realpathSync 问题，它指出 fs.realpathSync​ 比 fs.realpathSync.native​ 慢 70 倍。但 Vite 4.2 仅在非 Windows 系统上使用 fs.realpathSync.native​，因为它在 Windows 上的行为不同。为了解决这个问题，Vite 4.3 在 Windows 上调用 fs.realpathSync.native 时添加了网络驱动器验证。<h2 id="非阻塞任务"><a href="#非阻塞任务" class="headerlink" title="非阻塞任务"></a>非阻塞任务</h2>作为一个按需服务，Vite dev server 可以在没有准备好所有东西的情况下启动。<h2 id="非阻塞-tsconfig-解析"><a href="#非阻塞-tsconfig-解析" class="headerlink" title="非阻塞 tsconfig 解析"></a>非阻塞 tsconfig 解析</h2>Vite 服务器在预绑定 ts 或 tsx 时需要 tsconfig 数据。<br>Vite 4.2 在服务端启动之前，在插件钩子 configResolved​ 中等待 tsconfig​ 数据解析完成。一旦服务器启动而没有准备好 tsconfig​ 数据，页面请求就可以访问服务器，即使请求可能需要稍后等待 tsconfig 解析。<br>Vite 4.3 会在服务器启动前初始化 tsconfig​ 解析，但服务器不会等待。解析过程在后台运行。一旦有ts相关的请求进来，就得等tsconfig解析完了。<h2 id="非阻塞文件处理"><a href="#非阻塞文件处理" class="headerlink" title="非阻塞文件处理"></a>非阻塞文件处理</h2>Vite 中有大量的 fs 调用，其中一些是同步的。这些同步 fs 调用可能会阻塞主线程。Vite 4.3 将它们改为异步。此外，并行化异步函数也更容易。关于异步函数，可能有许多 Promise 对象在解析后要释放。由于更智能的解析策略，释放 fs-Promise 对象的成本要低得多。<h2 id="HMR-防抖"><a href="#HMR-防抖" class="headerlink" title="HMR 防抖"></a>HMR 防抖</h2>考虑两个简单的依赖链 C &lt;- B &lt;- A &amp; D &lt;- B &lt;- A，当 A 被编辑时，HMR 将从 A 传播到 C 和 A 传播到 D。这导致 A 和 B 在 Vite 4.2 中被更新两次。<br>Vite 4.3 缓存了这些遍历的模块，以避免多次搜索它们，它适用于由 git checkout 触发的 HMR。<h2 id="并行化"><a href="#并行化" class="headerlink" title="并行化"></a>并行化</h2>并行化始终是获得更好性能的好选择。在 Vite 4.3 中，我们并行化了一些核心功能，包括导入分析、提取 deps 的导出、解析模块 url 和运行批量优化器。<h2 id="Javascript-优化"><a href="#Javascript-优化" class="headerlink" title="Javascript 优化"></a>Javascript 优化</h2><h2 id="用回调替换-yield"><a href="#用回调替换-yield" class="headerlink" title="用回调替换 *yield"></a>用回调替换 *yield</h2>Vite 使用 tsconfck​ 来查找和解析 tsconfig​ 文件。tsconfck​ 曾经通过 yield​ 遍历目标目录，生成器的一个缺点是它需要更多的内存空间来存储它的生成器对象，并且在运行时会有大量的生成器上下文切换。所以从 v2.1.1 开始在核心中用回调替换 ​​yield​​。</li>
+</ul>
+<p>3.2 使用 === 代替 startsWith 和 endsWith<br>Vite 4.2 使用 startsWith​ 和 endsWith​ 检查热更新 URL 中的头部和尾部 ‘/‘。比较 str.startsWith(‘x’)​ 和 str[0] === ‘x’​ 的执行基准发现，===​ 比 startsWith​ 快约 20%，endsWith 比 === 慢约 60%。</p>
+<h2 id="避免重复创建正则表达式"><a href="#避免重复创建正则表达式" class="headerlink" title="避免重复创建正则表达式"></a>避免重复创建正则表达式</h2><p>Vite 需要很多正则表达式来匹配字符串，其中大部分都是静态的，因此只使用它们的单例会更好。Vite 4.3 将正则表达式提升，以便可以重复使用它们。</p>
+<h2 id="放弃生成自定义错误"><a href="#放弃生成自定义错误" class="headerlink" title="放弃生成自定义错误"></a>放弃生成自定义错误</h2><p>在 Vite 4.2 中，有一些自定义错误以改进开发体验。这些错误可能会导致额外的计算和垃圾回收，从而降低 Vite 的速度。在 Vite 4.3 中，放弃了生成某些热更新自定义错误（例如 package.json NOT_FOUND 错误），直接抛出原始错误以获得更好的性能。</p>
+
+</article>
+    
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2023/04/23/%E5%85%B3%E4%BA%8Enpm%20run%20xxx%E7%9A%84%E4%BA%8B/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/npm/">
+                    npm
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/04/23/%E5%85%B3%E4%BA%8Enpm%20run%20xxx%E7%9A%84%E4%BA%8B/" class="trm-anima-link">
+                    关于npm run xxx的事
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/23</li>
+                <li>10:27</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2023</span>
+            <span class="footer-separator"data-separator=" | "></span>
+            <span class="trm-accent-color">LjylWnxx</span>
+        </div>
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.2
+            </span>
+        </div>
+      
+
+    
+        <div class="trm-footer-item">
+            博客已运行 <span id="since" class="trm-accent-color"></span> 天
+        </div>
+     
+
+     
+</footer>
+
+<script>
+    function show_date_time () {
+        var BirthDay = new Date("08/16/2022 21:45:54");
+        var today = new Date();
+        var timeold = (today.getTime() - BirthDay.getTime());
+        var msPerDay = 24 * 60 * 60 * 1000
+        var day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont iconfont icon-read"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
+            <i class="iconfont iconfont icon-arrows-h"></i>
+        </div>
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont iconfont icon-i-back-top"></i>
+    </div>
+</div>
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont iconfont icon-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont iconfont icon-close"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=2.0.7"></script>
+    
+
+    
+        
+<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=2.0.7"></script>
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=2.0.7"></script>
+
+</body>
+
+</html>
