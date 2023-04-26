@@ -7,18 +7,28 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="这是一个博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljylwnxx的博客">
-<meta property="og:url" content="http://example.com/categories/%E5%B7%A5%E5%85%B7/index.html">
+<meta name="description" content="使用vite初始化项目首先我们使用vite来初始化项目，vite支持使用npm、yarn和pnpm来初始化项目，本文采用npm的方式。 &#x2F;&#x2F; 使用npmnpm create vite@latest&#x2F;&#x2F; 使用yarnyarn create vite&#x2F;&#x2F; 使用pnpmpnpm create vite 输入命令之后会提示我们输入项目名，如果我们已经建好项目，并且是在项目根目录执行的命令的话，只需输入一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【vite+vue3+Ts+element-plus1】">
+<meta property="og:url" content="http://example.com/2023/04/26/%E3%80%90vite-vue3-Ts-element-plus1%E3%80%91/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="这是一个博客">
+<meta property="og:description" content="使用vite初始化项目首先我们使用vite来初始化项目，vite支持使用npm、yarn和pnpm来初始化项目，本文采用npm的方式。 &#x2F;&#x2F; 使用npmnpm create vite@latest&#x2F;&#x2F; 使用yarnyarn create vite&#x2F;&#x2F; 使用pnpmpnpm create vite 输入命令之后会提示我们输入项目名，如果我们已经建好项目，并且是在项目根目录执行的命令的话，只需输入一个">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2023-04-26T03:51:29.000Z">
+<meta property="article:modified_time" content="2023-04-26T04:44:37.625Z">
 <meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="vue3">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
 
 
-<title >ljylwnxx的博客</title>
+<title >【vite+vue3+Ts+element-plus1】</title>
 
 <!-- Favicon -->
 
@@ -59,7 +69,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":false,"postUpdate":"2023-04-26 2023-04-26T12:56:54+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-04-26 2023-04-26T12:44:37+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
@@ -241,7 +251,8 @@
             <!-- top bar end -->
 
             <!-- body -->
-            <div class="trm-content-start">
+            
+<div class="trm-content-start">
     <!-- banner -->
     <div class="trm-banner" data-scroll data-scroll-direction="vertical">
     
@@ -262,10 +273,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            The article category
+                            NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            代码改变世界,<br>数据连接你我。
+                            【vite+vue3+Ts+element-plus1】
                         </h1>
                             
                         <!-- 
@@ -275,7 +286,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        categories
+                                        2023
                                     </span
                                 ></li>
                             </ul>
@@ -307,7 +318,17 @@
 <div class="trm-main-card-frame trm-sidebar">
     <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
     
-        <!-- card header -->
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont iconfont icon-user-tag"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont iconfont icon-fenleimulu"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
 <div class="trm-mc-header">
     <div class="trm-avatar-frame trm-mb-20">
         <img alt="Avatar" class="trm-avatar" src="/img/avatar.png">
@@ -324,7 +345,7 @@
     
 </div>
 <!-- card header end -->
-        <!-- sidebar social -->
+                <!-- sidebar social -->
 
 <div class="trm-divider trm-mb-40 trm-mt-40"></div>
 <div class="trm-social">
@@ -340,7 +361,7 @@
 </div>
 
 <!-- sidebar social end -->
-        <!-- info -->
+                <!-- info -->
 <div class="trm-divider trm-mb-40 trm-mt-40"></div>
 <ul class="trm-table trm-mb-20">
     
@@ -356,7 +377,7 @@
 </ul>
 <!-- info end -->
 
-        
+                
     <div class="trm-divider trm-mb-40 trm-mt-40"></div>
     <!-- action button -->
     <div class="text-center">
@@ -367,6 +388,13 @@
     </div>
     <!-- action button end -->
 
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#使用vite初始化项目"  data-scroll-to="#使用vite初始化项目"><span class="toc-number">1.</span> <span class="toc-text">使用vite初始化项目</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#vscode推荐插件"  data-scroll-to="#vscode推荐插件"><span class="toc-number">2.</span> <span class="toc-text">vscode推荐插件</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#vite配置目录别名"  data-scroll-to="#vite配置目录别名"><span class="toc-number">3.</span> <span class="toc-text">vite配置目录别名</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#重置默认样式"  data-scroll-to="#重置默认样式"><span class="toc-number">4.</span> <span class="toc-text">重置默认样式</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#vue-router"  data-scroll-to="#vue-router"><span class="toc-number">5.</span> <span class="toc-text">vue-router</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#解决办法：我们可以在根目录创建一个env-d-ts，在里面写入以下内容"  data-scroll-to="#解决办法：我们可以在根目录创建一个env-d-ts，在里面写入以下内容"><span class="toc-number">5.1.</span> <span class="toc-text">解决办法：我们可以在根目录创建一个env.d.ts，在里面写入以下内容</span></a></li></ol></li></ol>
+</div>
+            </div>
+        </div>
     
     </div>
 </div>
@@ -377,15 +405,98 @@
                 <div class="trm-content" id="trm-content">
                     <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
 
-                    <div class="row">
-    <div class="col-lg-12">
-        <div class="trm-card">
-            <div style="padding: 0 20px;">
-                <ul class="row trm-list"><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">（5）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/npm/">npm</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/vite/">vite</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/vue3/">vue3</a><span class="category-list-count">（13）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/webpack/">webpack</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">（2）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><span class="category-list-count">（3）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a><span class="category-list-count">（10）</span></li></ul>
-            </div>
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-calendar trm-icon"></i><br>
+            04/26
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-clock trm-icon"></i><br>
+            11:51
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-user trm-icon"></i><br>
+            ljylwnxx
         </div>
     </div>
 </div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="使用vite初始化项目"><a href="#使用vite初始化项目" class="headerlink" title="使用vite初始化项目"></a>使用vite初始化项目</h1><p>首先我们使用vite来初始化项目，vite支持使用npm、yarn和pnpm来初始化项目，本文采用npm的方式。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 使用npm</span><br><span class="line">npm create vite@latest</span><br><span class="line">// 使用yarn</span><br><span class="line">yarn create vite</span><br><span class="line">// 使用pnpm</span><br><span class="line">pnpm create vite</span><br></pre></td></tr></table></figure>
+<p>输入命令之后会提示我们输入项目名，如果我们已经建好项目，并且是在项目根目录执行的命令的话，只需输入一个点表示在当前目录创建就行，需要注意的是当前项目文件夹必须是空文件夹，否则vite会提示你是否清空已存在的文件继续。<br>如果还没建项目，是在父目录执行的命令，则需输入要创建的项目名<br>之后会让我们选择使用的框架和选择使用js还是ts，我们选择vue和ts。<br>之后我们按照提示命令进入项目目录执行命令安装依赖，运行项目即可。<br>之后我们把一些默认的没用的文件给干掉，再在相关引用的地方把引用给清空。<br><img src="/2023/04/26/%E3%80%90vite-vue3-Ts-element-plus1%E3%80%91/qingkong.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>再把APP.vue里面的内容给清空，这个时候整个项目就是干干净净的了。<br><img src="/2023/04/26/%E3%80%90vite-vue3-Ts-element-plus1%E3%80%91/qingkongapp.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="vscode推荐插件"><a href="#vscode推荐插件" class="headerlink" title="vscode推荐插件"></a>vscode推荐插件</h1><p>使用vscode的用户注意了，之前我们开发vue可能使用的是vetur插件，但是从vue3开始，官方已经推荐使用Volar了，所以我们需要把旧的插件给禁用或者直接卸载掉。<br><img src="/2023/04/26/%E3%80%90vite-vue3-Ts-element-plus1%E3%80%91/vetur.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>再去扩展里搜索volar进行安装就可以了。<br><img src="/2023/04/26/%E3%80%90vite-vue3-Ts-element-plus1%E3%80%91/volar.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="vite配置目录别名"><a href="#vite配置目录别名" class="headerlink" title="vite配置目录别名"></a>vite配置目录别名</h1><p>在项目开发中，我们通常会引用其他目录的文件，但如果文件不在一个目录的话，就会使用../的方式去查找，如果层级多的话很不方便，所以我们通常会给一些常用目录配置一个别名，比如下面我们就在vite中给src目录配置一个‘@’别名<br>首先我们需要安装node的类型声明文件，要不然ts可能会报警告。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yarn add @types/node -D</span><br></pre></td></tr></table></figure>
+<p>之后我们在vite.config.ts中进行相关配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; defineConfig &#125; from &#x27;vite&#x27;</span><br><span class="line">import vue from &#x27;@vitejs/plugin-vue&#x27;</span><br><span class="line">import path from &#x27;path&#x27;                   // 增加此行代码</span><br><span class="line">const pathSrc = path.resolve(__dirname, &#x27;src&#x27;)</span><br><span class="line">// https://vitejs.dev/config/</span><br><span class="line">export default defineConfig(&#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    vue(),</span><br><span class="line">  ],</span><br><span class="line">  resolve: &#123;                              </span><br><span class="line">    alias: &#123;              // 增加此行代码                </span><br><span class="line">      &#x27;@&#x27;: pathSrc,</span><br><span class="line">    &#125;,                                </span><br><span class="line">  &#125;,  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>之后还要在tsconfig.json中增加以下配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;paths&quot;: &#123;</span><br><span class="line">     &quot;@/*&quot;: [&quot;./src/*&quot;]</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="重置默认样式"><a href="#重置默认样式" class="headerlink" title="重置默认样式"></a>重置默认样式</h1><p>我们这里直接在assets/style文件夹下新建一个normalize.css，写入重置样式。<br>然后在main.ts中引入即可</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// main.ts</span><br><span class="line">import &#x27;@/assets/style/normalize.css&#x27;</span><br></pre></td></tr></table></figure>
+<h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><p>首先我们来安装一下vue-router</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yarn add vue-router@4</span><br></pre></td></tr></table></figure>
+<p>之后在src目录下新建router/index.ts，写入一些基本路由。<br>这里需要注意的是，vue-router指定路由模式从字符串变为了使用方法，history是createWebHistory(地址栏不带#)，hash是createWebHashHistory（地址栏带#）。<br>这时候我们可能还会发现，编辑器中ts会报找不到vue文件相关类型声明的错误。<br><img src="/2023/04/26/%E3%80%90vite-vue3-Ts-element-plus1%E3%80%91/router.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h2 id="解决办法：我们可以在根目录创建一个env-d-ts，在里面写入以下内容"><a href="#解决办法：我们可以在根目录创建一个env-d-ts，在里面写入以下内容" class="headerlink" title="解决办法：我们可以在根目录创建一个env.d.ts，在里面写入以下内容"></a>解决办法：我们可以在根目录创建一个env.d.ts，在里面写入以下内容</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/// &lt;reference types=&quot;vite/client&quot; /&gt;</span><br><span class="line">declare module &#x27;*.vue&#x27; &#123;</span><br><span class="line">  //引入vue模块中ts的方法</span><br><span class="line">  import type &#123; DefineComponent &#125; from &#x27;vue&#x27;</span><br><span class="line">  // 定义vue組件以及类型注解</span><br><span class="line">  const component: DefineComponent&lt;&#123;&#125;, &#123;&#125;, any&gt;</span><br><span class="line">  export default component</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后还要记得在tsconfig.ts中引入。<br><img src="/2023/04/26/%E3%80%90vite-vue3-Ts-element-plus1%E3%80%91/ts.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>现在报错没有了，我们还需要在main.ts中进行引入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import router from &#x27;./router&#x27;</span><br><span class="line">createApp(App).use(router).mount(&#x27;#app&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+</article>
+    
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2023/04/24/%E6%89%93%E5%BC%80vite%E5%A4%A7%E9%97%A8/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/vite/">
+                    vite
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/04/24/%E6%89%93%E5%BC%80vite%E5%A4%A7%E9%97%A8/" class="trm-anima-link">
+                    打开vite大门
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/24</li>
+                <li>09:49</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
 
                     <div class="trm-divider footer-divider"></div>
 
@@ -441,6 +552,10 @@
             <!-- body end -->
 
             <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont iconfont icon-read"></i>
+        </div>
     
     
         <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
@@ -526,6 +641,10 @@
     
 
     <!-- 评论插件 -->
+    
+        
+
+        
     
 
 
