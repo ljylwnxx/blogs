@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="前言当你去面试的时候，被面试官问到前端模块化的问题，你的回答换来的是面试官的一句“你说了，但是好像又没说”。此时会感到备受打击，怀疑人生的问前端模块化到底是啥？说你好像知道，又好像说不出所以然来。 模块化简述把复杂代码按功能的不同划分成不同的模块单独维护，提高开发效率，降低维护成本 模块化只是思想、理论，不包含具体实现。 模块化的诞生简单来说，就是一个人做不完的事，分成了多个人做，每人负责一个块内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模块化(一)">
+<meta property="og:url" content="http://example.com/2023/04/11/%E6%A8%A1%E5%9D%97%E5%8C%96(%E4%B8%80)/index.html">
+<meta property="og:site_name" content="ljylwnxx的博客">
+<meta property="og:description" content="前言当你去面试的时候，被面试官问到前端模块化的问题，你的回答换来的是面试官的一句“你说了，但是好像又没说”。此时会感到备受打击，怀疑人生的问前端模块化到底是啥？说你好像知道，又好像说不出所以然来。 模块化简述把复杂代码按功能的不同划分成不同的模块单独维护，提高开发效率，降低维护成本 模块化只是思想、理论，不包含具体实现。 模块化的诞生简单来说，就是一个人做不完的事，分成了多个人做，每人负责一个块内">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-11T14:32:31.000Z">
+<meta property="article:modified_time" content="2023-05-06T05:58:42.758Z">
+<meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="模块化">
+<meta name="twitter:card" content="summary">
+
+
+<title >模块化(一)</title>
+
+<!-- Favicon -->
+
+    <link href='/img/favicon.png?v=2.0.7' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=2.0.7' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4020021_2ar0fw3x9h6.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-05-06 2023-05-06T13:58:42+08:00"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont iconfont icon-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont iconfont icon-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/img/logo.png">
+    
+    
+        <div class="trm-logo-text">
+            LjylWnxx
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/links/" target="">
+                    友情链接
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/tags/" target="">
+                    标签
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/categories/" target="">
+                    分类
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			<!--  -->
+    <!-- mode switcher place -->
+    <!-- <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont iconfont icon-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont iconfont icon-moon"></i>
+        </div>
+    </div> -->
+    <!-- mode switcher place end -->
+<!--  -->
+<!-- 
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont iconfont icon-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+        </div>
+    </div>
+   -->
+  
+
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+
+			
+    
+    <div id="trm-search-btn" class="trm-search-btn">
+        <i class="iconfont iconfont icon-search"></i>
+    </div>
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            模块化(一)
+                        </h1>
+                            
+                        <!-- 
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span
+                                ></li>
+                            </ul>
+                         -->
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    
+
+<div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
+    
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont iconfont icon-user-tag"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont iconfont icon-fenleimulu"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.png">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        LjylWnxx
+    </h5>
+    
+        <div class="trm-label">
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+                <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont icon-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="gitee" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont icon-gitee"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+                <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                个签:
+            </div>
+            <div class="trm-label trm-label-light">
+                Hello World!
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+                
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:ljylwnxx@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont iconfont icon-email"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#前言"  data-scroll-to="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#模块化简述"  data-scroll-to="#模块化简述"><span class="toc-number">2.</span> <span class="toc-text">模块化简述</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#模块化的诞生"  data-scroll-to="#模块化的诞生"><span class="toc-number">3.</span> <span class="toc-text">模块化的诞生</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#模块化的演进"  data-scroll-to="#模块化的演进"><span class="toc-number">4.</span> <span class="toc-text">模块化的演进</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#第一阶段：仅仅基于文件的划分模块的方式"  data-scroll-to="#第一阶段：仅仅基于文件的划分模块的方式"><span class="toc-number">4.1.</span> <span class="toc-text">第一阶段：仅仅基于文件的划分模块的方式</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#第二阶段：每个模块暴露一个全局对象，所有模块成员都挂载到这个对象中"  data-scroll-to="#第二阶段：每个模块暴露一个全局对象，所有模块成员都挂载到这个对象中"><span class="toc-number">4.2.</span> <span class="toc-text">第二阶段：每个模块暴露一个全局对象，所有模块成员都挂载到这个对象中</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#第三阶段：使用立即执行函数表达式（IIFE：Immediately-Invoked-Function-Expression）为模块提供私有空间"  data-scroll-to="#第三阶段：使用立即执行函数表达式（IIFE：Immediately-Invoked-Function-Expression）为模块提供私有空间"><span class="toc-number">4.3.</span> <span class="toc-text">第三阶段：使用立即执行函数表达式（IIFE：Immediately-Invoked Function Expression）为模块提供私有空间</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#第四阶段：-利用-IIFE-参数作为依赖声明使用"  data-scroll-to="#第四阶段：-利用-IIFE-参数作为依赖声明使用"><span class="toc-number">4.4.</span> <span class="toc-text">第四阶段： 利用 IIFE 参数作为依赖声明使用</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#第五阶段：-模块化规范"  data-scroll-to="#第五阶段：-模块化规范"><span class="toc-number">4.5.</span> <span class="toc-text">第五阶段： 模块化规范</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#模块化规范的出现"  data-scroll-to="#模块化规范的出现"><span class="toc-number">5.</span> <span class="toc-text">模块化规范的出现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#CommonJS规范-nodejs提出的一套标准"  data-scroll-to="#CommonJS规范-nodejs提出的一套标准"><span class="toc-number">5.1.</span> <span class="toc-text">CommonJS规范(nodejs提出的一套标准)</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#AMD-Asynchronous-Module-Definition-—-异步模块定义规范"  data-scroll-to="#AMD-Asynchronous-Module-Definition-—-异步模块定义规范"><span class="toc-number">5.2.</span> <span class="toc-text">AMD(Asynchronous Module Definition) — 异步模块定义规范</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Sea-js-淘宝推出-CMD-通用模块定义规范"  data-scroll-to="#Sea-js-淘宝推出-CMD-通用模块定义规范"><span class="toc-number">5.3.</span> <span class="toc-text">Sea.js(淘宝推出) + CMD(通用模块定义规范)</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Require-js"  data-scroll-to="#Require-js"><span class="toc-number">5.4.</span> <span class="toc-text">Require.js</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#模块化默认规范"  data-scroll-to="#模块化默认规范"><span class="toc-number">6.</span> <span class="toc-text">模块化默认规范</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#关于ES-Modules"  data-scroll-to="#关于ES-Modules"><span class="toc-number">7.</span> <span class="toc-text">关于ES Modules</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#ES-Modules-导出"  data-scroll-to="#ES-Modules-导出"><span class="toc-number">7.1.</span> <span class="toc-text">ES Modules 导出</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#ES-Modules-导入导出的注意事项"  data-scroll-to="#ES-Modules-导入导出的注意事项"><span class="toc-number">7.2.</span> <span class="toc-text">ES Modules 导入导出的注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#导出模块的引用"  data-scroll-to="#导出模块的引用"><span class="toc-number">7.2.1.</span> <span class="toc-text">导出模块的引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#ES-Modules-导入"  data-scroll-to="#ES-Modules-导入"><span class="toc-number">7.3.</span> <span class="toc-text">ES Modules 导入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#导入文件路径"  data-scroll-to="#导入文件路径"><span class="toc-number">7.3.1.</span> <span class="toc-text">导入文件路径</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#导入模块时是否提取模块成员"  data-scroll-to="#导入模块时是否提取模块成员"><span class="toc-number">7.3.2.</span> <span class="toc-text">导入模块时是否提取模块成员</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#同时导入模块多个成员或所有成员"  data-scroll-to="#同时导入模块多个成员或所有成员"><span class="toc-number">7.3.3.</span> <span class="toc-text">同时导入模块多个成员或所有成员</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#动态导入模块-在需要满足某些条件才能导入时可用"  data-scroll-to="#动态导入模块-在需要满足某些条件才能导入时可用"><span class="toc-number">7.3.4.</span> <span class="toc-text">动态导入模块(在需要满足某些条件才能导入时可用)</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#同时导入命名成员和默认成员"  data-scroll-to="#同时导入命名成员和默认成员"><span class="toc-number">7.3.5.</span> <span class="toc-text">同时导入命名成员和默认成员</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#ES-Modules-in-Node-js"  data-scroll-to="#ES-Modules-in-Node-js"><span class="toc-number">7.4.</span> <span class="toc-text">ES Modules in Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#es-module-mjs"  data-scroll-to="#es-module-mjs"><span class="toc-number">7.4.1.</span> <span class="toc-text">es-module.mjs</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#CommonJS-模块始终只会导出一个默认成员"  data-scroll-to="#CommonJS-模块始终只会导出一个默认成员"><span class="toc-number">7.4.2.</span> <span class="toc-text">CommonJS 模块始终只会导出一个默认成员</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#ES-Modules-in-Node-js-与-CommonJS-的差异"  data-scroll-to="#ES-Modules-in-Node-js-与-CommonJS-的差异"><span class="toc-number">7.5.</span> <span class="toc-text">ES Modules in Node.js - 与 CommonJS 的差异</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#ES-Modules-in-Node-js-新版本进一步支持"  data-scroll-to="#ES-Modules-in-Node-js-新版本进一步支持"><span class="toc-number">7.5.1.</span> <span class="toc-text">ES Modules in Node.js - 新版本进一步支持</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#ES-Modules-in-Node-js-Babel-兼容方案"  data-scroll-to="#ES-Modules-in-Node-js-Babel-兼容方案"><span class="toc-number">7.5.2.</span> <span class="toc-text">ES Modules in Node.js - Babel 兼容方案</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#演示"  data-scroll-to="#演示"><span class="toc-number">8.</span> <span class="toc-text">演示</span></a></li></ol>
+</div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-calendar trm-icon"></i><br>
+            04/11
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-clock trm-icon"></i><br>
+            22:32
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-user trm-icon"></i><br>
+            ljylwnxx
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当你去面试的时候，被面试官问到前端模块化的问题，你的回答换来的是面试官的一句“你说了，但是好像又没说”。此时会感到备受打击，怀疑人生的问前端模块化到底是啥？说你好像知道，又好像说不出所以然来。</p>
+<h1 id="模块化简述"><a href="#模块化简述" class="headerlink" title="模块化简述"></a>模块化简述</h1><p>把复杂代码按功能的不同划分成不同的模块单独维护，提高开发效率，降低维护成本 模块化只是思想、理论，不包含具体实现。</p>
+<h1 id="模块化的诞生"><a href="#模块化的诞生" class="headerlink" title="模块化的诞生"></a>模块化的诞生</h1><p>简单来说，就是一个人做不完的事，分成了多个人做，每人负责一个块内容（模块），最后把每个人做的东西组装一起成为整体。<br>前端模块化的演进道路上虽然有很多阶段，但是其实最终的目标，就是拆分模块，分工开发，每个人做好一个模块之后，暴露一些参数、方法给到调用者，演进的道路无非是秉行如何更加优雅，高解耦，高兼容等方向优化。</p>
+<h1 id="模块化的演进"><a href="#模块化的演进" class="headerlink" title="模块化的演进"></a>模块化的演进</h1><h2 id="第一阶段：仅仅基于文件的划分模块的方式"><a href="#第一阶段：仅仅基于文件的划分模块的方式" class="headerlink" title="第一阶段：仅仅基于文件的划分模块的方式"></a>第一阶段：仅仅基于文件的划分模块的方式</h2><p>具体做法就是将每个功能及其相关状态数据各自单独放到不同的文件中，约定每个文件就是一个独立的模块，使用某个模块就是将这个模块引入到页面中，然后直接调用模块中的成员（变量 / 函数）。<br>缺点：所有模块都直接在全局工作，没有私有空间，所有成员都可以在模块外部被访问或者修改，而且模块一段多了过后，容易产生命名冲突，另外无法管理模块与模块之间的依赖关系。</p>
+<h2 id="第二阶段：每个模块暴露一个全局对象，所有模块成员都挂载到这个对象中"><a href="#第二阶段：每个模块暴露一个全局对象，所有模块成员都挂载到这个对象中" class="headerlink" title="第二阶段：每个模块暴露一个全局对象，所有模块成员都挂载到这个对象中"></a>第二阶段：每个模块暴露一个全局对象，所有模块成员都挂载到这个对象中</h2><p>具体做法就是在第一阶段的基础上，通过将每个模块「包裹」为一个全局对象的形式实现，有点类似于为模块内的成员添加了「命名空间」的感觉。<br>通过「命名空间」减小了命名冲突的可能，但是同样没有私有空间，所有模块成员也可以在模块外部被访问或者修改，而且也无法管理模块之间的依赖关系。</p>
+<h2 id="第三阶段：使用立即执行函数表达式（IIFE：Immediately-Invoked-Function-Expression）为模块提供私有空间"><a href="#第三阶段：使用立即执行函数表达式（IIFE：Immediately-Invoked-Function-Expression）为模块提供私有空间" class="headerlink" title="第三阶段：使用立即执行函数表达式（IIFE：Immediately-Invoked Function Expression）为模块提供私有空间"></a>第三阶段：使用立即执行函数表达式（IIFE：Immediately-Invoked Function Expression）为模块提供私有空间</h2><p>具体做法就是将每个模块成员都放在一个函数提供的私有作用域中，对于需要暴露给外部的成员，通过挂在到全局对象上的方式实现。<br>有了私有成员的概念，私有成员只能在模块成员内通过闭包的形式访问。</p>
+<h2 id="第四阶段：-利用-IIFE-参数作为依赖声明使用"><a href="#第四阶段：-利用-IIFE-参数作为依赖声明使用" class="headerlink" title="第四阶段： 利用 IIFE 参数作为依赖声明使用"></a>第四阶段： 利用 IIFE 参数作为依赖声明使用</h2><p>具体做法就是在第三阶段的基础上，利用立即执行函数的参数传递模块依赖项。<br>这使得每一个模块之间的关系变得更加明显。</p>
+<h2 id="第五阶段：-模块化规范"><a href="#第五阶段：-模块化规范" class="headerlink" title="第五阶段： 模块化规范"></a>第五阶段： 模块化规范</h2><p>Require.js 提供了 AMD 模块化规范，以及一个自动化模块加载器—模块化规范的出现，再之后便有了其他更多标准紧接而来，CommonJS、CMD。。。</p>
+<h1 id="模块化规范的出现"><a href="#模块化规范的出现" class="headerlink" title="模块化规范的出现"></a>模块化规范的出现</h1><p>需：模块化标准+模块加载器</p>
+<h2 id="CommonJS规范-nodejs提出的一套标准"><a href="#CommonJS规范-nodejs提出的一套标准" class="headerlink" title="CommonJS规范(nodejs提出的一套标准)"></a>CommonJS规范(nodejs提出的一套标准)</h2><ul>
+<li>标准： 一个文件就是一个模块 每个模块都有单独的作用域 通过 module.exports 导出成员 通过 require 函数载入模块。</li>
+<li>缺点：CommonJS是以同步模式加载模块，node执行机制是启动时加载模块，执行过程中不需要加载只需使用，在node中不会有问题；但是在浏览器端页面加载会导致大量同步请求出现，而效率低。<h2 id="AMD-Asynchronous-Module-Definition-—-异步模块定义规范"><a href="#AMD-Asynchronous-Module-Definition-—-异步模块定义规范" class="headerlink" title="AMD(Asynchronous Module Definition) — 异步模块定义规范"></a>AMD(Asynchronous Module Definition) — 异步模块定义规范</h2>模块通过define函数定义</li>
+<li>优势：目前绝大多数第三方库都支持AMD规范</li>
+<li>缺点： 使用复杂模块划分细致，模块JS文件会出现请求频繁的情况<h2 id="Sea-js-淘宝推出-CMD-通用模块定义规范"><a href="#Sea-js-淘宝推出-CMD-通用模块定义规范" class="headerlink" title="Sea.js(淘宝推出) + CMD(通用模块定义规范)"></a>Sea.js(淘宝推出) + CMD(通用模块定义规范)</h2>CMD规范类似CommonJS规范 后期也被Require.js兼容了<h2 id="Require-js"><a href="#Require-js" class="headerlink" title="Require.js"></a>Require.js</h2>提供了 AMD 模块化规范，以及一个自动化模块加载器 提供require函数加载模块<h1 id="模块化默认规范"><a href="#模块化默认规范" class="headerlink" title="模块化默认规范"></a>模块化默认规范</h1>浏览器环境使用ES Modules<br>nodejs使用CommonJS<h1 id="关于ES-Modules"><a href="#关于ES-Modules" class="headerlink" title="关于ES Modules"></a>关于ES Modules</h1>通过给 script 添加 type = module 的属性使用 ES Modules</li>
+<li>ESM 自动采用严格模式，忽略 ‘use strict’</li>
+<li>每个 ES Module 都是运行在单独的私有作用域中</li>
+<li>ESM 是通过 CORS 的方式请求外部 JS 模块的</li>
+<li>ESM 的 script 标签会延迟执行脚本<br>对于我们前端平时开发，其实用得最多的是es modules，这里也简单介绍一下这种规范的一些常用写法<h2 id="ES-Modules-导出"><a href="#ES-Modules-导出" class="headerlink" title="ES Modules 导出"></a>ES Modules 导出</h2>单个导出<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export const name = &#x27;foo module&#x27;</span><br><span class="line">export function hello () &#123;</span><br><span class="line">    console.log(&#x27;hello&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+合并导出<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const name = &#x27;foo module&#x27;</span><br><span class="line">function hello () &#123;</span><br><span class="line">    console.log(&#x27;hello&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">class Person &#123;&#125;</span><br><span class="line">export &#123; name, hello, Person &#125;</span><br></pre></td></tr></table></figure>
+合并导出，且重命名<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const name = &#x27;foo module&#x27;</span><br><span class="line">function hello () &#123;</span><br><span class="line">    console.log(&#x27;hello&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">class Person &#123;&#125;</span><br><span class="line">export &#123;</span><br><span class="line">    name1: name,</span><br><span class="line">    hello2: hello,</span><br><span class="line">    Person3: Person</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+默认导出<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const name = &#x27;foo module&#x27;</span><br><span class="line">function hello () &#123;</span><br><span class="line">    console.log(&#x27;hello&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">class Person &#123;&#125;</span><br><span class="line">export default name;</span><br></pre></td></tr></table></figure>
+<h2 id="ES-Modules-导入导出的注意事项"><a href="#ES-Modules-导入导出的注意事项" class="headerlink" title="ES Modules 导入导出的注意事项"></a>ES Modules 导入导出的注意事项</h2>导出字面量和导出模块的区别<br>导出字面量(如:对象):export default { name, age }<br>注意: import {name, age} from ‘modulename’导入模块无法使用到name和age的值<br>导出模块:<br>export { name, age }<br>import {name, age} from ‘modulename’ 导入模块可以使用到name和age的值<br>原因：import导入的是对模块内部的使用<h3 id="导出模块的引用"><a href="#导出模块的引用" class="headerlink" title="导出模块的引用"></a>导出模块的引用</h3>注意：export暴露的是模块的引用关系(地址)，并且只读不可修改(尝试修改会报错误—Uncaught TypeError:Assignment to constant variable)<br>注意点</li>
+<li>CommonJS 中是先将模块整体导入为一个对象，然后从对象中结构出需要的成员 const { name, age } = require(‘./module.js’)</li>
+<li>ES Module 中 { } 是固定语法，就是直接提取模块导出成员 import { name, age } from ‘./module.js’</li>
+<li>导入成员并不是复制一个副本，而是直接导入模块成员的引用地址，也就是说 import 得到的变量与 export 导入的变量在内存中是同一块空间。一旦模块中成员修改了，这里也会同时修改</li>
+<li>导入模块成员变量是只读的 name = ‘tom’ // 报错</li>
+<li>导入的是一个对象，对象的属性读写不受影响 name.xxx = ‘xxx’ // 正常</li>
+</ul>
+<h2 id="ES-Modules-导入"><a href="#ES-Modules-导入" class="headerlink" title="ES Modules 导入"></a>ES Modules 导入</h2><h3 id="导入文件路径"><a href="#导入文件路径" class="headerlink" title="导入文件路径"></a>导入文件路径</h3><p>需要引用的名称<br>相对路径上的./不能省略<br>可以使用绝对路径和完整的url</p>
+<h3 id="导入模块时是否提取模块成员"><a href="#导入模块时是否提取模块成员" class="headerlink" title="导入模块时是否提取模块成员"></a>导入模块时是否提取模块成员</h3><p>导入模块并提取模块成员 import {} from ‘./module.js’<br>导入模块暂不提取模块成员 import ‘./module.js’ (导入不需要外界控制的子功能模块时很有用)</p>
+<h3 id="同时导入模块多个成员或所有成员"><a href="#同时导入模块多个成员或所有成员" class="headerlink" title="同时导入模块多个成员或所有成员"></a>同时导入模块多个成员或所有成员</h3><p>import * as mod from ‘./module.js’ 需要把所有提取成员放到一个对象当中，通过as,导入的成员都会作为对象属性出现</p>
+<h3 id="动态导入模块-在需要满足某些条件才能导入时可用"><a href="#动态导入模块-在需要满足某些条件才能导入时可用" class="headerlink" title="动态导入模块(在需要满足某些条件才能导入时可用)"></a>动态导入模块(在需要满足某些条件才能导入时可用)</h3><p>import (‘./module.js’) 返回的是promise 取模块成员的方式:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import(&#x27;./module.js&#x27;).then(function (module) &#123;</span><br><span class="line">    //所有模块成员都在module参数里</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="同时导入命名成员和默认成员"><a href="#同时导入命名成员和默认成员" class="headerlink" title="同时导入命名成员和默认成员"></a>同时导入命名成员和默认成员</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; name, age, default as other&#125; from &#x27;./module.js&#x27; </span><br><span class="line">或者</span><br><span class="line">import other,&#123; name, age&#125; from &#x27;./module.js&#x27;other   代表module模块所有默认导出的成员</span><br></pre></td></tr></table></figure>
+<h2 id="ES-Modules-in-Node-js"><a href="#ES-Modules-in-Node-js" class="headerlink" title="ES Modules in Node.js"></a>ES Modules in Node.js</h2><p>ES Modules in Node.js - 与 CommonJS 交互<br>ES Module 中可以导入 CommonJS 模块</p>
+<h3 id="es-module-mjs"><a href="#es-module-mjs" class="headerlink" title="es-module.mjs"></a>es-module.mjs</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import mod from &#x27;./commonjs.js&#x27;</span><br><span class="line">console.log(mod)</span><br></pre></td></tr></table></figure>
+<p>不能直接提取成员，注意 import 不是解构导出对象</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; foo &#125; from &#x27;./commonjs.js&#x27;</span><br><span class="line">console.log(foo)</span><br><span class="line">export const foo = &#x27;es module export value&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="CommonJS-模块始终只会导出一个默认成员"><a href="#CommonJS-模块始终只会导出一个默认成员" class="headerlink" title="CommonJS 模块始终只会导出一个默认成员"></a>CommonJS 模块始终只会导出一个默认成员</h3><p>commonjs.js</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    foo: &#x27;commonjs exports value&#x27;</span><br><span class="line">&#125;</span><br><span class="line">exports.foo = &#x27;commonjs exports value&#x27;</span><br></pre></td></tr></table></figure>
+<p>不能在 CommonJS 模块中通过 require 载入 ES Module</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const mod = require(&#x27;./es-module.mjs&#x27;)</span><br><span class="line">console.log(mod)</span><br></pre></td></tr></table></figure>
+<h2 id="ES-Modules-in-Node-js-与-CommonJS-的差异"><a href="#ES-Modules-in-Node-js-与-CommonJS-的差异" class="headerlink" title="ES Modules in Node.js - 与 CommonJS 的差异"></a>ES Modules in Node.js - 与 CommonJS 的差异</h2><p>示例:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 加载模块函数</span><br><span class="line">console.log(require)</span><br><span class="line"></span><br><span class="line">// 模块对象</span><br><span class="line">console.log(module)</span><br><span class="line"></span><br><span class="line">// 导出对象别名</span><br><span class="line">console.log(exports)</span><br><span class="line"></span><br><span class="line">// 当前文件的绝对路径</span><br><span class="line">console.log(__filename)</span><br><span class="line"></span><br><span class="line">// 当前文件所在目录</span><br><span class="line">console.log(__dirname)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、ESM 中无法引用CommonJS中的那些模块全局成员</span><br><span class="line">2、require, module, exports 可通过import 和export 代替</span><br><span class="line">3、__filename 和 __dirname 通过import 对象的 meta 属性获取</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const currentUrl = import.meta.url</span><br><span class="line">console.log(currentUrl)</span><br><span class="line">// 通过 url 模块的 fileURLToPath 方法转换为路径</span><br><span class="line">import &#123; fileURLToPath &#125; from &#x27;url&#x27;</span><br><span class="line">import &#123; dirname &#125; from &#x27;path&#x27;</span><br><span class="line">const __filename = fileURLToPath(import.meta.url)</span><br><span class="line">const __dirname = dirname(__filename)</span><br><span class="line">console.log(__filename)</span><br><span class="line">console.log(__dirname)</span><br></pre></td></tr></table></figure>
+<h3 id="ES-Modules-in-Node-js-新版本进一步支持"><a href="#ES-Modules-in-Node-js-新版本进一步支持" class="headerlink" title="ES Modules in Node.js - 新版本进一步支持"></a>ES Modules in Node.js - 新版本进一步支持</h3><p>Node v12 之后的版本，可以通过package.json 中添加type字段为module，将默认模块系统修改为 ES Module<br>此时就不需要修改文件扩展名为 .mjs 了<br>如果需要在type=module的情况下继续使用CommonJS，需要将文件扩展名修改为 .cjs<br>package.json:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123; &quot;type&quot;: &quot;module&quot; &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ES-Modules-in-Node-js-Babel-兼容方案"><a href="#ES-Modules-in-Node-js-Babel-兼容方案" class="headerlink" title="ES Modules in Node.js - Babel 兼容方案"></a>ES Modules in Node.js - Babel 兼容方案</h3><p>安装babel:yarn add @babel/node @babel/core @babel/preset-env –dev<br>运行babel-node测试:yarn babel-node index.js --presets=@babel/preset-env<br>**.babelrc 配置 **</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123; &quot;plugins&quot;: [ &quot;@babel/plugin-transform-modules-commonjs&quot; ] &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h1><p>问： 你讲讲前端模块化吧<br>答： 模块化的开发方式可以提高代码复用率，方便进行代码的管理。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。<br>问：模块化有哪几种标准？<br>答： 目前流行的js模块化规范有CommonJS、AMD、CMD以及ES6的模块系统<br>问：ES Modules 和 CommonJS的一些区别<br>答：<br>使用语法层面，CommonJs是通过module.exports，exports导出，require导入；ESModule则是export导出，import导入<br>CommonJs是运行时加载模块，ESModule是在静态编译期间就确定模块的依赖<br>ESModule在编译期间会将所有import提升到顶部，CommonJs不会提升require<br>CommonJs导出的是一个值拷贝，会对加载结果进行缓存，一旦内部再修改这个值，则不会同步到外部。ESModule是导出的一个引用，内部修改可以同步到外部<br>CommonJs中顶层的this指向这个模块本身，而ESModule中顶层this指向undefined<br>CommonJS加载的是整个模块，将所有的接口全部加载进来，ESModule可以单独加载其中的某个接口</p>
+
+</article>
+    
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2023/04/12/Vue%E9%A1%B9%E7%9B%AE%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/Vue/">
+                    Vue
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/04/12/Vue%E9%A1%B9%E7%9B%AE%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" class="trm-anima-link">
+                    Vue项目遇到问题
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/12</li>
+                <li>12:46</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2023/04/11/vue-cropper/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/Vue/">
+                    Vue
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/04/11/vue-cropper/" class="trm-anima-link">
+                    vue-cropper
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/11</li>
+                <li>21:34</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2023</span>
+            <span class="footer-separator"data-separator=" | "></span>
+            <span class="trm-accent-color">LjylWnxx</span>
+        </div>
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.2
+            </span>
+        </div>
+      
+
+    
+        <div class="trm-footer-item">
+            博客已运行 <span id="since" class="trm-accent-color"></span> 天
+        </div>
+     
+
+     
+</footer>
+
+<script>
+    function show_date_time () {
+        var BirthDay = new Date("08/16/2022 21:45:54");
+        var today = new Date();
+        var timeold = (today.getTime() - BirthDay.getTime());
+        var msPerDay = 24 * 60 * 60 * 1000
+        var day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont iconfont icon-read"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
+            <i class="iconfont iconfont icon-arrows-h"></i>
+        </div>
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont iconfont icon-i-back-top"></i>
+    </div>
+</div>
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont iconfont icon-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont iconfont icon-close"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=2.0.7"></script>
+    
+
+    
+        
+<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=2.0.7"></script>
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=2.0.7"></script>
+
+</body>
+
+</html>
