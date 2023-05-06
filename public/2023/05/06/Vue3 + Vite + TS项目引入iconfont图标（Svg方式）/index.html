@@ -7,18 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="这是一个博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljylwnxx的博客">
-<meta property="og:url" content="http://example.com/tags/vite/index.html">
+<meta name="description" content="🍻 前言每一个项目都避免不了使用各种各样的图标，如果我们使用了 UI 组件库，比如说 ELement 等，那么组件库有一些封装好的图标供我们使用。但是项目是多变的和复杂的，组件库提供的图标很多时候不能满足需求，这个时候就需要我们自己引入想要的图标了。今天介绍的便是如何将 iconfont 阿里图标库的图标引入到我们的 Vue3 项目中来！ 实现步骤安装npm install vite-plugi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3 + Vite + TS项目引入iconfont图标（Svg方式）">
+<meta property="og:url" content="http://example.com/2023/05/06/Vue3%20+%20Vite%20+%20TS%E9%A1%B9%E7%9B%AE%E5%BC%95%E5%85%A5iconfont%E5%9B%BE%E6%A0%87%EF%BC%88Svg%E6%96%B9%E5%BC%8F%EF%BC%89/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="这是一个博客">
+<meta property="og:description" content="🍻 前言每一个项目都避免不了使用各种各样的图标，如果我们使用了 UI 组件库，比如说 ELement 等，那么组件库有一些封装好的图标供我们使用。但是项目是多变的和复杂的，组件库提供的图标很多时候不能满足需求，这个时候就需要我们自己引入想要的图标了。今天介绍的便是如何将 iconfont 阿里图标库的图标引入到我们的 Vue3 项目中来！ 实现步骤安装npm install vite-plugi">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-06T03:20:51.000Z">
+<meta property="article:modified_time" content="2023-05-06T03:53:21.028Z">
 <meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="vue3">
 <meta name="twitter:card" content="summary">
 
 
-<title >ljylwnxx的博客</title>
+<title >Vue3 + Vite + TS项目引入iconfont图标（Svg方式）</title>
 
 <!-- Favicon -->
 
@@ -59,7 +62,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":false,"postUpdate":"2023-05-06 2023-05-06T12:25:26+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-05-06 2023-05-06T11:53:21+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
@@ -241,7 +244,8 @@
             <!-- top bar end -->
 
             <!-- body -->
-            <div class="trm-content-start">
+            
+<div class="trm-content-start">
     <!-- banner -->
     <div class="trm-banner" data-scroll data-scroll-direction="vertical">
     
@@ -262,10 +266,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            The article tag
+                            NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            让代码没有Bug,<br>世界永远和平。
+                            Vue3 + Vite + TS项目引入iconfont图标（Svg方式）
                         </h1>
                             
                         <!-- 
@@ -275,7 +279,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        tags
+                                        2023
                                     </span
                                 ></li>
                             </ul>
@@ -307,7 +311,17 @@
 <div class="trm-main-card-frame trm-sidebar">
     <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
     
-        <!-- card header -->
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont iconfont icon-user-tag"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont iconfont icon-fenleimulu"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
 <div class="trm-mc-header">
     <div class="trm-avatar-frame trm-mb-20">
         <img alt="Avatar" class="trm-avatar" src="/img/avatar.png">
@@ -324,7 +338,7 @@
     
 </div>
 <!-- card header end -->
-        <!-- sidebar social -->
+                <!-- sidebar social -->
 
 <div class="trm-divider trm-mb-40 trm-mt-40"></div>
 <div class="trm-social">
@@ -340,7 +354,7 @@
 </div>
 
 <!-- sidebar social end -->
-        <!-- info -->
+                <!-- info -->
 <div class="trm-divider trm-mb-40 trm-mt-40"></div>
 <ul class="trm-table trm-mb-20">
     
@@ -356,7 +370,7 @@
 </ul>
 <!-- info end -->
 
-        
+                
     <div class="trm-divider trm-mb-40 trm-mt-40"></div>
     <!-- action button -->
     <div class="text-center">
@@ -367,6 +381,13 @@
     </div>
     <!-- action button end -->
 
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#🍻-前言"  data-scroll-to="#🍻-前言"><span class="toc-number">1.</span> <span class="toc-text">🍻 前言</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#实现步骤"  data-scroll-to="#实现步骤"><span class="toc-number">2.</span> <span class="toc-text">实现步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#安装"  data-scroll-to="#安装"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#引入-iconfont"  data-scroll-to="#引入-iconfont"><span class="toc-number">3.</span> <span class="toc-text">引入 iconfont</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#封装-svg-icon-组件"  data-scroll-to="#封装-svg-icon-组件"><span class="toc-number">3.1.</span> <span class="toc-text">封装 svg-icon 组件</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#使用iconfont"  data-scroll-to="#使用iconfont"><span class="toc-number">3.2.</span> <span class="toc-text">使用iconfont</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#具体使用"  data-scroll-to="#具体使用"><span class="toc-number">3.3.</span> <span class="toc-text">具体使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#图标自动管理（必看）"  data-scroll-to="#图标自动管理（必看）"><span class="toc-number">4.</span> <span class="toc-text">图标自动管理（必看）</span></a></li></ol>
+</div>
+            </div>
+        </div>
     
     </div>
 </div>
@@ -377,16 +398,129 @@
                 <div class="trm-content" id="trm-content">
                     <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
 
-                    <div class="row">
-    <div class="col-lg-12">
-        <div class="trm-card">
-            <div style="padding: 0 20px;">
-                <!-- <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Vue/" style="font-size: 28px;">Vue</a> <a href="/tags/Vuex/" style="font-size: 28px;">Vuex</a> <a href="/tags/Webpack/" style="font-size: 20px;">Webpack</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/npm/" style="font-size: 20px;">npm</a> <a href="/tags/vite/" style="font-size: 20px;">vite</a> <a href="/tags/vue/" style="font-size: 32px;">vue</a> <a href="/tags/vue-cropper/" style="font-size: 20px;">vue-cropper</a> <a href="/tags/vue3/" style="font-size: 36px;">vue3</a> <a href="/tags/webpack/" style="font-size: 32px;">webpack</a> <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" style="font-size: 24px;">微前端</a> <a href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 20px;">搭建博客</a> <a href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/" style="font-size: 20px;">模块化</a> <a href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" style="font-size: 20px;">深浅拷贝</a> <a href="/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 20px;">跨域</a> -->
-                <ul class="row trm-tag-list trm-list" itemprop="keywords"><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">3</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/Vuex/" rel="tag">Vuex</a><span class="tag-list-count">3</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vite/" rel="tag">vite</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a><span class="tag-list-count">4</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vue-cropper/" rel="tag">vue-cropper</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vue3/" rel="tag">vue3</a><span class="tag-list-count">15</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" rel="tag">微前端</a><span class="tag-list-count">2</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="tag">搭建博客</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/" rel="tag">模块化</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" rel="tag">深浅拷贝</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a><span class="tag-list-count">1</span></li></ul>
-            </div>
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-calendar trm-icon"></i><br>
+            05/06
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-clock trm-icon"></i><br>
+            11:20
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-user trm-icon"></i><br>
+            ljylwnxx
         </div>
     </div>
 </div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="🍻-前言"><a href="#🍻-前言" class="headerlink" title="🍻 前言"></a>🍻 前言</h1><p>每一个项目都避免不了使用各种各样的图标，如果我们使用了 UI 组件库，比如说 ELement 等，那么组件库有一些封装好的图标供我们使用。但是项目是多变的和复杂的，组件库提供的图标很多时候不能满足需求，这个时候就需要我们自己引入想要的图标了。<br>今天介绍的便是如何将 iconfont 阿里图标库的图标引入到我们的 Vue3 项目中来！</p>
+<h1 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install vite-plugin-svg-icons -D</span><br></pre></td></tr></table></figure>
+<h1 id="引入-iconfont"><a href="#引入-iconfont" class="headerlink" title="引入 iconfont"></a>引入 iconfont</h1><h2 id="封装-svg-icon-组件"><a href="#封装-svg-icon-组件" class="headerlink" title="封装 svg-icon 组件"></a>封装 svg-icon 组件</h2><p>我们在 iconfont 官网上可以看到给出了 symbol 引用示例，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;svg class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;</span><br><span class="line">    &lt;use xlink:href=&quot;#icon-xxx&quot;&gt;&lt;/use&gt;</span><br><span class="line">&lt;/svg&gt;</span><br></pre></td></tr></table></figure>
+<p>上段代码就是图标的具体使用方式，如果我们每次都按照上面的方式使用，那么无疑是很麻烦的，我们不妨将上面的代码封装为一个组件。在需要用到图标的地方直接引入我们的组件即可了。<br>在 components 目录下新建 SvgIcon 目录，然后新建 SvgIcon.vue 文件。<br>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// src/components/SvgIcon/SvgIcon.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;svg :class=&quot;svgClass&quot; aria-hidden=&quot;true&quot;&gt;</span><br><span class="line">    &lt;use :xlink:href=&quot;iconClassName&quot; :fill=&quot;color&quot; /&gt;</span><br><span class="line">  &lt;/svg&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; computed &#125; from &#x27;vue&#x27;;</span><br><span class="line">const props = defineProps(&#123;</span><br><span class="line">  iconName: &#123;</span><br><span class="line">    type: String,</span><br><span class="line">    required: true</span><br><span class="line">  &#125;,</span><br><span class="line">  className: &#123;</span><br><span class="line">    type: String,</span><br><span class="line">    default: &#x27;&#x27;</span><br><span class="line">  &#125;,</span><br><span class="line">  color: &#123;</span><br><span class="line">    type: String,</span><br><span class="line">    default: &#x27;#409eff&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 图标在 iconfont 中的名字</span><br><span class="line">const iconClassName = computed(()=&gt;&#123;</span><br><span class="line">  return `#$&#123;props.iconName&#125;`;</span><br><span class="line">&#125;)</span><br><span class="line">// 给图标添加上类名</span><br><span class="line">const svgClass = computed(() =&gt; &#123;</span><br><span class="line">  if (props.className) &#123;</span><br><span class="line">    return `svg-icon $&#123;props.className&#125;`;</span><br><span class="line">  &#125;</span><br><span class="line">  return &#x27;svg-icon&#x27;;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.svg-icon &#123;</span><br><span class="line">  width: 1em;</span><br><span class="line">  height: 1em;</span><br><span class="line">  position: relative;</span><br><span class="line">  fill: currentColor;</span><br><span class="line">  vertical-align: -2px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>组件封装好后我们还需要全局注册一下，不然每次引用图标的时候还得单独引入一次该组件。所以我们就在 main.ts 里面全局注册一下。<br>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// main.ts</span><br><span class="line">import &#123; createApp &#125; from &#x27;vue&#x27;</span><br><span class="line">import App from &#x27;./App.vue&#x27;</span><br><span class="line">import SvgIcon from &#x27;./components/SvgIcon/SvgIcon.vue&#x27;</span><br><span class="line"></span><br><span class="line">const app = createApp(App)</span><br><span class="line">app.component(&#x27;SvgIcon&#x27;, SvgIcon);</span><br><span class="line">app.mount(&#x27;#app&#x27;)</span><br></pre></td></tr></table></figure>
+<h2 id="使用iconfont"><a href="#使用iconfont" class="headerlink" title="使用iconfont"></a>使用iconfont</h2><p>接下来我们就需要去 iconfont 官网了，新建一个 iconfont 资源库，存放自己的 iconfont。<br>我们选中 symbol 模式，这里我介绍三种引入方式。<br>第一种：<br>直接在线引入官网提供的在线 js 地址，我们直接以 script 标签的形式引入即可。这种方式最为简单，但是也有不好的一点，需要用户有网络环境，而且得保证 iconfont 网站没有崩掉。<br>第二种：<br>直接下载至本地，我们从官网直接将代码下载下来，然后放到我们项目中引用，也是可以的。不过这种方式稍显麻烦，每次更新图标库之后都得重新下载一遍。<br>第三种：<br>这也是我比较喜欢的方式，也就是将在线地址中的代码直接复制粘贴到我们项目中来，这种方式最为简单，每次更新图标库之后只需要重新复制一下代码即可。这里我们也将采用这种方式。<br>具体使用：<br>在项目 assets 目录下新建 iconfont 目录，在该目录下新建 iconfont.js 文件，然后将 iconfont 在线地址中提供的代码全部复制过来。<br>然后在 main.ts 中引入 iconfont.js。<br>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123; createApp &#125; from &#x27;vue&#x27;</span><br><span class="line">import App from &#x27;./App.vue&#x27;</span><br><span class="line">import SvgIcon from &#x27;./components/SvgIcon/SvgIcon.vue&#x27;</span><br><span class="line">import &#x27;./assets/iconfont/iconfont.js&#x27;;</span><br><span class="line">const app = createApp(App)</span><br><span class="line">app.component(&#x27;SvgIcon&#x27;, SvgIcon);</span><br><span class="line">app.mount(&#x27;#app&#x27;)</span><br></pre></td></tr></table></figure>
+<h2 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h2><p>引入 iconfont 得过程非常简单，主要分为了以下两步：</p>
+<ul>
+<li>封装 svg-icon 组件</li>
+<li>引入 iconfont 生成的 js 代码</li>
+</ul>
+<p>接下来我们就实际使用试试，我们就直接在 App.vue 中引入几个图标试试。<br>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;img alt=&quot;Vue logo&quot; src=&quot;./assets/logo.png&quot; /&gt;</span><br><span class="line">  &lt;svg-icon iconName=&quot;icon-gongzuoleixing&quot;&gt;&lt;/svg-icon&gt;</span><br><span class="line">  &lt;svg-icon iconName=&quot;icon-yulan&quot; className=&quot;yulan&quot;&gt;&lt;/svg-icon&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看到我们的图标已经可以使用了，其中 iconName 属性值就是我们在 iconfont 网站复制的 iconfont 的名称代码。如果想要该颜色或大小，可以自行传入一个类或者 color 属性。<br>除此之外，如果你有自己下载好的 svg 文件，那么也是可以通过上面方式引入的，只需要将 iconName 改为你自己本地的 svg 名称即可。</p>
+<h1 id="图标自动管理（必看）"><a href="#图标自动管理（必看）" class="headerlink" title="图标自动管理（必看）"></a>图标自动管理（必看）</h1><p>即使使用了symbol方式，当设计小姐姐新增图标时，我们还是无法避免重新生成图标代码。那么有没有更优雅的解决方案呢？<br>答案是有的。svg-sprite-loader + require.context。</p>
+
+</article>
+    
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2023/05/06/webpack%E4%B9%8Brequire-context/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/webpack/">
+                    webpack
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/05/06/webpack%E4%B9%8Brequire-context/" class="trm-anima-link">
+                    webpack之require.context
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/05/06</li>
+                <li>11:55</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2023/04/26/%E3%80%90vite-vue3-Ts-element-plus1%E3%80%91/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/vite/">
+                    vite
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/04/26/%E3%80%90vite-vue3-Ts-element-plus1%E3%80%91/" class="trm-anima-link">
+                    【vite+vue3+Ts+element-plus1】
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/04/26</li>
+                <li>11:51</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
 
                     <div class="trm-divider footer-divider"></div>
 
@@ -442,6 +576,10 @@
             <!-- body end -->
 
             <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont iconfont icon-read"></i>
+        </div>
     
     
         <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
@@ -527,6 +665,10 @@
     
 
     <!-- 评论插件 -->
+    
+        
+
+        
     
 
 

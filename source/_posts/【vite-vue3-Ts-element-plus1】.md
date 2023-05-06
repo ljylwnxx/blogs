@@ -2,6 +2,7 @@
 title: 【vite+vue3+Ts+element-plus1】
 date: 2023-04-26 11:51:29
 tags: vue3
+categories: vite
 ---
 # 使用vite初始化项目
 首先我们使用vite来初始化项目，vite支持使用npm、yarn和pnpm来初始化项目，本文采用npm的方式。
