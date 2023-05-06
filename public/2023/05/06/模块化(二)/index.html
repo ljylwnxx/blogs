@@ -7,23 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="了解webpack的require.context关键代码src&#x2F;icons&#x2F;index.js const context &#x3D; require.context(&quot;.&#x2F;svg&quot;, true, &#x2F;\.svg$&#x2F;)context.keys().map(context) main.js import &amp;#x27;@&#x2F;icons&amp;#x27; webpack.base.config.js">
+<meta name="description" content="前言模块化的开发方式可以提高代码复用率，方便进行代码的管理。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。目前流行的js模块化规范有CommonJS、AMD、CMD以及ES6的模块系统。 CommonJSNode.js是commonJS规范的主要实践者，它有四个重要的环境变量为模块化的实现提供支持：module、exports、require、global。实际使用时，用m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack之require.context">
-<meta property="og:url" content="http://example.com/2023/05/06/webpack%E4%B9%8Brequire-context/index.html">
+<meta property="og:title" content="模块化(二)">
+<meta property="og:url" content="http://example.com/2023/05/06/%E6%A8%A1%E5%9D%97%E5%8C%96(%E4%BA%8C)/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="了解webpack的require.context关键代码src&#x2F;icons&#x2F;index.js const context &#x3D; require.context(&quot;.&#x2F;svg&quot;, true, &#x2F;\.svg$&#x2F;)context.keys().map(context) main.js import &amp;#x27;@&#x2F;icons&amp;#x27; webpack.base.config.js">
+<meta property="og:description" content="前言模块化的开发方式可以提高代码复用率，方便进行代码的管理。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。目前流行的js模块化规范有CommonJS、AMD、CMD以及ES6的模块系统。 CommonJSNode.js是commonJS规范的主要实践者，它有四个重要的环境变量为模块化的实现提供支持：module、exports、require、global。实际使用时，用m">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/404.jpg">
-<meta property="article:published_time" content="2023-05-06T03:55:23.000Z">
-<meta property="article:modified_time" content="2023-05-06T04:38:26.579Z">
+<meta property="article:published_time" content="2023-05-06T06:08:39.000Z">
+<meta property="article:modified_time" content="2023-05-06T06:18:44.867Z">
 <meta property="article:author" content="ljylwnxx">
-<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="模块化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/404.jpg">
 
 
-<title >webpack之require.context</title>
+<title >模块化(二)</title>
 
 <!-- Favicon -->
 
@@ -64,7 +62,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-05-06 2023-05-06T12:38:26+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-05-06 2023-05-06T14:18:44+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
@@ -271,7 +269,7 @@
                             NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            webpack之require.context
+                            模块化(二)
                         </h1>
                             
                         <!-- 
@@ -386,7 +384,7 @@
             </div>
             <div name="tabs-toc" class="trm-tabs-item active">
                 <div class="post-toc">
-    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#了解webpack的require-context"  data-scroll-to="#了解webpack的require-context"><span class="toc-number">1.</span> <span class="toc-text">了解webpack的require.context</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#关键代码"  data-scroll-to="#关键代码"><span class="toc-number">1.1.</span> <span class="toc-text">关键代码</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#为什么呢？"  data-scroll-to="#为什么呢？"><span class="toc-number">1.2.</span> <span class="toc-text">为什么呢？</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#前言"  data-scroll-to="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#CommonJS"  data-scroll-to="#CommonJS"><span class="toc-number">2.</span> <span class="toc-text">CommonJS</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#AMD和require-js"  data-scroll-to="#AMD和require-js"><span class="toc-number">3.</span> <span class="toc-text">AMD和require.js</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#CMD和sea-js"  data-scroll-to="#CMD和sea-js"><span class="toc-number">4.</span> <span class="toc-text">CMD和sea.js</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#ES6-Module"  data-scroll-to="#ES6-Module"><span class="toc-number">5.</span> <span class="toc-text">ES6 Module</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#ES6-模块与-CommonJS-模块的差异"  data-scroll-to="#ES6-模块与-CommonJS-模块的差异"><span class="toc-number">6.</span> <span class="toc-text">ES6 模块与 CommonJS 模块的差异</span></a></li></ol>
 </div>
             </div>
         </div>
@@ -410,7 +408,7 @@
     <div class="col-sm-4">
         <div class="trm-card trm-label trm-label-light text-center">
             <i class="iconfont iconfont icon-clock trm-icon"></i><br>
-            11:55
+            14:08
         </div>
     </div>
     <div class="col-sm-4">
@@ -422,15 +420,40 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    <h1 id="了解webpack的require-context"><a href="#了解webpack的require-context" class="headerlink" title="了解webpack的require.context"></a>了解webpack的require.context</h1><h2 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h2><p>src/icons/index.js</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const context = require.context(&quot;./svg&quot;, true, /\.svg$/)</span><br><span class="line">context.keys().map(context)</span><br></pre></td></tr></table></figure>
-<p>main.js</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#x27;@/icons&#x27;</span><br></pre></td></tr></table></figure>
-<p>webpack.base.config.js</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.svg$/,</span><br><span class="line">    loader: &quot;svg-sprite-loader&quot;,</span><br><span class="line">    include: [resolve(&quot;src/icons&quot;)],</span><br><span class="line">    options: &#123;</span><br><span class="line">        symbolId: &quot;icon-[name]&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,</span><br><span class="line">    loader: &quot;url-loader&quot;,</span><br><span class="line">    exclude: [resolve(&quot;src/icons&quot;)],</span><br><span class="line">    options: &#123;</span><br><span class="line">        limit: 10000,</span><br><span class="line">        name: utils.assetsPath(&quot;img/[name].[hash:7].[ext]&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<h2 id="为什么呢？"><a href="#为什么呢？" class="headerlink" title="为什么呢？"></a>为什么呢？</h2><p>很多人跟我一样，一开始只想说，为什么这样就可以，why???</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const context = require.context(&quot;./svg&quot;, true, /\.svg$/)</span><br><span class="line">// 看看你是何方神圣</span><br><span class="line">console.log(context)</span><br><span class="line">context.keys().map(context)</span><br></pre></td></tr></table></figure>
-<p>看下面的图，理解一下<br><img src="/2023/05/06/webpack%E4%B9%8Brequire-context/image.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>模块化的开发方式可以提高代码复用率，方便进行代码的管理。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。目前流行的js模块化规范有CommonJS、AMD、CMD以及ES6的模块系统。</p>
+<h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p>Node.js是commonJS规范的主要实践者，它有四个重要的环境变量为模块化的实现提供支持：module、exports、require、global。实际使用时，用module.exports定义当前模块对外输出的接口（不推荐直接用exports），用require加载模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 定义模块math.js</span><br><span class="line">var basicNum = 0;</span><br><span class="line">function add(a, b) &#123;</span><br><span class="line">  return a + b;</span><br><span class="line">&#125;</span><br><span class="line">module.exports = &#123; //在这里写上需要向外暴露的函数、变量</span><br><span class="line">  add: add,</span><br><span class="line">  basicNum: basicNum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 引用自定义的模块时，参数包含路径，可省略.js</span><br><span class="line">var math = require(&#x27;./math&#x27;);</span><br><span class="line">math.add(2, 5);</span><br><span class="line"></span><br><span class="line">// 引用核心模块时，不需要带路径</span><br><span class="line">var http = require(&#x27;http&#x27;);</span><br><span class="line">http.createService(...).listen(3000);</span><br></pre></td></tr></table></figure>
+<p>commonJS用同步的方式加载模块。在服务端，模块文件都存在本地磁盘，读取非常快，所以这样做不会有问题。但是在浏览器端，限于网络原因，更合理的方案是使用异步加载。</p>
+<h1 id="AMD和require-js"><a href="#AMD和require-js" class="headerlink" title="AMD和require.js"></a>AMD和require.js</h1><p>AMD规范采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。这里介绍用require.js实现AMD规范的模块化：用require.config()指定引用路径等，用define()定义模块，用require()加载模块。<br>首先我们需要引入require.js文件和一个入口文件main.js。main.js中配置require.config()并规定项目中用到的基础模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/** 网页中引入require.js及main.js **/</span><br><span class="line">&lt;script src=&quot;js/require.js&quot; data-main=&quot;js/main&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">/** main.js 入口文件/主模块 **/</span><br><span class="line">// 首先用config()指定各模块路径和引用名</span><br><span class="line">require.config(&#123;</span><br><span class="line">  baseUrl: &quot;js/lib&quot;,</span><br><span class="line">  paths: &#123;</span><br><span class="line">    &quot;jquery&quot;: &quot;jquery.min&quot;,  //实际路径为js/lib/jquery.min.js</span><br><span class="line">    &quot;underscore&quot;: &quot;underscore.min&quot;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 执行基本操作</span><br><span class="line">require([&quot;jquery&quot;,&quot;underscore&quot;],function($,_)&#123;</span><br><span class="line">  // some code here</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>引用模块的时候，我们将模块名放在[]中作为reqiure()的第一参数；如果我们定义的模块本身也依赖其他模块,那就需要将它们放在[]中作为define()的第一参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 定义math.js模块</span><br><span class="line">define(function () &#123;</span><br><span class="line">    var basicNum = 0;</span><br><span class="line">    var add = function (x, y) &#123;</span><br><span class="line">        return x + y;</span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123;</span><br><span class="line">        add: add,</span><br><span class="line">        basicNum :basicNum</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line">// 定义一个依赖underscore.js的模块</span><br><span class="line">define([&#x27;underscore&#x27;],function(_)&#123;</span><br><span class="line">  var classify = function(list)&#123;</span><br><span class="line">    _.countBy(list,function(num)&#123;</span><br><span class="line">      return num &gt; 30 ? &#x27;old&#x27; : &#x27;young&#x27;;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;;</span><br><span class="line">  return &#123;</span><br><span class="line">    classify :classify</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 引用模块，将模块放在[]内</span><br><span class="line">require([&#x27;jquery&#x27;, &#x27;math&#x27;],function($, math)&#123;</span><br><span class="line">  var sum = math.add(10,20);</span><br><span class="line">  $(&quot;#sum&quot;).html(sum);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="CMD和sea-js"><a href="#CMD和sea-js" class="headerlink" title="CMD和sea.js"></a>CMD和sea.js</h1><p>require.js在申明依赖的模块时会在第一之间加载并执行模块内的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">define([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;], function(a, b, c, d, e, f) &#123; </span><br><span class="line">    // 等于在最前面声明并初始化了要用到的所有模块</span><br><span class="line">    if (false) &#123;</span><br><span class="line">      // 即便没用到某个模块 b，但 b 还是提前执行了</span><br><span class="line">      b.foo()</span><br><span class="line">    &#125; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>CMD是另一种js模块化方案，它与AMD很类似，不同点在于：AMD 推崇依赖前置、提前执行，CMD推崇依赖就近、延迟执行。此规范其实是在sea.js推广过程中产生的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/** AMD写法 **/</span><br><span class="line">define([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;], function(a, b, c, d, e, f) &#123; </span><br><span class="line">     // 等于在最前面声明并初始化了要用到的所有模块</span><br><span class="line">    a.doSomething();</span><br><span class="line">    if (false) &#123;</span><br><span class="line">        // 即便没用到某个模块 b，但 b 还是提前执行了</span><br><span class="line">        b.doSomething()</span><br><span class="line">    &#125; </span><br><span class="line">&#125;);</span><br><span class="line">/** CMD写法 **/</span><br><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">    var a = require(&#x27;./a&#x27;); //在需要时申明</span><br><span class="line">    a.doSomething();</span><br><span class="line">    if (false) &#123;</span><br><span class="line">        var b = require(&#x27;./b&#x27;);</span><br><span class="line">        b.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">/** sea.js **/</span><br><span class="line">// 定义模块 math.js</span><br><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">    var $ = require(&#x27;jquery.js&#x27;);</span><br><span class="line">    var add = function(a,b)&#123;</span><br><span class="line">        return a+b;</span><br><span class="line">    &#125;</span><br><span class="line">    exports.add = add;</span><br><span class="line">&#125;);</span><br><span class="line">// 加载模块</span><br><span class="line">seajs.use([&#x27;math.js&#x27;], function(math)&#123;</span><br><span class="line">    var sum = math.add(1+2);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="ES6-Module"><a href="#ES6-Module" class="headerlink" title="ES6 Module"></a>ES6 Module</h1><p>ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，旨在成为浏览器和服务器通用的模块解决方案。其模块功能主要由两个命令构成：export和import。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/** 定义模块 math.js **/</span><br><span class="line">var basicNum = 0;</span><br><span class="line">var add = function (a, b) &#123;</span><br><span class="line">    return a + b;</span><br><span class="line">&#125;;</span><br><span class="line">export &#123; basicNum, add &#125;;</span><br><span class="line"></span><br><span class="line">/** 引用模块 **/</span><br><span class="line">import &#123; basicNum, add &#125; from &#x27;./math&#x27;;</span><br><span class="line">function test(ele) &#123;</span><br><span class="line">    ele.textContent = add(99 + basicNum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上例所示，使用import命令的时候，用户需要知道所要加载的变量名或函数名。其实ES6还提供了export default命令，为模块指定默认输出，对应的import语句不需要使用大括号。这也更趋近于ADM的引用写法。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/** export default **/</span><br><span class="line">//定义输出</span><br><span class="line">export default &#123; basicNum, add &#125;;</span><br><span class="line">//引入</span><br><span class="line">import math from &#x27;./math&#x27;;</span><br><span class="line">function test(ele) &#123;</span><br><span class="line">    ele.textContent = math.add(99 + math.basicNum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ES6的模块不是对象，import命令会被 JavaScript 引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。也正因为这个，使得静态分析成为可能。</p>
+<h1 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h1><ol>
+<li>CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。</li>
+</ol>
+<ul>
+<li>CommonJS 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。</li>
+<li>ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的import有点像 Unix 系统的“符号连接”，原始值变了，import加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。</li>
+</ul>
+<ol start="2">
+<li>CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。</li>
+</ol>
+<ul>
+<li>运行时加载: CommonJS 模块就是对象；即在输入时是先加载整个模块，生成一个对象，然后再从这个对象上面读取方法，这种加载称为“运行时加载”。</li>
+<li>编译时加载: ES6 模块不是对象，而是通过 export 命令显式指定输出的代码，import时采用静态命令的形式。即在import时可以指定加载某个输出值，而不是加载整个模块，这种加载称为“编译时加载”。</li>
+</ul>
+<p>CommonJS 加载的是一个对象（即module.exports属性），该对象只有在脚本运行完才会生成。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。</p>
 
 </article>
     
@@ -445,9 +468,10 @@
         </h5>
     </div>
     
+    
         <div class="col-lg-6">
     <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <a href="/2023/05/06/%E6%A8%A1%E5%9D%97%E5%8C%96(%E4%BA%8C)/" class="trm-cover-frame trm-anima-link">
+        <a href="/2023/05/06/webpack%E4%B9%8Brequire-context/" class="trm-cover-frame trm-anima-link">
             
             
                 <div class="trm-cover-img" data-random-img></div>
@@ -456,51 +480,19 @@
         
         <div class="trm-card-descr">
             <div class="trm-label trm-category trm-mb-20">
-                <a href=" /categories/%E6%A8%A1%E5%9D%97%E5%8C%96/">
-                    模块化
+                <a href=" /categories/webpack/">
+                    webpack
                 </a>
             </div>
             <h5>
-                <a href="/2023/05/06/%E6%A8%A1%E5%9D%97%E5%8C%96(%E4%BA%8C)/" class="trm-anima-link">
-                    模块化(二)
+                <a href="/2023/05/06/webpack%E4%B9%8Brequire-context/" class="trm-anima-link">
+                    webpack之require.context
                 </a>
             </h5>
             <div class="trm-divider trm-mb-20 trm-mt-20"></div>
             <ul class="trm-card-data trm-label">
                 <li>23/05/06</li>
-                <li>14:08</li>
-                
-                
-            </ul>
-        </div>
-    </div>
-</div>
-    
-    
-        <div class="col-lg-6">
-    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <a href="/2023/05/06/Vue3%20+%20Vite%20+%20TS%E9%A1%B9%E7%9B%AE%E5%BC%95%E5%85%A5iconfont%E5%9B%BE%E6%A0%87%EF%BC%88Svg%E6%96%B9%E5%BC%8F%EF%BC%89/" class="trm-cover-frame trm-anima-link">
-            
-            
-                <div class="trm-cover-img" data-random-img></div>
-            
-        </a>
-        
-        <div class="trm-card-descr">
-            <div class="trm-label trm-category trm-mb-20">
-                <a href=" /categories/vite/">
-                    vite
-                </a>
-            </div>
-            <h5>
-                <a href="/2023/05/06/Vue3%20+%20Vite%20+%20TS%E9%A1%B9%E7%9B%AE%E5%BC%95%E5%85%A5iconfont%E5%9B%BE%E6%A0%87%EF%BC%88Svg%E6%96%B9%E5%BC%8F%EF%BC%89/" class="trm-anima-link">
-                    Vue3 + Vite + TS项目引入iconfont图标（Svg方式）
-                </a>
-            </h5>
-            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>23/05/06</li>
-                <li>11:20</li>
+                <li>11:55</li>
                 
                 
             </ul>
