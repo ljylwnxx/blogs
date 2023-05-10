@@ -7,18 +7,20 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="「1. typeit 介绍」typeit是一款轻量级打字机特效插件。该打印机特效可以设置打字速度，是否显示光标，是否换行和延迟时间等属性，它可以打印单行文本和多行文本，并具有可缩放、响应式等特点。">
+<meta name="description" content="「typeit 介绍」typeit是一款轻量级打字机特效插件。该打印机特效可以设置打字速度，是否显示光标，是否换行和延迟时间等属性，它可以打印单行文本和多行文本，并具有可缩放、响应式等特点。 「安装typeit」pnpm add typeitnpm install typeit 「配置项说明」 「创建组件目录」在components目录下创建一个typeit文件夹，再创建index.ts文件。 「">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue3封装打字机效果组件">
 <meta property="og:url" content="http://example.com/2023/05/09/Vue3%E5%B0%81%E8%A3%85%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="「1. typeit 介绍」typeit是一款轻量级打字机特效插件。该打印机特效可以设置打字速度，是否显示光标，是否换行和延迟时间等属性，它可以打印单行文本和多行文本，并具有可缩放、响应式等特点。">
+<meta property="og:description" content="「typeit 介绍」typeit是一款轻量级打字机特效插件。该打印机特效可以设置打字速度，是否显示光标，是否换行和延迟时间等属性，它可以打印单行文本和多行文本，并具有可缩放、响应式等特点。 「安装typeit」pnpm add typeitnpm install typeit 「配置项说明」 「创建组件目录」在components目录下创建一个typeit文件夹，再创建index.ts文件。 「">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/404.jpg">
 <meta property="article:published_time" content="2023-05-09T12:57:12.000Z">
-<meta property="article:modified_time" content="2023-05-09T13:02:20.311Z">
+<meta property="article:modified_time" content="2023-05-10T07:56:28.968Z">
 <meta property="article:author" content="ljylwnxx">
 <meta property="article:tag" content="vue3">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
 
 
 <title >Vue3封装打字机效果组件</title>
@@ -62,7 +64,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-05-09 2023-05-09T21:02:20+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-05-10 2023-05-10T15:56:28+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
@@ -384,7 +386,7 @@
             </div>
             <div name="tabs-toc" class="trm-tabs-item active">
                 <div class="post-toc">
-    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「1-typeit-介绍」"  data-scroll-to="#「1-typeit-介绍」"><span class="toc-number">1.</span> <span class="toc-text">「1. typeit 介绍」</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「typeit-介绍」"  data-scroll-to="#「typeit-介绍」"><span class="toc-number">1.</span> <span class="toc-text">「typeit 介绍」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「安装typeit」"  data-scroll-to="#「安装typeit」"><span class="toc-number">2.</span> <span class="toc-text">「安装typeit」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「配置项说明」"  data-scroll-to="#「配置项说明」"><span class="toc-number">3.</span> <span class="toc-text">「配置项说明」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「创建组件目录」"  data-scroll-to="#「创建组件目录」"><span class="toc-number">4.</span> <span class="toc-text">「创建组件目录」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「封装组件」"  data-scroll-to="#「封装组件」"><span class="toc-number">5.</span> <span class="toc-text">「封装组件」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「使用组件」"  data-scroll-to="#「使用组件」"><span class="toc-number">6.</span> <span class="toc-text">「使用组件」</span></a></li></ol>
 </div>
             </div>
         </div>
@@ -420,8 +422,13 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    <h1 id="「1-typeit-介绍」"><a href="#「1-typeit-介绍」" class="headerlink" title="「1. typeit 介绍」"></a>「1. typeit 介绍」</h1><p>typeit是一款轻量级打字机特效插件。该打印机特效可以设置打字速度，是否显示光标，是否换行和延迟时间等属性，它可以打印单行文本和多行文本，并具有可缩放、响应式等特点。</p>
-
+    <h1 id="「typeit-介绍」"><a href="#「typeit-介绍」" class="headerlink" title="「typeit 介绍」"></a>「typeit 介绍」</h1><p>typeit是一款轻量级打字机特效插件。该打印机特效可以设置打字速度，是否显示光标，是否换行和延迟时间等属性，它可以打印单行文本和多行文本，并具有可缩放、响应式等特点。</p>
+<h1 id="「安装typeit」"><a href="#「安装typeit」" class="headerlink" title="「安装typeit」"></a>「安装typeit」</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pnpm add typeit</span><br><span class="line">npm install typeit</span><br></pre></td></tr></table></figure>
+<h1 id="「配置项说明」"><a href="#「配置项说明」" class="headerlink" title="「配置项说明」"></a>「配置项说明」</h1><p><img src="/2023/05/09/Vue3%E5%B0%81%E8%A3%85%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C%E7%BB%84%E4%BB%B6/%E9%85%8D%E7%BD%AE%E9%A1%B9%E8%AF%B4%E6%98%8E.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="「创建组件目录」"><a href="#「创建组件目录」" class="headerlink" title="「创建组件目录」"></a>「创建组件目录」</h1><p>在components目录下创建一个typeit文件夹，再创建index.ts文件。</p>
+<h1 id="「封装组件」"><a href="#「封装组件」" class="headerlink" title="「封装组件」"></a>「封装组件」</h1><p>接下来我们要在刚刚新创建的index.ts文件里，封装组件。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import TypeIt from &#x27;typeit&#x27;</span><br><span class="line">import &#123; defineComponent, h &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">export default defineComponent(&#123;</span><br><span class="line">  name: &#x27;TypeIt&#x27;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    /** 打字速度，以每一步之间的毫秒数为单位 */</span><br><span class="line">    speed: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 200,</span><br><span class="line">    &#125;,</span><br><span class="line">    values: &#123;</span><br><span class="line">      type: Array,</span><br><span class="line">      default: [],</span><br><span class="line">    &#125;,</span><br><span class="line">    className: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &#x27;type-it&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    cursor: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  render() &#123;</span><br><span class="line">    return h(</span><br><span class="line">      &#x27;span&#x27;,</span><br><span class="line">      &#123;</span><br><span class="line">        class: this.className,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        default: () =&gt; [],</span><br><span class="line">      &#125;,</span><br><span class="line">    )</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    new (TypeIt as any)(`.$&#123;this.className&#125;`, &#123;</span><br><span class="line">      strings: this.values,</span><br><span class="line">      speed: this.speed,</span><br><span class="line">      cursor: this.cursor,</span><br><span class="line">      breakLines: false,</span><br><span class="line">      loop: true</span><br><span class="line">    &#125;).go()</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="「使用组件」"><a href="#「使用组件」" class="headerlink" title="「使用组件」"></a>「使用组件」</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;index-title&quot;&gt;</span><br><span class="line">        &lt;h2 class=&quot;outline-none&quot;&gt;</span><br><span class="line">            &lt;TypeIt :values=&quot;title&quot; :cursor=&quot;false&quot; :speed=&quot;150&quot; /&gt;</span><br><span class="line">        &lt;/h2&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import TypeIt from &#x27;@/components/typeit&#x27;</span><br><span class="line"></span><br><span class="line">const title = [</span><br><span class="line">    &quot;陋室铭 -刘禹锡[唐代]&quot;,</span><br><span class="line">    &quot;山不在高，有仙则名。&quot; ,</span><br><span class="line">    ……</span><br><span class="line">    ]</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 </article>
     
 
