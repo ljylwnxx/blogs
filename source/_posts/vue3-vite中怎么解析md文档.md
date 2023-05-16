@@ -24,4 +24,3 @@ Vue.directive('highlight',function (el) {
   })
 })
 ```
-这样就可以在vue组件中使用v-highlight引用代码高亮的方法了。
