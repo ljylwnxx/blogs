@@ -7,18 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="这是一个博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljylwnxx的博客">
-<meta property="og:url" content="http://example.com/categories/Vue/index.html">
+<meta name="description" content="「摘要」5 月 16 日，Nuxt 3.5.0 正式发布，它带来了 Vue 3.3 版本、新的默认设置、交互式服务端组件、类型化页面、环境配置等。Nuxt 是使用简便的 Web 框架，用于构建现代和高性能的 Web 应用，可以部署在任何运行 JavaScript 的平台上。去年发布的 Nuxt 3 基于 Vue 3 构建，为 TypeScript 提供了 “一等公民” 支持，并进行了一次彻底的重构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nuxt3.5正式发布">
+<meta property="og:url" content="http://example.com/2023/05/18/Nuxt3-5%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="这是一个博客">
+<meta property="og:description" content="「摘要」5 月 16 日，Nuxt 3.5.0 正式发布，它带来了 Vue 3.3 版本、新的默认设置、交互式服务端组件、类型化页面、环境配置等。Nuxt 是使用简便的 Web 框架，用于构建现代和高性能的 Web 应用，可以部署在任何运行 JavaScript 的平台上。去年发布的 Nuxt 3 基于 Vue 3 构建，为 TypeScript 提供了 “一等公民” 支持，并进行了一次彻底的重构">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-18T12:48:32.000Z">
+<meta property="article:modified_time" content="2023-05-18T13:23:42.702Z">
 <meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="Nuxt">
 <meta name="twitter:card" content="summary">
 
 
-<title >ljylwnxx的博客</title>
+<title >Nuxt3.5正式发布</title>
 
 <!-- Favicon -->
 
@@ -59,7 +62,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":false,"postUpdate":"2023-05-18 2023-05-18T21:24:07+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-05-18 2023-05-18T21:23:42+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
@@ -241,7 +244,8 @@
             <!-- top bar end -->
 
             <!-- body -->
-            <div class="trm-content-start">
+            
+<div class="trm-content-start">
     <!-- banner -->
     <div class="trm-banner" data-scroll data-scroll-direction="vertical">
     
@@ -262,10 +266,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            The article category
+                            NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            代码改变世界,<br>数据连接你我。
+                            Nuxt3.5正式发布
                         </h1>
                             
                         <!-- 
@@ -275,7 +279,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        categories
+                                        2023
                                     </span
                                 ></li>
                             </ul>
@@ -307,7 +311,17 @@
 <div class="trm-main-card-frame trm-sidebar">
     <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
     
-        <!-- card header -->
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont iconfont icon-user-tag"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont iconfont icon-fenleimulu"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
 <div class="trm-mc-header">
     <div class="trm-avatar-frame trm-mb-20">
         <img alt="Avatar" class="trm-avatar" src="/img/avatar.png">
@@ -324,7 +338,7 @@
     
 </div>
 <!-- card header end -->
-        <!-- sidebar social -->
+                <!-- sidebar social -->
 
 <div class="trm-divider trm-mb-40 trm-mt-40"></div>
 <div class="trm-social">
@@ -340,7 +354,7 @@
 </div>
 
 <!-- sidebar social end -->
-        <!-- info -->
+                <!-- info -->
 <div class="trm-divider trm-mb-40 trm-mt-40"></div>
 <ul class="trm-table trm-mb-20">
     
@@ -356,7 +370,7 @@
 </ul>
 <!-- info end -->
 
-        
+                
     <div class="trm-divider trm-mb-40 trm-mt-40"></div>
     <!-- action button -->
     <div class="text-center">
@@ -367,6 +381,13 @@
     </div>
     <!-- action button end -->
 
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「摘要」"  data-scroll-to="#「摘要」"><span class="toc-number">1.</span> <span class="toc-text">「摘要」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「一、Vue-3-3」"  data-scroll-to="#「一、Vue-3-3」"><span class="toc-number">2.</span> <span class="toc-text">「一、Vue 3.3」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「二、Nitropack-v2-4」"  data-scroll-to="#「二、Nitropack-v2-4」"><span class="toc-number">3.</span> <span class="toc-text">「二、Nitropack v2.4」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「三、丰富的-JSON-负载」"  data-scroll-to="#「三、丰富的-JSON-负载」"><span class="toc-number">4.</span> <span class="toc-text">「三、丰富的 JSON 负载」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「四、交互式服务端组件」"  data-scroll-to="#「四、交互式服务端组件」"><span class="toc-number">5.</span> <span class="toc-text">「四、交互式服务端组件」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「五、环境配置」"  data-scroll-to="#「五、环境配置」"><span class="toc-number">6.</span> <span class="toc-text">「五、环境配置」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「六、完全类型化的页面」"  data-scroll-to="#「六、完全类型化的页面」"><span class="toc-number">7.</span> <span class="toc-text">「六、完全类型化的页面」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「七、Bundler的模块解析」"  data-scroll-to="#「七、Bundler的模块解析」"><span class="toc-number">8.</span> <span class="toc-text">「七、Bundler的模块解析」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「八、分离的服务端类型」"  data-scroll-to="#「八、分离的服务端类型」"><span class="toc-number">9.</span> <span class="toc-text">「八、分离的服务端类型」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「九、弃用内容」"  data-scroll-to="#「九、弃用内容」"><span class="toc-number">10.</span> <span class="toc-text">「九、弃用内容」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「十、升级」"  data-scroll-to="#「十、升级」"><span class="toc-number">11.</span> <span class="toc-text">「十、升级」</span></a></li></ol>
+</div>
+            </div>
+        </div>
     
     </div>
 </div>
@@ -377,15 +398,110 @@
                 <div class="trm-content" id="trm-content">
                     <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
 
-                    <div class="row">
-    <div class="col-lg-12">
-        <div class="trm-card">
-            <div style="padding: 0 20px;">
-                <ul class="row trm-list"><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">（5）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/npm/">npm</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/vite/">vite</a><span class="category-list-count">（3）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/vue/">vue</a><span class="category-list-count">（1）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/vue3/">vue3</a><span class="category-list-count">（15）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/webpack/">webpack</a><span class="category-list-count">（2）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">（2）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><span class="category-list-count">（3）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a><span class="category-list-count">（2）</span></li><li class="col-lg-4 trm-list-item " style="margin: 6px 0;"><a class="category-list-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a><span class="category-list-count">（10）</span></li></ul>
-            </div>
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-calendar trm-icon"></i><br>
+            05/18
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-clock trm-icon"></i><br>
+            20:48
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-user trm-icon"></i><br>
+            ljylwnxx
         </div>
     </div>
 </div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="「摘要」"><a href="#「摘要」" class="headerlink" title="「摘要」"></a>「摘要」</h1><p>5 月 16 日，Nuxt 3.5.0 正式发布，它带来了 Vue 3.3 版本、新的默认设置、交互式服务端组件、类型化页面、环境配置等。<br>Nuxt 是使用简便的 Web 框架，用于构建现代和高性能的 Web 应用，可以部署在任何运行 JavaScript 的平台上。去年发布的 Nuxt 3 基于 Vue 3 构建，为 TypeScript 提供了 “一等公民” 支持，并进行了一次彻底的重构，对内核进行了精简，速度更快，体验更好。</p>
+<h1 id="「一、Vue-3-3」"><a href="#「一、Vue-3-3」" class="headerlink" title="「一、Vue 3.3」"></a>「一、Vue 3.3」</h1><p>Vue 3.3 已经发布，具有许多令人兴奋的特性，特别是在类型支持方面。包括：</p>
+<ul>
+<li>宏中的导入和复杂类型支持</li>
+<li>通用组件</li>
+<li>更符合人体工程学的 defineEmits</li>
+<li>使用 defineSlots 的类型插槽</li>
+<li>响应式 Props 解构</li>
+<li>defineModel</li>
+<li>defineOptions</li>
+<li>使用 toRef 和 toValue 实现更好的 getter 支持</li>
+<li>JSX 导入源支持</li>
+<li>维护基础设施改进<h1 id="「二、Nitropack-v2-4」"><a href="#「二、Nitropack-v2-4」" class="headerlink" title="「二、Nitropack v2.4」"></a>「二、Nitropack v2.4」</h1>Nuxt.js 团队一直致力于对 Nitro 进行大量改进，这些改进已经在 Nitro v2.4 中实现——其中包含许多错误修复、Cloudflare 模块工作格式的更新、Vercel KV 支持等。<br>注意：如果需要部署到 Vercel 或 Netlify 并希望从增量静态再生中受益，应该更新路由规则：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">routeRules: &#123;</span><br><span class="line">--  &#x27;/blog/**&#x27;: &#123; swr: 3000 &#125;,</span><br><span class="line">++  &#x27;/blog/**&#x27;: &#123; isr: 3000 &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="「三、丰富的-JSON-负载」"><a href="#「三、丰富的-JSON-负载」" class="headerlink" title="「三、丰富的 JSON 负载」"></a>「三、丰富的 JSON 负载」</h1>现在默认启用丰富的 JSON 负载序列化。这既更快又允许序列化从 Nuxt 服务端传递到客户端的有效载荷中的复杂对象（以及在为预渲染站点提取有效载荷数据时）。<br>现在这意味着开箱即用地支持各种丰富的 JS 类型：正则表达式、日期、Map 和 Set 以及 BigInt 以及 NuxtError，以及 Vue 特定的对象，如 ref、reactive、shallowRef 和 shallowReactive。<br>长期以来，由于序列化 Errors 和其他非 POJO 对象的问题，Nuxt 一直在使用自己的 devalue fork，但现在已经过渡回原始版本。我们甚至可以使用新的对象语法Nuxt插件注册自定义类型：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export default definePayloadPlugin(() =&gt; &#123;</span><br><span class="line">  definePayloadReducer(&#x27;BlinkingText&#x27;, data =&gt; data === &#x27;&lt;original-blink&gt;&#x27; &amp;&amp; &#x27;_&#x27;)</span><br><span class="line">  definePayloadReviver(&#x27;BlinkingText&#x27;, () =&gt; &#x27;&lt;revivified-blink&gt;&#x27;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="「四、交互式服务端组件」"><a href="#「四、交互式服务端组件」" class="headerlink" title="「四、交互式服务端组件」"></a>「四、交互式服务端组件」</h1>这个功能应该被认为是高度实验性的，现在通过插槽支持服务端组件内的交互式内容。</li>
+</ul>
+<h1 id="「五、环境配置」"><a href="#「五、环境配置」" class="headerlink" title="「五、环境配置」"></a>「五、环境配置」</h1><p>现在可以在 nuxt.config 中配置完全类型化的、按环境的覆盖：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export default defineNuxtConfig(&#123;</span><br><span class="line">  $production: &#123;</span><br><span class="line">    routeRules: &#123;</span><br><span class="line">      &#x27;/**&#x27;: &#123; isr: true &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  $development: &#123;</span><br><span class="line">    //</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果正在创作图层，还可以使用 $meta 关键字来提供元数据，层的使用者可能会用到它。</p>
+<h1 id="「六、完全类型化的页面」"><a href="#「六、完全类型化的页面」" class="headerlink" title="「六、完全类型化的页面」"></a>「六、完全类型化的页面」</h1><p>通过与unplugin-vue-router的实验性整合，可以在Nuxt应用中受益于完全类型化的路由。<br>开箱即用，这将启用对navigateTo、<NuxtLink>、router.push()等功能的类型化使用。<br>甚至可以通过使用const route = useRoute(‘route-name’)在页面内获取类型化的参数。<br>直接在nuxt.config中启用此功能：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export default defineNuxtConfig(&#123;</span><br><span class="line">  experimental: &#123;</span><br><span class="line">    typedPages: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="「七、Bundler的模块解析」"><a href="#「七、Bundler的模块解析」" class="headerlink" title="「七、Bundler的模块解析」"></a>「七、Bundler的模块解析」</h1><p>现在，Nuxt内部完全支持使用 bundler 策略进行模块解析。<br>如果可能，建议采用此方法。它具有对子路径导出的类型支持，但与 Node16 解析相比，更准确地匹配了诸如 Vite 和 Nuxt 这样的构建工具的行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export default defineNuxtConfig(&#123;</span><br><span class="line">  typescript: &#123;</span><br><span class="line">    tsConfig: &#123;</span><br><span class="line">      compilerOptions: &#123;</span><br><span class="line">        moduleResolution: &#x27;bundler&#x27;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这将开启TypeScript跟踪Node子路径导出的功能。例如，如果一个库有一个像mylib/path这样的子路径导出，映射到mylib/dist/path.mjs，那么可以从mylib/dist/path.d.ts中引入此类型，而不需要库作者创建mylib/path.d.ts。</p>
+<h1 id="「八、分离的服务端类型」"><a href="#「八、分离的服务端类型」" class="headerlink" title="「八、分离的服务端类型」"></a>「八、分离的服务端类型」</h1><p>Nuxt 团队计划通过为<del>/server目录生成单独的tsconfig.json来改善IDE中”nitro”和”vue”部分之间的清晰度。<br>可以通过添加一个额外的</del>/server/tsconfig.json并使用以下内容来使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;extends&quot;: &quot;../.nuxt/tsconfig.server.json&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然现在在类型检查 (nuxi typecheck) 时不会考虑这些值，但应该在 IDE 中获得更好的类型提示。</p>
+<h1 id="「九、弃用内容」"><a href="#「九、弃用内容」" class="headerlink" title="「九、弃用内容」"></a>「九、弃用内容」</h1><p>虽然没有为 Nuxt 2 中的build.extend钩子提供类型或文档，但一直在webpack 中调用它，现在明确地弃用了它，并将在将来的小版本中删除它。</p>
+<h1 id="「十、升级」"><a href="#「十、升级」" class="headerlink" title="「十、升级」"></a>「十、升级」</h1><p>建议运行以下命令进行升级：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nuxi upgrade --force</span><br></pre></td></tr></table></figure>
+<p>这也将刷新 lockfile 文件，并确保从 Nuxt 依赖的其他依赖项中获取更新，特别是在 unjs 生态系统中。<br>参考：<a target="_blank" rel="noopener" href="https://nuxt.com/blog/v3-5">https://nuxt.com/blog/v3-5</a></p>
+
+</article>
+    
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2023/05/15/vue3-vite%E4%B8%AD%E6%80%8E%E4%B9%88%E8%A7%A3%E6%9E%90md%E6%96%87%E6%A1%A3/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/vue3/">
+                    vue3
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/05/15/vue3-vite%E4%B8%AD%E6%80%8E%E4%B9%88%E8%A7%A3%E6%9E%90md%E6%96%87%E6%A1%A3/" class="trm-anima-link">
+                    vue3+vite中怎么解析md文档
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/05/15</li>
+                <li>22:34</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
 
                     <div class="trm-divider footer-divider"></div>
 
@@ -441,6 +557,10 @@
             <!-- body end -->
 
             <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont iconfont icon-read"></i>
+        </div>
     
     
         <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
@@ -526,6 +646,10 @@
     
 
     <!-- 评论插件 -->
+    
+        
+
+        
     
 
 
