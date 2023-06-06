@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="2023 年 6 月 1 日，TypeScript5.1 正式发布了。新版本中新增了几个功能，一会儿带大家一起了解一下。你可以通过以下命令进行安装新版本 npm install typescript@beta  新版本中新增了以下主要功能：  改进函数返回值类型 undefined 的类型推断 getter 和 setter 支持设置不同类型 JSX 元素和 JSX 标签类型之间解耦类型检查 带命">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript5.1正式发布">
+<meta property="og:url" content="http://example.com/2023/06/06/TypeScript5.1%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/index.html">
+<meta property="og:site_name" content="ljylwnxx的博客">
+<meta property="og:description" content="2023 年 6 月 1 日，TypeScript5.1 正式发布了。新版本中新增了几个功能，一会儿带大家一起了解一下。你可以通过以下命令进行安装新版本 npm install typescript@beta  新版本中新增了以下主要功能：  改进函数返回值类型 undefined 的类型推断 getter 和 setter 支持设置不同类型 JSX 元素和 JSX 标签类型之间解耦类型检查 带命">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2023-06-06T03:07:50.000Z">
+<meta property="article:modified_time" content="2023-06-06T04:10:51.486Z">
+<meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
+
+
+<title >TypeScript5.1正式发布</title>
+
+<!-- Favicon -->
+
+    <link href='/img/favicon.png?v=2.0.7' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=2.0.7' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4020021_2ar0fw3x9h6.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-06-06 2023-06-06T12:10:51+08:00"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont iconfont icon-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont iconfont icon-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/img/logo.png">
+    
+    
+        <div class="trm-logo-text">
+            LjylWnxx
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/links/" target="">
+                    友情链接
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/tags/" target="">
+                    标签
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/categories/" target="">
+                    分类
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			<!--  -->
+    <!-- mode switcher place -->
+    <!-- <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont iconfont icon-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont iconfont icon-moon"></i>
+        </div>
+    </div> -->
+    <!-- mode switcher place end -->
+<!--  -->
+<!-- 
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont iconfont icon-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+        </div>
+    </div>
+   -->
+  
+
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+
+			
+    
+    <div id="trm-search-btn" class="trm-search-btn">
+        <i class="iconfont iconfont icon-search"></i>
+    </div>
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            TypeScript5.1正式发布
+                        </h1>
+                            
+                        <!-- 
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span
+                                ></li>
+                            </ul>
+                         -->
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    
+
+<div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
+    
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont iconfont icon-user-tag"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont iconfont icon-fenleimulu"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.png">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        LjylWnxx
+    </h5>
+    
+        <div class="trm-label">
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+                <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont icon-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="gitee" rel="nofollow" target="_blank">
+            <i class="iconfont iconfont icon-gitee"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+                <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                个签:
+            </div>
+            <div class="trm-label trm-label-light">
+                Hello World!
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+                
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:ljylwnxx@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont iconfont icon-email"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「一、改进函数返回值类型-undefined-的类型推断」"  data-scroll-to="#「一、改进函数返回值类型-undefined-的类型推断」"><span class="toc-number">1.</span> <span class="toc-text">「一、改进函数返回值类型 undefined 的类型推断」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「二、getter-和-setter-支持设置不同类型」"  data-scroll-to="#「二、getter-和-setter-支持设置不同类型」"><span class="toc-number">2.</span> <span class="toc-text">「二、getter 和 setter 支持设置不同类型」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「三、JSX-元素和-JSX-标签类型之间解耦类型检查」"  data-scroll-to="#「三、JSX-元素和-JSX-标签类型之间解耦类型检查」"><span class="toc-number">3.</span> <span class="toc-text">「三、JSX 元素和 JSX 标签类型之间解耦类型检查」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「带命名空间的-JSX-标签」"  data-scroll-to="#「带命名空间的-JSX-标签」"><span class="toc-number">4.</span> <span class="toc-text">「带命名空间的 JSX 标签」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「typeRoots-在模块解析中被查询」"  data-scroll-to="#「typeRoots-在模块解析中被查询」"><span class="toc-number">5.</span> <span class="toc-text">「typeRoots 在模块解析中被查询」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「JSX-标签支持链接光标」"  data-scroll-to="#「JSX-标签支持链接光标」"><span class="toc-number">6.</span> <span class="toc-text">「JSX 标签支持链接光标」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「-Param-JSDoc-标签中支持代码补全」"  data-scroll-to="#「-Param-JSDoc-标签中支持代码补全」"><span class="toc-number">7.</span> <span class="toc-text">「@Param JSDoc 标签中支持代码补全」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「优化」"  data-scroll-to="#「优化」"><span class="toc-number">8.</span> <span class="toc-text">「优化」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「避免不必要的类型实例化」"  data-scroll-to="#「避免不必要的类型实例化」"><span class="toc-number">9.</span> <span class="toc-text">「避免不必要的类型实例化」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「联合字面量类型检查优化」"  data-scroll-to="#「联合字面量类型检查优化」"><span class="toc-number">10.</span> <span class="toc-text">「联合字面量类型检查优化」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「进行-JSDoc-解析时减少对扫描器的调用」"  data-scroll-to="#「进行-JSDoc-解析时减少对扫描器的调用」"><span class="toc-number">11.</span> <span class="toc-text">「进行 JSDoc 解析时减少对扫描器的调用」</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#「总结」"  data-scroll-to="#「总结」"><span class="toc-number">12.</span> <span class="toc-text">「总结」</span></a></li></ol>
+</div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-calendar trm-icon"></i><br>
+            06/06
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-clock trm-icon"></i><br>
+            11:07
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-user trm-icon"></i><br>
+            ljylwnxx
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <p>2023 年 6 月 1 日，TypeScript5.1 正式发布了。新版本中新增了几个功能，一会儿带大家一起了解一下。<br>你可以通过以下命令进行安装新版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install typescript@beta</span><br></pre></td></tr></table></figure>
+
+<p>新版本中新增了以下主要功能：</p>
+<ul>
+<li>改进函数返回值类型 undefined 的类型推断</li>
+<li>getter 和 setter 支持设置不同类型</li>
+<li>JSX 元素和 JSX 标签类型之间解耦类型检查</li>
+<li>带命名空间的 JSX 标签</li>
+<li>typeRoots 在模块解析中被查询</li>
+<li>JSX 标签支持链接光标</li>
+<li>@Param JSDoc 标签中支持代码补全</li>
+<li>优化<br>接下来我们就一起来了解一下新增的功能。</li>
+</ul>
+<h1 id="「一、改进函数返回值类型-undefined-的类型推断」"><a href="#「一、改进函数返回值类型-undefined-的类型推断」" class="headerlink" title="「一、改进函数返回值类型 undefined 的类型推断」"></a>「一、改进函数返回值类型 undefined 的类型推断」</h1><p>在 JavaScript 中，如果函数没有返回值，就会返回 undefined，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  // 没有 return</span><br><span class="line">&#125;</span><br><span class="line">// x = undefined</span><br><span class="line">let x = foo()</span><br></pre></td></tr></table></figure>
+
+<p>在以前版本的 TypeScript 中，只有返回值类型为 void 和 any 的函数可以没有 return 语句。这意味着，即使明确知道这个函数是返回 undefined 的，也需要至少有一个 return 语句。如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// ✅ 推断 f1 返回 void</span><br><span class="line">function f1() &#123;</span><br><span class="line">  // no returns</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// ✅ void 不需要 return 语句</span><br><span class="line">function f2(): void &#123;</span><br><span class="line">  // no returns</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//  ✅ any 不需要 return 语句</span><br><span class="line">function f3(): any &#123;</span><br><span class="line">  // no returns</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// ❌ 声明类型既不是 void 也不是 any 的函数必须返回一个值。</span><br><span class="line">function f4(): undefined &#123;</span><br><span class="line">  // no returns</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们有时候可能会希望函数返回 undefined 。在之前的版本中，可能需要显式返回一个 undefined 或者显式添加一个 return 语句。如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">declare function takesFunction(f: () =&gt; undefined): undefined</span><br><span class="line"></span><br><span class="line">// ❌ 类型“() =&gt; void”的参数不能赋给类型“() =&gt; undefined”的参数。不能将类型“void”分配给类型“undefined”。</span><br><span class="line">takesFunction(() =&gt; &#123;</span><br><span class="line">  // no returns</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// ❌ 其声明类型不为 &quot;void&quot; 或 &quot;any&quot; 的函数必须返回值。</span><br><span class="line">takesFunction((): undefined =&gt; &#123;</span><br><span class="line">  // no returns</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// ❌ 类型“() =&gt; void”的参数不能赋给类型“() =&gt; undefined”的参数。不能将类型“void”分配给类型“undefined”。</span><br><span class="line">takesFunction(() =&gt; &#123;</span><br><span class="line">  return</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// ✅ 显式返回 undefined</span><br><span class="line">takesFunction(() =&gt; &#123;</span><br><span class="line">  return undefined</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// ✅ 显式添加 return 语句</span><br><span class="line">takesFunction((): undefined =&gt; &#123;</span><br><span class="line">  return</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在 TypeScript5.1 版本中，就允许返回 undefined 的函数没有 return 语句。如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// ✅</span><br><span class="line">function f4(): undefined &#123;</span><br><span class="line">  // no returns</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// ✅</span><br><span class="line">takesFunction((): undefined =&gt; &#123;</span><br><span class="line">  // no returns</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果函数没有 return 并且被传递给期望返回 undefined 的函数参数，TypeScript 会推断该函数的返回类型为 undefined。如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// ✅</span><br><span class="line">takesFunction(function f() &#123;</span><br><span class="line">  // ^ 返回值类型为 undefined</span><br><span class="line"></span><br><span class="line">  // no returns</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// ✅</span><br><span class="line">takesFunction(function f() &#123;</span><br><span class="line">  // ^ 返回值类型为 undefined</span><br><span class="line">  return</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>为了解决另一个类似的痛点，在 TypeScript 的 –noImplicitReturns 选项下，仅返回 undefined 的函数现在具有与 void 类似的异常，因为并非每个代码路径都必须以显式 return 结束。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// ✅ 启用 &#x27;--noImplicitReturns&#x27;</span><br><span class="line">function f(): undefined &#123;</span><br><span class="line">  if (Math.random()) &#123;</span><br><span class="line">    // ...</span><br><span class="line">    return</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="「二、getter-和-setter-支持设置不同类型」"><a href="#「二、getter-和-setter-支持设置不同类型」" class="headerlink" title="「二、getter 和 setter 支持设置不同类型」"></a>「二、getter 和 setter 支持设置不同类型」</h1><p>在 TypeScript 4.3 版本中， get 和 set 访问器对可以指定两种不同的类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">interface Serializer &#123;</span><br><span class="line">  set value(v: string | number | boolean)</span><br><span class="line">  get value(): string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare let box: Serializer</span><br><span class="line"></span><br><span class="line">// 允许赋值为 &#x27;boolean&#x27;</span><br><span class="line">box.value = true</span><br><span class="line"></span><br><span class="line">// 类型为 &#x27;string&#x27;</span><br><span class="line">console.log(box.value.toUpperCase())</span><br></pre></td></tr></table></figure>
+
+<p>刚开始要求 get 类型必须是 set 类型的子类型。如以下写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">box.value = box.value</span><br></pre></td></tr></table></figure>
+
+<p>但是也存在现有的和提议的 API 在它们的 getter 和 setter 之间具有完全不相关的类型。<br>例如，一个最常见的例子——DOM 和 CSSStyleRule API 中的 style 属性。每个样式规则都有一个 style 属性，即 CSSStyleDeclaration；但是，如果尝试写入该属性，它只能使用字符串才有效。<br>在新版本 TypeScript 5.1 版本中，允许 get 和 set 访问器属性设置不同的类型，前提是它们具有显式类型注释。虽然此版本的 TypeScript 尚未更改这些内置接口的类型，但现在可以通过以下方式定义 CSSStyleRule：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">interface CSSStyleRule &#123;</span><br><span class="line">    get style(): CSSStyleDeclaration</span><br><span class="line">    set style(newValue: string)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也允许以下方式使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class SafeBox &#123;</span><br><span class="line">    #value: string | undefined</span><br><span class="line">    // 只接受字符串</span><br><span class="line">    set value(newValue: string) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    // 必须检查 undefined</span><br><span class="line">    get value(): string | undefined &#123;</span><br><span class="line">        return this.#value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这就类似于在 –exactOptionalProperties 下检查可选属性的方式。</p>
+<h1 id="「三、JSX-元素和-JSX-标签类型之间解耦类型检查」"><a href="#「三、JSX-元素和-JSX-标签类型之间解耦类型检查」" class="headerlink" title="「三、JSX 元素和 JSX 标签类型之间解耦类型检查」"></a>「三、JSX 元素和 JSX 标签类型之间解耦类型检查」</h1><p>TypeScript 对 JSX 的一个痛点是它对每个 JSX 元素标签类型的要求。此版本的 TypeScript 使 JSX 库可以更准确地描述 JSX 组件可以返回的内容，这具体意味着可以在 React 中使用异步服务端组件。<br>例如，有以下 JSX 元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//  自闭合的 JSX 标签</span><br><span class="line">&lt;Foo /&gt;</span><br><span class="line"></span><br><span class="line">// 带有开始/结束标签的常规元素</span><br><span class="line">&lt;Bar&gt;&lt;/Bar&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当对 <Foo /> 或 <Bar></Bar> 进行类型检查时，TypeScript 总是会查找名为 JSX 的命名空间，并从中获取一个名为 Element 的类型，也就是在查找 JSX.Element。<br>但是为了检查 Foo 或 Bar 本身是否是有效的标签名称，TypeScript 会粗略地获取由 Foo 或 Bar 返回或构造的类型，并检查与 JSX.Element 的兼容性（或者如果类型是可构造的，则检查另一种称为 JSX.ElementClass 的类型）。<br>这个限制意味着如果组件返回比 JSX.Element 更广泛的类型，则无法使用组件。例如，JSX 库可能可以接受一个返回字符串或 Promise 的组件。举一个具体的例子，React 的未来版本提议对返回 Promise 的组件提供有限支持，但是现有版本的 TypeScript 无法表达这种类型，除非彻底放宽 JSX.Element 的类型限制。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import * as React from &quot;react&quot;</span><br><span class="line"></span><br><span class="line">async function Foo() &#123;</span><br><span class="line">    return &lt;div&gt;&lt;/div&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let element = &lt;Foo /&gt;</span><br><span class="line">// “Foo”不能用作 JSX 组件。其返回类型 &quot;Promise&lt;Element&gt;&quot; 不是有效的 JSX 元素。</span><br></pre></td></tr></table></figure>
+
+<p>为了向库提供一种表达方式，TypeScript 5.1 现在会查找名为 JSX.ElementType 的类型。ElementType 精确指定什么可以有效用作 JSX 元素中的标签。因此，现在它的类型可能会被定义为类似于以下这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">namespace JSX &#123;</span><br><span class="line">    export type ElementType =</span><br><span class="line">        // 所有有效的小写标签</span><br><span class="line">        keyof IntrinsicAttributes</span><br><span class="line">        // 函数组件</span><br><span class="line">        (props: any) =&gt; Element</span><br><span class="line">        // 类组件</span><br><span class="line">        new (props: any) =&gt; ElementClass;</span><br><span class="line"></span><br><span class="line">    export interface IntrinsictAttributes extends /*...*/ &#123;&#125;</span><br><span class="line">    export type Element = /*...*/;</span><br><span class="line">    export type ClassElement = /*...*/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="「带命名空间的-JSX-标签」"><a href="#「带命名空间的-JSX-标签」" class="headerlink" title="「带命名空间的 JSX 标签」"></a>「带命名空间的 JSX 标签」</h1><p>TypeScript 现在支持在使用 JSX 时使用带命名空间的属性名。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import * as React from &quot;react&quot;</span><br><span class="line"></span><br><span class="line">// 这两个是等价的：</span><br><span class="line">const x = &lt;Foo a:b=&quot;hello&quot; /&gt;</span><br><span class="line">const y = &lt;Foo a : b=&quot;hello&quot; /&gt;</span><br><span class="line"></span><br><span class="line">interface FooProps &#123;</span><br><span class="line">    &quot;a:b&quot;: string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Foo(props: FooProps) &#123;</span><br><span class="line">    return &lt;div&gt;&#123;props[&quot;a:b&quot;]&#125;&lt;/div&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当名称的第一部分是小写字母时，在 JSX.IntrinsicAttributes 上以类似的方式查找命名空间标签名称。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 在某些库的代码中或在该库的扩展中：</span><br><span class="line">namespace JSX &#123;</span><br><span class="line">    interface IntrinsicElements &#123;</span><br><span class="line">        [&quot;a:b&quot;]: &#123; prop: string &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 在我们的代码中：</span><br><span class="line">let x = &lt;a:b prop=&quot;hello!&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="「typeRoots-在模块解析中被查询」"><a href="#「typeRoots-在模块解析中被查询」" class="headerlink" title="「typeRoots 在模块解析中被查询」"></a>「typeRoots 在模块解析中被查询」</h1><p>当 TypeScript 指定的模块查找策略无法解析路径时，它现在将解析相对于指定 typeRoots 的包。</p>
+<h1 id="「JSX-标签支持链接光标」"><a href="#「JSX-标签支持链接光标」" class="headerlink" title="「JSX 标签支持链接光标」"></a>「JSX 标签支持链接光标」</h1><p>TypeScript 现在支持 JSX 标签名称的链接编辑。也就是在编辑开始/结束标签时，会自动修改结束/开始标签。<br><img src="/2023/06/06/TypeScript5.1%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/image.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>这项新功能应该适用于 TypeScript 和 JavaScript 文件，并且可以在 Visual Studio Code Insiders 中启用。在 Visual Studio Code 中，勾选 Editor: Linked Editing 选项即可：<br><img src="/2023/06/06/TypeScript5.1%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/image-1.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>或者在 JSON 设置文件中配置 editor.linkedEditing：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  // ...</span><br><span class="line">  &quot;editor.linkedEditing&quot;: true,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Visual Studio 17.7 Preview 1 也将支持此功能。</p>
+<h1 id="「-Param-JSDoc-标签中支持代码补全」"><a href="#「-Param-JSDoc-标签中支持代码补全」" class="headerlink" title="「@Param JSDoc 标签中支持代码补全」"></a>「@Param JSDoc 标签中支持代码补全」</h1><p>在 TypeScript 和 JavaScript 文件中输入 @param 标签时，TypeScript 现在提供代码补全。<br><img src="/2023/06/06/TypeScript5.1%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/image-2.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h1 id="「优化」"><a href="#「优化」" class="headerlink" title="「优化」"></a>「优化」</h1><h1 id="「避免不必要的类型实例化」"><a href="#「避免不必要的类型实例化」" class="headerlink" title="「避免不必要的类型实例化」"></a>「避免不必要的类型实例化」</h1><p>TypeScript 5.1 现在避免在已知不包含对外部类型参数的引用的对象类型中执行类型实例化。这有可能减少许多不必要的计算，并将 material-ui 的文档目录的类型检查时间减少 50% 以上。</p>
+<h1 id="「联合字面量类型检查优化」"><a href="#「联合字面量类型检查优化」" class="headerlink" title="「联合字面量类型检查优化」"></a>「联合字面量类型检查优化」</h1><p>在检查源类型是否属于联合类型时，TypeScript 首先将使用该源类型的内部类型标识符进行快速查找。如果查找失败，则 TypeScript 会针对联合类型中的每种类型检查其兼容性。当将字面类型与仅包含字面类型的联合类型相关联时，TypeScript 现在可以避免针对联合类型中的每种其他类型进行完整遍历。</p>
+<p>这种优化可以将此问题中的代码的类型检查时间从约 45 秒减少到约 0.4 秒。</p>
+<h1 id="「进行-JSDoc-解析时减少对扫描器的调用」"><a href="#「进行-JSDoc-解析时减少对扫描器的调用」" class="headerlink" title="「进行 JSDoc 解析时减少对扫描器的调用」"></a>「进行 JSDoc 解析时减少对扫描器的调用」</h1><p>当旧版本的 TypeScript 分析 JSDoc 注释时，它们会使用扫描器/分词器将注释分解为细粒度的标记并将内容拼凑在一起。这可能有助于规范化注释文本，这样多个空格就会合并为一个。但这也意味着解析器和扫描器会经常来回跳转，从而增加 JSDoc 解析的开销。</p>
+<p>TypeScript 5.1 在将 JSDoc 注释分解为扫描器/分词器方面更改了逻辑。扫描器现在将更大的内容块直接返回给解析器，以便根据需要进行处理。</p>
+<p>这些更改已将几个 10Mb 的主要是注释的 JavaScript 文件的解析时间缩短了大约一半。</p>
+<h1 id="「总结」"><a href="#「总结」" class="headerlink" title="「总结」"></a>「总结」</h1><p>以上新增的功能，还在了解学习中……</p>
+
+</article>
+    
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2023/05/18/Nuxt3-5%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/vue/">
+                    vue
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/05/18/Nuxt3-5%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/" class="trm-anima-link">
+                    Nuxt3.5正式发布
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/05/18</li>
+                <li>20:48</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2023</span>
+            <span class="footer-separator"data-separator=" | "></span>
+            <span class="trm-accent-color">LjylWnxx</span>
+        </div>
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.2
+            </span>
+        </div>
+      
+
+    
+        <div class="trm-footer-item">
+            博客已运行 <span id="since" class="trm-accent-color"></span> 天
+        </div>
+     
+
+     
+</footer>
+
+<script>
+    function show_date_time () {
+        var BirthDay = new Date("08/16/2022 21:45:54");
+        var today = new Date();
+        var timeold = (today.getTime() - BirthDay.getTime());
+        var msPerDay = 24 * 60 * 60 * 1000
+        var day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont iconfont icon-read"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
+            <i class="iconfont iconfont icon-arrows-h"></i>
+        </div>
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont iconfont icon-i-back-top"></i>
+    </div>
+</div>
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont iconfont icon-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont iconfont icon-close"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=2.0.7"></script>
+    
+
+    
+        
+<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=2.0.7"></script>
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=2.0.7"></script>
+
+</body>
+
+</html>
