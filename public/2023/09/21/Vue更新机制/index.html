@@ -7,18 +7,23 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="这是一个博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljylwnxx的博客">
-<meta property="og:url" content="http://example.com/tags/Nuxt/index.html">
+<meta name="description" content="Vue 使用著名的响应式系统来收集依赖和派发更新，当模板中数据发生变化时，组件的 render 函数会被作为数据的依赖而被触发，只不过这个触发并不是立刻的，因为模板中会引用很多数据，render 同时是这些所有数据的依赖项，如果 render 每次都立刻执行，则会造成多次重复渲染而消耗性能。实际上 render 是被 update 调用的，而 update 又是 Watcher 调用的，而 Wat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue更新机制">
+<meta property="og:url" content="http://example.com/2023/09/21/Vue%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="这是一个博客">
+<meta property="og:description" content="Vue 使用著名的响应式系统来收集依赖和派发更新，当模板中数据发生变化时，组件的 render 函数会被作为数据的依赖而被触发，只不过这个触发并不是立刻的，因为模板中会引用很多数据，render 同时是这些所有数据的依赖项，如果 render 每次都立刻执行，则会造成多次重复渲染而消耗性能。实际上 render 是被 update 调用的，而 update 又是 Watcher 调用的，而 Wat">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2023-09-21T13:34:43.000Z">
+<meta property="article:modified_time" content="2023-09-21T13:58:27.152Z">
 <meta property="article:author" content="ljylwnxx">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
 
 
-<title >ljylwnxx的博客</title>
+<title >Vue更新机制</title>
 
 <!-- Favicon -->
 
@@ -59,7 +64,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":false,"postUpdate":"2023-09-21 2023-09-21T22:02:10+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-09-21 2023-09-21T21:58:27+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
@@ -241,7 +246,8 @@
             <!-- top bar end -->
 
             <!-- body -->
-            <div class="trm-content-start">
+            
+<div class="trm-content-start">
     <!-- banner -->
     <div class="trm-banner" data-scroll data-scroll-direction="vertical">
     
@@ -262,10 +268,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            The article tag
+                            NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            让代码没有Bug,<br>世界永远和平。
+                            Vue更新机制
                         </h1>
                             
                         <!-- 
@@ -275,7 +281,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        tags
+                                        2023
                                     </span
                                 ></li>
                             </ul>
@@ -377,16 +383,83 @@
                 <div class="trm-content" id="trm-content">
                     <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
 
-                    <div class="row">
-    <div class="col-lg-12">
-        <div class="trm-card">
-            <div style="padding: 0 20px;">
-                <!-- <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Nuxt/" style="font-size: 20px;">Nuxt</a> <a href="/tags/TypeScript/" style="font-size: 20px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 26.4px;">Vue</a> <a href="/tags/Vuex/" style="font-size: 26.4px;">Vuex</a> <a href="/tags/Webpack/" style="font-size: 20px;">Webpack</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 20px;">markdown</a> <a href="/tags/npm/" style="font-size: 20px;">npm</a> <a href="/tags/vite/" style="font-size: 20px;">vite</a> <a href="/tags/vue/" style="font-size: 32.8px;">vue</a> <a href="/tags/vue-cropper/" style="font-size: 20px;">vue-cropper</a> <a href="/tags/vue3/" style="font-size: 36px;">vue3</a> <a href="/tags/webpack/" style="font-size: 29.6px;">webpack</a> <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" style="font-size: 23.2px;">微前端</a> <a href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 20px;">搭建博客</a> <a href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/" style="font-size: 23.2px;">模块化</a> <a href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" style="font-size: 20px;">深浅拷贝</a> <a href="/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 20px;">跨域</a> -->
-                <ul class="row trm-tag-list trm-list" itemprop="keywords"><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/Nuxt/" rel="tag">Nuxt</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/TypeScript/" rel="tag">TypeScript</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">3</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/Vuex/" rel="tag">Vuex</a><span class="tag-list-count">3</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vite/" rel="tag">vite</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a><span class="tag-list-count">5</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vue-cropper/" rel="tag">vue-cropper</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/vue3/" rel="tag">vue3</a><span class="tag-list-count">16</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" rel="tag">微前端</a><span class="tag-list-count">2</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="tag">搭建博客</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/" rel="tag">模块化</a><span class="tag-list-count">2</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" rel="tag">深浅拷贝</a><span class="tag-list-count">1</span></li><li class="col-lg-4 trm-list-item"><a class="tag-list-link" href="/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a><span class="tag-list-count">1</span></li></ul>
-            </div>
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-calendar trm-icon"></i><br>
+            09/21
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-clock trm-icon"></i><br>
+            21:34
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont iconfont icon-user trm-icon"></i><br>
+            ljylwnxx
         </div>
     </div>
 </div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <p>Vue 使用著名的响应式系统来收集依赖和派发更新，当模板中数据发生变化时，组件的 render 函数会被作为数据的依赖而被触发，只不过这个触发并不是立刻的，因为模板中会引用很多数据，render 同时是这些所有数据的依赖项，如果 render 每次都立刻执行，则会造成多次重复渲染而消耗性能。<br>实际上 render 是被 update 调用的，而 update 又是 Watcher 调用的，而 Watcher 在收到 Dep 的派发更新时会把自身交给 Scheduler ，由 Scheduler 负责对其去重并通过 nextTick() 将这些 Watcher 包装成微任务放入到事件循环中等待调用。<br>render 执行输出的结果是一颗新的虚拟 DOM 树，然后 update 会通过 patch 函数将它与旧的虚拟 DOM 树进行对比，diff 和真实 DOM 的操作过程既是在 patch 函数中进行。<br>所以，其实 Vue 的整个更新任务（构建虚拟 DOM ，diff，操作真实 DOM）可以算作一个整体，这个整体被当作微任务来处理，这也就是 Vue 异步更新的原理。<br>最后附上一张 Vue 官方文档的流程图：<br><img src="/2023/09/21/Vue%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br>触发更新机制：Vue 是通过响应式系统自动及时的进行触发，而 React 则是通过用户更改状态的操作然后进行一系列调度来触发更新。</p>
+<p>任务的区别：Vue 会将任务包装成微任务，而 React 则是将其包装成宏任务。<br>虽然都是异步任务，但它们有很大区别。在事件循环中，如果有微任务存在则会先一直执行微任务，直到把微任务队列清空，然后再执行宏任务，并且在每个宏任务执行完毕后，会立即检查并执行所有微任务，然后再进行下一个宏任务的执行。<br>先明确一点：异步任务执行时是由主线程进行执行的，所以此时它们已经相当于是同步执行了（这个异步实际指的是异步任务在任务队列里面等待的时候不会影响主线程的执行）<br>微任务执行时不会穿插其它任务（比如浏览器渲染），所以当有大量微任务堆积时可能就会阻塞浏览器渲染（异步任务），但执行完一个宏任务时如果遇到浏览器需要渲染，则不会继续执行下一个宏任务而是转去进行浏览器渲染然后开启新的一轮事件循环。</p>
+<p>因为 React 的 Fiber 架构的出现就是为了能够随时打断，把控制权交给主线程，所以 React 采用的是宏任务，而不是会一股脑 “ 全冲完 ” 的微任务，这样可以避免微任务过多而导致的任务堆积和性能问题。<br>也正是因为 Vue 的理念是追求响应性和即时效果并避免过多的渲染，所以它采用微任务，及时把更新任务处理完，最后让浏览器渲染一次即可。<br>其实现如今，React 和 Vue 都不是完全使用某一种任务，在一些情况下 React 也会使用微任务，Vue 亦是如此，它们的目标都是想要结合自身情况来创造一个更优秀的框架。</p>
+<p>diff 算法的不同：Vue 采用双端对比，而 React 使用的是 Reconciliation 算法。</p>
+
+</article>
+    
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2023/06/06/TypeScript5.1%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/TypeScript/">
+                    TypeScript
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/06/06/TypeScript5.1%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/" class="trm-anima-link">
+                    TypeScript5.1正式发布
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/06/06</li>
+                <li>11:07</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
 
                     <div class="trm-divider footer-divider"></div>
 
@@ -442,6 +515,10 @@
             <!-- body end -->
 
             <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont iconfont icon-read"></i>
+        </div>
     
     
         <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
@@ -527,6 +604,10 @@
     
 
     <!-- 评论插件 -->
+    
+        
+
+        
     
 
 
