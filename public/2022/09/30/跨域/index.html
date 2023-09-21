@@ -7,18 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="一、跨域是什么？1.同源策略跨域问题其实就是浏览器的同源策略所导致的。「同源策略」是一个重要的安全策略，它用于限制一个origin的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。只有当「protocol（协议）、domain（域名）、port（端口）三者一致。」才是同源。 二、如何解决跨域？方式一：使用 ajax 的 jsonp使用该方式的缺点：请">
+<meta name="description" content="一、跨域是什么？跨域：当前页面中的某个接口请求的地址和当前页面的地址如果协议、域名、端口其中有一项不同，就说该接口跨域了。在前后端分离的模式下，前后端的域名是不一致的，此时就会发生跨域访问问题。在请求的过程中我们要想回去数据一般都是 post&#x2F;get 请求， 所以跨域问题出现。 跨域报错信息： 跨域限制的原因：浏览器为了保证网页的安全，出的同源协议策略。同源策略跨域问题其实就是浏览器的同源策略所导">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跨域">
 <meta property="og:url" content="http://example.com/2022/09/30/%E8%B7%A8%E5%9F%9F/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="一、跨域是什么？1.同源策略跨域问题其实就是浏览器的同源策略所导致的。「同源策略」是一个重要的安全策略，它用于限制一个origin的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。只有当「protocol（协议）、domain（域名）、port（端口）三者一致。」才是同源。 二、如何解决跨域？方式一：使用 ajax 的 jsonp使用该方式的缺点：请">
+<meta property="og:description" content="一、跨域是什么？跨域：当前页面中的某个接口请求的地址和当前页面的地址如果协议、域名、端口其中有一项不同，就说该接口跨域了。在前后端分离的模式下，前后端的域名是不一致的，此时就会发生跨域访问问题。在请求的过程中我们要想回去数据一般都是 post&#x2F;get 请求， 所以跨域问题出现。 跨域报错信息： 跨域限制的原因：浏览器为了保证网页的安全，出的同源协议策略。同源策略跨域问题其实就是浏览器的同源策略所导">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
 <meta property="article:published_time" content="2022-09-30T04:30:52.000Z">
-<meta property="article:modified_time" content="2023-03-22T06:09:11.591Z">
+<meta property="article:modified_time" content="2023-09-21T07:02:10.987Z">
 <meta property="article:author" content="ljylwnxx">
 <meta property="article:tag" content="跨域">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
 
 
 <title >跨域</title>
@@ -62,7 +65,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-03-22 2023-03-22T14:09:11+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-09-21 2023-09-21T15:02:10+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
@@ -384,7 +387,7 @@
             </div>
             <div name="tabs-toc" class="trm-tabs-item active">
                 <div class="post-toc">
-    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#一、跨域是什么？"  data-scroll-to="#一、跨域是什么？"><span class="toc-number">1.</span> <span class="toc-text">一、跨域是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#1-同源策略"  data-scroll-to="#1-同源策略"><span class="toc-number">1.1.</span> <span class="toc-text">1.同源策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#二、如何解决跨域？"  data-scroll-to="#二、如何解决跨域？"><span class="toc-number">2.</span> <span class="toc-text">二、如何解决跨域？</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#方式二：使用-jQuery-的-jsonp-插件"  data-scroll-to="#方式二：使用-jQuery-的-jsonp-插件"><span class="toc-number">3.</span> <span class="toc-text">方式二：使用 jQuery 的 jsonp 插件</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#方式三：使用-cors"  data-scroll-to="#方式三：使用-cors"><span class="toc-number">4.</span> <span class="toc-text">方式三：使用 cors</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#方式四：使用-Nginx-反向代理"  data-scroll-to="#方式四：使用-Nginx-反向代理"><span class="toc-number">5.</span> <span class="toc-text">方式四：使用 Nginx 反向代理</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#一、跨域是什么？"  data-scroll-to="#一、跨域是什么？"><span class="toc-number">1.</span> <span class="toc-text">一、跨域是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#跨域："  data-scroll-to="#跨域："><span class="toc-number">1.1.</span> <span class="toc-text">跨域：</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#跨域报错信息："  data-scroll-to="#跨域报错信息："><span class="toc-number">1.2.</span> <span class="toc-text">跨域报错信息：</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#跨域限制的原因：浏览器为了保证网页的安全，出的同源协议策略。"  data-scroll-to="#跨域限制的原因：浏览器为了保证网页的安全，出的同源协议策略。"><span class="toc-number">1.3.</span> <span class="toc-text">跨域限制的原因：浏览器为了保证网页的安全，出的同源协议策略。</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#同源策略"  data-scroll-to="#同源策略"><span class="toc-number">1.4.</span> <span class="toc-text">同源策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#二、如何解决跨域？"  data-scroll-to="#二、如何解决跨域？"><span class="toc-number">2.</span> <span class="toc-text">二、如何解决跨域？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#跨域解决方案"  data-scroll-to="#跨域解决方案"><span class="toc-number">2.1.</span> <span class="toc-text">跨域解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#方式一：cors"  data-scroll-to="#方式一：cors"><span class="toc-number">2.1.1.</span> <span class="toc-text">方式一：cors</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#方式二：nginx-反向代理"  data-scroll-to="#方式二：nginx-反向代理"><span class="toc-number">2.1.2.</span> <span class="toc-text">方式二：nginx 反向代理</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#方式三：JSONP"  data-scroll-to="#方式三：JSONP"><span class="toc-number">2.1.3.</span> <span class="toc-text">方式三：JSONP</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#方式四：使用-jQuery-的-jsonp-插件"  data-scroll-to="#方式四：使用-jQuery-的-jsonp-插件"><span class="toc-number">2.1.4.</span> <span class="toc-text">方式四：使用 jQuery 的 jsonp 插件</span></a></li></ol></li></ol></li></ol>
 </div>
             </div>
         </div>
@@ -420,11 +423,18 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    <h1 id="一、跨域是什么？"><a href="#一、跨域是什么？" class="headerlink" title="一、跨域是什么？"></a>一、跨域是什么？</h1><h2 id="1-同源策略"><a href="#1-同源策略" class="headerlink" title="1.同源策略"></a>1.同源策略</h2><p>跨域问题其实就是浏览器的同源策略所导致的。<br>「同源策略」是一个重要的安全策略，它用于限制一个origin的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。<br>只有当「protocol（协议）、domain（域名）、port（端口）三者一致。」才是同源。</p>
-<h1 id="二、如何解决跨域？"><a href="#二、如何解决跨域？" class="headerlink" title="二、如何解决跨域？"></a>二、如何解决跨域？</h1><p>方式一：使用 ajax 的 jsonp<br>使用该方式的缺点：请求方式只能是 get 请求</p>
-<h1 id="方式二：使用-jQuery-的-jsonp-插件"><a href="#方式二：使用-jQuery-的-jsonp-插件" class="headerlink" title="方式二：使用 jQuery 的 jsonp 插件"></a>方式二：使用 jQuery 的 jsonp 插件</h1><p>特点： get 请求、 post 请求；<br>但从服务器从获取的数据，依然是 jsonp 格式。</p>
-<h1 id="方式三：使用-cors"><a href="#方式三：使用-cors" class="headerlink" title="方式三：使用 cors"></a>方式三：使用 cors</h1><p>使用该方式的特点：与前两种方式相比，前端代码和未处理跨域前一样，即普通的 ajax 请求，但服务器代码添加了一段解决跨域的代码。</p>
-<h1 id="方式四：使用-Nginx-反向代理"><a href="#方式四：使用-Nginx-反向代理" class="headerlink" title="方式四：使用 Nginx 反向代理"></a>方式四：使用 Nginx 反向代理</h1><p>Nginx 则是通过反向代理的方式，（这里也需要自定义一个域名）这里就是保证我当前域，能获取到静态资源和接口，不关心是怎么获取的。</p>
+    <h1 id="一、跨域是什么？"><a href="#一、跨域是什么？" class="headerlink" title="一、跨域是什么？"></a>一、跨域是什么？</h1><h2 id="跨域："><a href="#跨域：" class="headerlink" title="跨域："></a>跨域：</h2><p>当前页面中的某个接口请求的地址和当前页面的地址如果协议、域名、端口其中有一项不同，就说该接口跨域了。在前后端分离的模式下，前后端的域名是不一致的，此时就会发生跨域访问问题。在请求的过程中我们要想回去数据一般都是 post/get 请求， 所以跨域问题出现。</p>
+<h2 id="跨域报错信息："><a href="#跨域报错信息：" class="headerlink" title="跨域报错信息："></a>跨域报错信息：</h2><p><img src="/2022/09/30/%E8%B7%A8%E5%9F%9F/%E8%B7%A8%E5%9F%9F.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h2 id="跨域限制的原因：浏览器为了保证网页的安全，出的同源协议策略。"><a href="#跨域限制的原因：浏览器为了保证网页的安全，出的同源协议策略。" class="headerlink" title="跨域限制的原因：浏览器为了保证网页的安全，出的同源协议策略。"></a>跨域限制的原因：浏览器为了保证网页的安全，出的同源协议策略。</h2><h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>跨域问题其实就是浏览器的同源策略所导致的。<br>「同源策略」是一个重要的安全策略，它用于限制一个 origin 的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。<br>只有当「protocol（协议）、domain（域名）、port（端口）三者一致」才是同源。</p>
+<h1 id="二、如何解决跨域？"><a href="#二、如何解决跨域？" class="headerlink" title="二、如何解决跨域？"></a>二、如何解决跨域？</h1><h2 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h2><h3 id="方式一：cors"><a href="#方式一：cors" class="headerlink" title="方式一：cors"></a>方式一：cors</h3><p>目前最常用的一种解决办法，通过设置后端允许跨域实现。它允许浏览器向跨源服务器，发出 XMLHttpRequest 请求，从而克服了 AJAX 只能同源使用的限制。CORS 需要浏览器和服务器同时支持。</p>
+<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><p>我们的服务器端需要设置一个源，这个源可以写*(具体地址)，此处的*表示可以携带多个源，表示支持多源，就不能再允许携带 cookie 了（因为设置了多源，浏览器为了保证 cookie 的安全，所以设置为不允许携带）<br>res.setHeader(‘Access-Control-Allow-Origin’, ‘*‘);<br>res.setHeader(“Access-Control-Allow-Methods”, “GET, PUT, OPTIONS, POST”)</p>
+<h3 id="方式二：nginx-反向代理"><a href="#方式二：nginx-反向代理" class="headerlink" title="方式二：nginx 反向代理"></a>方式二：nginx 反向代理</h3><p>跨域限制的时候浏览器不能跨域访问服务器， nginx 反向代理，让请求发给代理服务器，静态页面和代理服务器是同源的，然后代理服务器再向后端服务器发请求，服务器和服务器之间不存在同源限制。nginx 则是通过反向代理的方式，（这里也需要自定义一个域名）这里就是保证我当前域，能获取到静态资源和接口，不关心是怎么获取的。</p>
+<h3 id="方式三：JSONP"><a href="#方式三：JSONP" class="headerlink" title="方式三：JSONP"></a>方式三：JSONP</h3><p>利用的原理是 script 标签可以跨域请求资源，将回调函数作为参数拼接在 url 中。后端收到请求，调用该回调函数，并将数据作为参数返回去，注意设置响应头返回文档类型，应该设置成 javascript。</p>
+<h4 id="jsonp-的作用"><a href="#jsonp-的作用" class="headerlink" title="jsonp 的作用"></a>jsonp 的作用</h4><p>利用浏览器的同源策略，解决跨域问题</p>
+<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><p>简单适用，兼容性好（可以兼容低版本 IE）</p>
+<h4 id="缺点：-1"><a href="#缺点：-1" class="headerlink" title="缺点："></a>缺点：</h4><p>只支持 get 请求，不支持 post 请求，导致数据不安全。</p>
+<h3 id="方式四：使用-jQuery-的-jsonp-插件"><a href="#方式四：使用-jQuery-的-jsonp-插件" class="headerlink" title="方式四：使用 jQuery 的 jsonp 插件"></a>方式四：使用 jQuery 的 jsonp 插件</h3><h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4><p>get 请求、 post 请求；<br>但从服务器从获取的数据，依然是 jsonp 格式。</p>
+<p><img src="/2022/09/30/%E8%B7%A8%E5%9F%9F/%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
 
 </article>
     
