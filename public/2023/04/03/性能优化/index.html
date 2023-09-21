@@ -15,7 +15,7 @@
 <meta property="og:description" content="一、代码层面的优化1.1、 v-if 和 v-show 区分使用场景v-if 是 真正 的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建；也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。v-show 就简单得多， 不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 的 display 属性进行切换。所">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-03T13:52:16.000Z">
-<meta property="article:modified_time" content="2023-09-21T07:57:26.286Z">
+<meta property="article:modified_time" content="2023-09-21T08:58:53.697Z">
 <meta property="article:author" content="ljylwnxx">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
@@ -62,7 +62,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-09-21 2023-09-21T15:57:26+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-09-21 2023-09-21T16:58:53+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
@@ -498,6 +498,8 @@
 </ul>
 <h2 id="2-7、构建结果输出分析"><a href="#2-7、构建结果输出分析" class="headerlink" title="2.7、构建结果输出分析"></a>2.7、构建结果输出分析</h2><p>Webpack 输出的代码可读性非常差而且文件非常大，让我们非常头疼。为了更简单、直观地分析输出结果，社区中出现了许多可视化分析工具。这些工具以图形的方式将结果更直观地展示出来，让我们快速了解问题所在。接下来讲解我们在 Vue 项目中用到的分析工具：webpack-bundle-analyzer 。<br>我们在项目中 webpack.prod.conf.js 进行配置：<br>if (config.build.bundleAnalyzerReport) { var BundleAnalyzerPlugin = require(‘webpack-bundle-analyzer’).BundleAnalyzerPlugin; webpackConfig.plugins.push(new BundleAnalyzerPlugin()); }</p>
 <h2 id="2-8、Vue-项目的编译优化"><a href="#2-8、Vue-项目的编译优化" class="headerlink" title="2.8、Vue 项目的编译优化"></a>2.8、Vue 项目的编译优化</h2><p>如果你的 Vue 项目使用 Webpack 编译，需要你喝一杯咖啡的时间，那么也许你需要对项目的 Webpack 配置进行优化，提高 Webpack 的构建效率。具体如何进行 Vue 项目的 Webpack 构建优化，可以参考作者的另一篇文章《 Vue 项目 Webpack 优化实践》</p>
+<p>[<a target="_blank" rel="noopener" href="https://micro-frontends.org/]">https://micro-frontends.org/]</a></p>
+<p>[<a target="_blank" rel="noopener" href="https://martinfowler.com/articles/micro-frontends.html]">https://martinfowler.com/articles/micro-frontends.html]</a></p>
 
 </article>
     
