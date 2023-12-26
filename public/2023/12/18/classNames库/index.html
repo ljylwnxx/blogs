@@ -7,23 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="Vue 模板编译机制在 Vue 中，模板编译是将 Vue 模板转换为渲染函数的过程。Vue 模板是一种 HTML 扩展语言，支持添加一些特殊的指令和表达式。例如，可以使用 v-bind 指令绑定 HTML 属性，使用 v-on 指令添加事件处理程序，使用&amp;#123;&amp;#123; &amp;#125;&amp;#125;表达式插入动态数据等。 Vue 的模板编译过程可以分为三个阶段 解析阶段将模板解析为抽象语法树(">
+<meta name="description" content="简述classNames 是一个 JavaScript 库,用于动态生成 CSS 类名，根据不同的条件添加或移除 CSS 类名。简单来说就是动态地去操作类名，把符合条件的类名粘在一起，简化在 React 组件中处理类名的复杂逻辑。 安装（使用 npm）npm install classnames  引入在 nodejs 里引入var classNames &#x3D; require(&amp;#x27;class">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue更新机制">
-<meta property="og:url" content="http://example.com/2023/09/21/Vue%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:title" content="classNames库">
+<meta property="og:url" content="http://example.com/2023/12/18/classNames%E5%BA%93/index.html">
 <meta property="og:site_name" content="ljylwnxx的博客">
-<meta property="og:description" content="Vue 模板编译机制在 Vue 中，模板编译是将 Vue 模板转换为渲染函数的过程。Vue 模板是一种 HTML 扩展语言，支持添加一些特殊的指令和表达式。例如，可以使用 v-bind 指令绑定 HTML 属性，使用 v-on 指令添加事件处理程序，使用&amp;#123;&amp;#123; &amp;#125;&amp;#125;表达式插入动态数据等。 Vue 的模板编译过程可以分为三个阶段 解析阶段将模板解析为抽象语法树(">
+<meta property="og:description" content="简述classNames 是一个 JavaScript 库,用于动态生成 CSS 类名，根据不同的条件添加或移除 CSS 类名。简单来说就是动态地去操作类名，把符合条件的类名粘在一起，简化在 React 组件中处理类名的复杂逻辑。 安装（使用 npm）npm install classnames  引入在 nodejs 里引入var classNames &#x3D; require(&amp;#x27;class">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/404.jpg">
-<meta property="article:published_time" content="2023-09-21T13:34:43.000Z">
-<meta property="article:modified_time" content="2023-09-22T07:01:24.063Z">
+<meta property="article:published_time" content="2023-12-18T13:45:38.000Z">
+<meta property="article:modified_time" content="2023-12-26T08:55:31.517Z">
 <meta property="article:author" content="ljylwnxx">
-<meta property="article:tag" content="vue">
+<meta property="article:tag" content="classNames库">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/404.jpg">
 
 
-<title >Vue更新机制</title>
+<title >classNames库</title>
 
 <!-- Favicon -->
 
@@ -64,7 +62,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"ljylwnxx","root":"/","typed_text":["今日目标,没有bug","一行代码,定义无限可能","永不脱发,无Bug"],"theme_version":"2.0.7","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.png","icon32":"/img/favicon.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":null,"visibilitychange":true,"hidden":"/failure.png","showText":"(/≧▽≦/)咦！又好啦！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"iconfont icon-sun","moon":"iconfont icon-moon","play":"iconfont icon-play","email":"iconfont icon-email","next":"iconfont icon-xiayibu_next","calendar":"iconfont icon-calendar","clock":"iconfont icon-clock","user":"iconfont icon-user","back_top":"iconfont icon-i-back-top","close":"iconfont icon-close","search":"iconfont icon-search","user_tag":"iconfont icon-user-tag","toc_tag":"iconfont icon-fenleimulu","read":"iconfont icon-read","arrows":"iconfont icon-arrows-h","double_arrows":"iconfont icon-zhankai","copy":"iconfont icon-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"covers":["/images/defaultcover.png","/images/defaultimg.png","/images/defaultimg1.png","/images/defaultimg2.png","/images/defaultimg3.png","/images/defaultimg4.png","/images/defaultimg5.png","/images/defaultimg6.png","/images/defaultimg7.png","/images/default.png"],"search":{"enable":true,"domain":null,"type":"local","preload":true,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-09-22 2023-09-22T15:01:24+08:00"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-12-26 2023-12-26T16:55:31+08:00"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.7" id="trm-switch-style">
@@ -271,7 +269,7 @@
                             NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            Vue更新机制
+                            classNames库
                         </h1>
                             
                         <!-- 
@@ -386,7 +384,7 @@
             </div>
             <div name="tabs-toc" class="trm-tabs-item active">
                 <div class="post-toc">
-    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Vue-模板编译机制"  data-scroll-to="#Vue-模板编译机制"><span class="toc-number">1.</span> <span class="toc-text">Vue 模板编译机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Vue-的模板编译过程可以分为三个阶段"  data-scroll-to="#Vue-的模板编译过程可以分为三个阶段"><span class="toc-number">1.1.</span> <span class="toc-text">Vue 的模板编译过程可以分为三个阶段</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Vue-更新"  data-scroll-to="#Vue-更新"><span class="toc-number">2.</span> <span class="toc-text">Vue 更新</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Vue-渲染机制"  data-scroll-to="#Vue-渲染机制"><span class="toc-number">3.</span> <span class="toc-text">Vue 渲染机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Vue-组件挂载时会发生"  data-scroll-to="#Vue-组件挂载时会发生"><span class="toc-number">3.1.</span> <span class="toc-text">Vue 组件挂载时会发生</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Vue-的渲染过程可以分为以下几个步骤"  data-scroll-to="#Vue-的渲染过程可以分为以下几个步骤"><span class="toc-number">3.2.</span> <span class="toc-text">Vue 的渲染过程可以分为以下几个步骤</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Vue-官方文档图"  data-scroll-to="#Vue-官方文档图"><span class="toc-number">3.3.</span> <span class="toc-text">Vue 官方文档图</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#为什么-Vue-默认推荐使用模板，不是渲染函数呢？"  data-scroll-to="#为什么-Vue-默认推荐使用模板，不是渲染函数呢？"><span class="toc-number">4.</span> <span class="toc-text">为什么 Vue 默认推荐使用模板，不是渲染函数呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#原因"  data-scroll-to="#原因"><span class="toc-number">4.1.</span> <span class="toc-text">原因</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#Vue-与-React-更新机制区别"  data-scroll-to="#Vue-与-React-更新机制区别"><span class="toc-number">5.</span> <span class="toc-text">Vue 与 React 更新机制区别</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#简述"  data-scroll-to="#简述"><span class="toc-number">1.</span> <span class="toc-text">简述</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#安装（使用-npm）"  data-scroll-to="#安装（使用-npm）"><span class="toc-number">2.</span> <span class="toc-text">安装（使用 npm）</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#引入"  data-scroll-to="#引入"><span class="toc-number">3.</span> <span class="toc-text">引入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#在-nodejs-里引入"  data-scroll-to="#在-nodejs-里引入"><span class="toc-number">3.1.</span> <span class="toc-text">在 nodejs 里引入</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#在-js-里引入"  data-scroll-to="#在-js-里引入"><span class="toc-number">3.2.</span> <span class="toc-text">在 js 里引入</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#基本使用"  data-scroll-to="#基本使用"><span class="toc-number">4.</span> <span class="toc-text">基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#普通字符串粘合"  data-scroll-to="#普通字符串粘合"><span class="toc-number">4.1.</span> <span class="toc-text">普通字符串粘合</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#带条件的类参数"  data-scroll-to="#带条件的类参数"><span class="toc-number">4.2.</span> <span class="toc-text">带条件的类参数</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#参数类型是数组"  data-scroll-to="#参数类型是数组"><span class="toc-number">4.3.</span> <span class="toc-text">参数类型是数组</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#特别注意"  data-scroll-to="#特别注意"><span class="toc-number">4.4.</span> <span class="toc-text">特别注意</span></a></li></ol></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#在-React-中优雅地使用-classnames"  data-scroll-to="#在-React-中优雅地使用-classnames"><span class="toc-number">5.</span> <span class="toc-text">在 React 中优雅地使用 classnames</span></a></li><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#原理"  data-scroll-to="#原理"><span class="toc-number">6.</span> <span class="toc-text">原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#classNames-源码"  data-scroll-to="#classNames-源码"><span class="toc-number">6.1.</span> <span class="toc-text">classNames 源码</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#源码分析"  data-scroll-to="#源码分析"><span class="toc-number">6.2.</span> <span class="toc-text">源码分析</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#疑问"  data-scroll-to="#疑问"><span class="toc-number">6.3.</span> <span class="toc-text">疑问</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#使用示例"  data-scroll-to="#使用示例"><span class="toc-number">6.4.</span> <span class="toc-text">使用示例</span></a></li></ol></li></ol>
 </div>
             </div>
         </div>
@@ -404,13 +402,13 @@
     <div class="col-sm-4">
         <div class="trm-card trm-label trm-label-light text-center">
             <i class="iconfont iconfont icon-calendar trm-icon"></i><br>
-            09/21
+            12/18
         </div>
     </div>
     <div class="col-sm-4">
         <div class="trm-card trm-label trm-label-light text-center">
             <i class="iconfont iconfont icon-clock trm-icon"></i><br>
-            21:34
+            21:45
         </div>
     </div>
     <div class="col-sm-4">
@@ -422,66 +420,84 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    <h1 id="Vue-模板编译机制"><a href="#Vue-模板编译机制" class="headerlink" title="Vue 模板编译机制"></a>Vue 模板编译机制</h1><p>在 Vue 中，模板编译是将 Vue 模板转换为渲染函数的过程。Vue 模板是一种 HTML 扩展语言，支持添加一些特殊的指令和表达式。例如，可以使用 v-bind 指令绑定 HTML 属性，使用 v-on 指令添加事件处理程序，使用<code>&#123;&#123; &#125;&#125;</code>表达式插入动态数据等。</p>
-<h2 id="Vue-的模板编译过程可以分为三个阶段"><a href="#Vue-的模板编译过程可以分为三个阶段" class="headerlink" title="Vue 的模板编译过程可以分为三个阶段"></a>Vue 的模板编译过程可以分为三个阶段</h2><ul>
-<li>解析阶段<br>将模板解析为抽象语法树(AST)。在这个阶段中，Vue 会解析模板中的所有指令和表达式，并生成对应的 AST 节点。</li>
-<li>优化阶段<br>对 AST 进行优化。在这个阶段中，Vue 会对 AST 进行静态分析和优化，减少不必要的计算，生成优化后的 AST。</li>
-<li>代码生成阶段<br>将 AST 转换为渲染函数。在这个阶段中，Vue 会将生成的 AST 转换为可执行的 JavaScript 代码，并返回渲染函数。</li>
+    <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>classNames 是一个 JavaScript 库,用于动态生成 CSS 类名，根据不同的条件添加或移除 CSS 类名。简单来说就是动态地去操作类名，把符合条件的类名粘在一起，简化在 React 组件中处理类名的复杂逻辑。</p>
+<h1 id="安装（使用-npm）"><a href="#安装（使用-npm）" class="headerlink" title="安装（使用 npm）"></a>安装（使用 npm）</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install classnames</span><br></pre></td></tr></table></figure>
+
+<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><h2 id="在-nodejs-里引入"><a href="#在-nodejs-里引入" class="headerlink" title="在 nodejs 里引入"></a>在 nodejs 里引入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var classNames = require(&#x27;classnames&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="在-js-里引入"><a href="#在-js-里引入" class="headerlink" title="在 js 里引入"></a>在 js 里引入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import classnames from &#x27;classnames&#x27;</span><br></pre></td></tr></table></figure>
+
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p>classNames 函数接受任意数量的参数，可以是 string、boolean、number、array 等。</p>
+<h2 id="普通字符串粘合"><a href="#普通字符串粘合" class="headerlink" title="普通字符串粘合"></a>普通字符串粘合</h2><p>将参数拼接为字符串，中间用空格分开</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">classNames(&#x27;foo&#x27;, &#x27;bar&#x27;) // =&gt; &#x27;foo bar&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="带条件的类参数"><a href="#带条件的类参数" class="headerlink" title="带条件的类参数"></a>带条件的类参数</h2><p>这里第二个参数是对象类型，键值为 true，则粘合进 className 里</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">classNames(&#x27;foo&#x27;, &#123; bar: true &#125;) // =&gt; &#x27;foo bar&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>若为 false，则不粘进去</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">classNames(&#x27;foo&#x27;, &#123; bar: false &#125;) // =&gt; &#x27;foo&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数类型是数组"><a href="#参数类型是数组" class="headerlink" title="参数类型是数组"></a>参数类型是数组</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var arr = [&#x27;b&#x27;, &#123; c: true, d: false &#125;]</span><br><span class="line">classNames(&#x27;a&#x27;, arr) // =&gt; &#x27;a b c&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="特别注意"><a href="#特别注意" class="headerlink" title="特别注意"></a>特别注意</h2><p>null 和 undefiend 会被忽略</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">classNames(null, false, &#x27;bar&#x27;, undefined, 0, 1, &#123; baz: null &#125;, &#x27;&#x27;) // =&gt; &#x27;bar 1&#x27;</span><br></pre></td></tr></table></figure>
+
+<h1 id="在-React-中优雅地使用-classnames"><a href="#在-React-中优雅地使用-classnames" class="headerlink" title="在 React 中优雅地使用 classnames"></a>在 React 中优雅地使用 classnames</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import classnames from &#x27;classnames&#x27;</span><br><span class="line"></span><br><span class="line">const Button = (&#123;primary,size&#125;)=&gt;&#123;</span><br><span class="line">  const classes = classnames(&#x27;btn&#x27;, &#123;</span><br><span class="line">    &#x27;btn-primary&#x27;:primary,</span><br><span class="line">    &#x27;btn-large&#x27;: size===&#x27;large&#x27;,</span><br><span class="line">    &#x27;btn-small&#x27;: size===&#x27;small&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">  return &lt;button className= &#123;classes&#125;&gt;点击按钮&lt;/button&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，classnames 函数接受一个类名和一个将类名映射为布尔值的对象。<br>classes 就可以变成一个对象，通过键值的条件确定最终生成的 className。</p>
+<ul>
+<li>如果给定类名的布尔值为 true，则该类名将包含在类名的最终列表中。</li>
+<li>如果给定类名的布尔值为 false，则不包括类名。<br>另外可以将字符串作为第二个参数传递给类名，如果给定类名的布尔值为 true，那么它将被添加到类名的最终列表中。</li>
 </ul>
-<h1 id="Vue-更新"><a href="#Vue-更新" class="headerlink" title="Vue 更新"></a>Vue 更新</h1><p>Vue 使用响应式系统来<code>收集依赖</code>和<code>派发更新</code>，当模板中数据发生变化时，组件的 render 函数会被作为数据的依赖而被触发，只不过这个触发并不是立刻的，因为模板中会引用很多数据，render 同时是这些所有数据的依赖项，如果 render 每次都立刻执行，则会造成多次重复渲染而消耗性能。</p>
-<p>实际上 render 是被 update 调用的，而 update 又是 Watcher 调用的，而 Watcher 在收到 Dep 的派发更新时会把自身交给 Scheduler ，由 Scheduler 负责对其去重并通过 nextTick() 将这些 Watcher 包装成微任务放入到事件循环中等待调用。</p>
-<p>render 执行输出的结果是一颗新的虚拟 DOM 树，然后 update 会通过 patch 函数将它与旧的虚拟 DOM 树进行对比，diff 和真实 DOM 的操作过程既是在 patch 函数中进行。</p>
-<p>所以，其实 Vue 的整个更新任务（构建虚拟 DOM ，diff，操作真实 DOM）可以算作一个整体，这个整体被当作微任务来处理，这也就是 Vue 异步更新的原理。</p>
-<h1 id="Vue-渲染机制"><a href="#Vue-渲染机制" class="headerlink" title="Vue 渲染机制"></a>Vue 渲染机制</h1><p>在 Vue 中，渲染是将 Vue 实例的状态转换为 DOM 的过程。当 Vue 实例的状态变化时，会触发重新渲染，自动更新视图。</p>
-<p>虚拟 DOM (Virtual DOM，简称 VDOM) 是一种编程概念，意为将目标所需的 UI 通过数据结构“虚拟”地表示出来，保存在内存中，然后将真实的 DOM 与之保持同步。</p>
-<p>一个运行时渲染器将会遍历整个虚拟 DOM 树，并据此构建真实的 DOM 树。这个过程被称为挂载 (mount)。<br>如果我们有两份虚拟 DOM 树，渲染器将会有比较地遍历它们，找出它们之间的区别，并应用这其中的变化到真实的 DOM 上。这个过程被称为更新 (patch)，又被称为“比对”(diffing) 或“协调”(reconciliation)。</p>
-<h2 id="Vue-组件挂载时会发生"><a href="#Vue-组件挂载时会发生" class="headerlink" title="Vue 组件挂载时会发生"></a>Vue 组件挂载时会发生</h2><ul>
-<li><p>编译：Vue 模板被编译为渲染函数：即用来返回虚拟 DOM 树的函数。这一步骤可以通过构建步骤提前完成，也可以通过使用运行时编译器即时完成。</p>
-</li>
-<li><p>挂载：运行时渲染器调用渲染函数，遍历返回的虚拟 DOM 树，并基于它创建实际的 DOM 节点。这一步会作为响应式副作用执行，因此它会追踪其中所用到的所有响应式依赖。</p>
-</li>
-<li><p>更新：当一个依赖发生变化后，副作用会重新运行，这时候会创建一个更新后的虚拟 DOM 树。运行时渲染器遍历这棵新树，将它与旧树进行比较，然后将必要的更新应用到真实 DOM 上去。</p>
-</li>
-</ul>
-<h2 id="Vue-的渲染过程可以分为以下几个步骤"><a href="#Vue-的渲染过程可以分为以下几个步骤" class="headerlink" title="Vue 的渲染过程可以分为以下几个步骤"></a>Vue 的渲染过程可以分为以下几个步骤</h2><ul>
-<li>创建虚拟 DOM<br>Vue 会通过渲染函数获取虚拟 DOM，用于描述界面结构。</li>
-<li>更新虚拟 DOM<br>当视图需要更新时，Vue 会通过 diff 算法比较新旧虚拟 DOM 的差异，生成可以最小化更新的操作序列。</li>
-<li>应用更新<br>最后，Vue 会根据生成的操作序列，将变化应用到实际的 DOM 上。</li>
-</ul>
-<h2 id="Vue-官方文档图"><a href="#Vue-官方文档图" class="headerlink" title="Vue 官方文档图"></a>Vue 官方文档图</h2><p><img src="/2023/09/21/Vue%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6.png" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<h1 id="为什么-Vue-默认推荐使用模板，不是渲染函数呢？"><a href="#为什么-Vue-默认推荐使用模板，不是渲染函数呢？" class="headerlink" title="为什么 Vue 默认推荐使用模板，不是渲染函数呢？"></a>为什么 Vue 默认推荐使用模板，不是渲染函数呢？</h1><p>Vue 模板会被预编译成虚拟 DOM 渲染函数。Vue 也提供了 API 使我们可以不使用模板编译，直接手写渲染函数。在处理高度动态的逻辑时，渲染函数相比于模板更加灵活，因为你可以完全地使用 JavaScript 来构造你想要的 vnode。</p>
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ul>
-<li><p>模板更贴近实际的 HTML。这使得我们能够更方便地重用一些已有的 HTML 代码片段，能够带来更好的可访问性体验、能更方便地使用 CSS 应用样式，并且更容易使设计师理解和修改。</p>
-</li>
-<li><p>由于其确定的语法，更容易对模板做静态分析。这使得 Vue 的模板编译器能够应用许多编译时优化来提升虚拟 DOM 的性能表现。</p>
-</li>
-</ul>
-<p>在实践中，模板对大多数的应用场景都是够用且高效的。渲染函数一般只会在需要处理高度动态渲染逻辑的可重用组件中使用。</p>
-<h1 id="Vue-与-React-更新机制区别"><a href="#Vue-与-React-更新机制区别" class="headerlink" title="Vue 与 React 更新机制区别"></a>Vue 与 React 更新机制区别</h1><ul>
-<li>触发更新机制</li>
-</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const classes = classnames(&#x27;btn&#x27;, primary &amp;&amp; &#x27;btn-primary&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h2 id="classNames-源码"><a href="#classNames-源码" class="headerlink" title="classNames 源码"></a>classNames 源码</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(function () &#123;</span><br><span class="line">	&#x27;use strict&#x27;</span><br><span class="line">  //hasOwnProperty这个方法用来判断对象的属性是否属于自己本身——而不是往原型链上面找到的</span><br><span class="line">	var hasOwn = &#123;&#125;.hasOwnProperty</span><br><span class="line"></span><br><span class="line">	function classNames () &#123;</span><br><span class="line">    //用于存储生成的类名</span><br><span class="line">		var classes = &#x27;&#x27;</span><br><span class="line">    //遍历classnames的所有参数</span><br><span class="line">		for (var i = 0; i &lt; arguments.length; i++) &#123;</span><br><span class="line">      //遍历 arguments 拿到每一项</span><br><span class="line">			var arg = arguments[i]</span><br><span class="line">			if (arg) &#123;</span><br><span class="line">				classes = appendClass(classes, parseValue(arg))</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return classes</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function parseValue (arg) &#123;</span><br><span class="line">    //获取每一个参数的类型</span><br><span class="line">    //如果是字符串或数字就直接加到classes数组里</span><br><span class="line">		if (typeof arg === &#x27;string&#x27; || typeof arg === &#x27;number&#x27;) &#123;</span><br><span class="line">			return arg</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		if (typeof arg !== &#x27;object&#x27;) &#123;</span><br><span class="line">			return &#x27;&#x27;</span><br><span class="line">		&#125;</span><br><span class="line">    //如果参数是数组，则将数组的值当作参数，调用自己</span><br><span class="line">		if (Array.isArray(arg)) &#123;</span><br><span class="line">			return classNames.apply(null, arg)</span><br><span class="line">		&#125;</span><br><span class="line">    //如果是对象且有自定义的toString方法，则调用toString方法添加到classes对象里</span><br><span class="line">		if (arg.toString !== Object.prototype.toString &amp;&amp; !arg.toString.toString().includes(&#x27;[native code]&#x27;)) &#123;</span><br><span class="line">			return arg.toString()</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		var classes = &#x27;&#x27;</span><br><span class="line">    //对于普通对象类型，则遍历对象的每一组键值对</span><br><span class="line">		for (var key in arg) &#123;</span><br><span class="line">      //将值为true的键作为className插入classes数组里</span><br><span class="line">			if (hasOwn.call(arg, key) &amp;&amp; arg[key]) &#123;</span><br><span class="line">				classes = appendClass(classes, key)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return classes</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function appendClass (value, newClass) &#123;</span><br><span class="line">		if (!newClass) &#123;</span><br><span class="line">			return value</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		if (value) &#123;</span><br><span class="line">			return value + &#x27; &#x27; + newClass</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return value + newClass</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if (typeof module !== &#x27;undefined&#x27; &amp;&amp; module.exports) &#123;</span><br><span class="line">		classNames.default = classNames</span><br><span class="line">		module.exports = classNames</span><br><span class="line">	&#125; else if (typeof define === &#x27;function&#x27; &amp;&amp; typeof define.amd === &#x27;object&#x27; &amp;&amp; define.amd) &#123;</span><br><span class="line">		// register as &#x27;classnames&#x27;, consistent with npm package name</span><br><span class="line">		define(&#x27;classnames&#x27;, [], function () &#123;</span><br><span class="line">			return classNames</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		window.classNames = classNames</span><br><span class="line">	&#125;</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure>
+
+<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><p>首先分析 index.js，采用了自执行的函数，避免变量污染冲突，采用严格模式。</p>
 <ol>
-<li>Vue 是通过响应式系统自动及时的进行触发</li>
-<li>React 则是通过用户更改状态的操作然后进行一系列调度来触发更新</li>
+<li>函数声明了一个名为 classes 的空数组，该数组将用于存储生成的类名。</li>
+<li>然后，for 循环函数自带 arguments 实例，得到 classnames 函数的所有实参。<br>对于每个参数，执行以下步骤:</li>
 </ol>
 <ul>
-<li>任务的区别</li>
+<li>检查参数的类型。<ul>
+<li>如果参数是一个字符串或数字，添加到类数组。</li>
+<li>如果参数是数组，则函数检查它是否为非空。如果是，则函数以数组元素作为参数递归地调用自身，并将结果添加到类数组中。</li>
+<li>如果参数是一个对象，那么先判定它的 toString 方法是否重写了。<ul>
+<li>如果是重写了，直接将调用 toString 的结果添加到类数组中。</li>
+<li>如果不是，函数将遍历对象自己的可枚举属性，并将属性名称添加到类数组中(如果它们的对应值为真)。</li>
 </ul>
-<ol>
-<li>Vue 会将任务包装成微任务</li>
-<li>React 则是将其包装成宏任务</li>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>提供了三种导出 classNames 的方式。</li>
 </ol>
-<p>虽然都是异步任务，但它们有很大区别。在事件循环中，如果有微任务存在则会先一直执行微任务，直到把微任务队列清空，然后再执行宏任务，并且在每个宏任务执行完毕后，会立即检查并执行所有微任务，然后再进行下一个宏任务的执行。</p>
-<p>先明确一点：异步任务执行时是由主线程进行执行的，所以此时它们已经相当于是同步执行了（这个异步实际指的是异步任务在任务队列里面等待的时候不会影响主线程的执行）</p>
-<p>微任务执行时不会穿插其它任务（比如浏览器渲染），所以当有大量微任务堆积时可能就会阻塞浏览器渲染（异步任务），但执行完一个宏任务时如果遇到浏览器需要渲染，则不会继续执行下一个宏任务而是转去进行浏览器渲染然后开启新的一轮事件循环。</p>
-<p>因为 React 的 Fiber 架构的出现就是为了能够随时打断，把控制权交给主线程，所以 React 采用的是宏任务，而不是会一股脑 “ 全冲完 ” 的微任务，这样可以避免微任务过多而导致的任务堆积和性能问题。<br>也正是因为 Vue 的理念是追求响应性和即时效果并避免过多的渲染，所以它采用微任务，及时把更新任务处理完，最后让浏览器渲染一次即可。<br>其实现如今，React 和 Vue 都不是完全使用某一种任务，在一些情况下 React 也会使用微任务，Vue 也是如此，它们的目标都是想要结合自身情况来创造一个更优秀的框架。</p>
 <ul>
-<li>diff 算法的不同</li>
+<li>module.exports 导出 classNames</li>
+<li>直接返回 classNames</li>
+<li>将 classNames 挂载到 window 上</li>
 </ul>
-<ol>
-<li>Vue 采用双端对比</li>
-<li>React 使用的是 Reconciliation 算法。</li>
+<ol start="4">
+<li>循环结束后，将类数组合并到一个单独的字符串中，并返回结果字符串。</li>
 </ol>
+<h2 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h2><ol>
+<li>arg.toString !== Object.prototype.toString 是什么？</li>
+</ol>
+<p>首先所有 js 对象都继承 Object 对象，都继承 toString 方法，这个表达式就是这个对象的 toString 方法不是继承自 Object.prototype</p>
+<ol start="2">
+<li>arg.toString.toString().includes(“[native code]”) 是什么意思？</li>
+</ol>
+<p>首先要知道 toString 方法的一些知识：</p>
+<ul>
+<li>如果对一个自定义函数调用 toString()方法时，可以得到该函数的源代码。</li>
+<li>如果对内置函数调用 toString()方法时，会得到一个’[native code]’字符串。<br>因此，可以使用 toString()方法来区分自定义函数和内置函数。<br>注意：上诉表达式中是对函数调用 toString()方法。<br>通过对 toString 函数调用 toString 方法，就可以判断这个 toString 是内置的，还是自定义的。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">arg.toString !== Object.prototype.toString &amp;&amp; !arg.toString.toString().includes(&#x27;[native code])</span><br></pre></td></tr></table></figure>
+
+<p>这里两个表达式连起来的意思就是：现在这个类有 toString 方法，而且还是自定义的</p>
+<h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><p>从源码来看，classNames 能够接入的参数是多种多样的，下面列举一些。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//字符串(能够单个，多个字符串)</span><br><span class="line">classNames(&#x27;el-checkbox-button--m&#x27;, &quot;is-disabled&quot;)</span><br><span class="line"></span><br><span class="line">//对象(能够单个，多个)</span><br><span class="line">classNames(&#123;&quot;is-disabled&quot;：true&#125;, &#123;&#x27;is-disabled&#x27;: disabled&#125;)</span><br><span class="line"></span><br><span class="line">//字符串+对象</span><br><span class="line">classNames(&#x27;el-checkbox-button--m&#x27;, &#123;&quot;is-disabled&quot;：true, &#x27;is-disabled&#x27;: disabled&#125;)</span><br><span class="line"></span><br><span class="line">//数组（数组项能够是字符串，对象）</span><br><span class="line">classNames([&#x27;el-checkbox-button--m&#x27;, &quot;is-disabled&quot;])</span><br><span class="line">classNames([&#x27;el-checkbox-button--m&#x27;, &#123;&quot;is-disabled&quot;：true，&#x27;is-disabled&#x27;: disabled&#125;])</span><br></pre></td></tr></table></figure>
 
 </article>
     
@@ -496,9 +512,10 @@
         </h5>
     </div>
     
+    
         <div class="col-lg-6">
     <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <a href="/2023/12/18/classNames%E5%BA%93/" class="trm-cover-frame trm-anima-link">
+        <a href="/2023/09/21/Vue%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/" class="trm-cover-frame trm-anima-link">
             
             
                 <div class="trm-cover-img" data-random-img></div>
@@ -507,51 +524,19 @@
         
         <div class="trm-card-descr">
             <div class="trm-label trm-category trm-mb-20">
-                <a href=" /categories/%E5%B7%A5%E5%85%B7/">
-                    工具
+                <a href=" /categories/vue/">
+                    vue
                 </a>
             </div>
             <h5>
-                <a href="/2023/12/18/classNames%E5%BA%93/" class="trm-anima-link">
-                    classNames库
+                <a href="/2023/09/21/Vue%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/" class="trm-anima-link">
+                    Vue更新机制
                 </a>
             </h5>
             <div class="trm-divider trm-mb-20 trm-mt-20"></div>
             <ul class="trm-card-data trm-label">
-                <li>23/12/18</li>
-                <li>21:45</li>
-                
-                
-            </ul>
-        </div>
-    </div>
-</div>
-    
-    
-        <div class="col-lg-6">
-    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <a href="/2023/06/06/TypeScript5.1%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/" class="trm-cover-frame trm-anima-link">
-            
-            
-                <div class="trm-cover-img" data-random-img></div>
-            
-        </a>
-        
-        <div class="trm-card-descr">
-            <div class="trm-label trm-category trm-mb-20">
-                <a href=" /categories/TypeScript/">
-                    TypeScript
-                </a>
-            </div>
-            <h5>
-                <a href="/2023/06/06/TypeScript5.1%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83/" class="trm-anima-link">
-                    TypeScript5.1正式发布
-                </a>
-            </h5>
-            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>23/06/06</li>
-                <li>11:07</li>
+                <li>23/09/21</li>
+                <li>21:34</li>
                 
                 
             </ul>
